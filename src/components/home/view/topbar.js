@@ -6,7 +6,7 @@ import React from 'react';
 
 const TopBar = () => {
     return (
-        <nav className="topbar green darken-3 nav-extended">
+        <nav className="topbar nav-extended">
             <div className="nav-wrapper">
                 <a className="brand-logo">
                     <i className="fa fa-codiepie" />
