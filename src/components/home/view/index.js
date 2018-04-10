@@ -3,13 +3,15 @@
  */
 
 import React from 'react';
-import TopBar  from './topbar';
+import TopBar from './topbar';
+import Body from './body';
 
-const Body = () => {
-    return(
+const View = () => {
+    return (
         <div>
-            <TopBar/>
+            <TopBar />
+            <Body />
         </div>
     );
 };
-export default Body;
+export default View;

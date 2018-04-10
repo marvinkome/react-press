@@ -4,6 +4,10 @@
 
 /******* TopBar Component ******/
 
+.topbar {
+    background: rgb(0, 100, 0);
+}
+
 .topbar .nav-wrapper .user-image {
     width: 50px;
 }
@@ -119,4 +123,52 @@
     .topbar .nav-content .nav-cta {
         display: inline;
     }
+}
+
+/***************** Body *******************/
+
+.body .card-title {
+    color: hsl(0, 0%, 13%);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.body .card-content {
+    color: hsl(0, 0%, 29%);
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.body .card-action {
+    background: hsl(0, 0%, 97%);
+    border-bottom: 4px solid hsl(145, 100%, 19%);
+}
+
+.body .card .card-action .author {
+    display: flex;
+}
+
+.body .card .card-action .author .author-image {
+    max-width: 20%;
+    margin-right: 2px;
+}
+
+.body .card .card-action .author .author-image img {
+    width: 40px;
+}
+
+.body .card .card-action .author .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.body .card .card-action .author .info .name {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.body .card .card-action .author .info .date {
+    font-weight: 500;
+    color: hsl(120, 100%, 20%, 1);
 }
