@@ -7,8 +7,10 @@
     "start": "webpack-dev-server --host 192.168.43.200 --mode development"
   },
   "dependencies": {
+    "prettier-eslint": "^8.8.1",
     "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react-dom": "^16.3.0",
+    "react-owl-carousel": "^2.2.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
