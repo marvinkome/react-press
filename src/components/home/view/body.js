@@ -8,7 +8,7 @@ const Body = () => {
     return (
         <div className="body section container">
             <div className="row">
-                <div className="col m4">
+                <div className="col l4 m6">
                     <div className="card">
                         <div className="card-image">
                             <img src="./src/img/card.jpg" />

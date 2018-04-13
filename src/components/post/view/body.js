@@ -19,13 +19,13 @@ class Body extends Component {
                 <div className="row">
                     <div className="col m12">
                         <div className="author-info">
-                            <div className="author-image col s2">
+                            <div className="author-image col s3">
                                 <img
                                     src="./src/img/pp.jpg"
                                     className="responsive-img circle"
                                 />
                             </div>
-                            <div className="author-details col s10">
+                            <div className="author-details col s9">
                                 <p className="author-name">
                                     Kiko Krachen
                                     <a

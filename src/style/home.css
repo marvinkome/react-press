@@ -21,7 +21,7 @@
     overflow-y: hidden;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
-    margin-top: 30px;
+    margin-top: 19px;
 }
 
 .topbar .nav-content .menu::-webkit-scrollbar {
@@ -30,7 +30,7 @@
 
 .topbar .nav-content .nav-cta {
     border-left: 1px solid rgba(255, 255, 255, 0.8);
-    margin-top: 30px;
+    margin-top: 19px;
 }
 
 .topbar .nav-content .social {
@@ -86,9 +86,35 @@
     }
 }
 
+/* medium screen */
+@media screen and (max-width: 992px) and (min-width: 601px) {
+    .topbar .nav-wrapper .brand-logo {
+        font-size: 35px;
+        left: 8%;
+        transform: translateX(-56%);
+    }
+    .topbar .nav-content .m7 {
+        margin-top: -31px;
+        transform: translateX(30%);
+    }
+
+    .topbar .nav-content .m4 {
+       padding-left: 30px;
+    }
+
+    .topbar .nav-content .m12 {
+        text-align: center;
+    }
+
+    .topbar .nav-content .nav-cta,
+    .topbar .nav-content .menu {
+        margin-top: 26px;
+    }
+}
+
 /* Small Screen */
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 600px) {
     .topbar .nav-wrapper,
     .topbar .nav-content {
         margin-left: 5%;
@@ -111,7 +137,7 @@
         transform: translateX(9%);
         padding: 2px 0;
     }
-    .topbar .nav-content .m6,
+    .topbar .nav-content .m7,
     .topbar .nav-content .nav-menu {
         padding: 0px;
     }
