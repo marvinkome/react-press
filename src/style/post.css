@@ -223,6 +223,39 @@
     color: rgb(0, 100, 0);
 }
 
+.post-body .response {
+    margin-top: 50px;
+}
+
+.post-body .response h5 {
+    font-weight: 600;
+    color: hsl(0, 0%, 20%);
+}
+
+.post-body .response .collection .title {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.post-body .response .collection .comment-resp {
+    margin-top: 7px;
+    font-size: 16px;
+    word-spacing: 1px;
+    color: hsl(0, 0%, 30%);
+}
+
+.post-body .response .collection .secondary-content {
+    color: hsl(0, 0%, 45%);
+}
+
+/* Large Screen */
+
+@media screen and (min-width: 993px) {
+    .post-body .response .collection .comment-resp {
+        margin-right: 15%;
+    }
+}
+
 /* medium screen */
 @media screen and (max-width: 992px) and (min-width: 601px) {
     .post-body .author-desc {
