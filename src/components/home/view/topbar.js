@@ -33,10 +33,10 @@ const TopBar = () => {
                 </ul>
             </div>
             <div className="nav-content row">
-                <div className="col m3">
+                <div className="col l3 m4">
                     <span className="nav-title"> freeCodeCamp </span>
                 </div>
-                <div className="col m6">
+                <div className="col l6 m7">
                     <div className="col s6 nav-menu">
                         <div className="menu">
                             <div className="item">
@@ -67,7 +67,7 @@ const TopBar = () => {
                         </h5>
                     </div>
                 </div>
-                <div className="col m3">
+                <div className="col l3 m12">
                     <div className="social">
                         <a title="Twitter">
                             <i className="fa fa-twitter" />
