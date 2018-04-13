@@ -1,5 +1,5 @@
 /**
- * ./src/style/home.js
+ * ./src/style/home.css
  */
 
 /******* TopBar Component ******/
@@ -43,8 +43,8 @@
     padding: 0 10px;
 }
 
-.topbar .nav-content .menu .item h5,
-.topbar .nav-content .nav-cta h5 {
+.topbar .nav-content .menu .item h5 a,
+.topbar .nav-content .nav-cta h5 a {
     text-transform: uppercase;
     font-size: 15px;
     color: rgba(255, 255, 255, 0.8);

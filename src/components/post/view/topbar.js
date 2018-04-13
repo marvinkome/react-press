@@ -1,23 +1,35 @@
 /**
- * ./src/components/home/view/topbar
+ * ./src/components/post/view/topbar
  */
 
 import React from 'react';
 
 const TopBar = () => {
     return (
-        <nav className="topbar nav-extended">
+        <nav className="post-topbar nav-extended">
             <div className="nav-wrapper">
                 <a className="brand-logo">
                     <i className="fa fa-codiepie" />
                 </a>
+                <div className="blog-info">
+                    <span className="blog-title">freeCodeCamp</span>
+                    <div className="social">
+                        <a title="Twitter">
+                            <i className="fa fa-twitter" />
+                        </a>
+                        <a title="Facebook">
+                            <i className="fa fa-facebook" />
+                        </a>
+                        <a className="btn"> following </a>
+                    </div>
+                </div>
                 <ul className="right">
                     <li>
-                        <a title="Search">
+                        <a title="Search" className="search">
                             <i className="fa fa-search" />
                         </a>
                     </li>
-                    <li>
+                    <li className="hide-small">
                         <a title="Notification">
                             <i className="fa fa-bell-o" />
                         </a>
@@ -33,11 +45,8 @@ const TopBar = () => {
                 </ul>
             </div>
             <div className="nav-content row">
-                <div className="col m3">
-                    <span className="nav-title"> freeCodeCamp </span>
-                </div>
-                <div className="col m6">
-                    <div className="col s6 nav-menu">
+                <div className="col m12">
+                    <div className="col s5 m9 nav-menu">
                         <div className="menu">
                             <div className="item">
                                 <h5>
@@ -61,21 +70,10 @@ const TopBar = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col s6 nav-cta">
+                    <div className="col s7 m3 nav-cta">
                         <h5>
                             <a title="Learn to code"> Learn to code </a>
                         </h5>
-                    </div>
-                </div>
-                <div className="col m3">
-                    <div className="social">
-                        <a title="Twitter">
-                            <i className="fa fa-twitter" />
-                        </a>
-                        <a title="Facebook">
-                            <i className="fa fa-facebook" />
-                        </a>
-                        <a className="btn"> following </a>
                     </div>
                 </div>
             </div>
