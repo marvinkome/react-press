@@ -6,8 +6,6 @@ import React from 'react';
 import Body from './view';
 
 const Home = () => {
-    return(
-        <Body/>
-    );
+    return <Body />;
 };
 export default Home;

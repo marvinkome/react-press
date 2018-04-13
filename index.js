@@ -4,7 +4,9 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Router } from 'react-router-dom';
 
+import history from './src/history';
 import App from './src/components/app.js';
 
 import 'materialize-css/dist/js/materialize.js';
@@ -14,7 +16,9 @@ import 'font-awesome/css/font-awesome.min.css';
 import './src/style/index.css';
 
 const elem = (
-    <App/>
+    <Router history={history}>
+        <App/>
+    </Router>
 );
 
 ReactDOM.render(

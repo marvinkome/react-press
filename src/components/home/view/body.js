@@ -14,19 +14,25 @@ const Body = () => {
                             <img src="./src/img/card.jpg" />
                         </div>
                         <div className="card-content">
-                            <a><span className="card-title">
-                                Use matchPath to Match Nested Route Paths in Parent Routes with
-                                React-Router.
-                            </span></a>
+                            <a>
+                                <span className="card-title">
+                                    Use matchPath to Match Nested Route Paths in
+                                    Parent Routes with React-Router.
+                                </span>
+                            </a>
                             <p>
-                                If you have ever visited a sit-down restaurant, then you can
-                                understand the difference between front-end and back-end in web
+                                If you have ever visited a sit-down restaurant,
+                                then you can understand the difference between
+                                front-end and back-end in web
                             </p>
                         </div>
                         <div className="card-action">
                             <div className="author">
                                 <div className="author-image">
-                                    <img className="circle" src="./src/img/pp.jpg" />
+                                    <img
+                                        className="circle"
+                                        src="./src/img/pp.jpg"
+                                    />
                                 </div>
                                 <div className="info">
                                     <span className="name">Gary Hills</span>
