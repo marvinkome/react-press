@@ -9,9 +9,13 @@
     "precommit": "lint-staged"
   },
   "lint-staged": {
-    "*js": ["yarn format", "git add"]
+    "*js": [
+      "yarn format",
+      "git add"
+    ]
   },
   "dependencies": {
+    "prop-types": "^15.6.1",
     "react": "^16.3.0",
     "react-dom": "^16.3.0"
   },
