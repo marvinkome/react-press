@@ -4,21 +4,44 @@
 
 import * as constants from './constants';
 
-export const requestArticle = () => ({
-    type: constants.REQUEST_ARTICLE
+export const sendRequest = () => ({
+    type: constants.SEND_REQUEST
 });
 
-export const recieveArticle = article => ({
-    type: constants.RECIEVE_ARTICLE,
+export const recieveArticles = article => ({
+    type: constants.RECIEVE_ARTICLES,
     payload: article
 });
 
-export const fetch_data = () => {
+export const fetch_all_data = () => {
     return dispatch => {
-        dispatch(requestArticle());
+        dispatch(sendRequest());
 
-        return fetch('http://127.0.0.1:5000/graphl')
+        const query = `
+            {
+                posts{
+                    uuid
+                    title
+                    body
+                    timestamp
+                    author{
+                        fullName
+                        description
+                    }
+                }
+            }
+        `;
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://127.0.0.1:5000/graphql', headers)
             .then(resp => resp.json())
-            .then(res => dispatch(recieveArticle(res)));
+            .then(res => dispatch(recieveArticles(res)));
     };
 };

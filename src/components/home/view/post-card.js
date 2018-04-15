@@ -5,6 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { truncate, format_date } from '../../../js/helpers';
 
 const PostCard = ({ post }) => {
     return (
@@ -16,7 +17,7 @@ const PostCard = ({ post }) => {
                 <Link to={'/post/' + post.uuid}>
                     <span className="card-title">{post.title}</span>
                 </Link>
-                <p>{post.body}</p>
+                <p>{truncate(post.body, 40)}</p>
             </div>
             <div className="card-action">
                 <div className="author">
@@ -25,7 +26,9 @@ const PostCard = ({ post }) => {
                     </div>
                     <div className="info">
                         <span className="name">{post.author.fullName}</span>
-                        <span className="date">{post.timestamp} </span>
+                        <span className="date">
+                            {format_date(post.timestamp)}
+                        </span>
                     </div>
                 </div>
             </div>

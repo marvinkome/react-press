@@ -10,6 +10,15 @@ const updateObject = (oldObj, newValues) => {
     return Object.assign({}, oldObj, newValues);
 };
 
+const saveStore = store => {
+    if (localStorage) {
+        store = JSON.stringify(store);
+        localStorage.setItem('medium_blog_store', store);
+    }
+
+    return true;
+};
+
 // const updateItemArray = (array, itemId, callback, key = 'id') => {
 //     const updatedItems = array.map(item => {
 //         if (item[key] !== itemId) {
@@ -24,30 +33,33 @@ const updateObject = (oldObj, newValues) => {
 // };
 
 // Case reducers
-const requestArticle = state => {
+const sendRequest = state => {
     const isFetching = true;
     return updateObject(state, {
         isFetching
     });
 };
 
-const recieveArticle = (state, article) => {
+const recieveArticles = (state, article) => {
     const isFetching = false;
     const lastFetch = Date.now();
 
-    return updateObject(state, {
+    const store = updateObject(state, {
         isFetching,
         lastFetch,
-        data: article.posts
+        data: article.data
     });
+
+    saveStore(store);
+    return store;
 };
 
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
-    case constants.REQUEST_ARTICLE:
-        return requestArticle(state);
-    case constants.RECIEVE_ARTICLE:
-        return recieveArticle(state, action.payload);
+    case constants.SEND_REQUEST:
+        return sendRequest(state);
+    case constants.RECIEVE_ARTICLES:
+        return recieveArticles(state, action.payload);
     default:
         return state;
     }

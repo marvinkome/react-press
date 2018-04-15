@@ -4,6 +4,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import { format_date } from '../../../js/helpers';
 
 const AuthorInfo = ({ data }) => (
     <div className="author-info">
@@ -12,17 +13,13 @@ const AuthorInfo = ({ data }) => (
         </div>
         <div className="author-details col s9">
             <p className="author-name">
-                {data.fullName}
+                {data.author.fullName}
                 <a title="follow" className="btn-small btn follow">
                     follow
                 </a>
             </p>
-            <p className="author-desc">
-                Founder of CodeAnalogies (www.codeanalogies.com). Self-taught
-                web developer. Passionate about not making same mistakes twice.
-                Only new mistakes!
-            </p>
-            <p className="post-meta">Apr 10 2018 - 10 mins read</p>
+            <p className="author-desc">{data.author.description}</p>
+            <p className="post-meta">{format_date(data.timestamp)}</p>
         </div>
     </div>
 );
