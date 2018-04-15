@@ -8,6 +8,7 @@ import { PostID } from '../index';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
+import Preloader from './preloader';
 
 class Body extends Component {
     constructor(props) {
@@ -24,16 +25,25 @@ class Body extends Component {
         return (
             <PostID.Consumer>
                 {value => {
+                    const post = value.data.find(obj => obj.uuid == value.id);
                     return (
                         <div className="post-body section container">
                             <div className="row">
-                                <div className="col m12">
-                                    <AuthorInfo data={value.author} />
+                                {value.isFetching ? (
+                                    <div className="col m12 center-align">
+                                        <Preloader />
+                                    </div>
+                                ) : (
+                                    post && (
+                                        <div className="col m12">
+                                            <AuthorInfo data={post} />
 
-                                    <PostCard data={value} />
+                                            <PostCard data={post} />
 
-                                    <Comment />
-                                </div>
+                                            <Comment />
+                                        </div>
+                                    )
+                                )}
                             </div>
                             <div ref={this.fabRef} className="fixed-action-btn">
                                 <a className="btn-floating btn-large">

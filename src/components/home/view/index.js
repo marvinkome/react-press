@@ -3,21 +3,16 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import TopBar from './topbar';
 import Body from './body';
 
-const View = ({ data }) => {
+const View = () => {
     return (
         <div>
             <TopBar />
-            <Body posts={data.posts} />
+            <Body />
         </div>
     );
-};
-
-View.propTypes = {
-    data: PropTypes.object.isRequired
 };
 
 export default View;
