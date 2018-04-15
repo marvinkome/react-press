@@ -40,7 +40,7 @@ class Body extends Component {
 
                                             <PostCard data={post} />
 
-                                            <Comment />
+                                            <Comment data={post.comments} />
                                         </div>
                                     )
                                 )}

@@ -3,6 +3,7 @@
  */
 
 import * as constants from './constants';
+import * as query from './queries';
 
 export const sendRequest = () => ({
     type: constants.SEND_REQUEST
@@ -17,24 +18,9 @@ export const fetch_all_data = () => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const query = `
-            {
-                posts{
-                    uuid
-                    title
-                    body
-                    timestamp
-                    author{
-                        fullName
-                        description
-                    }
-                }
-            }
-        `;
-
         const headers = {
             method: 'POST',
-            body: JSON.stringify({ query }),
+            body: JSON.stringify({ query: query.fetch_alls_query }),
             headers: {
                 'Content-Type': 'application/json'
             }

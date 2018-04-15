@@ -2,93 +2,66 @@
  * ./src/components/post/view/comment
  */
 
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { format_date } from '../../../js/helpers';
 
-class Comment extends Component {
-    render() {
-        return (
-            <div className="response">
-                <h5>Responses</h5>
+const Comment = ({ data }) => (
+    <div className="response">
+        <h5>Responses</h5>
 
-                <ul className="collection">
-                    <li className="collection-item avatar">
+        {data.edges.map(obj => (
+            <ul key={obj.node.uuid} className="collection">
+                <li className="collection-item avatar">
+                    <img src="./src/img/pp.jpg" alt="" className="circle" />
+                    <a>
+                        <span className="title">
+                            {obj.node.author.fullName}
+                        </span>
+                    </a>
+                    <div className="comment-resp">{obj.node.body}</div>
+                    <a href="#!" className="secondary-content">
+                        {format_date(obj.node.timestamp)}
+                    </a>
+                </li>
+                {obj.node.replies.edges.map(reply => (
+                    <li
+                        key={reply.node.uuid}
+                        className="collection-item avatar"
+                    >
                         <img src="./src/img/pp.jpg" alt="" className="circle" />
                         <a>
-                            <span className="title">Title</span>
+                            <span className="title">
+                                {reply.node.author.fullName}
+                            </span>
                         </a>
-                        <div className="comment-resp">
-                            Thank you, Kevin, this article was created just for
-                            me! ( lol). I am new to coding, teaching myself,
-                            HTML/CSS and Javascript. I’ve just enough knowledge
-                            to fully understand your article and I appreciate
-                            you taking the time to write this. My goal is to
-                            become both a front and back-end developer. Articles
-                            like this one, along with many other resources…
-                        </div>
+                        <div className="comment-resp">{reply.node.body}</div>
                         <a href="#!" className="secondary-content">
-                            Apr 7 2018
+                            {format_date(reply.node.timestamp)}
                         </a>
                     </li>
-                    <li className="collection-item avatar">
-                        <img src="./src/img/pp.jpg" alt="" className="circle" />
-                        <a>
-                            <span className="title">Title</span>
-                        </a>
-                        <div className="comment-resp">
-                            Thank you, Kevin, this article was created just for
-                            me! ( lol). I am new to coding, teaching myself,
-                            HTML/CSS and Javascript. I’ve just enough knowledge
-                            to fully understand your article and I appreciate
-                            you taking the time to write this. My goal is to
-                            become both a front and back-end developer. Articles
-                            like this one, along with many other resources…
-                        </div>
-                        <a href="#!" className="secondary-content">
-                            Apr 7 2018
-                        </a>
-                    </li>
-                </ul>
+                ))}
+            </ul>
+        ))}
+    </div>
+);
 
-                <ul className="collection">
-                    <li className="collection-item avatar">
-                        <img src="./src/img/pp.jpg" alt="" className="circle" />
-                        <a>
-                            <span className="title">Title</span>
-                        </a>
-                        <div className="comment-resp">
-                            Thank you, Kevin, this article was created just for
-                            me! ( lol). I am new to coding, teaching myself,
-                            HTML/CSS and Javascript. I’ve just enough knowledge
-                            to fully understand your article and I appreciate
-                            you taking the time to write this. My goal is to
-                            become both a front and back-end developer. Articles
-                            like this one, along with many other resources…
-                        </div>
-                        <a href="#!" className="secondary-content">
-                            Apr 7 2018
-                        </a>
-                    </li>
-                    <li className="collection-item avatar">
-                        <img src="./src/img/pp.jpg" alt="" className="circle" />
-                        <a>
-                            <span className="title">Title</span>
-                        </a>
-                        <div className="comment-resp">
-                            Thank you, Kevin, this article was created just for
-                            me! ( lol). I am new to coding, teaching myself,
-                            HTML/CSS and Javascript. I’ve just enough knowledge
-                            to fully understand your article and I appreciate
-                            you taking the time to write this. My goal is to
-                            become both a front and back-end developer. Articles
-                            like this one, along with many other resources…
-                        </div>
-                        <a href="#!" className="secondary-content">
-                            Apr 7 2018
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        );
-    }
-}
+Comment.propTypes = {
+    data: PropTypes.object.isRequired
+};
+
 export default Comment;
+{
+    /* <li key={obj.node.uuid} className="collection-item avatar">
+                        <img src="./src/img/pp.jpg" alt="" className="circle" />
+                        <a>
+                            <span className="title">{obj.node.author.fullName}</span>
+                        </a>
+                        <div className="comment-resp">
+                            {obj.node.body}
+                        </div>
+                        <a href="#!" className="secondary-content">
+                            {format_date(obj.node.timestamp)}
+                        </a>
+                    </li> */
+}
