@@ -1,9 +1,10 @@
 /**
- * ./src/style/index.js
+ * ./src/style/index.css
  */
 
 @import url('./home.css');
 @import url('./post.css');
+@import url('./admin/index.css');
 
 a {
     color: rgb(0, 100, 0);
@@ -11,4 +12,28 @@ a {
 
 body {
     background-color: hsl(0, 0%, 99%);
+}
+
+.spinner-layer {
+    border-color: hsl(0, 0%, 30%);
+}
+
+@media screen and (min-width: 993px) {
+    .preloader-wrapper.small {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .preloader-cont {
+        margin-left: 39%;
+        padding: 3.3% 4%;
+        background: #e0e0e0;
+    }
+
+    .preloader-wrapper.small {
+        width: 30px;
+        height: 30px;
+    }
 }

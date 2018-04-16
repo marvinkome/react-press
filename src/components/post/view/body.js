@@ -30,7 +30,7 @@ class Body extends Component {
                         <div className="post-body section container">
                             <div className="row">
                                 {value.isFetching ? (
-                                    <div className="col m12 center-align">
+                                    <div className="col m12 center-align preloader-cont circle">
                                         <Preloader />
                                     </div>
                                 ) : (
