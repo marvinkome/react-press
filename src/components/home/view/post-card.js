@@ -11,7 +11,7 @@ const PostCard = ({ post }) => {
     return (
         <div className="card">
             <div className="card-image">
-                <img src="./src/img/card.jpg" />
+                <img src={post.postPicUrl} />
             </div>
             <div className="card-content">
                 <Link to={'/post/' + post.uuid}>
@@ -22,7 +22,7 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img className="circle" src="./src/img/pp.jpg" />
+                        <img className="circle" src={post.author.gravatarUrl} />
                     </div>
                     <div className="info">
                         <span className="name">{post.author.fullName}</span>

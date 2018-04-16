@@ -9,7 +9,10 @@ import { format_date } from '../../../js/helpers';
 const AuthorInfo = ({ data }) => (
     <div className="author-info">
         <div className="author-image col s3">
-            <img src="./src/img/pp.jpg" className="responsive-img circle" />
+            <img
+                src={data.author.gravatarUrl}
+                className="responsive-img circle"
+            />
         </div>
         <div className="author-details col s9">
             <p className="author-name">

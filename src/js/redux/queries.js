@@ -5,8 +5,10 @@ export const fetch_alls_query = `
         title
         body
         timestamp
+        postPicUrl
         author {
             fullName
+            gravatarUrl
         }
         comments {
             edges{
@@ -16,6 +18,7 @@ export const fetch_alls_query = `
                     timestamp
                     author{
                         fullName
+                        gravatarUrl
                     }
                     replies{
                         edges{
@@ -25,6 +28,7 @@ export const fetch_alls_query = `
                                 timestamp
                                 author{
                                     fullName
+                                    gravatarUrl
                                 }
                             }
                         }
