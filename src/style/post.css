@@ -238,7 +238,7 @@
     margin: 5px 0 0 0;
 }
 
-.post-body .response .collection .comment-author .comment-author-img {
+.post-body .response .collection .comment-author .comment-author-image {
     max-width: 8%;
 }
 
@@ -314,5 +314,12 @@
     }
     .post-body .post-content .post-title {
         font-size: 2rem;
+    }
+    .post-body .response .collection .comment-author .comment-author-image {
+        max-width: 22%;
+    }
+    .post-body .preloader-cont {
+        margin-left: 39%;
+        padding: 3% 4%;
     }
 }

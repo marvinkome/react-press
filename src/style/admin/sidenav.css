@@ -1,0 +1,63 @@
+/* side nav */
+
+/* large screen */
+@media screen and (min-width: 993px) {
+    .admin-nav .nav-wrapper {
+        padding-left: 10%;
+        padding-right: 4%;
+    }
+}
+
+/* medium screen */
+@media screen and (max-width: 992px) and (min-width: 601px) {
+    .admin-nav .nav-wrapper .brand-logo {
+        font-size: 35px;
+        left: 8%;
+        transform: translateX(60%);
+    }
+}
+
+/* Small Screen */
+
+@media screen and (max-width: 600px) {
+    .admin-nav .nav-wrapper {
+        margin-left: 5%;
+        margin-right: 1%;
+    }
+    .admin-nav .nav-wrapper .brand-logo i {
+        margin-top: 14px;
+    }
+    .admin-nav .nav-wrapper .brand-logo {
+        margin-top: -4px;
+        font-size: 35px;
+        left: 14%;
+        transform: translateX(50%);
+    }
+    .admin-nav .nav-wrapper ul i {
+        font-size: 19px;
+        padding-top: 15px;
+    }
+}
+
+.admin-nav .brand-logo,
+.admin-nav ul a,
+.admin-nav a {
+    color: hsl(0, 0%, 40%) !important;
+}
+.sidenav .user-view .name {
+    font-size: 16px;
+    line-height: 24px;
+    padding-bottom: 10px;
+    font-weight: 700;
+    color: hsl(0, 0%, 90%);
+}
+.sidenav .user-view {
+    padding: 30px 28px 0;
+}
+.sidenav li > a {
+    color: #757575;
+    font-weight: 600;
+}
+.sidenav li > a.active {
+    color: #424242;
+}

@@ -5,7 +5,7 @@
 import React from 'react';
 
 const Preloader = () => (
-    <div className="preloader-wrapper big active">
+    <div className="preloader-wrapper small active">
         <div className="spinner-layer spinner-blue-only">
             <div className="circle-clipper left">
                 <div className="circle" />

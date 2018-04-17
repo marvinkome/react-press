@@ -14,14 +14,14 @@ const Comment = ({ data }) => (
             <ul key={obj.node.uuid} className="collection">
                 <li className="collection-item">
                     <div className="comment-author row">
-                        <div className="comment-author-image col s1">
+                        <div className="comment-author-image col s4 m1">
                             <img
                                 src={obj.node.author.gravatarUrl}
                                 alt=""
                                 className="responsive-img circle"
                             />
                         </div>
-                        <div className="comment-author-info col s11">
+                        <div className="comment-author-info col s8 m11">
                             <p className="title">{obj.node.author.fullName}</p>
                             <span className="post-meta">
                                 {format_date(obj.node.timestamp)}
@@ -34,14 +34,14 @@ const Comment = ({ data }) => (
                 {obj.node.replies.edges.map(reply => (
                     <li key={reply.node.uuid} className="collection-item">
                         <div className="comment-author row">
-                            <div className="comment-author-image col s1">
+                            <div className="comment-author-image col s4 m1">
                                 <img
                                     src={reply.node.author.gravatarUrl}
                                     alt=""
                                     className="responsive-img circle"
                                 />
                             </div>
-                            <div className="comment-author-info col s11">
+                            <div className="comment-author-info col s8 m11">
                                 <p className="title">
                                     {reply.node.author.fullName}
                                 </p>
