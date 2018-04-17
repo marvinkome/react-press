@@ -54,6 +54,35 @@
 .sidenav .user-view {
     padding: 30px 28px 0;
 }
+.sidenav .collapsible {
+    padding: 0 0px;
+}
+.sidenav .collapsible:focus {
+    outline: none;
+}
+.sidenav li:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.sidenav .collapsible-header:hover,
+.sidenav .collapsible li:hover {
+    background-color: rgba(0, 0, 0, 0) !important;
+}
+.sidenav .collapsible-header:focus {
+    outline: none;
+}
+.sidenav .collapsible-header {
+    padding: 0 32px;
+}
+.sidenav .collapsible-header i {
+    float: inherit;
+    font-size: 19px;
+}
+.sidenav .collapsible-body {
+    background-color: hsl(0, 0%, 98.6%);
+}
+.sidenav .collapsible-body a {
+    padding-left: 45px !important;
+}
 .sidenav li > a {
     color: #757575;
     font-weight: 600;

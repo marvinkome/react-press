@@ -3,6 +3,7 @@
  */
 
 @import url('./dashboard.css');
+@import url('./posts.css');
 @import url('./sidenav.css');
 
 .admin-nav,
