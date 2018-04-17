@@ -29,11 +29,6 @@ export default class SideNav extends Component {
                             Menu
                         </a>
                         <ul className="right">
-                            <li>
-                                <a title="Search" className="search">
-                                    <i className="fa fa-search" />
-                                </a>
-                            </li>
                             <li className="hide-small">
                                 <a title="Notification">
                                     <i className="fa fa-bell-o" />

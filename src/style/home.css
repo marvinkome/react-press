@@ -95,6 +95,7 @@
     }
     .topbar .nav-content .m7 {
         margin-top: -31px;
+        margin-left: -70px;
         transform: translateX(30%);
     }
 

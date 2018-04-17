@@ -11,7 +11,7 @@ a {
 }
 
 body {
-    background-color: hsl(0, 0%, 99%);
+    background-color: hsl(0, 0%, 97%);
 }
 
 .spinner-layer {
@@ -28,8 +28,7 @@ body {
 @media screen and (max-width: 600px) {
     .preloader-cont {
         margin-left: 39%;
-        padding: 3.3% 4%;
-        background: #e0e0e0;
+        padding: 3.3% 4% !important;
     }
 
     .preloader-wrapper.small {

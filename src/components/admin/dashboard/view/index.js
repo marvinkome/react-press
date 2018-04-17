@@ -4,13 +4,13 @@
 
 import React from 'react';
 import Sidenav from '../../helpers/sidenav';
-// import Body from './body';
+import Body from './body';
 
 const View = () => {
     return (
         <div>
             <Sidenav />
-            {/* <Body /> */}
+            <Body />
         </div>
     );
 };

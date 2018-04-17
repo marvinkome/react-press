@@ -6,14 +6,14 @@
 @import url('./sidenav.css');
 
 .admin-nav,
-main,
+.main,
 .footer {
     padding-left: 300px;
 }
 
 @media only screen and (max-width: 992px) {
     .admin-nav,
-    main,
+    .main,
     .footer {
         padding-left: 0;
     }
