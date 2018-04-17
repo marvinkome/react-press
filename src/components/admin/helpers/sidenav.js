@@ -3,17 +3,25 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class SideNav extends Component {
     constructor(props) {
         super(props);
         this.sideNav = React.createRef();
+        this.collapsible = React.createRef();
     }
     componentDidMount() {
         const sidenav = this.sideNav.current;
+        const collapsible = this.collapsible.current;
         window.M.Sidenav.init(sidenav);
+        window.M.Collapsible.init(collapsible);
     }
-    componentWillUnmount() {}
+    componentWillUnmount() {
+        const sidenav = this.sideNav.current;
+        const instance = window.M.Sidenav.getInstance(sidenav);
+        instance.destroy();
+    }
     render() {
         return (
             <div>
@@ -57,10 +65,29 @@ export default class SideNav extends Component {
                         </div>
                     </li>
                     <li>
-                        <a>Dashboard</a>
+                        <Link to="/admin/dashboard">Dashboard</Link>
                     </li>
                     <li>
-                        <a>Posts</a>
+                        <ul
+                            ref={this.collapsible}
+                            className="collapsible collapsible-accordion"
+                        >
+                            <li>
+                                <a className="collapsible-header">
+                                    <span>Posts</span>
+                                    <i className="fa fa-angle-down" />
+                                </a>
+                                <div className="collapsible-body">
+                                    <ul>
+                                        <li>
+                                            <Link to="/admin/posts">
+                                                All Posts
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <div className="divider" />

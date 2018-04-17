@@ -26,7 +26,7 @@ export const fetch_all_data = () => {
             }
         };
 
-        return fetch('http://127.0.0.1:5000/graphql', headers)
+        return fetch('http://192.168.43.200:5000/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveArticles(res)));
     };
