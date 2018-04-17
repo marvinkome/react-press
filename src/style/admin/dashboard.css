@@ -3,19 +3,26 @@
 .dashboard {
     padding-top: 30px;
 }
-.dashboard .welcome-card {
+.dashboard .dash-card {
     background: #fff;
     margin: 0 30px;
     padding: 12px 15px;
+    margin-bottom: 20px;
 }
-.dashboard .welcome-card h5 {
+.dashboard .dash-card h5 {
     font-size: 25px;
+    margin-bottom: 10px;
 }
-.dashboard .welcome-card p {
+.dashboard .dash-card p.sub-heading {
+    margin-top: -6px;
+}
+.dashboard .dash-card p {
     font-size: 16px;
     color: hsl(0, 0%, 45%);
-    margin-top: -3px;
 }
-.dashboard .welcome-card .actions-sec a {
+.dashboard .dash-card .actions-sec a {
     padding-left: 10px;
+}
+.dashboard .stats-card .actions-sec i {
+    padding-right: 10px;
 }

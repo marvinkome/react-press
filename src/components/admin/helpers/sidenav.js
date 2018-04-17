@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export default class SideNav extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ export default class SideNav extends Component {
                         </div>
                     </li>
                     <li>
-                        <a>Dashboard</a>
+                        <Link to="/admin/dashboard">Dashboard</Link>
                     </li>
                     <li>
                         <a>Posts</a>
