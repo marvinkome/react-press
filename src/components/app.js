@@ -7,7 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './home';
 import Post from './post';
-import { Dashboard, Posts } from './admin';
+import { Dashboard, Posts, NewPost } from './admin';
 
 const App = () => {
     return (
@@ -19,6 +19,7 @@ const App = () => {
             {/* Backend */}
             <Route path="/admin/dashboard" component={Dashboard} exact />
             <Route path="/admin/posts" component={Posts} exact />
+            <Route path="/admin/new-post" component={NewPost} exact />
             <Redirect from="/admin" to="/admin/dashboard" />
         </Switch>
     );

@@ -4,6 +4,7 @@
 
 @import url('./dashboard.css');
 @import url('./posts.css');
+@import url('./new-post.css');
 @import url('./sidenav.css');
 
 .admin-nav,
