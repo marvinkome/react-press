@@ -7,7 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './home';
 import Post from './post';
-import { Dashboard, Posts, NewPost } from './admin';
+import { Dashboard, Posts, NewPost, EditPost, EditProfile } from './admin';
 
 const App = () => {
     return (
@@ -20,6 +20,8 @@ const App = () => {
             <Route path="/admin/dashboard" component={Dashboard} exact />
             <Route path="/admin/posts" component={Posts} exact />
             <Route path="/admin/new-post" component={NewPost} exact />
+            <Route path="/admin/edit-post/:id" component={EditPost} exact />
+            <Route path="/admin/edit-profile" component={EditProfile} exact />
             <Redirect from="/admin" to="/admin/dashboard" />
         </Switch>
     );

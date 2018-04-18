@@ -10,7 +10,6 @@
     padding: 10px 10px 1px;
 }
 
-
 .admin-add-post .post-form .editor {
     background: #fff;
     margin-top: 15px;
@@ -25,7 +24,6 @@
 .admin-add-post .post-form .editor .editor-controls i.active {
     color: rgb(0, 165, 0);
 }
-
 
 .admin-add-post .post-form .editor .editor-input {
     padding: 12px 12px;
@@ -48,7 +46,6 @@
     padding-left: 20px;
 }
 
-
 .admin-add-post .post-form .editor .editor-infos {
     padding: 7px 12px;
     background-color: hsl(0, 0%, 90%);
@@ -56,7 +53,6 @@
 .admin-add-post .post-form .editor .editor-infos p {
     margin: 0;
 }
-
 
 .admin-add-post .post-form .publish-section {
     background-color: hsl(0, 0%, 99%);
@@ -74,5 +70,8 @@
     }
     .admin-add-post .post-form .editor .editor-controls {
         padding-bottom: 10px;
+    }
+    .admin-add-post .post-form .m4 {
+        padding-top: 40px;
     }
 }

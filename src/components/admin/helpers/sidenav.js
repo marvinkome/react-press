@@ -98,7 +98,7 @@ export default class SideNav extends Component {
                         <div className="divider" />
                     </li>
                     <li>
-                        <a>Settings</a>
+                        <Link to="/admin/edit-profile">Edit Profile</Link>
                     </li>
                 </ul>
             </div>
