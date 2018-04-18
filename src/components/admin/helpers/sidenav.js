@@ -34,7 +34,7 @@ export default class SideNav extends Component {
                             data-target="mobile-demo"
                             className="sidenav-trigger"
                         >
-                            Menu
+                            <i className="fa fa-bars" />
                         </a>
                         <ul className="right">
                             <li className="hide-small">
@@ -82,6 +82,11 @@ export default class SideNav extends Component {
                                         <li>
                                             <Link to="/admin/posts">
                                                 All Posts
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/admin/new-post">
+                                                New Post
                                             </Link>
                                         </li>
                                     </ul>

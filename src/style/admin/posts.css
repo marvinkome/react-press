@@ -22,38 +22,38 @@
     font-size: 19px;
 }
 
-.admin-posts .posts-list table td.big{
+.admin-posts .posts-list table td.big {
     width: 33.3333%;
 }
 
-.admin-posts .posts-list table td.small{
+.admin-posts .posts-list table td.small {
     width: 16.6667%;
 }
 
 .admin-posts .posts-list table td.small span,
-.admin-posts .posts-list .mobile-list .collection-item .actions span{
+.admin-posts .posts-list .mobile-list .collection-item .actions span {
     padding-right: 7px;
 }
 
 .admin-posts .posts-list table td.small .delete,
-.admin-posts .posts-list .mobile-list .collection-item .actions .delete{
+.admin-posts .posts-list .mobile-list .collection-item .actions .delete {
     color: rgba(228, 17, 17, 0.89);
 }
 
 .admin-posts .posts-list table td.small .edit,
-.admin-posts .posts-list .mobile-list .collection-item .actions .edit{
+.admin-posts .posts-list .mobile-list .collection-item .actions .edit {
     color: #222;
 }
 
-.admin-posts .posts-list .mobile-list .collection{
+.admin-posts .posts-list .mobile-list .collection {
     border: none;
 }
-.admin-posts .posts-list .mobile-list .collection-item{
+.admin-posts .posts-list .mobile-list .collection-item {
     padding: 5px 10px;
 }
-.admin-posts .posts-list .mobile-list .collection-item h5{
+.admin-posts .posts-list .mobile-list .collection-item h5 {
     font-size: 20px;
 }
-.admin-posts .posts-list .mobile-list .collection-item span{
+.admin-posts .posts-list .mobile-list .collection-item span {
     color: hsl(0, 0%, 40%);
 }
