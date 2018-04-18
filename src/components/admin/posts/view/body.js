@@ -3,6 +3,7 @@
  */
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Body = () => {
     const device_width = window.innerWidth;
@@ -35,9 +36,9 @@ const Body = () => {
                                     provided
                                 </td>
                                 <td className="small">
-                                    <a title="Edit">
+                                    <Link to="/admin/edit-post/1" title="Edit">
                                         <span className="edit">Edit</span>
-                                    </a>
+                                    </Link>
                                     <a title="Delete">
                                         <span className="delete">Delete</span>
                                     </a>
@@ -59,31 +60,12 @@ const Body = () => {
                                         <span>provided</span>
                                     </p>
                                     <p className="actions">
-                                        <a title="Edit">
+                                        <Link
+                                            to="/admin/edit-post/1"
+                                            title="Edit"
+                                        >
                                             <span className="edit">Edit</span>
-                                        </a>
-                                        <a title="Delete">
-                                            <span className="delete">
-                                                Delete
-                                            </span>
-                                        </a>
-                                    </p>
-                                </div>
-                            </li>
-                            <li className="collection-item">
-                                <div className="post">
-                                    <h5>Post Title</h5>
-                                    <p>
-                                        Tags:
-                                        <span> posts, </span>
-                                        <span>title, </span> <span>tags, </span>
-                                        <span>actions, </span>
-                                        <span>provided</span>
-                                    </p>
-                                    <p className="actions">
-                                        <a title="Edit">
-                                            <span className="edit">Edit</span>
-                                        </a>
+                                        </Link>
                                         <a title="Delete">
                                             <span className="delete">
                                                 Delete
