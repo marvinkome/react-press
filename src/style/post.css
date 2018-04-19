@@ -3,9 +3,16 @@
  */
 
 /************** Body **************/
+.post-body {
+    padding: 5%;
+}
 
 .post-body .author-image {
-    max-width: 11%;
+    max-width: 9%;
+}
+
+.post-body .author-name {
+    margin: 0;
 }
 
 .post-body .author-details a.follow {
@@ -21,17 +28,21 @@
 }
 
 .post-body .author-desc {
-    margin-top: -10px;
+    margin: 5px 0;
     color: hsl(0, 0%, 45%);
 }
 
 .post-body .post-meta {
-    margin-top: -15px;
+    margin: 0px;
     color: hsl(0, 0%, 45%);
 }
 
+.post-body .comment-author-info .post-meta a {
+    cursor: pointer;
+}
+
 .post-body .post {
-    margin-top: 160px;
+    margin-top: 120px;
 }
 
 .post-body .post-content .post-title {
@@ -45,6 +56,17 @@
     font-weight: 400;
     font-size: 17px;
     word-spacing: 1px;
+}
+
+.post-body .post .post-footer {
+    padding: 30px 0px 0px;
+}
+.post-body .post .post-footer .post-tag {
+    display: inline;
+    background-color: hsl(0, 0%, 95%);
+    padding: 7px;
+    border-radius: 4px;
+    margin-right: 15px;
 }
 
 .post-body .fixed-action-btn a.btn-large {
@@ -119,20 +141,20 @@
         display: none;
     }
     .post-body .author-name {
-        margin-top: 19px;
-    }
-    .post-body .post-meta {
-        margin-top: -8px;
+        margin-top: 4px;
     }
     .post-body .author-image {
-        max-width: 17%;
+        max-width: 14%;
     }
     .post-body .author-details a.follow {
         height: 22px;
         line-height: 19px;
     }
+    .post-body .post-meta {
+        margin-top: 0px;
+    }
     .post-body .post {
-        margin-top: 130px;
+        margin-top: 100px;
     }
     .post-body .post-content .post-title {
         font-size: 2rem;
@@ -148,20 +170,20 @@
         display: none;
     }
     .post-body .author-name {
-        margin-top: -7px;
-    }
-    .post-body .post-meta {
-        margin-top: -8px;
+        margin-top: 0px;
     }
     .post-body .author-image {
-        max-width: 21%;
+        max-width: 27%;
     }
     .post-body .author-details a.follow {
         height: 22px;
         line-height: 19px;
     }
+    .post-body .post-meta {
+        margin-top: 0px;
+    }
     .post-body .post {
-        margin-top: 70px;
+        margin-top: 50px;
     }
     .post-body .post-content .post-title {
         font-size: 2rem;

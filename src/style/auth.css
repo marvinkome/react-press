@@ -1,0 +1,62 @@
+/* authentication */
+.auth {
+    background-image: url('http://192.168.43.200:8080/src/img/card.jpg');
+    padding: 40px 0;
+}
+
+.auth .login-section {
+    margin: 50px 0;
+    background-color: hsl(166, 100%, 95%);
+}
+
+.auth .signup-section {
+    margin: 20px 0;
+    background-color: hsl(166, 100%, 95%);
+}
+
+.auth .section .heading,
+.auth .section .login-form {
+    margin: 0 30%;
+}
+
+.auth ::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: hsl(0, 0%, 25%);
+    opacity: 1; /* Firefox */
+}
+
+.auth :-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: hsl(0, 0%, 25%);
+}
+
+.auth ::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: hsl(0, 0%, 25%);
+}
+
+/* medium screen */
+@media screen and (max-width: 992px) and (min-width: 601px) {
+    .auth{
+        background-size: contain;
+        height: 100vh;
+    }
+    .auth .section .heading,
+    .auth .section .login-form{
+        margin: 0 20%;
+    }
+}
+
+/* large screen */
+@media screen and (max-width: 600px) {
+    .auth {
+        padding: 10px 0;
+    }
+    .auth .section .heading,
+    .auth .section .login-form{
+        margin: 0 10%;
+    }
+    .auth .login-section {
+        margin: 30px 0;
+    }
+}

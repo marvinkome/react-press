@@ -7,6 +7,7 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './home';
 import Post from './post';
+import Login from './login';
 import { Dashboard, Posts, NewPost, EditPost, EditProfile } from './admin';
 
 const App = () => {
@@ -15,6 +16,9 @@ const App = () => {
             {/* Front end */}
             <Route path="/" component={Home} exact />
             <Route path="/post/:id" component={Post} exact />
+
+            {/* authentication */}
+            <Route path="/auth/:section" component={Login} exact />
 
             {/* Backend */}
             <Route path="/admin/dashboard" component={Dashboard} exact />

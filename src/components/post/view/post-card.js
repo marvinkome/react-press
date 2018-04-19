@@ -19,6 +19,15 @@ class PostCard extends Component {
                     <h2 className="post-title">{this.props.data.title}</h2>
                     <div className="content">{this.props.data.body}</div>
                 </div>
+
+                <div className="post-footer">
+                    <div className="post-tag">
+                        <a title="react">React</a>
+                    </div>
+                    <div className="post-tag">
+                        <a title="javascript">Javascript</a>
+                    </div>
+                </div>
             </div>
         );
     }
