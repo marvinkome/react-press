@@ -47,7 +47,7 @@ const recieveArticles = (state, article) => {
     const store = updateObject(state, {
         isFetching,
         lastFetch,
-        data: article.data
+        post_data: article.data
     });
 
     saveStore(store);
