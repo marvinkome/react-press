@@ -1,7 +1,7 @@
 export const fetch_alls_query = `
 {
     posts {
-        uuid
+        id
         title
         body
         timestamp
@@ -13,7 +13,7 @@ export const fetch_alls_query = `
         comments {
             edges{
                 node{
-                    uuid
+                    id
                     body
                     timestamp
                     author{
@@ -23,7 +23,7 @@ export const fetch_alls_query = `
                     replies{
                         edges{
                             node{
-                                uuid
+                                id
                                 body
                                 timestamp
                                 author{

@@ -20,12 +20,10 @@ class Body extends Component {
         window.M.FloatingActionButton.init(fab);
     }
     render() {
-        // const post_id = this.props.match.params.id;
-        // const post = this.props.posts.find();
         return (
             <PostID.Consumer>
                 {value => {
-                    const post = value.data.find(obj => obj.uuid == value.id);
+                    const post = value.data.find(obj => obj.id == value.id);
                     return (
                         <div className="post-body section container">
                             <div className="row">

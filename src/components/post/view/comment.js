@@ -10,8 +10,24 @@ const Comment = ({ data }) => (
     <div className="response">
         <h5>Responses</h5>
 
+        <div className="resp-form">
+            <form className="row">
+                <div className="input-field col s12">
+                    <textarea
+                        className="materialize-textarea"
+                        placeholder="Write a response"
+                    />
+                </div>
+                <div className="col 12 input-field">
+                    <button type="submit" className="btn">
+                        Publish
+                    </button>
+                </div>
+            </form>
+        </div>
+
         {data.edges.map(obj => (
-            <ul key={obj.node.uuid} className="collection">
+            <ul key={obj.node.id} className="collection">
                 <li className="collection-item">
                     <div className="comment-author row">
                         <div className="comment-author-image col s4 m1">
@@ -25,14 +41,35 @@ const Comment = ({ data }) => (
                             <p className="title">{obj.node.author.fullName}</p>
                             <span className="post-meta">
                                 {format_date(obj.node.timestamp)}
+                            </span>{' '}
+                            -{' '}
+                            <span className="post-meta">
+                                <a title="reply">reply</a>
                             </span>
                         </div>
                     </div>
 
                     <div className="comment-resp">{obj.node.body}</div>
+
+                    <div className="reply-form">
+                        <form className="row">
+                            <div className="input-field col s12">
+                                <textarea
+                                    className="materialize-textarea"
+                                    placeholder="Write a reply"
+                                />
+                            </div>
+                            <div className="col 12 input-field">
+                                <button type="submit" className="btn">
+                                    Publish
+                                </button>
+                                <a className="btn-flat">Close</a>
+                            </div>
+                        </form>
+                    </div>
                 </li>
                 {obj.node.replies.edges.map(reply => (
-                    <li key={reply.node.uuid} className="collection-item">
+                    <li key={reply.node.id} className="collection-item">
                         <div className="comment-author row">
                             <div className="comment-author-image col s4 m1">
                                 <img
@@ -64,17 +101,3 @@ Comment.propTypes = {
 };
 
 export default Comment;
-{
-    /* <li key={obj.node.uuid} className="collection-item avatar">
-                        <img src="./src/img/pp.jpg" alt="" className="circle" />
-                        <a>
-                            <span className="title">{obj.node.author.fullName}</span>
-                        </a>
-                        <div className="comment-resp">
-                            {obj.node.body}
-                        </div>
-                        <a href="#!" className="secondary-content">
-                            {format_date(obj.node.timestamp)}
-                        </a>
-                    </li> */
-}

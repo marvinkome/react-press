@@ -3,7 +3,7 @@
  */
 
 import React from 'react';
-import TopBar from './topbar';
+import TopBar from '../../helpers/topbar';
 import Body from './body';
 
 const View = () => {

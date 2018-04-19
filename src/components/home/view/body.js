@@ -19,7 +19,7 @@ const Body = () => {
                             </div>
                         ) : (
                             value.data.map(obj => (
-                                <div key={obj.uuid} className="col l4 m6">
+                                <div key={obj.id} className="col l4 m6">
                                     <PostCard post={obj} />
                                 </div>
                             ))

@@ -2,172 +2,6 @@
  * ./src/style/post.css
  */
 
-/******* TopBar Component ******/
-.post-topbar {
-    background: rgb(0, 100, 0);
-}
-
-.post-topbar .brand-logo {
-    position: inherit;
-    display: initial;
-}
-
-.post-topbar .blog-info {
-    display: inline-block;
-}
-.post-topbar .blog-title {
-    font-size: 20px;
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
-    padding-left: 10px;
-    padding-top: 9px;
-}
-
-.post-topbar .social {
-    margin-left: 5px;
-    display: inline-block;
-}
-
-.post-topbar .social a {
-    display: inline-block;
-    padding: 0 10px;
-}
-
-.post-topbar .social i {
-    font-size: 19px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.post-topbar .social a.btn {
-    border-radius: 8px;
-    height: 25px;
-    line-height: 25px;
-    margin-left: 15px;
-    margin-top: -5px;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-transform: capitalize;
-    color: rgba(0, 0, 0, 0.3);
-}
-
-.post-topbar .nav-wrapper .user-image {
-    width: 50px;
-}
-
-.post-topbar .nav-wrapper a.user-profile {
-    margin-top: 10%;
-}
-
-.post-topbar .nav-content .menu {
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    -webkit-overflow-scrolling: touch;
-}
-
-.post-topbar .nav-content .menu::-webkit-scrollbar {
-    display: none;
-}
-
-.post-topbar .nav-content .menu .item {
-    display: inline-block;
-    padding: 0 10px;
-}
-
-.post-topbar .nav-content .nav-cta h5 {
-    border-left: 1px solid rgba(255, 255, 255, 0.4);
-    padding-left: 10px;
-}
-
-.post-topbar .nav-content .menu .item h5 a,
-.post-topbar .nav-content .nav-cta h5 a {
-    text-transform: uppercase;
-    font-size: 15px;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.post-topbar ul a:hover {
-    background-color: inherit;
-}
-
-/* Large Screen */
-
-@media screen and (min-width: 993px) {
-    .post-topbar .nav-wrapper,
-    .post-topbar .nav-content {
-        margin-left: 10%;
-        margin-right: 7%;
-    }
-    .post-topbar .nav-wrapper .user-image {
-        width: 50px;
-    }
-    .post-topbar .nav-wrapper a.user-profile {
-        margin-top: 10%;
-    }
-    .post-topbar .nav-content .menu {
-        margin-top: -40px;
-    }
-    .post-topbar .nav-content .nav-cta {
-        margin-top: -40px;
-    }
-}
-
-/* medium screen */
-@media screen and (max-width: 992px) and (min-width: 601px) {
-    .post-topbar .nav-wrapper,
-    .post-topbar .nav-content {
-        margin-left: 10%;
-        margin-right: 7%;
-    }
-    .post-topbar .nav-wrapper ul i {
-        padding-top: 0px !important;
-    }
-}
-
-/* Small Screen */
-
-@media screen and (max-width: 600px) {
-    .post-topbar .nav-wrapper,
-    .post-topbar .nav-content {
-        margin-left: 5%;
-        margin-right: 1%;
-    }
-    .post-topbar .nav-wrapper .brand-logo i {
-        margin-top: 14px;
-    }
-    .post-topbar .nav-wrapper .brand-logo {
-        font-size: 35px;
-        left: 0%;
-        transform: translateX(7%);
-    }
-    .post-topbar .nav-wrapper .hide-small {
-        display: none;
-    }
-
-    .post-topbar .nav-wrapper ul i {
-        font-size: 19px;
-        padding-top: 15px;
-    }
-
-    .post-topbar .nav-wrapper .search {
-        padding: 7px 0;
-    }
-
-    .post-topbar .nav-title {
-        left: 50%;
-        transform: translateX(9%);
-        padding: 2px 0;
-    }
-    .post-topbar .nav-content .m12,
-    .post-topbar .nav-content .nav-menu {
-        padding: 0px;
-    }
-    .post-topbar .social {
-        display: none;
-    }
-    .post-topbar .nav-content .nav-cta {
-        display: inline;
-    }
-}
-
 /************** Body **************/
 
 .post-body .author-image {
@@ -232,6 +66,21 @@
     color: hsl(0, 0%, 20%);
 }
 
+.post-body .response .resp-form {
+    background-color: #fff;
+    padding: 10px 15px;
+    border: 1px solid hsl(0, 0%, 88%);
+}
+
+.post-body .response .resp-form .btn,
+.post-body .response .reply-form .btn {
+    background-color: #fff;
+    color: rgb(0, 100, 0);
+    border: 1px solid rgb(0, 100, 0);
+}
+.post-body .response .reply-form .btn-flat {
+    color: rgb(0, 100, 0);
+}
 .post-body .response .collection .title {
     font-weight: 500;
     font-size: 20px;
@@ -253,15 +102,14 @@
     color: hsl(0, 0%, 30%);
 }
 
-.post-body .response .collection .secondary-content {
-    color: hsl(0, 0%, 45%);
-}
-
 /* Large Screen */
 
 @media screen and (min-width: 993px) {
     .post-body .response .collection .comment-resp {
         margin-right: 15%;
+    }
+    .post-body .response .reply-form {
+        width: 60%;
     }
 }
 
@@ -288,6 +136,9 @@
     }
     .post-body .post-content .post-title {
         font-size: 2rem;
+    }
+    .post-body .response .reply-form {
+        width: 80%;
     }
 }
 

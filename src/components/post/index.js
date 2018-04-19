@@ -12,7 +12,7 @@ import View from './view';
 const mapStateToProps = state => {
     return {
         isFetching: state.isFetching,
-        data: state.data
+        data: state.post_data
     };
 };
 

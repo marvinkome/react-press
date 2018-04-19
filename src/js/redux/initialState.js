@@ -5,7 +5,7 @@
 const state = {
     isFetching: false,
     lastFetch: 0,
-    data: {
+    post_data: {
         posts: []
     }
 };

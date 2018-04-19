@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
                 <img src={post.postPicUrl} />
             </div>
             <div className="card-content">
-                <Link to={'/post/' + post.uuid}>
+                <Link to={'/post/' + post.id}>
                     <span className="card-title">{post.title}</span>
                 </Link>
                 <p>{truncate(post.body, 40)}</p>

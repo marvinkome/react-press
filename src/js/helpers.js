@@ -12,5 +12,5 @@ export const truncate = (word, length) =>
 
 export const format_date = server_date => {
     let date = new Date(server_date);
-    return moment(date).format('MMM - D - YYYY');
+    return moment(date).format('MMM D YYYY');
 };
