@@ -13,12 +13,20 @@ import Preloader from './preloader';
 class Body extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            claps: 0
+        };
         this.fabRef = React.createRef();
     }
     componentDidMount() {
         const fab = this.fabRef.current;
         window.M.FloatingActionButton.init(fab);
     }
+    onClap = () => {
+        this.setState({
+            claps: this.state.claps + 1
+        });
+    };
     render() {
         return (
             <PostID.Consumer>
@@ -44,13 +52,16 @@ class Body extends Component {
                                 )}
                             </div>
                             <div ref={this.fabRef} className="fixed-action-btn">
-                                <a className="btn-floating btn-large">
+                                <a
+                                    onClick={this.onClap}
+                                    className="btn-floating btn-large"
+                                >
                                     <i className="fa fa-thumbs-up" />
                                 </a>
                                 <ul>
                                     <li>
                                         <a className="btn-floating btn-num">
-                                            12
+                                            {this.state.claps}
                                         </a>
                                     </li>
                                 </ul>
