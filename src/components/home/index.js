@@ -28,25 +28,32 @@ class Home extends Component {
     constructor(props) {
         super(props);
 
+        // this.state = {
+        //     value: {
+        //         data: [],
+        //         isFetching: false
+        //     }
+        // };
+
         this.state = {
             value: {
-                data: [],
-                isFetching: false
+                data: this.props.data.posts,
+                isFetching: this.props.isFetching
             }
         };
     }
 
-    componentWillReceiveProps(np) {
-        this.setState({
-            value: {
-                data: np.data.posts,
-                isFetching: np.isFetching
-            }
-        });
-    }
+    // componentWillReceiveProps(np) {
+    //     this.setState({
+    //         value: {
+    //             data: np.data.posts,
+    //             isFetching: np.isFetching
+    //         }
+    //     });
+    // }
 
     componentDidMount() {
-        this.props.fetch_data();
+        // this.props.fetch_data();
     }
 
     render() {

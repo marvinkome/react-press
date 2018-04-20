@@ -52,8 +52,8 @@
     margin-top: -5px;
     background-color: transparent;
     text-transform: capitalize;
-    color:  rgba(255, 255, 255, 0.8);
-    border: 1.4px solid  rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+    border: 1.4px solid rgba(255, 255, 255, 0.8);
 }
 
 .topbar .nav-wrapper .user-image {

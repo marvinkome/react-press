@@ -8,13 +8,13 @@ import { Redirect } from 'react-router-dom';
 import Login from './login';
 import SignUp from './signup';
 
-const View = ({ section }) => {
+const View = ({ section, history }) => {
     let section_el = <Redirect to="/" />;
 
     if (section == 'signup') {
-        section_el = <SignUp />;
+        section_el = <SignUp history={history} />;
     } else if (section == 'login') {
-        section_el = <Login />;
+        section_el = <Login history={history} />;
     }
     return (
         <div>
@@ -26,7 +26,8 @@ const View = ({ section }) => {
 };
 
 View.propTypes = {
-    section: PropTypes.string
+    section: PropTypes.string,
+    history: PropTypes.object
 };
 
 export default View;

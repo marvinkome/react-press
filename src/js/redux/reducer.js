@@ -10,10 +10,10 @@ const updateObject = (oldObj, newValues) => {
     return Object.assign({}, oldObj, newValues);
 };
 
-const saveStore = store => {
+const saveToStore = (store, key) => {
     if (localStorage) {
         store = JSON.stringify(store);
-        localStorage.setItem('medium_blog_store', store);
+        localStorage.setItem(key, store);
     }
 
     return true;
@@ -50,8 +50,21 @@ const recieveArticles = (state, article) => {
         post_data: article.data
     });
 
-    saveStore(store);
     return store;
+};
+
+const loginUser = (state, token) => {
+    const isFetching = false;
+    let isLoggedIn = false;
+    if (token.access_token != null) {
+        isLoggedIn = true;
+        saveToStore(token.access_token, 'med-blog-access-token');
+    }
+
+    return updateObject(state, {
+        isFetching,
+        isLoggedIn
+    });
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -60,6 +73,8 @@ const rootReducer = (state = initialState, action) => {
         return sendRequest(state);
     case constants.RECIEVE_ARTICLES:
         return recieveArticles(state, action.payload);
+    case constants.LOGIN_USER:
+        return loginUser(state, action.payload);
     default:
         return state;
     }
