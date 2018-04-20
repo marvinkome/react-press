@@ -14,6 +14,11 @@ export const recieveArticles = article => ({
     payload: article
 });
 
+export const loginUser = payload => ({
+    type: constants.LOGIN_USER,
+    payload
+});
+
 export const fetch_all_data = () => {
     return dispatch => {
         dispatch(sendRequest());
@@ -29,5 +34,41 @@ export const fetch_all_data = () => {
         return fetch('http://192.168.43.200:5000/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveArticles(res)));
+    };
+};
+
+export const login_user = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/login', headers)
+            .then(res => res.json())
+            .then(res => dispatch(loginUser(res)));
+    };
+};
+
+export const register_user = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/register', headers)
+            .then(res => res.json())
+            .then(res => dispatch(loginUser(res)));
     };
 };

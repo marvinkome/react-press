@@ -4,4 +4,4 @@
 
 export const SEND_REQUEST = 'SEND_REQUEST';
 export const RECIEVE_ARTICLES = 'RECIEVE_ARTICLES';
-export const RECIEVE_ARTICLE = 'RECIEVE_ARTICLE';
+export const LOGIN_USER = 'LOGIN_USER';

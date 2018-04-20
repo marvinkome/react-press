@@ -4,6 +4,7 @@
 
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from './helpers/privateRoute';
 
 import Home from './home';
 import Post from './post';
@@ -21,11 +22,19 @@ const App = () => {
             <Route path="/auth/:section" component={Login} exact />
 
             {/* Backend */}
-            <Route path="/admin/dashboard" component={Dashboard} exact />
-            <Route path="/admin/posts" component={Posts} exact />
-            <Route path="/admin/new-post" component={NewPost} exact />
-            <Route path="/admin/edit-post/:id" component={EditPost} exact />
-            <Route path="/admin/edit-profile" component={EditProfile} exact />
+            <PrivateRoute path="/admin/dashboard" component={Dashboard} exact />
+            <PrivateRoute path="/admin/posts" component={Posts} exact />
+            <PrivateRoute path="/admin/new-post" component={NewPost} exact />
+            <PrivateRoute
+                path="/admin/edit-post/:id"
+                component={EditPost}
+                exact
+            />
+            <PrivateRoute
+                path="/admin/edit-profile"
+                component={EditProfile}
+                exact
+            />
             <Redirect from="/admin" to="/admin/dashboard" />
         </Switch>
     );

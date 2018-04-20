@@ -28,29 +28,38 @@ class Post extends Component {
     constructor(props) {
         super(props);
 
+        const post_id = this.props.match.params.id;
+        const posts = this.props.data.posts;
         this.state = {
-            value: {
-                data: [],
-                id: '',
-                isFetching: false
-            }
-        };
-    }
-
-    componentWillReceiveProps(np) {
-        const post_id = np.match.params.id;
-        const posts = np.data.posts;
-        this.setState({
             value: {
                 data: posts,
                 id: post_id,
-                isFetching: np.isFetching
+                isFetching: this.props.isFetching
             }
-        });
+        };
+        // this.state = {
+        //     value: {
+        //         data: [],
+        //         id: '',
+        //         isFetching: false
+        //     }
+        // };
     }
 
+    // componentWillReceiveProps(np) {
+    //     const post_id = np.match.params.id;
+    //     const posts = np.data.posts;
+    //     this.setState({
+    //         value: {
+    //             data: posts,
+    //             id: post_id,
+    //             isFetching: np.isFetching
+    //         }
+    //     });
+    // }
+
     componentDidMount() {
-        this.props.fetch_data();
+        // this.props.fetch_data();
     }
 
     render() {
@@ -65,6 +74,7 @@ class Post extends Component {
 Post.propTypes = {
     data: PropTypes.object.isRequired,
     match: PropTypes.object.isRequired,
+    isFetching: PropTypes.bool.isRequired,
     fetch_data: PropTypes.func.isRequired
 };
 
