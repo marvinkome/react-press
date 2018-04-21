@@ -14,11 +14,13 @@ const mapStateToProps = state => {
 };
 
 const PrivateRoute = ({ component: PrivComponent, isLoggedIn, ...rest }) => {
+    const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
+    const localLogin = sessionLogin != undefined && sessionLogin == true;
     return (
         <Route
             {...rest}
             render={npprops =>
-                isLoggedIn ? (
+                isLoggedIn || localLogin ? (
                     <PrivComponent {...npprops} />
                 ) : (
                     <Redirect

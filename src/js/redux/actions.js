@@ -14,6 +14,11 @@ export const recieveArticles = article => ({
     payload: article
 });
 
+export const recieveUserData = payload => ({
+    type: constants.RECIEVE_USER_DATA,
+    payload
+});
+
 export const loginUser = payload => ({
     type: constants.LOGIN_USER,
     payload
@@ -70,5 +75,26 @@ export const register_user = data => {
         return fetch('http://192.168.43.200:5000/register', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
+    };
+};
+
+export const fetch_user_data = () => {
+    const key = JSON.parse(localStorage.getItem('med-blog-access-token'));
+
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: query.fetch_user_data_query }),
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: key
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(recieveUserData(res)));
     };
 };

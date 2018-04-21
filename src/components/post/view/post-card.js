@@ -21,12 +21,11 @@ class PostCard extends Component {
                 </div>
 
                 <div className="post-footer">
-                    <div className="post-tag">
-                        <a title="react">React</a>
-                    </div>
-                    <div className="post-tag">
-                        <a title="javascript">Javascript</a>
-                    </div>
+                    {this.props.data.tags.edges.map(obj => (
+                        <div key={obj.node.id} className="post-tag">
+                            <a title={obj.node.name}>{obj.node.name}</a>
+                        </div>
+                    ))}
                 </div>
             </div>
         );

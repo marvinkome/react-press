@@ -19,19 +19,6 @@ const saveToStore = (store, key) => {
     return true;
 };
 
-// const updateItemArray = (array, itemId, callback, key = 'id') => {
-//     const updatedItems = array.map(item => {
-//         if (item[key] !== itemId) {
-//             return item;
-//         }
-
-//         const updatedItem = callback(item);
-//         return updatedItem;
-//     });
-
-//     return updatedItems;
-// };
-
 // Case reducers
 const sendRequest = state => {
     const isFetching = true;
@@ -56,8 +43,10 @@ const recieveArticles = (state, article) => {
 const loginUser = (state, token) => {
     const isFetching = false;
     let isLoggedIn = false;
+
     if (token.access_token != null) {
         isLoggedIn = true;
+        saveToStore(true, 'med-blog-logged-in');
         saveToStore(token.access_token, 'med-blog-access-token');
     }
 
@@ -65,6 +54,16 @@ const loginUser = (state, token) => {
         isFetching,
         isLoggedIn
     });
+};
+
+const recieveUserData = (state, user_data) => {
+    const lastFetch = Date.now();
+    const store = updateObject(state, {
+        lastFetch,
+        user_data
+    });
+
+    return store;
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -75,6 +74,8 @@ const rootReducer = (state = initialState, action) => {
         return recieveArticles(state, action.payload);
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
+    case constants.RECIEVE_USER_DATA:
+        return recieveUserData(state, action.payload);
     default:
         return state;
     }

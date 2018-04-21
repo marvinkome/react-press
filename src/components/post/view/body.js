@@ -3,14 +3,16 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import { PostID } from '../index';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
 import Preloader from './preloader';
+import FAB from '../../helpers/fab';
 
-class Body extends Component {
+class InnerBody extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -28,50 +30,44 @@ class Body extends Component {
         });
     };
     render() {
+        const { value } = this.props;
+        const post = value.data.find(obj => obj.id == value.id);
         return (
-            <PostID.Consumer>
-                {value => {
-                    const post = value.data.find(obj => obj.id == value.id);
-                    return (
-                        <div className="post-body section container">
-                            <div className="row">
-                                {value.isFetching ? (
-                                    <div className="col m12 center-align preloader-cont circle">
-                                        <Preloader />
-                                    </div>
-                                ) : (
-                                    post && (
-                                        <div className="col m12">
-                                            <AuthorInfo data={post} />
-
-                                            <PostCard data={post} />
-
-                                            <Comment data={post.comments} />
-                                        </div>
-                                    )
-                                )}
-                            </div>
-                            <div ref={this.fabRef} className="fixed-action-btn">
-                                <a
-                                    onClick={this.onClap}
-                                    className="btn-floating btn-large"
-                                >
-                                    <i className="fa fa-thumbs-up" />
-                                </a>
-                                <ul>
-                                    <li>
-                                        <a className="btn-floating btn-num">
-                                            {this.state.claps}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+            <div className="post-body section container">
+                <div className="row">
+                    {value.isFetching ? (
+                        <div className="col m12 center-align preloader-cont circle">
+                            <Preloader />
                         </div>
-                    );
-                }}
-            </PostID.Consumer>
+                    ) : (
+                        post && (
+                            <div>
+                                <div className="col m12">
+                                    <AuthorInfo data={post} />
+
+                                    <PostCard data={post} />
+
+                                    <Comment data={post.comments} />
+                                </div>
+                                <FAB claps_count={post.claps.edges.length} />
+                            </div>
+                        )
+                    )}
+                </div>
+            </div>
         );
     }
 }
+
+const Body = props => (
+    <PostID.Consumer>
+        {value => <InnerBody {...props} value={value} />}
+    </PostID.Consumer>
+);
+
+InnerBody.propTypes = {
+    value: PropTypes.object.isRequired,
+    children: PropTypes.node
+};
 
 export default Body;
