@@ -21,3 +21,12 @@ export const validate_password = password => {
     );
     return regExp.test(password);
 };
+
+export const validate_html = html => {
+    const regExp = /<[a-z][\s\S]*>/i;
+    return regExp.test(html);
+};
+
+export const strip_filename = name => {
+    return name.split('/').pop();
+};

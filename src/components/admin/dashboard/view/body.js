@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetch_user_data } from '../../../../js/redux/actions';
 
@@ -24,14 +25,17 @@ class Body extends Component {
             comment_replies: 0
         };
     }
+    componentWillReceiveProps(np) {
+        this.setState({
+            posts_count: np.data.data.user.posts.edges.length,
+            comment_count: np.data.data.user.comments.edges.length,
+            comment_replies: np.data.data.user.commentReplies.edges.length
+        });
+    }
     componentDidMount() {
         this.props.fetch_data();
     }
     render() {
-        // const posts_count = this.state.posts_count;
-        // const comment_count = this.state.comment_count;
-        // const comment_replies = this.state.comment_replies;
-
         return (
             <div className="main dashboard">
                 <div className="welcome-card dash-card z-depth-1">
@@ -43,17 +47,28 @@ class Body extends Component {
                             <div className="col s12 ">
                                 <p>
                                     <i className="fa fa-newspaper-o" />
-                                    <a title="Create a post"> Create post</a>
+                                    <Link
+                                        to="/admin/new-post"
+                                        title="Create a post"
+                                    >
+                                        {' '}
+                                        Create post
+                                    </Link>
                                 </p>
                                 <p>
                                     <i className="fa fa-commenting-o" />
-                                    <a title="Moderate comments">
+                                    <Link
+                                        to="/admin/edit-profile"
+                                        title="Edit profile"
+                                    >
                                         Edit profile
-                                    </a>
+                                    </Link>
                                 </p>
                                 <p>
                                     <i className="fa fa-eye" />
-                                    <a title="View blog">View blog</a>
+                                    <Link to="/" title="View blog">
+                                        View site
+                                    </Link>
                                 </p>
                             </div>
                         </div>
@@ -68,19 +83,19 @@ class Body extends Component {
                             <div className="col m4 l3">
                                 <p>
                                     <i className="fa fa-newspaper-o" />
-                                    15 blog posts
+                                    {this.state.posts_count} blog posts
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
                                     <i className="fa fa-commenting-o" />
-                                    6 comments
+                                    {this.state.comment_count} comments
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
                                     <i className="fa fa-reply" />
-                                    5 comment replies
+                                    {this.state.comment_replies} comment replies
                                 </p>
                             </div>
                         </div>
