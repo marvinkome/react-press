@@ -3,15 +3,45 @@
  */
 
 import React, { Component } from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import PropTypes from 'prop-types';
+import {
+    Editor,
+    EditorState,
+    RichUtils,
+    convertToRaw,
+    ContentState,
+    convertFromHTML
+} from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
+import { validate_html } from '../../../../js/helpers';
 import { Controls } from './controls';
 
 class PostEditor extends Component {
     constructor(props) {
         super(props);
+
+        let editorState;
+
+        if (validate_html(this.props.current_body)) {
+            const blockFromHtml = convertFromHTML(this.props.current_body);
+            const contentState = ContentState.createFromBlockArray(
+                blockFromHtml.contentBlocks,
+                blockFromHtml.entityMap
+            );
+            editorState = EditorState.createWithContent(contentState);
+        } else {
+            const contentState = ContentState.createFromText(
+                this.props.current_body
+            );
+            editorState = EditorState.createWithContent(contentState);
+        }
+
+        editorState = EditorState.moveFocusToEnd(editorState);
+
         this.state = {
-            editorState: EditorState.createEmpty()
+            editorState
         };
+
         this.editor = React.createRef();
     }
     componentDidMount = () => {
@@ -25,6 +55,10 @@ class PostEditor extends Component {
         this.setState({
             editorState
         });
+
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
+        const html = draftToHtml(rawContentState);
+        this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -68,5 +102,10 @@ class PostEditor extends Component {
         );
     }
 }
+
+PostEditor.propTypes = {
+    onStateChange: PropTypes.func.isRequired,
+    current_body: PropTypes.string.isRequired
+};
 
 export default PostEditor;

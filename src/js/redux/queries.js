@@ -66,6 +66,7 @@ export const fetch_user_data_query = `
         posts{
             edges{
                 node{
+                    id
                     title
                     body
                     postPicUrl
