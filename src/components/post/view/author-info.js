@@ -21,11 +21,7 @@ const AuthorInfo = ({ data }) => (
                     follow
                 </a>
             </p>
-            <p className="author-desc">
-                {/* {data.author.description} */}
-                DevDocs is an open source web app that combines documentation
-                for lots of developer tools into a single searchable interface.
-            </p>
+            <p className="author-desc">{data.author.description}</p>
             <p className="post-meta">{format_date(data.timestamp)}</p>
         </div>
     </div>

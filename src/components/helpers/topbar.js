@@ -3,7 +3,15 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+const mapStateToProps = store => {
+    return {
+        data: store
+    };
+};
 
 class TopBar extends Component {
     render() {
@@ -25,53 +33,74 @@ class TopBar extends Component {
                             <a className="btn follow"> follow </a>
                         </div>
                     </div>
-                    <ul className="right hide-on-small-only">
-                        {/* <li className="hide-small">
-                            <a title="Notification">
-                                <i className="fa fa-bell-o" />
-                            </a>
-                        </li>
-                        <li>
-                            <a className="user-profile">
-                                <img
-                                    className="user-image responsive-img circle"
-                                    src="./src/img/pp.jpg"
-                                />
-                            </a>
-                        </li> */}
-                        <li>
-                            <Link to="/auth/login" className="sign-in">
-                                Sign in
-                            </Link>
-                        </li>
-                        <li>
-                            <Link to="/auth/signup" className="sign-up btn">
-                                Get started
-                            </Link>
-                        </li>
-                    </ul>
-                    <ul className="right hide-on-med-and-up">
-                        <li>
-                            <Link
-                                className="hide-on-med-and-up"
-                                to="/auth/login"
-                            >
-                                <i className="fa fa-sign-in" />
-                            </Link>
-                        </li>
-                        <li>
-                            <Link
-                                className="hide-on-med-and-up"
-                                to="/auth/login"
-                            >
-                                <i className="fa fa-user-plus" />
-                            </Link>
-                        </li>
-                    </ul>
+                    {this.props.user_data != undefined ? (
+                        <ul className="right hide-on-small-only">
+                            <li>
+                                <a className="user-profile">
+                                    <img
+                                        className="user-image responsive-img circle"
+                                        src={
+                                            this.props.user_data.user
+                                                .gravatarUrl
+                                        }
+                                    />
+                                </a>
+                            </li>
+                        </ul>
+                    ) : (
+                        <ul className="right hide-on-small-only">
+                            <li>
+                                <Link to="/auth/login" className="sign-in">
+                                    Sign in
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/auth/signup" className="sign-up btn">
+                                    Get started
+                                </Link>
+                            </li>
+                        </ul>
+                    )}
+                    {this.props.data.isLoggedIn ? (
+                        <ul className="right hide-on-med-and-up">
+                            <li>
+                                <a className="user-profile">
+                                    <img
+                                        className="user-image responsive-img circle"
+                                        src="./src/img/pp.jpg"
+                                    />
+                                </a>
+                            </li>
+                        </ul>
+                    ) : (
+                        <ul className="right hide-on-med-and-up">
+                            <li>
+                                <Link
+                                    className="hide-on-med-and-up"
+                                    to="/auth/login"
+                                >
+                                    <i className="fa fa-sign-in" />
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    className="hide-on-med-and-up"
+                                    to="/auth/login"
+                                >
+                                    <i className="fa fa-user-plus" />
+                                </Link>
+                            </li>
+                        </ul>
+                    )}
                 </div>
             </nav>
         );
     }
 }
 
-export default TopBar;
+TopBar.propTypes = {
+    data: PropTypes.object.isRequired,
+    user_data: PropTypes.object
+};
+
+export default connect(mapStateToProps)(TopBar);

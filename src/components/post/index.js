@@ -1,24 +1,27 @@
 /**
- * ./src/components/home
+ * ./src/components/Post
  */
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { fetch_all_data } from '../../js/redux/actions';
+import { fetch_all_data, fetch_user_data } from '../../js/redux/actions';
 
 import View from './view';
 
 const mapStateToProps = state => {
     return {
         isFetching: state.isFetching,
-        data: state.post_data
+        isLoggedIn: state.isLoggedIn,
+        data: state.post_data,
+        user_data: state.user_data
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        fetch_data: () => dispatch(fetch_all_data())
+        fetch_data: () => dispatch(fetch_all_data()),
+        fetch_user_data: () => dispatch(fetch_user_data())
     };
 };
 
@@ -28,38 +31,32 @@ class Post extends Component {
     constructor(props) {
         super(props);
 
-        const post_id = this.props.match.params.id;
-        const posts = this.props.data.posts;
         this.state = {
             value: {
-                data: posts,
-                id: post_id,
-                isFetching: this.props.isFetching
+                id: '',
+                data: [],
+                user_data: {},
+                isFetching: false
             }
         };
-        // this.state = {
-        //     value: {
-        //         data: [],
-        //         id: '',
-        //         isFetching: false
-        //     }
-        // };
     }
 
-    // componentWillReceiveProps(np) {
-    //     const post_id = np.match.params.id;
-    //     const posts = np.data.posts;
-    //     this.setState({
-    //         value: {
-    //             data: posts,
-    //             id: post_id,
-    //             isFetching: np.isFetching
-    //         }
-    //     });
-    // }
+    componentWillReceiveProps(np) {
+        this.setState({
+            value: {
+                id: np.match.params.id,
+                data: np.data.posts,
+                user_data: np.user_data,
+                isFetching: np.isFetching
+            }
+        });
+    }
 
     componentDidMount() {
-        // this.props.fetch_data();
+        this.props.fetch_data();
+        if (this.props.isLoggedIn) {
+            this.props.fetch_user_data();
+        }
     }
 
     render() {
@@ -72,10 +69,12 @@ class Post extends Component {
 }
 
 Post.propTypes = {
-    data: PropTypes.object.isRequired,
-    match: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired,
-    fetch_data: PropTypes.func.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+    fetch_data: PropTypes.func.isRequired,
+    fetch_user_data: PropTypes.func.isRequired,
+    data: PropTypes.object.isRequired,
+    user_data: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

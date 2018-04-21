@@ -6,8 +6,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import View from './view';
 
-export const LoginContext = React.createContext();
-
 class Login extends Component {
     render() {
         return (
