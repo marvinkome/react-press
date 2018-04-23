@@ -82,3 +82,47 @@ export const delete_post = post_id => `
         }
     }
 `;
+
+export const update_profile_picture = (pic_url, user_id) =>
+    `
+    mutation Mutation{
+        updateuserProfilePic(
+            userId:` +
+    user_id +
+    `,
+            newPic:"` +
+    pic_url +
+    `"
+        ){
+            user{
+                gravatarUrl
+            }
+        }
+    }
+`;
+
+export const update_info = user_data =>
+    `
+    mutation Mutation{
+        updateUserInfo(
+            ${
+    user_data.full_name != undefined
+        ? 'newFullName: "' + user_data.full_name + '",'
+        : ''
+}
+            ${
+    user_data.description != undefined
+        ? 'newDescription: "' + user_data.description + '",'
+        : ''
+}
+            userId: ` +
+    user_data.user_id +
+    `
+        ){
+            user{
+                fullName
+                description
+            }
+        }
+    }
+`;

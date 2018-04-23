@@ -194,3 +194,50 @@ export const delete_post = data => {
         );
     };
 };
+
+export const update_profile_pic = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({
+                query: mutations.update_profile_picture(
+                    data.pic_url,
+                    data.user_id
+                )
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
+    };
+};
+
+export const update_user_info = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.update_info(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
+    };
+};
