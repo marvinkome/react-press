@@ -60,6 +60,7 @@ export const fetch_user_data_query = `
     {
         user(uuid:1){
             id
+            uuid
             fullName
             gravatarUrl
             description

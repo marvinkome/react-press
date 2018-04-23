@@ -43,3 +43,10 @@ export const upload_file = file => {
 
     return fetch(url, headers).then(res => res.json());
 };
+
+export const gcd = (a, b) => {
+    if (b == 0) {
+        return a;
+    }
+    return gcd(b, a % b);
+};
