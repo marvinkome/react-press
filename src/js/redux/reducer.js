@@ -65,7 +65,9 @@ const loginUser = (state, token) => {
 
 const recieveUserData = (state, user_data) => {
     const lastFetch = Date.now();
+    const isFetching = false;
     const store = updateObject(state, {
+        isFetching,
         lastFetch,
         user_data
     });

@@ -6,19 +6,26 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetch_user_data } from '../../../../js/redux/actions';
+import { fetch_user_data, delete_post } from '../../../../js/redux/actions';
 
 const mapStateToProps = state => ({
     data: state.user_data
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data())
+    fetch_data: () => dispatch(fetch_user_data()),
+    delete_post: post_id => dispatch(delete_post(post_id))
 });
 
 class Body extends Component {
     componentDidMount() {
         this.props.fetch_data();
+    }
+    handleDelete(id) {
+        const confirmDelete = confirm('This post will be permanently deleted');
+        if (confirmDelete == true) {
+            this.props.delete_post(id).then(() => this.props.fetch_data());
+        }
     }
     render() {
         const device_width = window.innerWidth;
@@ -75,7 +82,17 @@ class Body extends Component {
                                                             Edit
                                                         </span>
                                                     </Link>
-                                                    <a title="Delete">
+                                                    <a
+                                                        onClick={() =>
+                                                            this.handleDelete(
+                                                                post.node.uuid
+                                                            )
+                                                        }
+                                                        title="Delete"
+                                                        style={{
+                                                            cursor: 'pointer'
+                                                        }}
+                                                    >
                                                         <span className="delete">
                                                             Delete
                                                         </span>
@@ -125,7 +142,19 @@ class Body extends Component {
                                                                 Edit
                                                             </span>
                                                         </Link>
-                                                        <a title="Delete">
+                                                        <a
+                                                            onClick={() =>
+                                                                this.handleDelete(
+                                                                    post.node
+                                                                        .uuid
+                                                                )
+                                                            }
+                                                            title="Delete"
+                                                            style={{
+                                                                cursor:
+                                                                    'pointer'
+                                                            }}
+                                                        >
                                                             <span className="delete">
                                                                 Delete
                                                             </span>
@@ -147,7 +176,8 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
-    fetch_data: PropTypes.func.isRequired
+    fetch_data: PropTypes.func.isRequired,
+    delete_post: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
