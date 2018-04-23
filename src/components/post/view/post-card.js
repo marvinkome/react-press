@@ -11,7 +11,10 @@ class PostCard extends Component {
             <div className="post">
                 <div className="post-image">
                     <img
-                        src={this.props.data.postPicUrl}
+                        src={
+                            this.props.data.postPicUrl != undefined &&
+                            this.props.data.postPicUrl
+                        }
                         className="responsive-img"
                     />
                 </div>

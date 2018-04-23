@@ -7,14 +7,21 @@ import PostEditor from './editor';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PostID } from '../../edit-post';
-import { fetch_user_data } from '../../../../js/redux/actions';
+import {
+    fetch_user_data,
+    edit_post,
+    create_tags
+} from '../../../../js/redux/actions';
+import { upload_file } from '../../../../js/helpers';
 
 const mapStateToProps = state => ({
     data: state.user_data
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data())
+    fetch_data: () => dispatch(fetch_user_data()),
+    edit_post: data => dispatch(edit_post(data)),
+    create_tag: data => dispatch(create_tags(data))
 });
 
 class Body extends Component {
@@ -23,12 +30,13 @@ class Body extends Component {
         this.chip = React.createRef();
         this.fileInput = React.createRef();
         this.chipInstance = '';
+
         this.state = {
             title: '',
             body: '',
+            post_pic_url: '',
             tags: [],
-            file_path: '',
-            choosen_file: ''
+            file: ''
         };
     }
     componentWillReceiveProps(np) {
@@ -38,28 +46,31 @@ class Body extends Component {
             );
             this.setState({
                 title: data.node.title,
-                tags: data.node.tags.edges,
-                file_path: data.node.postPicUrl,
+                post_pic_url: data.node.postPicUrl,
                 body: data.node.body
             });
+        }
+        if (this.chipInstance != '' && np.data.data != undefined) {
+            np.data.data.user.posts.edges
+                .find(obj => obj.node.id == np.value)
+                .node.tags.edges.map(obj =>
+                    this.chipInstance.addChip({
+                        tag: obj.node.name
+                    })
+                );
         }
     }
     componentDidMount() {
         const chip = this.chip.current;
         this.chipInstance = window.M.Chips.init(chip, {
             placeholder: 'Enter a tag',
-            secondaryPlaceholder: '+Tag'
+            secondaryPlaceholder: '+Tag',
+            onChipAdd: () => {
+                let tag = this.chipInstance.chipsData;
+                this.handleTagAdd(tag[tag.length - 1].tag);
+            }
         });
         this.props.fetch_data();
-    }
-    componentDidUpdate() {
-        if (this.chipInstance != '' && this.state.tags.length != 0) {
-            this.state.tags.map(obj =>
-                this.chipInstance.addChip({
-                    tag: obj.node.name
-                })
-            );
-        }
     }
     handleChange = e => {
         e.preventDefault();
@@ -73,17 +84,86 @@ class Body extends Component {
             body: orig_data
         });
     };
-    handleSubmit = e => {
-        e.preventDefault();
-        alert('selected file - ' + this.fileInput.current.files[0].size);
+    handleTagAdd = tag => {
+        this.setState(prevState => ({
+            tags: [...prevState.tags, tag]
+        }));
     };
     handleFileChange = e => {
-        const url = window.URL.createObjectURL(e.target.files[0]);
+        e.preventDefault();
         this.setState({
-            choosen_file: url
+            file: e.target.files[0]
         });
     };
+    onUploadClick = e => {
+        e.preventDefault();
+        upload_file(this.state.file).then(
+            res =>
+                res.msg == 'file uploaded' &&
+                this.setState({
+                    post_pic_url: 'http://192.168.43.200:5000' + res.url
+                })
+        );
+    };
+    onPublishClick = e => {
+        e.preventDefault();
+        let post_data = {};
+        let new_tags = [];
+
+        if (this.props.data.data != undefined) {
+            const data = this.props.data.data.user.posts.edges.find(
+                obj => obj.node.id == this.props.value
+            );
+
+            if (this.state.title != data.node.title) {
+                post_data = {
+                    ...post_data,
+                    title: this.state.title
+                };
+            }
+
+            if (this.state.body != data.node.body) {
+                post_data = {
+                    ...post_data,
+                    body: this.state.body
+                };
+            }
+
+            if (this.state.post_pic_url != data.node.postPicUrl) {
+                post_data = {
+                    ...post_data,
+                    postPicUrl: this.state.post_pic_url
+                };
+            }
+
+            if (this.state.tags.length != data.node.tags.edges.length) {
+                new_tags = [
+                    ...this.state.tags.slice(data.node.tags.edges.length)
+                ];
+            }
+
+            post_data = {
+                ...post_data,
+                postId: data.node.uuid
+            };
+
+            this.props.edit_post(post_data);
+            new_tags.length != 0 &&
+                new_tags.map(tag_name =>
+                    this.props.create_tag({
+                        tag_name,
+                        post_id: data.node.uuid
+                    })
+                );
+        }
+    };
     render() {
+        let data = null;
+        if (this.props.data.data != undefined) {
+            data = this.props.data.data.user.posts.edges.find(
+                obj => obj.node.id == this.props.value
+            ).node.body;
+        }
         return (
             <div className="main admin-edit-post">
                 <div className="post-form row">
@@ -101,7 +181,7 @@ class Body extends Component {
                         </form>
                         {this.props.data.data != undefined && (
                             <PostEditor
-                                current_body={this.state.body}
+                                current_body={data}
                                 onStateChange={this.handleEditor}
                             />
                         )}
@@ -116,7 +196,12 @@ class Body extends Component {
                                 />
                             </div>
                             <div className="card-action center">
-                                <button className="btn black">Publish</button>
+                                <button
+                                    onClick={this.onPublishClick}
+                                    className="btn black"
+                                >
+                                    Publish
+                                </button>
                             </div>
                         </div>
                         <div className="image-section card">
@@ -127,9 +212,9 @@ class Body extends Component {
                                 <img
                                     className="responsive-img"
                                     src={
-                                        this.state.choosen_file != ''
-                                            ? this.state.choosen_file
-                                            : this.state.file_path
+                                        this.state.post_pic_url != ''
+                                            ? this.state.post_pic_url
+                                            : undefined
                                     }
                                 />
                                 <form>
@@ -140,10 +225,6 @@ class Body extends Component {
                                                 type="file"
                                                 ref={this.fileInput}
                                                 onChange={this.handleFileChange}
-                                            />
-                                            <input
-                                                type="hidden"
-                                                value={this.state.file_path}
                                             />
                                         </div>
                                         <div className="file-path-wrapper">
@@ -158,7 +239,7 @@ class Body extends Component {
                             </div>
                             <div className="card-action center">
                                 <button
-                                    onClick={this.handleSubmit}
+                                    onClick={this.onUploadClick}
                                     className="btn black"
                                 >
                                     Upload
@@ -174,7 +255,10 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
-    fetch_data: PropTypes.func.isRequired
+    fetch_data: PropTypes.func.isRequired,
+    create_tag: PropTypes.func.isRequired,
+    edit_post: PropTypes.func.isRequired,
+    value: PropTypes.string.isRequired
 };
 
 const BodyConsumer = props => (

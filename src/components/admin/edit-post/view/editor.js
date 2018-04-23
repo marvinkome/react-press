@@ -20,32 +20,32 @@ class PostEditor extends Component {
     constructor(props) {
         super(props);
 
-        let editorState;
-
-        if (validate_html(this.props.current_body)) {
-            const blockFromHtml = convertFromHTML(this.props.current_body);
-            const contentState = ContentState.createFromBlockArray(
-                blockFromHtml.contentBlocks,
-                blockFromHtml.entityMap
-            );
-            editorState = EditorState.createWithContent(contentState);
-        } else {
-            const contentState = ContentState.createFromText(
-                this.props.current_body
-            );
-            editorState = EditorState.createWithContent(contentState);
-        }
-
-        editorState = EditorState.moveFocusToEnd(editorState);
-
         this.state = {
-            editorState
+            editorState: EditorState.createEmpty()
         };
 
         this.editor = React.createRef();
     }
     componentDidMount = () => {
-        this.editorFocus();
+        let contentState;
+        let editorState;
+
+        if (validate_html(this.props.current_body)) {
+            const blockFromHtml = convertFromHTML(this.props.current_body);
+            contentState = ContentState.createFromBlockArray(
+                blockFromHtml.contentBlocks,
+                blockFromHtml.entityMap
+            );
+        } else {
+            contentState = ContentState.createFromText(this.props.current_body);
+        }
+
+        editorState = EditorState.push(this.state.editorState, contentState);
+        editorState = EditorState.moveFocusToEnd(editorState);
+
+        this.setState({
+            editorState
+        });
     };
     editorFocus = () => {
         const editor = this.editor.current;
@@ -55,7 +55,6 @@ class PostEditor extends Component {
         this.setState({
             editorState
         });
-
         const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
         this.props.onStateChange(html);

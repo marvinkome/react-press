@@ -27,6 +27,13 @@ const sendRequest = state => {
     });
 };
 
+const requestFinished = state => {
+    const isFetching = false;
+    return updateObject(state, {
+        isFetching
+    });
+};
+
 const recieveArticles = (state, article) => {
     const isFetching = false;
     const lastFetch = Date.now();
@@ -76,6 +83,8 @@ const rootReducer = (state = initialState, action) => {
         return loginUser(state, action.payload);
     case constants.RECIEVE_USER_DATA:
         return recieveUserData(state, action.payload);
+    case constants.REQUEST_FINISHED:
+        return requestFinished(state);
     default:
         return state;
     }

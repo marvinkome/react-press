@@ -3,8 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import { Editor, EditorState, RichUtils } from 'draft-js';
+import PropTypes from 'prop-types';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import { Controls } from './controls';
+import draftToHtml from 'draftjs-to-html';
 
 class PostEditor extends Component {
     constructor(props) {
@@ -25,6 +27,9 @@ class PostEditor extends Component {
         this.setState({
             editorState
         });
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
+        const html = draftToHtml(rawContentState);
+        this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
         const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -68,5 +73,9 @@ class PostEditor extends Component {
         );
     }
 }
+
+PostEditor.propTypes = {
+    onStateChange: PropTypes.func.isRequired
+};
 
 export default PostEditor;

@@ -1,102 +1,103 @@
 export const fetch_alls_query = `
-{
-    posts {
-        id
-        title
-        body
-        timestamp
-        postPicUrl
-        author {
-            fullName
-            gravatarUrl
-            description
-        }
-        comments {
-            edges{
-                node{
-                    id
-                    body
-                    timestamp
-                    author{
-                        fullName
-                        gravatarUrl
-                    }
-                    replies{
-                        edges{
-                            node{
-                                id
-                                body
-                                timestamp
-                                author{
-                                    fullName
-                                    gravatarUrl
+    {
+        posts {
+            id
+            title
+            body
+            timestamp
+            postPicUrl
+            author {
+                fullName
+                gravatarUrl
+                description
+            }
+            comments {
+                edges{
+                    node{
+                        id
+                        body
+                        timestamp
+                        author{
+                            fullName
+                            gravatarUrl
+                        }
+                        replies{
+                            edges{
+                                node{
+                                    id
+                                    body
+                                    timestamp
+                                    author{
+                                        fullName
+                                        gravatarUrl
+                                    }
                                 }
                             }
                         }
                     }
                 }
             }
-        }
-        claps{
-            edges{
-                node{
-                    timestamp
+            claps{
+                edges{
+                    node{
+                        timestamp
+                    }
                 }
             }
-        }
-        tags{
-            edges{
-                node{
-                    id
-                    name
+            tags{
+                edges{
+                    node{
+                        id
+                        name
+                    }
                 }
             }
         }
     }
-}
 `;
 
 export const fetch_user_data_query = `
-{
-    user(uuid:1){
-        id
-        fullName
-        gravatarUrl
-        description
-        posts{
-            edges{
-                node{
-                    id
-                    title
-                    body
-                    postPicUrl
-                    tags{
-                        edges{
-                            node{
-                                id
-                                name
+    {
+        user(uuid:1){
+            id
+            fullName
+            gravatarUrl
+            description
+            posts{
+                edges{
+                    node{
+                        id
+                        uuid
+                        title
+                        body
+                        postPicUrl
+                        tags{
+                            edges{
+                                node{
+                                    id
+                                    name
+                                }
                             }
                         }
                     }
                 }
             }
-        }
-        comments{
-            edges{
-                node{
-                    id
-                    body
+            comments{
+                edges{
+                    node{
+                        id
+                        body
+                    }
                 }
             }
-        }
-        commentReplies{
-            edges{
-                node{
-                    id
-                    body
+            commentReplies{
+                edges{
+                    node{
+                        id
+                        body
+                    }
                 }
             }
         }
     }
-}
 `;
