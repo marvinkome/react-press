@@ -30,3 +30,16 @@ export const validate_html = html => {
 export const strip_filename = name => {
     return name.split('/').pop();
 };
+
+export const upload_file = file => {
+    const url = 'http://192.168.43.200:5000/';
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const headers = {
+        method: 'POST',
+        body: formData
+    };
+
+    return fetch(url, headers).then(res => res.json());
+};

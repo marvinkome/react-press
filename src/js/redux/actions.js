@@ -4,9 +4,14 @@
 
 import * as constants from './constants';
 import * as query from './queries';
+import * as mutations from './mutations';
 
 export const sendRequest = () => ({
     type: constants.SEND_REQUEST
+});
+
+export const requestFinished = () => ({
+    type: constants.REQUEST_FINISHED
 });
 
 export const recieveArticles = article => ({
@@ -96,5 +101,75 @@ export const fetch_user_data = () => {
         return fetch('http://192.168.43.200:5000/graphql', headers)
             .then(res => res.json())
             .then(res => dispatch(recieveUserData(res)));
+    };
+};
+
+export const create_tags = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({
+                query: mutations.create_tag(data.tag_name, data.post_id)
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
+    };
+};
+
+export const create_posts = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const new_data = {
+            ...data,
+            userId: 1
+        };
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.create_post(new_data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
+    };
+};
+
+export const edit_post = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.edit_post(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
     };
 };
