@@ -72,3 +72,13 @@ export const edit_post = post_data =>
         }
     }
 `;
+
+export const delete_post = post_id => `
+    mutation Mutation{
+        deletePost(postId: ${post_id}){
+            post{
+                title
+            }
+        }
+    }
+`;

@@ -173,3 +173,24 @@ export const edit_post = data => {
         );
     };
 };
+
+export const delete_post = data => {
+    return dispatch => {
+        dispatch(sendRequest());
+
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.delete_post(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/graphql', headers).then(
+            res => {
+                dispatch(requestFinished());
+                return res.json();
+            }
+        );
+    };
+};
