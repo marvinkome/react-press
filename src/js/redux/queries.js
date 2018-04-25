@@ -1,20 +1,37 @@
-export const fetch_alls_query = `
+export const fetch_query = `
     {
         posts {
             id
+            uuid
             title
             body
             timestamp
             postPicUrl
             author {
                 fullName
-                gravatarUrl
                 description
+                gravatarUrl
+            }
+            tags {
+                edges {
+                    node {
+                        id
+                        name
+                    }
+                }
+            }
+            claps {
+                edges {
+                    node {
+                        id
+                    }
+                }
             }
             comments {
-                edges{
-                    node{
+                edges {
+                    node {
                         id
+                        uuid
                         body
                         timestamp
                         author{
@@ -25,8 +42,9 @@ export const fetch_alls_query = `
                             edges{
                                 node{
                                     id
-                                    body
                                     timestamp
+                                    body
+                                    parentId
                                     author{
                                         fullName
                                         gravatarUrl
@@ -34,21 +52,6 @@ export const fetch_alls_query = `
                                 }
                             }
                         }
-                    }
-                }
-            }
-            claps{
-                edges{
-                    node{
-                        timestamp
-                    }
-                }
-            }
-            tags{
-                edges{
-                    node{
-                        id
-                        name
                     }
                 }
             }

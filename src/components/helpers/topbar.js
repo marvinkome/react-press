@@ -5,13 +5,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-
-const mapStateToProps = store => {
-    return {
-        data: store
-    };
-};
 
 class TopBar extends Component {
     render() {
@@ -30,7 +23,6 @@ class TopBar extends Component {
                             <a title="Facebook">
                                 <i className="fa fa-facebook" />
                             </a>
-                            <a className="btn follow"> follow </a>
                         </div>
                     </div>
                     {this.props.user_data != undefined ? (
@@ -61,13 +53,16 @@ class TopBar extends Component {
                             </li>
                         </ul>
                     )}
-                    {this.props.data.isLoggedIn ? (
+                    {this.props.user_data != undefined ? (
                         <ul className="right hide-on-med-and-up">
                             <li>
                                 <a className="user-profile">
                                     <img
                                         className="user-image responsive-img circle"
-                                        src="./src/img/pp.jpg"
+                                        src={
+                                            this.props.user_data.user
+                                                .gravatarUrl
+                                        }
                                     />
                                 </a>
                             </li>
@@ -99,8 +94,7 @@ class TopBar extends Component {
 }
 
 TopBar.propTypes = {
-    data: PropTypes.object.isRequired,
     user_data: PropTypes.object
 };
 
-export default connect(mapStateToProps)(TopBar);
+export default TopBar;

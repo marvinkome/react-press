@@ -3,16 +3,19 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { PostID } from '../index';
-import TopBar from '../../helpers/topbar';
+import types from 'prop-types';
+import { connect } from 'react-redux';
 
+import TopBar from '../../helpers/topbar';
 import Body from './body';
 
-class InnerView extends Component {
+const mapStateToProps = state => ({
+    user_data: state.user_data
+});
+
+class View extends Component {
     render() {
-        const { value } = this.props;
-        const user_data = value.user_data;
+        const { user_data } = this.props;
         return (
             <div>
                 <TopBar user_data={user_data.data} />
@@ -22,14 +25,8 @@ class InnerView extends Component {
     }
 }
 
-const View = props => (
-    <PostID.Consumer>
-        {value => <InnerView {...props} value={value} />}
-    </PostID.Consumer>
-);
-
-InnerView.propTypes = {
-    value: PropTypes.object.isRequired
+View.propTypes = {
+    user_data: types.object.isRequired
 };
 
-export default View;
+export default connect(mapStateToProps)(View);

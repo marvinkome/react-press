@@ -3,44 +3,67 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import types from 'prop-types';
+import { connect } from 'react-redux';
 
-import { PostID } from '../index';
+import { clap } from '../../../js/redux/actions';
+import Preloader from './preloader';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
-import Preloader from './preloader';
 import FAB from '../../helpers/fab';
 
-class InnerBody extends Component {
+const mapStateToProps = state => ({
+    posts: state.post_data.posts,
+    user: state.user_data,
+    fetching: state.isFetching
+});
+
+const mapDispatchToProps = dispatch => ({
+    clap: data => dispatch(clap(data))
+});
+
+class Body extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            claps: 0
-        };
         this.fabRef = React.createRef();
     }
-    componentDidMount() {
-        const fab = this.fabRef.current;
-        window.M.FloatingActionButton.init(fab);
-    }
     onClap = () => {
-        this.setState({
-            claps: this.state.claps + 1
-        });
+        const { posts, post_id } = this.props;
+
+        let post = undefined;
+
+        if (posts.length != 0) {
+            post = posts.find(obj => obj.id == post_id);
+        }
+
+        if (this.props.user.data != undefined && post != undefined) {
+            const data = {
+                post_id: post.uuid,
+                user_id: this.props.user.data.user.uuid
+            };
+
+            this.props.clap(data);
+        }
     };
     render() {
-        const { value } = this.props;
-        const post = value.data.find(obj => obj.id == value.id);
+        const { posts, post_id } = this.props;
+
+        let post = undefined;
+
+        if (posts.length != 0) {
+            post = posts.find(obj => obj.id == post_id);
+        }
+
         return (
             <div className="post-body section container">
                 <div className="row">
-                    {value.isFetching ? (
+                    {this.props.fetching ? (
                         <div className="col m12 center-align preloader-cont circle">
                             <Preloader />
                         </div>
                     ) : (
-                        post && (
+                        post != undefined && (
                             <div>
                                 <div className="col m12">
                                     <AuthorInfo data={post} />
@@ -49,7 +72,10 @@ class InnerBody extends Component {
 
                                     <Comment data={post.comments} />
                                 </div>
-                                <FAB claps_count={post.claps.edges.length} />
+                                <FAB
+                                    handleClap={this.onClap}
+                                    claps_count={post.claps.edges.length}
+                                />
                             </div>
                         )
                     )}
@@ -59,15 +85,12 @@ class InnerBody extends Component {
     }
 }
 
-const Body = props => (
-    <PostID.Consumer>
-        {value => <InnerBody {...props} value={value} />}
-    </PostID.Consumer>
-);
-
-InnerBody.propTypes = {
-    value: PropTypes.object.isRequired,
-    children: PropTypes.node
+Body.propTypes = {
+    post_id: types.string,
+    user: types.object,
+    posts: types.array.isRequired,
+    fetching: types.bool.isRequired,
+    clap: types.func.isRequired
 };
 
-export default Body;
+export default connect(mapStateToProps, mapDispatchToProps)(Body);
