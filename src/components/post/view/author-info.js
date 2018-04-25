@@ -15,12 +15,7 @@ const AuthorInfo = ({ data }) => (
             />
         </div>
         <div className="author-details col s9">
-            <p className="author-name">
-                {data.author.fullName}
-                <a title="follow" className="btn-small btn follow">
-                    follow
-                </a>
-            </p>
+            <p className="author-name">{data.author.fullName}</p>
             <p className="author-desc">{data.author.description}</p>
             <p className="post-meta">{format_date(data.timestamp)}</p>
         </div>

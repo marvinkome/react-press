@@ -24,32 +24,46 @@ import Login from './login';
 import Admin, { EditPost } from './admin';
 
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            render: true
+        };
+    }
     componentDidMount() {
-        this.props.fetch_data();
+        this.props.fetch_data().then(null, () =>
+            this.setState({
+                render: false
+            })
+        );
 
         if (this.props.loggedIn) {
             this.props.fetch_user();
         }
     }
     render() {
-        return (
-            <Switch>
-                {/* Front end */}
-                <Route path="/" component={Home} exact />
-                <Route path="/post/:id" component={Post} exact />
+        if (this.state.render) {
+            return (
+                <Switch>
+                    {/* Front end */}
+                    <Route path="/" component={Home} exact />
+                    <Route path="/post/:id" component={Post} exact />
 
-                {/* authentication */}
-                <Route path="/auth/:section" component={Login} exact />
+                    {/* authentication */}
+                    <Route path="/auth/:section" component={Login} exact />
 
-                {/* Backend */}
-                <PrivateRoute path="/admin/:path" component={Admin} exact />
-                <PrivateRoute
-                    path="/admin/edit-post/:id"
-                    component={EditPost}
-                    exact
-                />
-            </Switch>
-        );
+                    {/* Backend */}
+                    <PrivateRoute path="/admin/:path" component={Admin} exact />
+                    <PrivateRoute
+                        path="/admin/edit-post/:id"
+                        component={EditPost}
+                        exact
+                    />
+                </Switch>
+            );
+        } else {
+            return <h5>Oops something went wrong</h5>;
+        }
     }
 }
 

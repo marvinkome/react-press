@@ -11,11 +11,10 @@ class TopBar extends Component {
         return (
             <nav className="topbar nav-extended">
                 <div className="nav-wrapper">
-                    <Link to="/" className="brand-logo">
-                        <i className="fa fa-codiepie" />
-                    </Link>
                     <div className="blog-info">
-                        <span className="blog-title">freeCodeCamp</span>
+                        <Link to="/" className="brand-logo">
+                            <span className="blog-title">ReactPress</span>
+                        </Link>
                         <div className="social">
                             <a title="Twitter">
                                 <i className="fa fa-twitter" />
@@ -28,7 +27,11 @@ class TopBar extends Component {
                     {this.props.user_data != undefined ? (
                         <ul className="right hide-on-small-only">
                             <li>
-                                <a className="user-profile">
+                                <Link
+                                    to="/admin/dashboard"
+                                    title="Go to dashboard"
+                                    className="user-profile"
+                                >
                                     <img
                                         className="user-image responsive-img circle"
                                         src={
@@ -36,7 +39,7 @@ class TopBar extends Component {
                                                 .gravatarUrl
                                         }
                                     />
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     ) : (
