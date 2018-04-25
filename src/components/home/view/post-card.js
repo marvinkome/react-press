@@ -17,15 +17,30 @@ const PostCard = ({ post }) => {
                 <Link to={'/post/' + post.id}>
                     <span className="card-title">{post.title}</span>
                 </Link>
-                <p>{truncate(post.body, 40)}</p>
+                <p
+                    dangerouslySetInnerHTML={{
+                        __html: truncate(post.body, 40)
+                    }}
+                />
             </div>
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img className="circle" src={post.author.gravatarUrl} />
+                        <img
+                            className="circle"
+                            src={
+                                post.author != null
+                                    ? post.author.gravatarUrl
+                                    : undefined
+                            }
+                        />
                     </div>
                     <div className="info">
-                        <span className="name">{post.author.fullName}</span>
+                        <span className="name">
+                            {post.author != null
+                                ? post.author.fullName
+                                : undefined}
+                        </span>
                         <span className="date">
                             {format_date(post.timestamp)}
                         </span>

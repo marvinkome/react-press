@@ -126,3 +126,63 @@ export const update_info = user_data =>
         }
     }
 `;
+
+export const create_comment = comment_data =>
+    `
+    mutation Mutation{
+        createComment(
+            body: "` +
+    comment_data.body +
+    `", 
+            userId: ` +
+    comment_data.user_id +
+    `,
+            postId: ` +
+    comment_data.post_id +
+    `
+        ){
+            comment{
+                body
+            }
+        }
+    }
+`;
+
+export const create_comment_reply = reply_data =>
+    `
+    mutation Mutation{
+        createCommentReply(
+            body: "` +
+    reply_data.body +
+    `", 
+            userId: ` +
+    reply_data.user_id +
+    `,
+            parentId: ` +
+    reply_data.parent_id +
+    `
+        ){
+            commentReply{
+                body
+            }
+        }
+    }
+`;
+
+export const clap = clap_data =>
+    `
+    mutation Mutation{
+        createClap(
+            userId: ` +
+    clap_data.user_id +
+    `,
+            postId: ` +
+    clap_data.post_id +
+    `
+        ){
+            clap{
+                id
+            }
+        }
+    }
+`;

@@ -3,19 +3,46 @@
  */
 
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetch_user_data } from '../../../js/redux/actions';
 
-export default class SideNav extends Component {
+const mapStateToProps = state => ({
+    data: state.user_data
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetch_data: () => dispatch(fetch_user_data())
+});
+
+class SideNav extends Component {
     constructor(props) {
         super(props);
         this.sideNav = React.createRef();
         this.collapsible = React.createRef();
+
+        this.state = {
+            display_name: '',
+            pic_url: ''
+        };
+    }
+    componentWillReceiveProps(np) {
+        if (np.data.data != undefined) {
+            const data = np.data.data.user;
+            this.setState({
+                display_name: data.fullName,
+                pic_url: data.gravatarUrl
+            });
+        }
     }
     componentDidMount() {
         const sidenav = this.sideNav.current;
         const collapsible = this.collapsible.current;
         window.M.Sidenav.init(sidenav);
         window.M.Collapsible.init(collapsible);
+
+        this.props.fetch_data();
     }
     componentWillUnmount() {
         const sidenav = this.sideNav.current;
@@ -55,12 +82,24 @@ export default class SideNav extends Component {
                             <div className="background" />
                             <a>
                                 <img
-                                    className="circle"
-                                    src="./src/img/pp.jpg"
+                                    className={
+                                        this.props.data.data != undefined
+                                            ? 'circle'
+                                            : undefined
+                                    }
+                                    src={
+                                        this.props.data.data != undefined
+                                            ? this.state.pic_url
+                                            : undefined
+                                    }
                                 />
                             </a>
                             <a>
-                                <span className="name">John Doe</span>
+                                <span className="name">
+                                    {this.props.data.data != undefined
+                                        ? this.state.display_name
+                                        : ''}
+                                </span>
                             </a>
                         </div>
                     </li>
@@ -105,3 +144,9 @@ export default class SideNav extends Component {
         );
     }
 }
+
+SideNav.propTypes = {
+    data: PropTypes.object,
+    fetch_data: PropTypes.func.isRequired
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SideNav);

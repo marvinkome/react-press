@@ -13,26 +13,24 @@ class FAB extends Component {
         };
         this.fabRef = React.createRef();
     }
+    componentWillReceiveProps(np) {
+        if (this.state.claps != np.claps_count) {
+            this.setState({
+                claps: np.claps_count
+            });
+        }
+    }
     componentDidMount() {
         const fab = this.fabRef.current;
         window.M.FloatingActionButton.init(fab);
     }
-    // componentWillReceiveProps(np){
-    //     console.log(np.claps_count);
-    //     const claps_count = np.claps_count;
-    //     this.setState({
-    //         claps: claps_count
-    //     });
-    // }
-    onClap = () => {
-        this.setState({
-            claps: this.state.claps + 1
-        });
-    };
     render() {
         return (
             <div ref={this.fabRef} className="fixed-action-btn">
-                <a onClick={this.onClap} className="btn-floating btn-large">
+                <a
+                    onClick={this.props.handleClap}
+                    className="btn-floating btn-large"
+                >
                     <i className="fa fa-thumbs-up" />
                 </a>
                 <ul>
@@ -48,7 +46,8 @@ class FAB extends Component {
 }
 
 FAB.propTypes = {
-    claps_count: PropTypes.number.isRequired
+    claps_count: PropTypes.number.isRequired,
+    handleClap: PropTypes.func
 };
 
 export default FAB;

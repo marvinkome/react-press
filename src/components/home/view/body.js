@@ -3,32 +3,41 @@
  */
 
 import React from 'react';
-import { PostID } from '../index';
+import type from 'prop-types';
+
+import { connect } from 'react-redux';
+
 import PostCard from './post-card';
 import Preloader from './preloader';
 
-const Body = () => {
+const mapStateToProps = state => ({
+    fetching: state.isFetching,
+    posts: state.post_data.posts
+});
+
+const Body = ({ posts, fetching }) => {
     return (
-        <PostID.Consumer>
-            {value => (
-                <div className="body section container">
-                    <div className="row">
-                        {value.isFetching ? (
-                            <div className="col m12 center-align preloader-cont circle">
-                                <Preloader />
-                            </div>
-                        ) : (
-                            value.data.map(obj => (
-                                <div key={obj.id} className="col l4 m6">
-                                    <PostCard post={obj} />
-                                </div>
-                            ))
-                        )}
+        <div className="body section container">
+            <div className="row">
+                {fetching ? (
+                    <div className="col m12 center-align preloader-cont circle">
+                        <Preloader />
                     </div>
-                </div>
-            )}
-        </PostID.Consumer>
+                ) : (
+                    posts.map(obj => (
+                        <div key={obj.id} className="col l4 m6">
+                            <PostCard post={obj} />
+                        </div>
+                    ))
+                )}
+            </div>
+        </div>
     );
 };
 
-export default Body;
+Body.propTypes = {
+    fetching: type.bool.isRequired,
+    posts: type.array.isRequired
+};
+
+export default connect(mapStateToProps)(Body);

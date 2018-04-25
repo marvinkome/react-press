@@ -10,17 +10,20 @@ class Comment extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            comment: '',
             replying: false
         };
     }
-    onClickReply = () => {
+    handleChange = e => {
+        e.preventDefault();
         this.setState({
-            replying: true
+            [e.target.id]: e.target.value
         });
     };
-    onClickCloseReply = () => {
+    onClickReply = e => {
+        e.preventDefault();
         this.setState({
-            replying: false
+            replying: !this.state.replying
         });
     };
     render() {
@@ -33,6 +36,7 @@ class Comment extends Component {
                 display: 'block'
             };
         }
+
         return (
             <div className="response">
                 <h5>Responses</h5>
@@ -41,12 +45,19 @@ class Comment extends Component {
                     <form className="row">
                         <div className="input-field col s12">
                             <textarea
+                                value={this.state.comment}
+                                id="comment"
                                 className="materialize-textarea"
                                 placeholder="Write a response"
+                                onChange={this.handleChange}
                             />
                         </div>
                         <div className="col 12 input-field">
-                            <button type="submit" className="btn">
+                            <button
+                                onClick={this.onComment}
+                                type="submit"
+                                className="btn"
+                            >
                                 Publish
                             </button>
                         </div>
@@ -77,7 +88,9 @@ class Comment extends Component {
                                             onClick={this.onClickReply}
                                             title="reply"
                                         >
-                                            reply
+                                            {this.state.replying
+                                                ? 'close'
+                                                : 'reply'}
                                         </a>
                                     </span>
                                 </div>
@@ -89,20 +102,33 @@ class Comment extends Component {
                                 <form className="row">
                                     <div className="input-field col s12">
                                         <textarea
+                                            value={
+                                                this.state[
+                                                    'comment_reply_' +
+                                                        obj.node.id
+                                                ]
+                                            }
+                                            onChange={this.handleChange}
                                             className="materialize-textarea"
                                             placeholder="Write a reply"
+                                            id={'comment_reply_' + obj.node.id}
                                         />
                                     </div>
                                     <div className="col 12 input-field">
-                                        <button type="submit" className="btn">
+                                        <button
+                                            onClick={e =>
+                                                this.onCommentReply(
+                                                    e,
+                                                    'comment_reply_' +
+                                                        obj.node.id,
+                                                    obj.node.uuid
+                                                )
+                                            }
+                                            type="submit"
+                                            className="btn"
+                                        >
                                             Publish
                                         </button>
-                                        <a
-                                            onClick={this.onClickCloseReply}
-                                            className="btn-flat"
-                                        >
-                                            Close
-                                        </a>
                                     </div>
                                 </form>
                             </div>

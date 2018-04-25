@@ -153,8 +153,9 @@ class Body extends Component {
                                 <img
                                     className="responsive-img"
                                     src={
-                                        this.state.post_pic_url != '' &&
-                                        this.state.post_pic_url
+                                        this.state.post_pic_url != ''
+                                            ? this.state.post_pic_url
+                                            : undefined
                                     }
                                 />
                                 <form>

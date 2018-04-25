@@ -9,24 +9,33 @@ class PostCard extends Component {
     render() {
         return (
             <div className="post">
-                <div className="post-image">
-                    <img
-                        src={
-                            this.props.data.postPicUrl != undefined &&
-                            this.props.data.postPicUrl
-                        }
-                        className="responsive-img"
-                    />
-                </div>
                 <div className="post-content">
-                    <h2 className="post-title">{this.props.data.title}</h2>
-                    <div className="content">{this.props.data.body}</div>
+                    <h2 className="post-title center">
+                        {this.props.data.title}
+                    </h2>
+                    <div className="post-image center">
+                        <img
+                            src={
+                                this.props.data.postPicUrl != undefined &&
+                                this.props.data.postPicUrl
+                            }
+                            className="responsive-img"
+                        />
+                    </div>
+                    <div>
+                        <div
+                            className="content"
+                            dangerouslySetInnerHTML={{
+                                __html: this.props.data.body
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <div className="post-footer">
                     {this.props.data.tags.edges.map(obj => (
                         <div key={obj.node.id} className="post-tag">
-                            <a title={obj.node.name}>{obj.node.name}</a>
+                            <span title={obj.node.name}>{obj.node.name}</span>
                         </div>
                     ))}
                 </div>
