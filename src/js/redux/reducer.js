@@ -23,6 +23,19 @@ const updateItemArray = (array, itemId, callback, key = 'id') => {
     return updatedItems;
 };
 
+const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
+    const updatedItems = array.map(item => {
+        if (item['node'][key] !== itemId) {
+            return item;
+        }
+
+        const updatedItem = callback(item);
+        return updatedItem;
+    });
+
+    return updatedItems;
+};
+
 const saveToStore = (store, key) => {
     if (localStorage) {
         store = JSON.stringify(store);
@@ -61,11 +74,75 @@ const requestFinished = state => {
     });
 };
 
-const requestCommentFinished = state => {
+const requestCommentFinished = (state, comment, data) => {
     const isSendingComment = false;
-    return updateObject(state, {
-        isSendingComment
+
+    const new_state = updateObject(state, {
+        isSendingComment,
+        post_data: updateObject(state.post_data, {
+            posts: updateItemArray(
+                state.post_data.posts,
+                data.post_id,
+                post =>
+                    updateObject(post, {
+                        comments: updateObject(post.comments, {
+                            edges: post.comments.edges.concat({
+                                node: {
+                                    ...comment
+                                }
+                            })
+                        })
+                    }),
+                'uuid'
+            )
+        })
     });
+
+    return new_state;
+};
+
+const requestCommentReplyFinished = (state, comment_rep, data) => {
+    const isSendingComment = false;
+
+    const new_state = updateObject(state, {
+        isSendingComment,
+        post_data: updateObject(state.post_data, {
+            posts: updateItemArray(
+                state.post_data.posts,
+                data.post_id,
+                post =>
+                    updateObject(post, {
+                        comments: updateObject(post.comments, {
+                            edges: updateNestedItemArray(
+                                post.comments.edges,
+                                data.parent_id,
+                                comment =>
+                                    updateObject(comment, {
+                                        node: updateObject(comment.node, {
+                                            replies: updateObject(
+                                                comment.node.replies,
+                                                {
+                                                    edges: comment.node.replies.edges.concat(
+                                                        {
+                                                            node: {
+                                                                ...comment_rep
+                                                            }
+                                                        }
+                                                    )
+                                                }
+                                            )
+                                        })
+                                    }),
+                                'uuid'
+                            )
+                        })
+                    }),
+                'uuid'
+            )
+        })
+    });
+
+    return new_state;
 };
 
 const requestClapFinished = (state, clap, data) => {
@@ -171,7 +248,13 @@ const rootReducer = (state = initialState, action) => {
     case constants.REQUEST_FINISHED:
         return requestFinished(state);
     case constants.REQUEST_COMMENT_FINISHED:
-        return requestCommentFinished(state);
+        return requestCommentFinished(state, action.comment, action.data);
+    case constants.REQUEST_COMMENT_REPLY_FINISHED:
+        return requestCommentReplyFinished(
+            state,
+            action.comment,
+            action.data
+        );
     case constants.REQUEST_CLAP_FINISHED:
         return requestClapFinished(state, action.clap, action.data);
     default:

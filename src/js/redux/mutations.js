@@ -142,7 +142,21 @@ export const create_comment = comment_data =>
     `
         ){
             comment{
+                id
+                uuid
                 body
+                timestamp
+                author{
+                    fullName
+                    gravatarUrl
+                }
+                replies{
+                    edges{
+                        node{
+                            id
+                        }
+                    }
+                }
             }
         }
     }
@@ -163,7 +177,14 @@ export const create_comment_reply = reply_data =>
     `
         ){
             commentReply{
+                id
+                timestamp
                 body
+                parentId
+                author {
+                    fullName
+                    gravatarUrl
+                }
             }
         }
     }

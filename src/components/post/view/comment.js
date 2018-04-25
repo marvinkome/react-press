@@ -11,9 +11,17 @@ class Comment extends Component {
         super(props);
         this.state = {
             comment: '',
+            data: this.props.data,
             replying: false
         };
     }
+    componentWillReceiveProps = np => {
+        if (this.state.data != np.data) {
+            this.setState({
+                data: np.data
+            });
+        }
+    };
     handleChange = e => {
         e.preventDefault();
         this.setState({
@@ -24,6 +32,21 @@ class Comment extends Component {
         e.preventDefault();
         this.setState({
             replying: !this.state.replying
+        });
+    };
+    onCommentPublish = e => {
+        e.preventDefault();
+        this.props.handleComment(this.state.comment);
+        this.setState({
+            comment: ''
+        });
+    };
+    onCommentReply = (e, id, uuid) => {
+        e.preventDefault();
+        const comment = this.state[id];
+        this.props.handleReply(comment, uuid);
+        this.setState({
+            [id]: ''
         });
     };
     render() {
@@ -54,7 +77,7 @@ class Comment extends Component {
                         </div>
                         <div className="col 12 input-field">
                             <button
-                                onClick={this.onComment}
+                                onClick={this.onCommentPublish}
                                 type="submit"
                                 className="btn"
                             >
@@ -64,7 +87,7 @@ class Comment extends Component {
                     </form>
                 </div>
 
-                {this.props.data.edges.map(obj => (
+                {this.state.data.edges.map(obj => (
                     <ul key={obj.node.id} className="collection">
                         <li className="collection-item">
                             <div className="comment-author row">
@@ -166,7 +189,9 @@ class Comment extends Component {
 }
 
 Comment.propTypes = {
-    data: PropTypes.object.isRequired
+    data: PropTypes.object.isRequired,
+    handleComment: PropTypes.func.isRequired,
+    handleReply: PropTypes.func.isRequired
 };
 
 export default Comment;
