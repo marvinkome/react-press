@@ -26,8 +26,16 @@ export const requestFinished = () => ({
     type: constants.REQUEST_FINISHED
 });
 
-export const requestCommentFinished = () => ({
-    type: constants.REQUEST_COMMENT_FINISHED
+export const requestCommentFinished = (comment, data) => ({
+    type: constants.REQUEST_COMMENT_FINISHED,
+    comment: comment.data.createComment.comment,
+    data
+});
+
+export const requestCommentReplyFinished = (comment, data) => ({
+    type: constants.REQUEST_COMMENT_REPLY_FINISHED,
+    comment: comment.data.createCommentReply.commentReply,
+    data
 });
 
 export const requestClapFinished = (clap, data) => ({
@@ -306,12 +314,9 @@ export const add_comment = data => {
             }
         };
 
-        return fetch('http://192.168.43.200:5000/graphql', headers).then(
-            res => {
-                dispatch(requestCommentFinished());
-                return res.json();
-            }
-        );
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(requestCommentFinished(res, data)));
     };
 };
 
@@ -329,12 +334,9 @@ export const reply_comment = data => {
             }
         };
 
-        return fetch('http://192.168.43.200:5000/graphql', headers).then(
-            res => {
-                dispatch(requestCommentFinished());
-                return res.json();
-            }
-        );
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(requestCommentReplyFinished(res, data)));
     };
 };
 

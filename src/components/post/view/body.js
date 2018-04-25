@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 
-import { clap } from '../../../js/redux/actions';
+import { clap, add_comment, reply_comment } from '../../../js/redux/actions';
 import Preloader from './preloader';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
@@ -20,7 +20,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    clap: data => dispatch(clap(data))
+    clap: data => dispatch(clap(data)),
+    comment: data => dispatch(add_comment(data)),
+    reply_comment: data => dispatch(reply_comment(data))
 });
 
 class Body extends Component {
@@ -44,6 +46,43 @@ class Body extends Component {
             };
 
             this.props.clap(data);
+        }
+    };
+    onCommitPublish = comment => {
+        const { posts, post_id } = this.props;
+
+        let post = undefined;
+
+        if (posts.length != 0) {
+            post = posts.find(obj => obj.id == post_id);
+        }
+
+        if (this.props.user.data != undefined && post != undefined) {
+            const data = {
+                body: comment,
+                post_id: post.uuid,
+                user_id: this.props.user.data.user.uuid
+            };
+            this.props.comment(data);
+        }
+    };
+    onCommentReply = (comment, parent_id) => {
+        const { posts, post_id } = this.props;
+
+        let post = undefined;
+
+        if (posts.length != 0) {
+            post = posts.find(obj => obj.id == post_id);
+        }
+
+        if (this.props.user.data != undefined && post != undefined) {
+            const data = {
+                body: comment,
+                parent_id,
+                user_id: this.props.user.data.user.uuid,
+                post_id: post.uuid
+            };
+            this.props.reply_comment(data);
         }
     };
     render() {
@@ -70,7 +109,11 @@ class Body extends Component {
 
                                     <PostCard data={post} />
 
-                                    <Comment data={post.comments} />
+                                    <Comment
+                                        handleComment={this.onCommitPublish}
+                                        handleReply={this.onCommentReply}
+                                        data={post.comments}
+                                    />
                                 </div>
                                 <FAB
                                     handleClap={this.onClap}
@@ -90,7 +133,9 @@ Body.propTypes = {
     user: types.object,
     posts: types.array.isRequired,
     fetching: types.bool.isRequired,
-    clap: types.func.isRequired
+    clap: types.func.isRequired,
+    comment: types.func.isRequired,
+    reply_comment: types.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
