@@ -30,6 +30,17 @@ class TopBar extends Component {
                                 <Link
                                     to="/admin/dashboard"
                                     title="Go to dashboard"
+                                >
+                                    <span>
+                                        Logged in as:{' '}
+                                        {this.props.user_data.user.fullName}
+                                    </span>
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/admin/dashboard"
+                                    title="Go to dashboard"
                                     className="user-profile"
                                 >
                                     <img

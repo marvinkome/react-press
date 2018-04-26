@@ -1,6 +1,6 @@
 export const fetch_query = `
     {
-        posts {
+        posts(first: 9) {
             id
             uuid
             title
