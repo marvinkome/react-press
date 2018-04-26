@@ -23,12 +23,16 @@ const Body = ({ posts, fetching }) => {
                     <div className="col m12 center-align preloader-cont circle">
                         <Preloader />
                     </div>
-                ) : (
+                ) : posts.length > 0 ? (
                     posts.map(obj => (
                         <div key={obj.id} className="col l4 m6">
                             <PostCard post={obj} />
                         </div>
                     ))
+                ) : (
+                    <div className="col m12">
+                        <h5 className="center">No posts</h5>
+                    </div>
                 )}
             </div>
         </div>
