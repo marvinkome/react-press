@@ -10,6 +10,7 @@ import * as mutations from './mutations';
  * Redux sync actions for reducers
  */
 
+// Request sync actions
 export const sendRequest = () => ({
     type: constants.SEND_REQUEST
 });
@@ -22,6 +23,7 @@ export const sendClap = () => ({
     type: constants.SEND_CLAP
 });
 
+// After request sync actions for admin
 export const requestCreateTagsFinished = (tag, data) => ({
     type: constants.REQUEST_TAG_FINISHED,
     post_id: data.post_id,
@@ -33,6 +35,13 @@ export const requestCreatePostsFinished = post => ({
     post: post.data.createPost.post
 });
 
+export const requestEditPostFinished = (post, data) => ({
+    type: constants.REQUEST_EDIT_POST_FINISHED,
+    post: post.data.updatePost.post,
+    post_id: data.postId
+});
+
+// After request sync actions for post
 export const requestCommentFinished = (comment, data) => ({
     type: constants.REQUEST_COMMENT_FINISHED,
     comment: comment.data.createComment.comment,
@@ -51,6 +60,7 @@ export const requestClapFinished = (clap, data) => ({
     data
 });
 
+// After request sync actions - general
 export const recieveArticles = article => ({
     type: constants.RECIEVE_ARTICLES,
     payload: article
@@ -61,6 +71,7 @@ export const recieveArticle = article => ({
     payload: article
 });
 
+// After auth request
 export const recieveUserData = payload => ({
     type: constants.RECIEVE_USER_DATA,
     payload
@@ -214,26 +225,23 @@ export const create_posts = data => {
     };
 };
 
-// export const edit_post = data => {
-//     return dispatch => {
-//         dispatch(sendRequest());
+export const edit_post = data => {
+    return dispatch => {
+        dispatch(sendRequest());
 
-//         const headers = {
-//             method: 'POST',
-//             body: JSON.stringify({ query: mutations.edit_post(data) }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         };
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.edit_post(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
 
-//         return fetch('http://192.168.43.200:5000/graphql', headers).then(
-//             res => {
-//                 dispatch(requestFinished());
-//                 return res.json();
-//             }
-//         );
-//     };
-// };
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(requestEditPostFinished(res, data)));
+    };
+};
 
 // export const delete_post = data => {
 //     return dispatch => {

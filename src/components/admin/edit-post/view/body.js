@@ -7,11 +7,7 @@ import PostEditor from './editor';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PostID } from '../../edit-post';
-import {
-    fetch_user_data,
-    edit_post,
-    create_tags
-} from '../../../../js/redux/actions';
+import { edit_post, create_tags } from '../../../../js/redux/actions';
 import { upload_file } from '../../../../js/helpers';
 
 const mapStateToProps = state => ({
@@ -19,7 +15,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data()),
     edit_post: data => dispatch(edit_post(data)),
     create_tag: data => dispatch(create_tags(data))
 });
@@ -70,7 +65,6 @@ class Body extends Component {
                 this.handleTagAdd(tag[tag.length - 1].tag);
             }
         });
-        this.props.fetch_data();
     }
     handleChange = e => {
         e.preventDefault();
@@ -136,7 +130,7 @@ class Body extends Component {
                 };
             }
 
-            if (this.state.tags.length != data.node.tags.edges.length) {
+            if (this.state.tags.length > data.node.tags.edges.length) {
                 new_tags = [
                     ...this.state.tags.slice(data.node.tags.edges.length)
                 ];
@@ -255,7 +249,6 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
-    fetch_data: PropTypes.func.isRequired,
     create_tag: PropTypes.func.isRequired,
     edit_post: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired

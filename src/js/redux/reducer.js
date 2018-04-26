@@ -107,6 +107,26 @@ const requestPostsFinished = (state, post) => {
     return new_state;
 };
 
+const requestEditPostFinished = (state, post, post_id) => {
+    const isFetching = false;
+    const new_state = updateObject(state, {
+        isFetching,
+        post_data: updateObject(state.post_data, {
+            posts: updateItemArray(
+                state.post_data.posts,
+                post_id,
+                post =>
+                    updateObject(post, {
+                        ...post
+                    }),
+                'uuid'
+            )
+        })
+    });
+
+    return new_state;
+};
+
 const requestCommentFinished = (state, comment, data) => {
     const isSendingComment = false;
 
@@ -290,6 +310,9 @@ const rootReducer = (state = initialState, action) => {
 
     case constants.REQUEST_POST_FINISHED:
         return requestPostsFinished(state, action.post);
+
+    case constants.REQUEST_EDIT_POST_FINISHED:
+        return requestEditPostFinished(state, action.post, action.post_id);
 
     case constants.REQUEST_COMMENT_FINISHED:
         return requestCommentFinished(state, action.comment, action.data);

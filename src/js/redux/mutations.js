@@ -122,9 +122,60 @@ export const edit_post = post_data =>
     `
         ){
             post{
+                id
+                uuid
                 title
                 body
+                timestamp
                 postPicUrl
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
