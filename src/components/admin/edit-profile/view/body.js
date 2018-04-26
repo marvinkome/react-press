@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
+    fetch_all_data,
     fetch_user_data,
     update_profile_pic,
     update_user_info
@@ -17,7 +18,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data()),
+    fetch_user_data: () => dispatch(fetch_user_data()),
+    fetch_data: () => dispatch(fetch_all_data()),
     update_profile_pic: data => dispatch(update_profile_pic(data)),
     update_user_info: data => dispatch(update_user_info(data))
 });
@@ -47,7 +49,14 @@ class Body extends Component {
         }
     }
     componentDidMount() {
-        this.props.fetch_data();
+        if (this.props.data.data != undefined) {
+            const data = this.props.data.data.user;
+            this.setState({
+                display_name: data.fullName,
+                description: data.description,
+                pic_url: data.gravatarUrl
+            });
+        }
     }
     handleChange = e => {
         e.preventDefault();
@@ -105,7 +114,9 @@ class Body extends Component {
                         user_id: user_data.uuid
                     };
                     return this.props.update_profile_pic(data);
-                });
+                })
+                .then(() => this.props.fetch_user_data())
+                .then(() => this.props.fetch_data());
         }
     };
     onSaveClick = e => {
@@ -132,7 +143,10 @@ class Body extends Component {
                 user_id: data.uuid
             };
 
-            this.props.update_user_info(user_data);
+            this.props
+                .update_user_info(user_data)
+                .then(() => this.props.fetch_user_data())
+                .then(() => this.props.fetch_data());
         }
     };
     render() {
@@ -242,6 +256,7 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
+    fetch_user_data: PropTypes.func.isRequired,
     fetch_data: PropTypes.func.isRequired,
     update_profile_pic: PropTypes.func.isRequired,
     update_user_info: PropTypes.func.isRequired

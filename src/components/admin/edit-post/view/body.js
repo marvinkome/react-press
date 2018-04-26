@@ -7,11 +7,7 @@ import PostEditor from './editor';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { PostID } from '../../edit-post';
-import {
-    fetch_user_data,
-    edit_post,
-    create_tags
-} from '../../../../js/redux/actions';
+import { edit_post, create_tags } from '../../../../js/redux/actions';
 import { upload_file } from '../../../../js/helpers';
 
 const mapStateToProps = state => ({
@@ -19,7 +15,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data()),
     edit_post: data => dispatch(edit_post(data)),
     create_tag: data => dispatch(create_tags(data))
 });
@@ -70,7 +65,25 @@ class Body extends Component {
                 this.handleTagAdd(tag[tag.length - 1].tag);
             }
         });
-        this.props.fetch_data();
+        if (this.props.data.data != undefined) {
+            const data = this.props.data.data.user.posts.edges.find(
+                obj => obj.node.id == this.props.value
+            );
+            this.setState({
+                title: data.node.title,
+                post_pic_url: data.node.postPicUrl,
+                body: data.node.body
+            });
+        }
+        if (this.chipInstance != '' && this.props.data.data != undefined) {
+            this.props.data.data.user.posts.edges
+                .find(obj => obj.node.id == this.props.value)
+                .node.tags.edges.map(obj =>
+                    this.chipInstance.addChip({
+                        tag: obj.node.name
+                    })
+                );
+        }
     }
     handleChange = e => {
         e.preventDefault();
@@ -136,7 +149,7 @@ class Body extends Component {
                 };
             }
 
-            if (this.state.tags.length != data.node.tags.edges.length) {
+            if (this.state.tags.length > data.node.tags.edges.length) {
                 new_tags = [
                     ...this.state.tags.slice(data.node.tags.edges.length)
                 ];
@@ -162,7 +175,7 @@ class Body extends Component {
         if (this.props.data.data != undefined) {
             data = this.props.data.data.user.posts.edges.find(
                 obj => obj.node.id == this.props.value
-            ).node.body;
+            ).node;
         }
         return (
             <div className="main admin-edit-post">
@@ -170,18 +183,20 @@ class Body extends Component {
                     <div className="col m8 s12">
                         <form>
                             <div className="input-field">
-                                <input
-                                    value={this.state.title}
-                                    id="title"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter Post Title"
-                                />
+                                {this.props.data.data != undefined && (
+                                    <input
+                                        value={data.title}
+                                        id="title"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        placeholder="Enter Post Title"
+                                    />
+                                )}
                             </div>
                         </form>
                         {this.props.data.data != undefined && (
                             <PostEditor
-                                current_body={data}
+                                current_body={data.body}
                                 onStateChange={this.handleEditor}
                             />
                         )}
@@ -209,14 +224,16 @@ class Body extends Component {
                                 <span className="card-title">
                                     Add featured image
                                 </span>
-                                <img
-                                    className="responsive-img"
-                                    src={
-                                        this.state.post_pic_url != ''
-                                            ? this.state.post_pic_url
-                                            : undefined
-                                    }
-                                />
+                                {this.props.data.data != undefined && (
+                                    <img
+                                        className="responsive-img"
+                                        src={
+                                            this.state.post_pic_url != ''
+                                                ? this.state.post_pic_url
+                                                : data.post_pic_url
+                                        }
+                                    />
+                                )}
                                 <form>
                                     <div className="file-field input-field">
                                         <div className="btn btn-flat">
@@ -255,7 +272,6 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
-    fetch_data: PropTypes.func.isRequired,
     create_tag: PropTypes.func.isRequired,
     edit_post: PropTypes.func.isRequired,
     value: PropTypes.string.isRequired
