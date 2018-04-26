@@ -95,7 +95,7 @@ class Body extends Component {
                 this.state.tags.map(tag_name =>
                     this.props.create_tag({
                         tag_name,
-                        post_id: res.data.createPost.post.uuid
+                        post_id: res.post.uuid
                     })
                 );
             })

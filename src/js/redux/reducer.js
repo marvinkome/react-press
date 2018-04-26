@@ -67,11 +67,44 @@ const sendClapRequest = state => {
     });
 };
 
-const requestFinished = state => {
+const requestTagsFinished = (state, tag, post_id) => {
     const isFetching = false;
-    return updateObject(state, {
-        isFetching
+    const new_state = updateObject(state, {
+        isFetching,
+        post_data: updateObject(state.post_data, {
+            posts: updateItemArray(
+                state.post_data.posts,
+                post_id,
+                post =>
+                    updateObject(post, {
+                        tags: updateObject(post.tags, {
+                            edges: post.comments.edges.concat({
+                                node: {
+                                    ...tag
+                                }
+                            })
+                        })
+                    }),
+                'uuid'
+            )
+        })
     });
+
+    return new_state;
+};
+
+const requestPostsFinished = (state, post) => {
+    const isFetching = false;
+    const new_state = updateObject(state, {
+        isFetching,
+        post_data: updateObject(state.post_data, {
+            posts: state.post_data.posts.concat({
+                ...post
+            })
+        })
+    });
+
+    return new_state;
 };
 
 const requestCommentFinished = (state, comment, data) => {
@@ -233,30 +266,44 @@ const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case constants.SEND_REQUEST:
         return sendRequest(state);
+
     case constants.SEND_COMMENT:
         return sendCommentRequest(state);
+
     case constants.SEND_CLAP:
         return sendClapRequest(state);
+
     case constants.RECIEVE_ARTICLES:
         return recieveArticles(state, action.payload);
+
     case constants.RECIEVE_ARTICLE:
         return recieveArticle(state, action.payload);
+
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
+
     case constants.RECIEVE_USER_DATA:
         return recieveUserData(state, action.payload);
-    case constants.REQUEST_FINISHED:
-        return requestFinished(state);
+
+    case constants.REQUEST_TAG_FINISHED:
+        return requestTagsFinished(state, action.tag, action.post_id);
+
+    case constants.REQUEST_POST_FINISHED:
+        return requestPostsFinished(state, action.post);
+
     case constants.REQUEST_COMMENT_FINISHED:
         return requestCommentFinished(state, action.comment, action.data);
+
     case constants.REQUEST_COMMENT_REPLY_FINISHED:
         return requestCommentReplyFinished(
             state,
             action.comment,
             action.data
         );
+
     case constants.REQUEST_CLAP_FINISHED:
         return requestClapFinished(state, action.clap, action.data);
+
     default:
         return state;
     }
