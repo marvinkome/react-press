@@ -65,6 +65,25 @@ class Body extends Component {
                 this.handleTagAdd(tag[tag.length - 1].tag);
             }
         });
+        if (this.props.data.data != undefined) {
+            const data = this.props.data.data.user.posts.edges.find(
+                obj => obj.node.id == this.props.value
+            );
+            this.setState({
+                title: data.node.title,
+                post_pic_url: data.node.postPicUrl,
+                body: data.node.body
+            });
+        }
+        if (this.chipInstance != '' && this.props.data.data != undefined) {
+            this.props.data.data.user.posts.edges
+                .find(obj => obj.node.id == this.props.value)
+                .node.tags.edges.map(obj =>
+                    this.chipInstance.addChip({
+                        tag: obj.node.name
+                    })
+                );
+        }
     }
     handleChange = e => {
         e.preventDefault();
@@ -156,7 +175,7 @@ class Body extends Component {
         if (this.props.data.data != undefined) {
             data = this.props.data.data.user.posts.edges.find(
                 obj => obj.node.id == this.props.value
-            ).node.body;
+            ).node;
         }
         return (
             <div className="main admin-edit-post">
@@ -164,18 +183,20 @@ class Body extends Component {
                     <div className="col m8 s12">
                         <form>
                             <div className="input-field">
-                                <input
-                                    value={this.state.title}
-                                    id="title"
-                                    type="text"
-                                    onChange={this.handleChange}
-                                    placeholder="Enter Post Title"
-                                />
+                                {this.props.data.data != undefined && (
+                                    <input
+                                        value={data.title}
+                                        id="title"
+                                        type="text"
+                                        onChange={this.handleChange}
+                                        placeholder="Enter Post Title"
+                                    />
+                                )}
                             </div>
                         </form>
                         {this.props.data.data != undefined && (
                             <PostEditor
-                                current_body={data}
+                                current_body={data.body}
                                 onStateChange={this.handleEditor}
                             />
                         )}
@@ -203,14 +224,16 @@ class Body extends Component {
                                 <span className="card-title">
                                     Add featured image
                                 </span>
-                                <img
-                                    className="responsive-img"
-                                    src={
-                                        this.state.post_pic_url != ''
-                                            ? this.state.post_pic_url
-                                            : undefined
-                                    }
-                                />
+                                {this.props.data.data != undefined && (
+                                    <img
+                                        className="responsive-img"
+                                        src={
+                                            this.state.post_pic_url != ''
+                                                ? this.state.post_pic_url
+                                                : data.post_pic_url
+                                        }
+                                    />
+                                )}
                                 <form>
                                     <div className="file-field input-field">
                                         <div className="btn btn-flat">

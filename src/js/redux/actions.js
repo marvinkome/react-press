@@ -27,7 +27,7 @@ export const sendClap = () => ({
 export const requestCreateTagsFinished = (tag, data) => ({
     type: constants.REQUEST_TAG_FINISHED,
     post_id: data.post_id,
-    tag: tag.data.createTag.tag
+    tag: tag.data.createTag.post
 });
 
 export const requestCreatePostsFinished = post => ({
@@ -41,22 +41,33 @@ export const requestEditPostFinished = (post, data) => ({
     post_id: data.postId
 });
 
+export const requestDeletePostFinished = data => ({
+    type: constants.REQUEST_DELETE_POST_FINISHED,
+    post_id: data.postId
+});
+
+export const requestUpdateUserFinished = () => ({
+    type: constants.REQUEST_USER_EDIT_FINISHED
+});
+
 // After request sync actions for post
-export const requestCommentFinished = (comment, data) => ({
+export const requestCommentFinished = (res, data) => ({
     type: constants.REQUEST_COMMENT_FINISHED,
-    comment: comment.data.createComment.comment,
+    post: res.data.createComment.post,
+    comment: res.data.createComment.comment,
     data
 });
 
-export const requestCommentReplyFinished = (comment, data) => ({
+export const requestCommentReplyFinished = (res, data) => ({
     type: constants.REQUEST_COMMENT_REPLY_FINISHED,
-    comment: comment.data.createCommentReply.commentReply,
+    post: res.data.createCommentReply.post,
+    commentReply: res.data.createCommentReply.commentReply,
     data
 });
 
-export const requestClapFinished = (clap, data) => ({
+export const requestClapFinished = (res, data) => ({
     type: constants.REQUEST_CLAP_FINISHED,
-    clap: clap.data.createClap.clap,
+    post: res.data.createClap.post,
     data
 });
 
@@ -243,73 +254,64 @@ export const edit_post = data => {
     };
 };
 
-// export const delete_post = data => {
-//     return dispatch => {
-//         dispatch(sendRequest());
+export const delete_post = data => {
+    return dispatch => {
+        dispatch(sendRequest());
 
-//         const headers = {
-//             method: 'POST',
-//             body: JSON.stringify({ query: mutations.delete_post(data) }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         };
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.delete_post(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
 
-//         return fetch('http://192.168.43.200:5000/graphql', headers).then(
-//             res => {
-//                 dispatch(requestFinished());
-//                 return res.json();
-//             }
-//         );
-//     };
-// };
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(() => dispatch(requestDeletePostFinished(data)));
+    };
+};
 
-// export const update_profile_pic = data => {
-//     return dispatch => {
-//         dispatch(sendRequest());
+export const update_profile_pic = data => {
+    return dispatch => {
+        dispatch(sendRequest());
 
-//         const headers = {
-//             method: 'POST',
-//             body: JSON.stringify({
-//                 query: mutations.update_profile_picture(
-//                     data.pic_url,
-//                     data.user_id
-//                 )
-//             }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         };
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({
+                query: mutations.update_profile_picture(
+                    data.pic_url,
+                    data.user_id
+                )
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
 
-//         return fetch('http://192.168.43.200:5000/graphql', headers).then(
-//             res => {
-//                 dispatch(requestFinished());
-//                 return res.json();
-//             }
-//         );
-//     };
-// };
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(() => dispatch(requestUpdateUserFinished()));
+    };
+};
 
-// export const update_user_info = data => {
-//     return dispatch => {
-//         dispatch(sendRequest());
+export const update_user_info = data => {
+    return dispatch => {
+        dispatch(sendRequest());
 
-//         const headers = {
-//             method: 'POST',
-//             body: JSON.stringify({ query: mutations.update_info(data) }),
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             }
-//         };
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: mutations.update_info(data) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
 
-//         return fetch('http://192.168.43.200:5000/graphql', headers).then(
-//             res => {
-//                 dispatch(requestFinished());
-//                 return res.json();
-//             }
-//         );
-//     };
-// };
+        return fetch('http://192.168.43.200:5000/graphql', headers)
+            .then(res => res.json())
+            .then(() => dispatch(requestUpdateUserFinished()));
+    };
+};
 
 export const add_comment = data => {
     return dispatch => {

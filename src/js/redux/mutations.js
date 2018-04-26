@@ -11,9 +11,61 @@ export const create_tag = (tagname, post_id) =>
     `
             }
         ){
-            tag{
+            post{
                 id
-                name
+                uuid
+                title
+                body
+                timestamp
+                postPicUrl
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -194,7 +246,7 @@ export const delete_post = post_id => `
 export const update_profile_picture = (pic_url, user_id) =>
     `
     mutation Mutation{
-        updateuserProfilePic(
+        updateUserProfilePic(
             userId:` +
     user_id +
     `,
@@ -249,7 +301,63 @@ export const create_comment = comment_data =>
     comment_data.post_id +
     `
         ){
-            comment{
+            post{
+                id
+                uuid
+                title
+                body
+                timestamp
+                postPicUrl
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            comment {
                 id
                 uuid
                 body
@@ -262,6 +370,13 @@ export const create_comment = comment_data =>
                     edges{
                         node{
                             id
+                            timestamp
+                            body
+                            parentId
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
                         }
                     }
                 }
@@ -284,12 +399,68 @@ export const create_comment_reply = reply_data =>
     reply_data.parent_id +
     `
         ){
+            post{
+                id
+                uuid
+                title
+                body
+                timestamp
+                postPicUrl
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
             commentReply{
                 id
                 timestamp
                 body
                 parentId
-                author {
+                author{
                     fullName
                     gravatarUrl
                 }
@@ -309,8 +480,61 @@ export const clap = clap_data =>
     clap_data.post_id +
     `
         ){
-            clap{
+            post{
                 id
+                uuid
+                title
+                body
+                timestamp
+                postPicUrl
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }

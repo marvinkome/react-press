@@ -36,6 +36,26 @@ const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
     return updatedItems;
 };
 
+const removeItemInArray = (array, itemId, key = 'id') => {
+    let new_array = array.slice();
+
+    let item = array.find(item => item[key] == itemId);
+    let index = array.indexOf(item);
+    new_array.splice(index, 1);
+
+    return new_array;
+};
+
+const removeItemInNestedArray = (array, itemId, key = 'id') => {
+    let new_array = array.slice();
+
+    let item = array.find(item => item['node'][key] == itemId);
+    let index = array.indexOf(item);
+    new_array.splice(index, 1);
+
+    return new_array;
+};
+
 const saveToStore = (store, key) => {
     if (localStorage) {
         store = JSON.stringify(store);
@@ -67,27 +87,44 @@ const sendClapRequest = state => {
     });
 };
 
-const requestTagsFinished = (state, tag, post_id) => {
+const requestTagsFinished = (state, tag_post, post_id) => {
     const isFetching = false;
+    const new_post = updateObject(state.post_data, {
+        posts: updateItemArray(
+            state.post_data.posts,
+            post_id,
+            post =>
+                updateObject(post, {
+                    ...tag_post
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        post_id,
+                        post =>
+                            updateObject(post, {
+                                node: {
+                                    ...tag_post
+                                }
+                            }),
+                        'uuid'
+                    )
+                })
+            })
+        })
+    });
+
     const new_state = updateObject(state, {
         isFetching,
-        post_data: updateObject(state.post_data, {
-            posts: updateItemArray(
-                state.post_data.posts,
-                post_id,
-                post =>
-                    updateObject(post, {
-                        tags: updateObject(post.tags, {
-                            edges: post.comments.edges.concat({
-                                node: {
-                                    ...tag
-                                }
-                            })
-                        })
-                    }),
-                'uuid'
-            )
-        })
+        post_data: new_post,
+        user_data: new_user
     });
 
     return new_state;
@@ -95,13 +132,30 @@ const requestTagsFinished = (state, tag, post_id) => {
 
 const requestPostsFinished = (state, post) => {
     const isFetching = false;
-    const new_state = updateObject(state, {
-        isFetching,
-        post_data: updateObject(state.post_data, {
-            posts: state.post_data.posts.concat({
-                ...post
+    const new_post = updateObject(state.post_data, {
+        posts: state.post_data.posts.concat({
+            ...post
+        })
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: state.user_data.data.user.posts.edges.concat({
+                        node: {
+                            ...post
+                        }
+                    })
+                })
             })
         })
+    });
+
+    const new_state = updateObject(state, {
+        isFetching,
+        post_data: new_post,
+        user_data: new_user
     });
 
     return new_state;
@@ -109,117 +163,228 @@ const requestPostsFinished = (state, post) => {
 
 const requestEditPostFinished = (state, post, post_id) => {
     const isFetching = false;
+
+    const new_post = updateObject(state.post_data, {
+        posts: updateItemArray(
+            state.post_data.posts,
+            post_id,
+            selected_post =>
+                updateObject(selected_post, {
+                    ...post
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        post_id,
+                        selected_post =>
+                            updateObject(selected_post, {
+                                node: {
+                                    ...post
+                                }
+                            }),
+                        'uuid'
+                    )
+                })
+            })
+        })
+    });
+
     const new_state = updateObject(state, {
         isFetching,
-        post_data: updateObject(state.post_data, {
-            posts: updateItemArray(
-                state.post_data.posts,
-                post_id,
-                post =>
-                    updateObject(post, {
-                        ...post
-                    }),
-                'uuid'
-            )
-        })
+        post_data: new_post,
+        user_data: new_user
     });
 
     return new_state;
 };
 
-const requestCommentFinished = (state, comment, data) => {
-    const isSendingComment = false;
+const requestDeletePostFinished = (state, post_id) => {
+    const isFetching = false;
+
+    const new_post = updateObject(state.post_data, {
+        posts: removeItemInArray(state.post_data.posts, post_id, 'uuid')
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: removeItemInNestedArray(
+                        state.user_data.data.user.posts.edges,
+                        post_id,
+                        'uuid'
+                    )
+                })
+            })
+        })
+    });
 
     const new_state = updateObject(state, {
-        isSendingComment,
-        post_data: updateObject(state.post_data, {
-            posts: updateItemArray(
-                state.post_data.posts,
-                data.post_id,
-                post =>
-                    updateObject(post, {
-                        comments: updateObject(post.comments, {
-                            edges: post.comments.edges.concat({
+        isFetching,
+        post_data: new_post,
+        user_data: new_user
+    });
+
+    return new_state;
+};
+
+const requestUserEditFinished = state => {
+    return updateObject(state, {
+        isFetching: false
+    });
+};
+
+const requestCommentFinished = (state, post, comment, data) => {
+    const isSendingComment = false;
+
+    const new_post = updateObject(state.post_data, {
+        posts: updateItemArray(
+            state.post_data.posts,
+            data.post_id,
+            selected_post =>
+                updateObject(selected_post, {
+                    ...post
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        data.post_id,
+                        selected_post =>
+                            updateObject(selected_post, {
                                 node: {
-                                    ...comment
+                                    ...post
                                 }
-                            })
-                        })
-                    }),
-                'uuid'
-            )
+                            }),
+                        'uuid'
+                    )
+                }),
+                comments: updateObject(state.user_data.data.user.comments, {
+                    edges: state.user_data.data.user.comments.edges.concat({
+                        node: {
+                            ...comment
+                        }
+                    })
+                })
+            })
         })
     });
-
-    return new_state;
-};
-
-const requestCommentReplyFinished = (state, comment_rep, data) => {
-    const isSendingComment = false;
 
     const new_state = updateObject(state, {
         isSendingComment,
-        post_data: updateObject(state.post_data, {
-            posts: updateItemArray(
-                state.post_data.posts,
-                data.post_id,
-                post =>
-                    updateObject(post, {
-                        comments: updateObject(post.comments, {
-                            edges: updateNestedItemArray(
-                                post.comments.edges,
-                                data.parent_id,
-                                comment =>
-                                    updateObject(comment, {
-                                        node: updateObject(comment.node, {
-                                            replies: updateObject(
-                                                comment.node.replies,
-                                                {
-                                                    edges: comment.node.replies.edges.concat(
-                                                        {
-                                                            node: {
-                                                                ...comment_rep
-                                                            }
-                                                        }
-                                                    )
-                                                }
-                                            )
-                                        })
-                                    }),
-                                'uuid'
-                            )
-                        })
-                    }),
-                'uuid'
-            )
-        })
+        post_data: new_post,
+        user_data: new_user
     });
 
     return new_state;
 };
 
-const requestClapFinished = (state, clap, data) => {
+const requestCommentReplyFinished = (state, post, comment_rep, data) => {
+    const isSendingComment = false;
+
+    const new_post = updateObject(state.post_data, {
+        posts: updateItemArray(
+            state.post_data.posts,
+            data.post_id,
+            selected_post =>
+                updateObject(selected_post, {
+                    ...post
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        data.post_id,
+                        selected_post =>
+                            updateObject(selected_post, {
+                                node: {
+                                    ...post
+                                }
+                            }),
+                        'uuid'
+                    )
+                }),
+                commentReplies: updateObject(
+                    state.user_data.data.user.comments,
+                    {
+                        edges: state.user_data.data.user.comments.edges.concat({
+                            node: {
+                                ...comment_rep
+                            }
+                        })
+                    }
+                )
+            })
+        })
+    });
+
+    const new_state = updateObject(state, {
+        isSendingComment,
+        post_data: new_post,
+        user_data: new_user
+    });
+
+    return new_state;
+};
+
+const requestClapFinished = (state, post, data) => {
     const isClapping = false;
+
+    const new_post = updateObject(state.post_data, {
+        posts: updateItemArray(
+            state.post_data.posts,
+            data.post_id,
+            selected_post =>
+                updateObject(selected_post, {
+                    ...post
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        data.post_id,
+                        selected_post =>
+                            updateObject(selected_post, {
+                                node: {
+                                    ...post
+                                }
+                            }),
+                        'uuid'
+                    )
+                })
+            })
+        })
+    });
 
     const new_state = updateObject(state, {
         isClapping,
-        post_data: updateObject(state.post_data, {
-            posts: updateItemArray(
-                state.post_data.posts,
-                data.post_id,
-                post =>
-                    updateObject(post, {
-                        claps: updateObject(post.claps, {
-                            edges: post.claps.edges.concat({
-                                node: {
-                                    id: clap.id
-                                }
-                            })
-                        })
-                    }),
-                'uuid'
-            )
-        })
+        post_data: new_post,
+        user_data: new_user
     });
 
     return new_state;
@@ -314,18 +479,30 @@ const rootReducer = (state = initialState, action) => {
     case constants.REQUEST_EDIT_POST_FINISHED:
         return requestEditPostFinished(state, action.post, action.post_id);
 
-    case constants.REQUEST_COMMENT_FINISHED:
-        return requestCommentFinished(state, action.comment, action.data);
+    case constants.REQUEST_DELETE_POST_FINISHED:
+        return requestDeletePostFinished(state, action.post_id);
 
-    case constants.REQUEST_COMMENT_REPLY_FINISHED:
-        return requestCommentReplyFinished(
+    case constants.REQUEST_USER_EDIT_FINISHED:
+        return requestUserEditFinished(state, action);
+
+    case constants.REQUEST_COMMENT_FINISHED:
+        return requestCommentFinished(
             state,
+            action.post,
             action.comment,
             action.data
         );
 
+    case constants.REQUEST_COMMENT_REPLY_FINISHED:
+        return requestCommentReplyFinished(
+            state,
+            action.post,
+            action.commentReply,
+            action.data
+        );
+
     case constants.REQUEST_CLAP_FINISHED:
-        return requestClapFinished(state, action.clap, action.data);
+        return requestClapFinished(state, action.post, action.data);
 
     default:
         return state;

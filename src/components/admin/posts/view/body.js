@@ -6,25 +6,21 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetch_user_data, delete_post } from '../../../../js/redux/actions';
+import { delete_post } from '../../../../js/redux/actions';
 
 const mapStateToProps = state => ({
     data: state.user_data
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetch_data: () => dispatch(fetch_user_data()),
     delete_post: post_id => dispatch(delete_post(post_id))
 });
 
 class Body extends Component {
-    componentDidMount() {
-        this.props.fetch_data();
-    }
     handleDelete(id) {
         const confirmDelete = confirm('This post will be permanently deleted');
         if (confirmDelete == true) {
-            this.props.delete_post(id).then(() => this.props.fetch_data());
+            this.props.delete_post(id);
         }
     }
     render() {
@@ -176,7 +172,6 @@ class Body extends Component {
 
 Body.propTypes = {
     data: PropTypes.object.isRequired,
-    fetch_data: PropTypes.func.isRequired,
     delete_post: PropTypes.func.isRequired
 };
 
