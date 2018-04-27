@@ -9,7 +9,7 @@ import { truncate, format_date } from '../../../js/helpers';
 
 const PostCard = ({ post }) => {
     return (
-        <div className="card medium">
+        <div className="card large">
             <div className="card-image">
                 <img src={post.postPicUrl} />
             </div>

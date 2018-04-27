@@ -57,8 +57,10 @@
 .admin-edit-post .post-form .publish-section {
     background-color: hsl(0, 0%, 99%);
 }
-.admin-edit-post .post-form .publish-section .card-action,
-.admin-edit-post .post-form .image-section .card-action {
+.admin-edit-post .post-form .card-title {
+    font-weight: 700;
+}
+.admin-edit-post .post-form .card-action {
     background: hsl(0, 0%, 97%);
     border-bottom: 4px solid hsl(145, 100%, 19%);
 }

@@ -43,22 +43,13 @@ class SideNav extends Component {
             <div>
                 <nav className="admin-nav white">
                     <div className="nav-wrapper">
-                        <a className="brand-logo">
-                            <i className="fa fa-codiepie" />
-                        </a>
+                        <a className="brand-logo">ReactPress</a>
                         <a
                             data-target="mobile-demo"
                             className="sidenav-trigger"
                         >
                             <i className="fa fa-bars" />
                         </a>
-                        <ul className="right">
-                            <li className="hide-small">
-                                <a title="Notification">
-                                    <i className="fa fa-bell-o" />
-                                </a>
-                            </li>
-                        </ul>
                     </div>
                 </nav>
                 <ul

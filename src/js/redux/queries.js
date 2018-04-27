@@ -1,6 +1,6 @@
 export const fetch_query = `
     {
-        allPost(first:12){
+        allPost(first:12, sortBy:"timestamp"){
             edges{
                 node{
                     id
@@ -23,11 +23,7 @@ export const fetch_query = `
                         }
                     }
                     claps {
-                        edges {
-                            node {
-                                id
-                            }
-                        }
+                        totalCount
                     }
                     comments {
                         edges {
@@ -69,7 +65,7 @@ export const fetch_query = `
 
 export const fetch_more = last_cursor => `
 {
-    allPost(first:12, after:"${last_cursor}"){
+    allPost(first:12, sortBy:"timestamp", after:"${last_cursor}"){
         edges{
             node{
                 id
@@ -92,11 +88,7 @@ export const fetch_more = last_cursor => `
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -153,6 +145,7 @@ export const fetch_user_data_query = `
                         title
                         body
                         postPicUrl
+                        timestamp
                         tags{
                             edges{
                                 node{

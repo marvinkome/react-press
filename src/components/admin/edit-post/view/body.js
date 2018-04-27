@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import PostEditor from './editor';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -104,12 +105,14 @@ class Body extends Component {
     };
     handleFileChange = e => {
         e.preventDefault();
-        this.setState({
-            file: e.target.files[0]
-        });
+        this.setState(
+            {
+                file: e.target.files[0]
+            },
+            () => this.onUploadClick(e)
+        );
     };
-    onUploadClick = e => {
-        e.preventDefault();
+    onUploadClick = () => {
         upload_file(this.state.file).then(
             res =>
                 res.msg == 'file uploaded' &&
@@ -160,14 +163,28 @@ class Body extends Component {
                 postId: data.node.uuid
             };
 
-            this.props.edit_post(post_data);
-            new_tags.length != 0 &&
-                new_tags.map(tag_name =>
-                    this.props.create_tag({
-                        tag_name,
-                        post_id: data.node.uuid
-                    })
-                );
+            this.props
+                .edit_post(post_data)
+                .then(() => {
+                    new_tags.length != 0 &&
+                        new_tags.map(tag_name =>
+                            this.props.create_tag({
+                                tag_name,
+                                post_id: data.node.uuid
+                            })
+                        );
+                })
+                .then(() => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div ref={this.toast}>
+                            <span>Post has been edited</span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                });
         }
     };
     render() {
@@ -202,13 +219,53 @@ class Body extends Component {
                         )}
                     </div>
                     <div className="col m4 s12">
-                        <div className="publish-section card">
+                        <div className="card">
                             <div className="card-content">
-                                <span className="card-title">Add Tags</span>
-                                <div
-                                    className="chips chips-placeholder"
-                                    ref={this.chip}
-                                />
+                                <div className="image-section">
+                                    <span className="card-title">
+                                        Add featured image
+                                    </span>
+                                    {this.props.data.data != undefined && (
+                                        <img
+                                            className="responsive-img"
+                                            src={
+                                                this.state.post_pic_url != ''
+                                                    ? this.state.post_pic_url
+                                                    : data.post_pic_url
+                                            }
+                                        />
+                                    )}
+                                    <form>
+                                        <div className="file-field input-field">
+                                            <div className="btn btn-flat">
+                                                <span>File</span>
+                                                <input
+                                                    type="file"
+                                                    ref={this.fileInput}
+                                                    onChange={
+                                                        this.handleFileChange
+                                                    }
+                                                    accept="image/*"
+                                                />
+                                            </div>
+                                            <div className="file-path-wrapper">
+                                                <input
+                                                    className="file-path validate"
+                                                    type="text"
+                                                    placeholder="Choose file to upload"
+                                                />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div className="tag-section">
+                                    <span className="card-title">Add Tags</span>
+                                    <div
+                                        className="chips chips-placeholder"
+                                        ref={this.chip}
+                                    />
+                                </div>
                             </div>
                             <div className="card-action center">
                                 <button
@@ -216,50 +273,6 @@ class Body extends Component {
                                     className="btn black"
                                 >
                                     Publish
-                                </button>
-                            </div>
-                        </div>
-                        <div className="image-section card">
-                            <div className="card-content">
-                                <span className="card-title">
-                                    Add featured image
-                                </span>
-                                {this.props.data.data != undefined && (
-                                    <img
-                                        className="responsive-img"
-                                        src={
-                                            this.state.post_pic_url != ''
-                                                ? this.state.post_pic_url
-                                                : data.post_pic_url
-                                        }
-                                    />
-                                )}
-                                <form>
-                                    <div className="file-field input-field">
-                                        <div className="btn btn-flat">
-                                            <span>File</span>
-                                            <input
-                                                type="file"
-                                                ref={this.fileInput}
-                                                onChange={this.handleFileChange}
-                                            />
-                                        </div>
-                                        <div className="file-path-wrapper">
-                                            <input
-                                                className="file-path validate"
-                                                type="text"
-                                                placeholder="Choose file to upload"
-                                            />
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="card-action center">
-                                <button
-                                    onClick={this.onUploadClick}
-                                    className="btn black"
-                                >
-                                    Upload
                                 </button>
                             </div>
                         </div>

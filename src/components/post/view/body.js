@@ -104,7 +104,7 @@ class Body extends Component {
                     ) : (
                         post != undefined && (
                             <div>
-                                <div className="col m12">
+                                <div className="col m11">
                                     <AuthorInfo data={post.node} />
 
                                     <PostCard data={post.node} />
@@ -115,10 +115,12 @@ class Body extends Component {
                                         data={post.node.comments}
                                     />
                                 </div>
-                                <FAB
-                                    handleClap={this.onClap}
-                                    claps_count={post.node.claps.edges.length}
-                                />
+                                <div className="col m1">
+                                    <FAB
+                                        handleClap={this.onClap}
+                                        claps_count={post.node.claps.totalCount}
+                                    />
+                                </div>
                             </div>
                         )
                     )}

@@ -133,6 +133,24 @@
     .post-body .response .reply-form {
         width: 60%;
     }
+    .post-body .fixed-action-btn {
+        right: 15%;
+        bottom: 50%;
+    }
+    .post-body .fixed-action-btn a.btn-large {
+        border: 1px solid rgb(0, 100, 0);
+        background-color: #fff;
+    }
+
+    .post-body .fixed-action-btn a.btn-large i {
+        color: rgb(0, 100, 0);
+    }
+    
+    .post-body .fixed-action-btn a.btn-num {
+        border: 1px solid rgb(0, 100, 0);
+        background-color: #fff;
+        color: rgb(0, 100, 0);
+    }
 }
 
 /* medium screen */

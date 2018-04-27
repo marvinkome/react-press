@@ -48,6 +48,17 @@ class Body extends Component {
         }
     };
     render() {
+        if (this.props.posts != undefined) {
+            this.props.posts.sort((a, b) => {
+                if (a.node.timestamp > b.node.timestamp) {
+                    return -1;
+                }
+                if (a.node.timestamp < b.node.timestamp) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
         return (
             <div className="body section container">
                 <div className="row">

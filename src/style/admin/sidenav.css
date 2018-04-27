@@ -44,6 +44,9 @@
 .admin-nav a {
     color: hsl(0, 0%, 40%) !important;
 }
+.admin-nav .brand-logo {
+    font-size: 1.5rem;
+}
 .sidenav .user-view .name {
     font-size: 16px;
     line-height: 24px;
