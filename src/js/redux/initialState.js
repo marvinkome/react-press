@@ -8,6 +8,7 @@ const state = {
     isClapping: false,
     isLoggedIn: true,
     lastFetch: 0,
+    cursor: '',
     post_data: {
         posts: []
     },

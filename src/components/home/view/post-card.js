@@ -9,7 +9,7 @@ import { truncate, format_date } from '../../../js/helpers';
 
 const PostCard = ({ post }) => {
     return (
-        <div className="card">
+        <div className="card medium">
             <div className="card-image">
                 <img src={post.postPicUrl} />
             </div>
@@ -26,14 +26,14 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img
-                            className="circle"
-                            src={
-                                post.author != null
-                                    ? post.author.gravatarUrl
-                                    : undefined
-                            }
-                        />
+                        {post.author.gravatarUrl != null ? (
+                            <img
+                                className="circle"
+                                src={post.author.gravatarUrl}
+                            />
+                        ) : (
+                            ''
+                        )}
                     </div>
                     <div className="info">
                         <span className="name">

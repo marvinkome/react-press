@@ -26,6 +26,7 @@ export const REQUEST_CLAP_FINISHED = 'REQUEST_CLAP_FINISHED';
 
 // General query
 export const RECIEVE_ARTICLES = 'RECIEVE_ARTICLES';
+export const RECIEVE_MORE_ARTICLES = 'RECIEVE_MORE_ARTICLES';
 
 /* 
  * Auth requests

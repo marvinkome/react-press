@@ -10,19 +10,6 @@ const updateObject = (oldObj, newValues) => {
     return Object.assign({}, oldObj, newValues);
 };
 
-const updateItemArray = (array, itemId, callback, key = 'id') => {
-    const updatedItems = array.map(item => {
-        if (item[key] !== itemId) {
-            return item;
-        }
-
-        const updatedItem = callback(item);
-        return updatedItem;
-    });
-
-    return updatedItems;
-};
-
 const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
     const updatedItems = array.map(item => {
         if (item['node'][key] !== itemId) {
@@ -36,24 +23,10 @@ const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
     return updatedItems;
 };
 
-const removeItemInArray = (array, itemId, key = 'id') => {
-    let new_array = array.slice();
-
-    let item = array.find(item => item[key] == itemId);
-    let index = array.indexOf(item);
-    new_array.splice(index, 1);
-
-    return new_array;
-};
-
 const removeItemInNestedArray = (array, itemId, key = 'id') => {
-    let new_array = array.slice();
+    let selected_item = array.find(item => item['node'][key] == itemId);
 
-    let item = array.find(item => item['node'][key] == itemId);
-    let index = array.indexOf(item);
-    new_array.splice(index, 1);
-
-    return new_array;
+    return array.filter(item => item !== selected_item);
 };
 
 const saveToStore = (store, key) => {
@@ -90,12 +63,14 @@ const sendClapRequest = state => {
 const requestTagsFinished = (state, tag_post, post_id) => {
     const isFetching = false;
     const new_post = updateObject(state.post_data, {
-        posts: updateItemArray(
+        posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
             post =>
                 updateObject(post, {
-                    ...tag_post
+                    node: {
+                        ...tag_post
+                    }
                 }),
             'uuid'
         )
@@ -134,7 +109,9 @@ const requestPostsFinished = (state, post) => {
     const isFetching = false;
     const new_post = updateObject(state.post_data, {
         posts: state.post_data.posts.concat({
-            ...post
+            node: {
+                ...post
+            }
         })
     });
 
@@ -165,12 +142,14 @@ const requestEditPostFinished = (state, post, post_id) => {
     const isFetching = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: updateItemArray(
+        posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
             selected_post =>
                 updateObject(selected_post, {
-                    ...post
+                    node: {
+                        ...post
+                    }
                 }),
             'uuid'
         )
@@ -209,7 +188,7 @@ const requestDeletePostFinished = (state, post_id) => {
     const isFetching = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: removeItemInArray(state.post_data.posts, post_id, 'uuid')
+        posts: removeItemInNestedArray(state.post_data.posts, post_id, 'uuid')
     });
 
     const new_user = updateObject(state.user_data, {
@@ -245,12 +224,14 @@ const requestCommentFinished = (state, post, comment, data) => {
     const isSendingComment = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: updateItemArray(
+        posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
             selected_post =>
                 updateObject(selected_post, {
-                    ...post
+                    node: {
+                        ...post
+                    }
                 }),
             'uuid'
         )
@@ -296,12 +277,14 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
     const isSendingComment = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: updateItemArray(
+        posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
             selected_post =>
                 updateObject(selected_post, {
-                    ...post
+                    node: {
+                        ...post
+                    }
                 }),
             'uuid'
         )
@@ -324,13 +307,15 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
                     )
                 }),
                 commentReplies: updateObject(
-                    state.user_data.data.user.comments,
+                    state.user_data.data.user.commentReplies,
                     {
-                        edges: state.user_data.data.user.comments.edges.concat({
-                            node: {
-                                ...comment_rep
+                        edges: state.user_data.data.user.commentReplies.edges.concat(
+                            {
+                                node: {
+                                    ...comment_rep
+                                }
                             }
-                        })
+                        )
                     }
                 )
             })
@@ -350,12 +335,14 @@ const requestClapFinished = (state, post, data) => {
     const isClapping = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: updateItemArray(
+        posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
             selected_post =>
                 updateObject(selected_post, {
-                    ...post
+                    node: {
+                        ...post
+                    }
                 }),
             'uuid'
         )
@@ -390,30 +377,35 @@ const requestClapFinished = (state, post, data) => {
     return new_state;
 };
 
-const recieveArticles = (state, article) => {
+const recieveArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
 
     const store = updateObject(state, {
         isFetching,
         lastFetch,
-        post_data: article.data
+        cursor,
+        hasNextPage,
+        post_data: updateObject(state.post_data, {
+            posts: articles
+        })
     });
 
     return store;
 };
 
-const recieveArticle = (state, article) => {
+const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
-    const new_post = state.post_data.posts.concat(article.data.post);
-    const post_data = updateObject(state.post_data, {
-        posts: new_post
-    });
+
     const store = updateObject(state, {
         isFetching,
         lastFetch,
-        post_data
+        cursor,
+        hasNextPage,
+        post_data: updateObject(state.post_data, {
+            posts: state.post_data.posts.concat(articles)
+        })
     });
 
     return store;
@@ -459,10 +451,20 @@ const rootReducer = (state = initialState, action) => {
         return sendClapRequest(state);
 
     case constants.RECIEVE_ARTICLES:
-        return recieveArticles(state, action.payload);
+        return recieveArticles(
+            state,
+            action.payload,
+            action.cursor,
+            action.hasNextPage
+        );
 
-    case constants.RECIEVE_ARTICLE:
-        return recieveArticle(state, action.payload);
+    case constants.RECIEVE_MORE_ARTICLES:
+        return recieveMoreArticles(
+            state,
+            action.payload,
+            action.cursor,
+            action.hasNextPage
+        );
 
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
