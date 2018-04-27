@@ -16,8 +16,9 @@ class PostCard extends Component {
                     <div className="post-image center">
                         <img
                             src={
-                                this.props.data.postPicUrl != undefined &&
-                                this.props.data.postPicUrl
+                                this.props.data.postPicUrl != undefined
+                                    ? this.props.data.postPicUrl
+                                    : ''
                             }
                             className="responsive-img"
                         />

@@ -43,7 +43,7 @@ export const requestEditPostFinished = (post, data) => ({
 
 export const requestDeletePostFinished = data => ({
     type: constants.REQUEST_DELETE_POST_FINISHED,
-    post_id: data.postId
+    post_id: data
 });
 
 export const requestUpdateUserFinished = () => ({
@@ -72,14 +72,18 @@ export const requestClapFinished = (res, data) => ({
 });
 
 // After request sync actions - general
-export const recieveArticles = article => ({
+export const recieveArticles = res => ({
     type: constants.RECIEVE_ARTICLES,
-    payload: article
+    payload: res.data.allPost.edges,
+    cursor: res.data.allPost.pageInfo.endCursor,
+    hasNextPage: res.data.allPost.pageInfo.hasNextPage
 });
 
-export const recieveArticle = article => ({
-    type: constants.RECIEVE_ARTICLE,
-    payload: article
+export const recieveMoreArticles = res => ({
+    type: constants.RECIEVE_MORE_ARTICLES,
+    payload: res.data.allPost.edges,
+    cursor: res.data.allPost.pageInfo.endCursor,
+    hasNextPage: res.data.allPost.pageInfo.hasNextPage
 });
 
 // After auth request
@@ -116,13 +120,11 @@ export const fetch_all_data = () => {
     };
 };
 
-export const fetch_post = id => {
+export const fetch_more_data = cursor => {
     return dispatch => {
-        dispatch(sendRequest());
-
         const headers = {
             method: 'POST',
-            body: JSON.stringify({ query: query.fetch_post_query(id) }),
+            body: JSON.stringify({ query: query.fetch_more(cursor) }),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -130,7 +132,7 @@ export const fetch_post = id => {
 
         return fetch('http://192.168.43.200:5000/graphql', headers)
             .then(resp => resp.json())
-            .then(res => dispatch(recieveArticle(res)));
+            .then(res => dispatch(recieveMoreArticles(res)));
     };
 };
 

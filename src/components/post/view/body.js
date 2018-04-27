@@ -36,12 +36,12 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.id == post_id);
+            post = posts.find(obj => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
             const data = {
-                post_id: post.uuid,
+                post_id: post.node.uuid,
                 user_id: this.props.user.data.user.uuid
             };
 
@@ -54,13 +54,13 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.id == post_id);
+            post = posts.find(obj => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
             const data = {
                 body: comment,
-                post_id: post.uuid,
+                post_id: post.node.uuid,
                 user_id: this.props.user.data.user.uuid
             };
             this.props.comment(data);
@@ -72,7 +72,7 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.id == post_id);
+            post = posts.find(obj => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
@@ -80,7 +80,7 @@ class Body extends Component {
                 body: comment,
                 parent_id,
                 user_id: this.props.user.data.user.uuid,
-                post_id: post.uuid
+                post_id: post.node.uuid
             };
             this.props.reply_comment(data);
         }
@@ -91,7 +91,7 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.id == post_id);
+            post = posts.find(obj => obj.node.id == post_id);
         }
 
         return (
@@ -105,19 +105,19 @@ class Body extends Component {
                         post != undefined && (
                             <div>
                                 <div className="col m12">
-                                    <AuthorInfo data={post} />
+                                    <AuthorInfo data={post.node} />
 
-                                    <PostCard data={post} />
+                                    <PostCard data={post.node} />
 
                                     <Comment
                                         handleComment={this.onCommitPublish}
                                         handleReply={this.onCommentReply}
-                                        data={post.comments}
+                                        data={post.node.comments}
                                     />
                                 </div>
                                 <FAB
                                     handleClap={this.onClap}
-                                    claps_count={post.claps.edges.length}
+                                    claps_count={post.node.claps.edges.length}
                                 />
                             </div>
                         )

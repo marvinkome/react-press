@@ -185,7 +185,7 @@ class Body extends Component {
                             <div className="input-field">
                                 {this.props.data.data != undefined && (
                                     <input
-                                        value={data.title}
+                                        value={this.state.title}
                                         id="title"
                                         type="text"
                                         onChange={this.handleChange}

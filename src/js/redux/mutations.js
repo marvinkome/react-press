@@ -161,7 +161,7 @@ export const edit_post = post_data =>
 }
             ${
     post_data.body != undefined
-        ? 'body: "' + post_data.body + '",'
+        ? 'body: ' + JSON.stringify(post_data.body) + ','
         : ''
 }
             ${
