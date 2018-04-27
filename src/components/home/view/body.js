@@ -62,16 +62,6 @@ class Body extends Component {
                                     <PostCard post={obj.node} />
                                 </div>
                             ))}
-                            {this.props.hasMore && (
-                                <div className="center-align">
-                                    <a
-                                        onClick={this.fetch_more}
-                                        className="btn-large btn"
-                                    >
-                                        Load More
-                                    </a>
-                                </div>
-                            )}
                         </div>
                     ) : (
                         <div className="col m12">
