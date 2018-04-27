@@ -12,7 +12,17 @@ export const truncate = (word, length) =>
 
 export const format_date = server_date => {
     let date = new Date(server_date);
-    return moment(date).format('MMM D YYYY');
+
+    if (
+        new Date(date).getFullYear() == new Date().getFullYear() &&
+        moment(date).week() !== moment(Date.now()).week()
+    ) {
+        return moment(date).format('MMM DD');
+    } else if (moment(date).week() == moment(Date.now()).week()) {
+        return moment(date).fromNow();
+    }
+
+    return moment(date).format('MMM DD [\']YY');
 };
 
 export const validate_password = password => {
@@ -49,4 +59,12 @@ export const gcd = (a, b) => {
         return a;
     }
     return gcd(b, a % b);
+};
+
+export const count_words_in_html = string => {
+    string = string.replace(/<(?:.|\n)*?>/gm, '');
+    string = string.replace(/(^\s*)|(\s*$)/gi, '');
+    string = string.replace(/[ ]{2,}/gi, ' ');
+    string = string.replace(/\n /, '\n');
+    return string.split(' ').length;
 };

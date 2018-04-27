@@ -7,14 +7,23 @@ import PropTypes from 'prop-types';
 import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import { Controls } from './controls';
 import draftToHtml from 'draftjs-to-html';
+import { count_words_in_html } from '../../../../js/helpers';
 
 class PostEditor extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            word_length: 0,
             editorState: EditorState.createEmpty()
         };
         this.editor = React.createRef();
+    }
+    componentWillReceiveProps(np) {
+        if (np.reset) {
+            this.setState({
+                editorState: EditorState.createEmpty()
+            });
+        }
     }
     componentDidMount = () => {
         this.editorFocus();
@@ -24,11 +33,15 @@ class PostEditor extends Component {
         editor.focus();
     };
     onChange = editorState => {
-        this.setState({
-            editorState
-        });
         const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
+        const word_length = count_words_in_html(html);
+
+        this.setState({
+            editorState,
+            word_length
+        });
+
         this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
@@ -67,7 +80,7 @@ class PostEditor extends Component {
                     />
                 </div>
                 <div className="editor-infos">
-                    <p>Word Count: 10</p>
+                    <p>Word Count: {this.state.word_length}</p>
                 </div>
             </div>
         );

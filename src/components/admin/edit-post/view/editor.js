@@ -15,12 +15,14 @@ import {
 import draftToHtml from 'draftjs-to-html';
 import { validate_html } from '../../../../js/helpers';
 import { Controls } from './controls';
+import { count_words_in_html } from '../../../../js/helpers';
 
 class PostEditor extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            word_length: 0,
             editorState: EditorState.createEmpty()
         };
 
@@ -39,11 +41,12 @@ class PostEditor extends Component {
         } else {
             contentState = ContentState.createFromText(this.props.current_body);
         }
-
+        const word_length = count_words_in_html(this.props.current_body);
         editorState = EditorState.push(this.state.editorState, contentState);
         editorState = EditorState.moveFocusToEnd(editorState);
 
         this.setState({
+            word_length,
             editorState
         });
     };
@@ -52,11 +55,14 @@ class PostEditor extends Component {
         editor.focus();
     };
     onChange = editorState => {
-        this.setState({
-            editorState
-        });
         const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
+        const word_length = count_words_in_html(html);
+
+        this.setState({
+            editorState,
+            word_length
+        });
         this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
@@ -95,7 +101,7 @@ class PostEditor extends Component {
                     />
                 </div>
                 <div className="editor-infos">
-                    <p>Word Count: 10</p>
+                    <p>Word Count: {this.state.word_length}</p>
                 </div>
             </div>
         );

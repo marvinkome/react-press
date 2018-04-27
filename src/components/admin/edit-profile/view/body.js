@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
@@ -116,7 +117,18 @@ class Body extends Component {
                     return this.props.update_profile_pic(data);
                 })
                 .then(() => this.props.fetch_user_data())
-                .then(() => this.props.fetch_data());
+                .then(() => this.props.fetch_data())
+                .then(() => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div ref={this.toast}>
+                            <span>Changes saved</span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                });
         }
     };
     onSaveClick = e => {
@@ -146,7 +158,18 @@ class Body extends Component {
             this.props
                 .update_user_info(user_data)
                 .then(() => this.props.fetch_user_data())
-                .then(() => this.props.fetch_data());
+                .then(() => this.props.fetch_data())
+                .then(() => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div ref={this.toast}>
+                            <span>Changes saved</span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                });
         }
     };
     render() {

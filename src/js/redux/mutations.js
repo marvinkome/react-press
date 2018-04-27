@@ -32,11 +32,7 @@ export const create_tag = (tagname, post_id) =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -111,11 +107,7 @@ export const create_post = post_data =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -194,11 +186,7 @@ export const edit_post = post_data =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -322,11 +310,7 @@ export const create_comment = comment_data =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -420,11 +404,7 @@ export const create_comment_reply = reply_data =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
@@ -501,11 +481,7 @@ export const clap = clap_data =>
                     }
                 }
                 claps {
-                    edges {
-                        node {
-                            id
-                        }
-                    }
+                    totalCount
                 }
                 comments {
                     edges {
