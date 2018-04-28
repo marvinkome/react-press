@@ -7,6 +7,8 @@ import types from 'prop-types';
 import { connect } from 'react-redux';
 
 import { clap, add_comment, reply_comment } from '../../../js/redux/actions';
+import history from '../../../js/history';
+
 import Preloader from './preloader';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
@@ -46,6 +48,17 @@ class Body extends Component {
             };
 
             this.props.clap(data);
+        } else {
+            const toastHTML = `
+                <div>
+                    <span>You must be logged in to clap</span>
+                </div>
+            `;
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 2000
+            });
+            history.push('/auth/login');
         }
     };
     onCommitPublish = comment => {
@@ -64,6 +77,17 @@ class Body extends Component {
                 user_id: this.props.user.data.user.uuid
             };
             this.props.comment(data);
+        } else {
+            const toastHTML = `
+                <div>
+                    <span>You must be logged in to comment on posts</span>
+                </div>
+            `;
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 2000
+            });
+            history.push('/auth/login');
         }
     };
     onCommentReply = (comment, parent_id) => {
@@ -83,6 +107,17 @@ class Body extends Component {
                 post_id: post.node.uuid
             };
             this.props.reply_comment(data);
+        } else {
+            const toastHTML = `
+                <div>
+                    <span>You must be logged in to reply to comments</span>
+                </div>
+            `;
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 2000
+            });
+            history.push('/auth/login');
         }
     };
     render() {

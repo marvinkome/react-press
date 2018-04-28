@@ -4,13 +4,13 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
 
 import Sidenav from './helpers/sidenav';
 import Dashboard from './dashboard';
 import Posts from './posts';
 import NewPost from './new-post';
 import EditProfile from './edit-profile';
+import { Err404 } from '../helpers/errors';
 
 import _EditPost from './edit-post';
 export const EditPost = _EditPost;
@@ -27,7 +27,7 @@ export default class Admin extends Component {
         case 'edit-profile':
             return <EditProfile />;
         default:
-            return <Redirect to="/admin/dashboard" />;
+            return <Err404 />;
         }
     };
     render() {

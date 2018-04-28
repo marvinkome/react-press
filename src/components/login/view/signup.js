@@ -7,12 +7,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { register_user } from '../../../js/redux/actions';
+import { register_user, fetch_user_data } from '../../../js/redux/actions';
 import { validate_password } from '../../../js/helpers';
 
 const mapDispatchToProps = dispatch => {
     return {
-        register_user: data => dispatch(register_user(data))
+        register_user: data => dispatch(register_user(data)),
+        fetch_data: () => dispatch(fetch_user_data())
     };
 };
 
@@ -32,6 +33,24 @@ class SignUp extends Component {
             auth_message: ''
         };
     }
+    componentWillMount() {
+        const sessionLogin = JSON.parse(
+            localStorage.getItem('med-blog-logged-in')
+        );
+        const localLogin = sessionLogin != undefined && sessionLogin == true;
+        if (localLogin) {
+            const toastHTML = `
+                <div>
+                    <span>You are already logged in</span>
+                </div>
+            `;
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 2000
+            });
+            this.props.history.goBack();
+        }
+    }
     handleChange = e => {
         e.preventDefault();
         this.setState({
@@ -44,7 +63,9 @@ class SignUp extends Component {
             this.props.register_user(this.state).then(
                 res => {
                     if (res.payload.msg == 'Authentication successfull') {
-                        this.props.history.goBack();
+                        this.props
+                            .fetch_data()
+                            .then(() => this.props.history.goBack());
                     } else {
                         this.setState({
                             auth_message: res.payload.msg
@@ -152,6 +173,8 @@ class SignUp extends Component {
 
 SignUp.propTypes = {
     register_user: PropTypes.func.isRequired,
+    fetch_data: PropTypes.func.isRequired,
+    isLoggedIn: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired,
     isFetching: PropTypes.bool.isRequired
 };

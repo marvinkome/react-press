@@ -5,22 +5,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
 
-const mapStateToProps = state => {
-    return {
-        isLoggedIn: state.isLoggedIn
-    };
-};
-
-const PrivateRoute = ({ component: PrivComponent, isLoggedIn, ...rest }) => {
+const PrivateRoute = ({ component: PrivComponent, ...rest }) => {
     const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
     const localLogin = sessionLogin != undefined && sessionLogin == true;
     return (
         <Route
             {...rest}
             render={npprops =>
-                isLoggedIn || localLogin ? (
+                localLogin ? (
                     <PrivComponent {...npprops} />
                 ) : (
                     <Redirect
@@ -36,8 +29,7 @@ const PrivateRoute = ({ component: PrivComponent, isLoggedIn, ...rest }) => {
 };
 
 PrivateRoute.propTypes = {
-    component: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired
+    component: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps)(PrivateRoute);
+export default PrivateRoute;

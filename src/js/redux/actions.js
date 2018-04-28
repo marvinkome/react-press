@@ -5,6 +5,7 @@
 import * as constants from './constants';
 import * as query from './queries';
 import * as mutations from './mutations';
+import { getCookie } from '../helpers';
 
 /**
  * Redux sync actions for reducers
@@ -97,6 +98,11 @@ export const loginUser = payload => ({
     payload
 });
 
+export const logoutUser = res => ({
+    type: constants.LOGOUT_USER,
+    res
+});
+
 /**
  * Redux async Thunks
  */
@@ -136,23 +142,42 @@ export const fetch_more_data = cursor => {
     };
 };
 
+const refresh_token = cookie => {
+    return fetch('http://192.168.43.200:5000/refresh', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': cookie
+        }
+    });
+};
+
 export const fetch_user_data = () => {
-    const key = JSON.parse(localStorage.getItem('med-blog-access-token'));
+    const key = JSON.parse(localStorage.getItem('med-blog-ref'));
 
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = arg_key => ({
             method: 'POST',
             body: JSON.stringify({ query: query.fetch_user_data_query }),
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: key
+                'X-CSRF-TOKEN': arg_key
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(() => {
+                const access_token = getCookie('csrf_access_token');
+                return fetch(
+                    'http://192.168.43.200:5000/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(recieveUserData(res)));
     };
 };
@@ -164,6 +189,7 @@ export const login_user = data => {
 
         const headers = {
             method: 'POST',
+            credentials: 'include',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
@@ -183,6 +209,7 @@ export const register_user = data => {
         const headers = {
             method: 'POST',
             body: JSON.stringify(data),
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -191,6 +218,22 @@ export const register_user = data => {
         return fetch('http://192.168.43.200:5000/register', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
+    };
+};
+
+export const logout_user = () => {
+    return dispatch => {
+        const headers = {
+            method: 'POST',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch('http://192.168.43.200:5000/logout', headers)
+            .then(res => res.json())
+            .then(res => dispatch(logoutUser(res)));
     };
 };
 

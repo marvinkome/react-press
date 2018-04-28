@@ -191,14 +191,14 @@ class Body extends Component {
                     </div>
                     <div className="preview-cont center">
                         <div className="img-preview">
-                            <img
-                                className="responsive-img circle"
-                                src={
-                                    this.state.pic_url != ''
-                                        ? this.state.pic_url
-                                        : undefined
-                                }
-                            />
+                            {this.state.pic_url ? (
+                                <img
+                                    className="responsive-img circle"
+                                    src={this.state.pic_url}
+                                />
+                            ) : (
+                                'No Profile picture'
+                            )}
                         </div>
                     </div>
                     <div className="file-uploader">

@@ -9,10 +9,6 @@ import PrivateRoute from './helpers/privateRoute';
 import { connect } from 'react-redux';
 import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 
-const mapStateToProps = state => ({
-    loggedIn: state.isLoggedIn
-});
-
 const mapDispatchToProps = dispatch => ({
     fetch_data: () => dispatch(fetch_all_data()),
     fetch_user: () => dispatch(fetch_user_data())
@@ -21,6 +17,7 @@ const mapDispatchToProps = dispatch => ({
 import Home from './home';
 import Post from './post';
 import Login from './login';
+// import { Err404 } from './helpers/errors';
 import Admin, { EditPost } from './admin';
 
 class App extends Component {
@@ -31,15 +28,20 @@ class App extends Component {
         };
     }
     componentDidMount() {
+        const sessionLogin = JSON.parse(
+            localStorage.getItem('med-blog-logged-in')
+        );
+        const localLogin = sessionLogin != undefined && sessionLogin == true;
+
+        if (localLogin) {
+            this.props.fetch_user();
+        }
+
         this.props.fetch_data().then(null, () =>
             this.setState({
                 render: false
             })
         );
-
-        if (this.props.loggedIn) {
-            this.props.fetch_user();
-        }
     }
     render() {
         if (this.state.render) {
@@ -53,6 +55,7 @@ class App extends Component {
                     <Route path="/auth/:section" component={Login} exact />
 
                     {/* Backend */}
+                    {/* <Route path="*" component={Err404} exact/> */}
                     <PrivateRoute path="/admin/:path" component={Admin} exact />
                     <PrivateRoute
                         path="/admin/edit-post/:id"
@@ -69,8 +72,7 @@ class App extends Component {
 
 App.propTypes = {
     fetch_data: type.func.isRequired,
-    fetch_user: type.func.isRequired,
-    loggedIn: type.bool.isRequired
+    fetch_user: type.func.isRequired
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
+export default withRouter(connect(null, mapDispatchToProps)(App));

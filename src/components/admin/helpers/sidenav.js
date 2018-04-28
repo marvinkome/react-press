@@ -61,7 +61,9 @@ class SideNav extends Component {
                         <div className="user-view">
                             <div className="background" />
                             <a>
-                                <img className="circle" src={pic_url} />
+                                {pic_url && (
+                                    <img className="circle" src={pic_url} />
+                                )}
                             </a>
                             <a>
                                 <span className="name">{display_name}</span>

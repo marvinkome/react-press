@@ -33,3 +33,4 @@ export const RECIEVE_MORE_ARTICLES = 'RECIEVE_MORE_ARTICLES';
  */
 export const LOGIN_USER = 'LOGIN_USER';
 export const RECIEVE_USER_DATA = 'RECIEVE_USER_DATA';
+export const LOGOUT_USER = 'LOGOUT_USER';

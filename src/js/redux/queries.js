@@ -131,7 +131,7 @@ export const fetch_more = last_cursor => `
 
 export const fetch_user_data_query = `
     {
-        user(uuid:1){
+        user{
             id
             uuid
             fullName
