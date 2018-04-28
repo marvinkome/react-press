@@ -4,6 +4,7 @@
 
 import initialState from './initialState';
 import * as constants from './constants';
+import { getCookie } from '../helpers';
 
 // Utility functions
 const updateObject = (oldObj, newValues) => {
@@ -33,6 +34,14 @@ const saveToStore = (store, key) => {
     if (localStorage) {
         store = JSON.stringify(store);
         localStorage.setItem(key, store);
+    }
+
+    return true;
+};
+
+const removeFromStore = key => {
+    if (localStorage) {
+        localStorage.removeItem(key);
     }
 
     return true;
@@ -411,19 +420,28 @@ const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
     return store;
 };
 
-const loginUser = (state, token) => {
+const loginUser = (state, res) => {
     const isFetching = false;
-    let isLoggedIn = false;
 
-    if (token.access_token != null) {
-        isLoggedIn = true;
+    if (res.login == true) {
         saveToStore(true, 'med-blog-logged-in');
-        saveToStore(token.access_token, 'med-blog-access-token');
+        const refresh_token = getCookie('csrf_refresh_token');
+        saveToStore(refresh_token, 'med-blog-ref');
     }
 
     return updateObject(state, {
-        isFetching,
-        isLoggedIn
+        isFetching
+    });
+};
+
+const logoutUser = (state, res) => {
+    if (res.logout == true) {
+        saveToStore(false, 'med-blog-logged-in');
+        removeFromStore('med-blog-ref');
+    }
+
+    return updateObject(state, {
+        user_data: {}
     });
 };
 
@@ -468,6 +486,9 @@ const rootReducer = (state = initialState, action) => {
 
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
+
+    case constants.LOGOUT_USER:
+        return logoutUser(state, action.res);
 
     case constants.RECIEVE_USER_DATA:
         return recieveUserData(state, action.payload);

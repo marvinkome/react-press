@@ -13,16 +13,16 @@ const PostCard = ({ post }) => {
             <div className="card-image">
                 <img src={post.postPicUrl} />
             </div>
-            <div className="card-content">
-                <Link to={'/post/' + post.id}>
+            <Link to={'/post/' + post.id}>
+                <div className="card-content">
                     <span className="card-title">{post.title}</span>
-                </Link>
-                <p
-                    dangerouslySetInnerHTML={{
-                        __html: truncate(post.body, 40)
-                    }}
-                />
-            </div>
+                    <p
+                        dangerouslySetInnerHTML={{
+                            __html: truncate(post.body, 40)
+                        }}
+                    />
+                </div>
+            </Link>
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">

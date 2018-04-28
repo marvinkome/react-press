@@ -5,8 +5,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout_user } from '../../js/redux/actions';
+
+const mapDispatchToProp = dispatch => ({
+    logout: () => dispatch(logout_user())
+});
 
 class TopBar extends Component {
+    handleLogout = () => {
+        this.props.logout();
+    };
     render() {
         return (
             <nav className="topbar nav-extended">
@@ -36,6 +45,11 @@ class TopBar extends Component {
                                         {this.props.user_data.user.fullName}
                                     </span>
                                 </Link>
+                            </li>
+                            <li>
+                                <a title="Logout" onClick={this.handleLogout}>
+                                    <span>Logout</span>
+                                </a>
                             </li>
                             <li>
                                 <Link
@@ -108,7 +122,8 @@ class TopBar extends Component {
 }
 
 TopBar.propTypes = {
-    user_data: PropTypes.object
+    user_data: PropTypes.object,
+    logout: PropTypes.func.isRequired
 };
 
-export default TopBar;
+export default connect(null, mapDispatchToProp)(TopBar);
