@@ -55,6 +55,13 @@ const sendRequest = state => {
     });
 };
 
+const sendloginRequest = state => {
+    const isLoggingIn = true;
+    return updateObject(state, {
+        isLoggingIn
+    });
+};
+
 const sendCommentRequest = state => {
     const isSendingComment = true;
     return updateObject(state, {
@@ -421,7 +428,7 @@ const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
 };
 
 const loginUser = (state, res) => {
-    const isFetching = false;
+    const isLoggingIn = false;
 
     if (res.login == true) {
         saveToStore(true, 'med-blog-logged-in');
@@ -430,7 +437,7 @@ const loginUser = (state, res) => {
     }
 
     return updateObject(state, {
-        isFetching
+        isLoggingIn
     });
 };
 
@@ -461,6 +468,9 @@ const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case constants.SEND_REQUEST:
         return sendRequest(state);
+
+    case constants.SEND_LOGIN_REQUEST:
+        return sendloginRequest(state);
 
     case constants.SEND_COMMENT:
         return sendCommentRequest(state);

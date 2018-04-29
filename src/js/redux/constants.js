@@ -6,6 +6,7 @@
  * Request constants
  */
 export const SEND_REQUEST = 'SEND_REQUEST';
+export const SEND_LOGIN_REQUEST = 'SEND_LOGIN_REQUEST';
 export const SEND_COMMENT = 'SEND_COMMENT';
 export const SEND_CLAP = 'SEND_CLAP';
 

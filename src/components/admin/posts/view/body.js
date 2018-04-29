@@ -144,24 +144,29 @@ class Body extends Component {
                                             >
                                                 <div className="post">
                                                     <h5>{post.node.title}</h5>
-                                                    <p>
-                                                        Tags:{' '}
-                                                        {post.node.tags.edges.map(
-                                                            tag => (
-                                                                <span
-                                                                    key={
-                                                                        tag.node
-                                                                            .id
-                                                                    }
-                                                                >
-                                                                    {
-                                                                        tag.node
-                                                                            .name
-                                                                    },{' '}
-                                                                </span>
-                                                            )
-                                                        )}
-                                                    </p>
+                                                    {post.node.tags.edges >
+                                                        0 && (
+                                                        <p>
+                                                            Tags:{' '}
+                                                            {post.node.tags.edges.map(
+                                                                tag => (
+                                                                    <span
+                                                                        key={
+                                                                            tag
+                                                                                .node
+                                                                                .id
+                                                                        }
+                                                                    >
+                                                                        {
+                                                                            tag
+                                                                                .node
+                                                                                .name
+                                                                        },{' '}
+                                                                    </span>
+                                                                )
+                                                            )}
+                                                        </p>
+                                                    )}
                                                     <p>
                                                         {format_date(
                                                             post.node.timestamp

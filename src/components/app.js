@@ -17,7 +17,7 @@ const mapDispatchToProps = dispatch => ({
 import Home from './home';
 import Post from './post';
 import Login from './login';
-// import { Err404 } from './helpers/errors';
+import { Err404 } from './helpers/errors';
 import Admin, { EditPost } from './admin';
 
 class App extends Component {
@@ -50,6 +50,7 @@ class App extends Component {
                     {/* Front end */}
                     <Route path="/" component={Home} exact />
                     <Route path="/post/:id" component={Post} exact />
+                    <Route component={Err404} />
 
                     {/* authentication */}
                     <Route path="/auth/:section" component={Login} exact />

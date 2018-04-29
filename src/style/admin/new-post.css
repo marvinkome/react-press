@@ -62,7 +62,7 @@
 }
 .admin-add-post .post-form .card-action {
     background: hsl(0, 0%, 97%);
-    border-bottom: 4px solid hsl(145, 100%, 19%);
+    border-bottom: 4px solid #404040;
 }
 
 @media screen and (max-width: 600px) {

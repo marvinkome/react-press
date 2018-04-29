@@ -6,6 +6,7 @@ const state = {
     isFetching: false,
     isSendingComment: false,
     isClapping: false,
+    isLoggingIn: false,
     lastFetch: 0,
     cursor: '',
     post_data: {

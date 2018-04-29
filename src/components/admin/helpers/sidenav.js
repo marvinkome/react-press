@@ -28,6 +28,11 @@ class SideNav extends Component {
         const instance = window.M.Sidenav.getInstance(sidenav);
         instance.destroy();
     }
+    onClickRoute = () => {
+        const sidenav = this.sideNav.current;
+        const instance = window.M.Sidenav.getInstance(sidenav);
+        instance.close();
+    };
     render() {
         let display_name, pic_url;
 
@@ -41,7 +46,7 @@ class SideNav extends Component {
         }
         return (
             <div>
-                <nav className="admin-nav white">
+                <nav className="admin-nav">
                     <div className="nav-wrapper">
                         <a className="brand-logo">ReactPress</a>
                         <a
@@ -70,8 +75,10 @@ class SideNav extends Component {
                             </a>
                         </div>
                     </li>
-                    <li>
-                        <Link to="/admin/dashboard">Dashboard</Link>
+                    <li onClick={this.onClickRoute}>
+                        <Link to="/admin/dashboard">
+                            <span>Dashboard</span>
+                        </Link>
                     </li>
                     <li>
                         <ul
@@ -85,14 +92,14 @@ class SideNav extends Component {
                                 </a>
                                 <div className="collapsible-body">
                                     <ul>
-                                        <li>
+                                        <li onClick={this.onClickRoute}>
                                             <Link to="/admin/posts">
-                                                All Posts
+                                                <span>All Posts</span>
                                             </Link>
                                         </li>
-                                        <li>
+                                        <li onClick={this.onClickRoute}>
                                             <Link to="/admin/new-post">
-                                                New Post
+                                                <span>New Post</span>
                                             </Link>
                                         </li>
                                     </ul>
@@ -103,8 +110,10 @@ class SideNav extends Component {
                     <li>
                         <div className="divider" />
                     </li>
-                    <li>
-                        <Link to="/admin/edit-profile">Edit Profile</Link>
+                    <li onClick={this.onClickRoute}>
+                        <Link to="/admin/edit-profile">
+                            <span>Edit Profile</span>
+                        </Link>
                     </li>
                 </ul>
             </div>

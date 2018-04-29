@@ -21,10 +21,10 @@
     line-height: 25px;
     margin-left: 15px;
     margin-top: -5px;
-    border: 2px solid rgb(0, 100, 0);
+    border: 2px solid #404040;
     background-color: rgba(255, 255, 255, 0.8);
     text-transform: capitalize;
-    color: rgb(0, 100, 0);
+    color: #404040;
 }
 
 .post-body .author-desc {
@@ -70,13 +70,13 @@
 }
 
 .post-body .fixed-action-btn a.btn-large {
-    background: rgb(0, 100, 0);
+    background: #404040;
 }
 
 .post-body .fixed-action-btn a.btn-num {
-    border: 1px solid rgb(0, 100, 0);
+    border: 1px solid #404040;
     background-color: #fff;
-    color: rgb(0, 100, 0);
+    color: #404040;
 }
 
 .post-body .response {
@@ -97,11 +97,11 @@
 .post-body .response .resp-form .btn,
 .post-body .response .reply-form .btn {
     background-color: #fff;
-    color: rgb(0, 100, 0);
-    border: 1px solid rgb(0, 100, 0);
+    color: #404040;
+    border: 1px solid #404040;
 }
 .post-body .response .reply-form .btn-flat {
-    color: rgb(0, 100, 0);
+    color: #404040;
 }
 .post-body .response .collection .title {
     font-weight: 500;
@@ -138,18 +138,18 @@
         bottom: 50%;
     }
     .post-body .fixed-action-btn a.btn-large {
-        border: 1px solid rgb(0, 100, 0);
+        border: 1px solid #404040;
         background-color: #fff;
     }
 
     .post-body .fixed-action-btn a.btn-large i {
-        color: rgb(0, 100, 0);
+        color: #404040;
     }
 
     .post-body .fixed-action-btn a.btn-num {
-        border: 1px solid rgb(0, 100, 0);
+        border: 1px solid #404040;
         background-color: #fff;
-        color: rgb(0, 100, 0);
+        color: #404040;
     }
 }
 
@@ -205,6 +205,7 @@
     }
     .post-body .post-content .post-title {
         font-size: 2rem;
+        padding-top: 10px;
     }
     .post-body .response .collection .comment-author .comment-author-image {
         max-width: 22%;
