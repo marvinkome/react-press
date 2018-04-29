@@ -16,6 +16,10 @@ export const sendRequest = () => ({
     type: constants.SEND_REQUEST
 });
 
+export const sendLoginRequest = () => ({
+    type: constants.SEND_LOGIN_REQUEST
+});
+
 export const sendComment = () => ({
     type: constants.SEND_COMMENT
 });
@@ -185,7 +189,7 @@ export const fetch_user_data = () => {
 // Auth Actions
 export const login_user = data => {
     return dispatch => {
-        dispatch(sendRequest());
+        dispatch(sendLoginRequest());
 
         const headers = {
             method: 'POST',
@@ -204,7 +208,7 @@ export const login_user = data => {
 
 export const register_user = data => {
     return dispatch => {
-        dispatch(sendRequest());
+        dispatch(sendLoginRequest());
 
         const headers = {
             method: 'POST',

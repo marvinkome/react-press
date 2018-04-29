@@ -28,8 +28,8 @@
         margin-top: 14px;
     }
     .admin-nav .nav-wrapper .brand-logo {
-        margin-top: -4px;
-        font-size: 35px;
+        margin-top: 0px;
+        font-size: 20px;
         left: 14%;
         transform: translateX(50%);
     }
@@ -39,10 +39,13 @@
     }
 }
 
+.admin-nav {
+    background-color: #404040;
+}
 .admin-nav .brand-logo,
 .admin-nav ul a,
 .admin-nav a {
-    color: hsl(0, 0%, 40%) !important;
+    color: #ffffff !important;
 }
 .admin-nav .brand-logo {
     font-size: 1.5rem;

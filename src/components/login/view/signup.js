@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
     return {
-        isFetching: state.isFetching
+        isLogging: state.isLoggingIn
     };
 };
 
@@ -139,7 +139,7 @@ class SignUp extends Component {
                         </div>
                         <div className="input-field col s12">
                             <button type="submit" className={button_class}>
-                                {!this.props.isFetching ? (
+                                {!this.props.isLoggingIn ? (
                                     'Submit'
                                 ) : (
                                     <div className="progress">
@@ -162,9 +162,9 @@ class SignUp extends Component {
                             Login
                         </Link>
                     </p>
-                    <p>
+                    {/* <p>
                         <a title="Terms of service">Terms of service</a>
-                    </p>
+                    </p> */}
                 </div>
             </div>
         );
@@ -174,9 +174,8 @@ class SignUp extends Component {
 SignUp.propTypes = {
     register_user: PropTypes.func.isRequired,
     fetch_data: PropTypes.func.isRequired,
-    isLoggedIn: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired,
-    isFetching: PropTypes.bool.isRequired
+    isLoggingIn: PropTypes.bool
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

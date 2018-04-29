@@ -19,7 +19,7 @@
 
 .body .card-action {
     background: hsl(0, 0%, 97%);
-    border-bottom: 4px solid hsl(145, 100%, 19%);
+    border-bottom: 4px solid #404040;
 }
 
 .body .card .card-action .author {
@@ -48,5 +48,5 @@
 
 .body .card .card-action .author .info .date {
     font-weight: 500;
-    color: hsl(120, 100%, 20%, 1);
+    color: #404040;
 }
