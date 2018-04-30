@@ -29,7 +29,7 @@ class FAB extends Component {
             <div ref={this.fabRef} className="fixed-action-btn">
                 <a
                     onClick={this.props.handleClap}
-                    className="btn-floating btn-large"
+                    className="pulse btn-floating btn-large"
                 >
                     <i className="fa fa-thumbs-up" />
                 </a>

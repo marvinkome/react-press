@@ -3,6 +3,7 @@
  */
 
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -47,7 +48,17 @@ class Body extends Component {
                 user_id: this.props.user.data.user.uuid
             };
 
-            this.props.clap(data);
+            this.props.clap(data).then(null, () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div ref={this.toast}>
+                        <span>Oopps there{'\''}s an error </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            });
         } else {
             const toastHTML = `
                 <div>
@@ -76,7 +87,17 @@ class Body extends Component {
                 post_id: post.node.uuid,
                 user_id: this.props.user.data.user.uuid
             };
-            this.props.comment(data);
+            this.props.comment(data).then(null, () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div ref={this.toast}>
+                        <span>Oopps there{'\''}s an error </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            });
         } else {
             const toastHTML = `
                 <div>
@@ -106,7 +127,17 @@ class Body extends Component {
                 user_id: this.props.user.data.user.uuid,
                 post_id: post.node.uuid
             };
-            this.props.reply_comment(data);
+            this.props.reply_comment(data).then(null, () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div ref={this.toast}>
+                        <span>Oopps there{'\''}s an error </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            });
         } else {
             const toastHTML = `
                 <div>
@@ -136,28 +167,44 @@ class Body extends Component {
                         <div className="col m12 center-align preloader-cont circle">
                             <Preloader />
                         </div>
-                    ) : (
-                        post != undefined && (
-                            <div>
-                                <div className="col m11">
-                                    <AuthorInfo data={post.node} />
+                    ) : post != undefined ? (
+                        <div>
+                            <div className="col m11">
+                                <AuthorInfo data={post.node} />
 
-                                    <PostCard data={post.node} />
+                                <PostCard data={post.node} />
 
-                                    <Comment
-                                        handleComment={this.onCommitPublish}
-                                        handleReply={this.onCommentReply}
-                                        data={post.node.comments}
-                                    />
-                                </div>
-                                <div className="col m1">
-                                    <FAB
-                                        handleClap={this.onClap}
-                                        claps_count={post.node.claps.totalCount}
-                                    />
-                                </div>
+                                <Comment
+                                    handleComment={this.onCommitPublish}
+                                    handleReply={this.onCommentReply}
+                                    data={post.node.comments}
+                                />
                             </div>
-                        )
+                            <div className="col m1">
+                                <FAB
+                                    handleClap={this.onClap}
+                                    claps_count={post.node.claps.totalCount}
+                                />
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="container">
+                            <div className="center-align">
+                                <img
+                                    className="responsive-img"
+                                    src="./src/img/404-Error.png"
+                                />
+                            </div>
+                            <h5 className="center">
+                                I suggest you{' '}
+                                <a
+                                    onClick={() => history.goBack()}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    go back
+                                </a>
+                            </h5>
+                        </div>
                     )}
                 </div>
             </div>

@@ -50,7 +50,6 @@ class App extends Component {
                     {/* Front end */}
                     <Route path="/" component={Home} exact />
                     <Route path="/post/:id" component={Post} exact />
-                    <Route component={Err404} />
 
                     {/* authentication */}
                     <Route path="/auth/:section" component={Login} exact />
@@ -63,6 +62,8 @@ class App extends Component {
                         component={EditPost}
                         exact
                     />
+
+                    <Route component={Err404} />
                 </Switch>
             );
         } else {

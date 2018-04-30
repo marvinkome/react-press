@@ -98,6 +98,17 @@ class Body extends Component {
                                                     <td className="small">
                                                         <Link
                                                             to={
+                                                                '/post/' +
+                                                                post.node.id
+                                                            }
+                                                            title="View"
+                                                        >
+                                                            <span className="view">
+                                                                View
+                                                            </span>
+                                                        </Link>
+                                                        <Link
+                                                            to={
                                                                 '/admin/edit-post/' +
                                                                 post.node.id
                                                             }
@@ -173,6 +184,17 @@ class Body extends Component {
                                                         )}{' '}
                                                     </p>
                                                     <p className="actions">
+                                                        <Link
+                                                            to={
+                                                                '/post/' +
+                                                                post.node.id
+                                                            }
+                                                            title="View"
+                                                        >
+                                                            <span className="view">
+                                                                View
+                                                            </span>
+                                                        </Link>
                                                         <Link
                                                             to={
                                                                 '/admin/edit-post/' +

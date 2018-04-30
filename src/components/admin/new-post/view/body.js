@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import PostEditor from './editor';
 import { create_posts, create_tags } from '../../../../js/redux/actions';
 import { upload_file } from '../../../../js/helpers';
+import history from '../../../../js/history';
 
 const mapDispatchToProp = dispatch => ({
     create_post: data => dispatch(create_posts(data)),
@@ -82,7 +83,8 @@ class Body extends Component {
                     res =>
                         res.msg == 'file uploaded' &&
                         this.setState({
-                            post_pic_url: 'http://192.168.43.200:5000' + res.url
+                            post_pic_url:
+                                'https://reactpress-api.herokuapp.com' + res.url
                         })
                 )
                 .then(
@@ -104,33 +106,47 @@ class Body extends Component {
                                 post_id: res.post.id
                             });
                         })
-                        .then(() => {
-                            const tags = this.state.tags;
-                            if (this.chip_instance != undefined) {
-                                tags.map((item, index) =>
-                                    this.chip_instance.deleteChip(index)
+                        .then(
+                            () => {
+                                const tags = this.state.tags;
+                                if (this.chip_instance != undefined) {
+                                    tags.map((item, index) =>
+                                        this.chip_instance.deleteChip(index)
+                                    );
+                                }
+
+                                this.setState({
+                                    reset: true,
+                                    title: '',
+                                    body: '',
+                                    post_pic_url: '',
+                                    file: '',
+                                    tags: []
+                                });
+
+                                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                                    <div ref={this.toast}>
+                                        <span>Post has been created</span>
+                                    </div>
                                 );
+                                window.M.toast({
+                                    html: toastHTML,
+                                    displayLength: 4000
+                                });
+                                history.push('/admin/posts');
+                            },
+                            () => {
+                                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                                    <div ref={this.toast}>
+                                        <span>Post creation failed</span>
+                                    </div>
+                                );
+                                window.M.toast({
+                                    html: toastHTML,
+                                    displayLength: 4000
+                                });
                             }
-
-                            this.setState({
-                                reset: true,
-                                title: '',
-                                body: '',
-                                post_pic_url: '',
-                                file: '',
-                                tags: []
-                            });
-
-                            const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                                <div ref={this.toast}>
-                                    <span>Post has been created</span>
-                                </div>
-                            );
-                            window.M.toast({
-                                html: toastHTML,
-                                displayLength: 4000
-                            });
-                        })
+                        )
                 );
         } else {
             this.props
@@ -151,33 +167,47 @@ class Body extends Component {
                         post_id: res.post.id
                     });
                 })
-                .then(() => {
-                    const tags = this.state.tags;
-                    if (this.chip_instance != undefined) {
-                        tags.map((item, index) =>
-                            this.chip_instance.deleteChip(index)
+                .then(
+                    () => {
+                        const tags = this.state.tags;
+                        if (this.chip_instance != undefined) {
+                            tags.map((item, index) =>
+                                this.chip_instance.deleteChip(index)
+                            );
+                        }
+
+                        this.setState({
+                            reset: true,
+                            title: '',
+                            body: '',
+                            post_pic_url: '',
+                            file: '',
+                            tags: []
+                        });
+
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Post has been created</span>
+                            </div>
                         );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                        history.push('/admin/posts');
+                    },
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Post creation failed</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
                     }
-
-                    this.setState({
-                        reset: true,
-                        title: '',
-                        body: '',
-                        post_pic_url: '',
-                        file: '',
-                        tags: []
-                    });
-
-                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                        <div ref={this.toast}>
-                            <span>Post has been created</span>
-                        </div>
-                    );
-                    window.M.toast({
-                        html: toastHTML,
-                        displayLength: 4000
-                    });
-                });
+                );
         }
     };
     render() {

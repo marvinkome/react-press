@@ -4,7 +4,6 @@
 
 import initialState from './initialState';
 import * as constants from './constants';
-import { getCookie } from '../helpers';
 
 // Utility functions
 const updateObject = (oldObj, newValues) => {
@@ -432,7 +431,7 @@ const loginUser = (state, res) => {
 
     if (res.login == true) {
         saveToStore(true, 'med-blog-logged-in');
-        const refresh_token = getCookie('csrf_refresh_token');
+        const refresh_token = res.refresh_token;
         saveToStore(refresh_token, 'med-blog-ref');
     }
 
@@ -441,8 +440,8 @@ const loginUser = (state, res) => {
     });
 };
 
-const logoutUser = (state, res) => {
-    if (res.logout == true) {
+const logoutUser = (state, logout) => {
+    if (logout == true) {
         saveToStore(false, 'med-blog-logged-in');
         removeFromStore('med-blog-ref');
     }
@@ -498,7 +497,7 @@ const rootReducer = (state = initialState, action) => {
         return loginUser(state, action.payload);
 
     case constants.LOGOUT_USER:
-        return logoutUser(state, action.res);
+        return logoutUser(state, action.logout);
 
     case constants.RECIEVE_USER_DATA:
         return recieveUserData(state, action.payload);

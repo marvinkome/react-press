@@ -4,6 +4,7 @@
 
 import React from 'react';
 import t from 'prop-types';
+import { Link } from 'react-router-dom';
 import Topbar from './topbar';
 
 export const Err404 = ({ history }) => {
@@ -24,7 +25,9 @@ export const Err404 = ({ history }) => {
                         style={{ cursor: 'pointer' }}
                     >
                         go back
-                    </a>
+                    </a>{' '}
+                    {'or '}
+                    <Link to="/">to homepage</Link>
                 </h5>
             </div>
         </div>

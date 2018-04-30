@@ -5,7 +5,19 @@
 import * as constants from './constants';
 import * as query from './queries';
 import * as mutations from './mutations';
-import { getCookie } from '../helpers';
+
+// Refresh token for protected query and mutations
+const refresh_token = token => {
+    return fetch('https://reactpress-api.herokuapp.com/refresh', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + token
+        }
+    });
+};
+
+const key = JSON.parse(localStorage.getItem('med-blog-ref'));
 
 /**
  * Redux sync actions for reducers
@@ -102,9 +114,9 @@ export const loginUser = payload => ({
     payload
 });
 
-export const logoutUser = res => ({
+export const logoutUser = () => ({
     type: constants.LOGOUT_USER,
-    res
+    logout: true
 });
 
 /**
@@ -124,7 +136,7 @@ export const fetch_all_data = () => {
             }
         };
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveArticles(res)));
     };
@@ -140,45 +152,31 @@ export const fetch_more_data = cursor => {
             }
         };
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveMoreArticles(res)));
     };
 };
 
-const refresh_token = cookie => {
-    return fetch('http://192.168.43.200:5000/refresh', {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': cookie
-        }
-    });
-};
-
 export const fetch_user_data = () => {
-    const key = JSON.parse(localStorage.getItem('med-blog-ref'));
-
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = arg_key => ({
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: query.fetch_user_data_query }),
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': arg_key
+                Authorization: 'Bearer ' + token
             }
         });
 
         return refresh_token(key)
             .then(res => res.json())
-            .then(() => {
-                const access_token = getCookie('csrf_access_token');
+            .then(res => {
+                const access_token = res.access_token;
                 return fetch(
-                    'http://192.168.43.200:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -193,14 +191,13 @@ export const login_user = data => {
 
         const headers = {
             method: 'POST',
-            credentials: 'include',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }
         };
 
-        return fetch('http://192.168.43.200:5000/login', headers)
+        return fetch('https://reactpress-api.herokuapp.com/login', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
     };
@@ -213,31 +210,14 @@ export const register_user = data => {
         const headers = {
             method: 'POST',
             body: JSON.stringify(data),
-            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json'
             }
         };
 
-        return fetch('http://192.168.43.200:5000/register', headers)
+        return fetch('https://reactpress-api.herokuapp.com/register', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
-    };
-};
-
-export const logout_user = () => {
-    return dispatch => {
-        const headers = {
-            method: 'POST',
-            credentials: 'include',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        return fetch('http://192.168.43.200:5000/logout', headers)
-            .then(res => res.json())
-            .then(res => dispatch(logoutUser(res)));
     };
 };
 
@@ -246,18 +226,26 @@ export const create_tags = data => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({
                 query: mutations.create_tag(data.tag_name, data.post_id)
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestCreateTagsFinished(res, data)));
     };
 };
@@ -271,16 +259,24 @@ export const create_posts = data => {
             userId: 1
         };
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.create_post(new_data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestCreatePostsFinished(res)));
     };
 };
@@ -289,16 +285,24 @@ export const edit_post = data => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.edit_post(data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestEditPostFinished(res, data)));
     };
 };
@@ -307,16 +311,24 @@ export const delete_post = data => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.delete_post(data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(() => dispatch(requestDeletePostFinished(data)));
     };
 };
@@ -325,7 +337,7 @@ export const update_profile_pic = data => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({
                 query: mutations.update_profile_picture(
@@ -334,12 +346,20 @@ export const update_profile_pic = data => {
                 )
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
 };
@@ -348,16 +368,24 @@ export const update_user_info = data => {
     return dispatch => {
         dispatch(sendRequest());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.update_info(data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
 };
@@ -366,16 +394,24 @@ export const add_comment = data => {
     return dispatch => {
         dispatch(sendComment());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.create_comment(data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestCommentFinished(res, data)));
     };
 };
@@ -384,18 +420,26 @@ export const reply_comment = data => {
     return dispatch => {
         dispatch(sendComment());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({
                 query: mutations.create_comment_reply(data)
             }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestCommentReplyFinished(res, data)));
     };
 };
@@ -404,16 +448,24 @@ export const clap = data => {
     return dispatch => {
         dispatch(sendClap());
 
-        const headers = {
+        const headers = token => ({
             method: 'POST',
             body: JSON.stringify({ query: mutations.clap(data) }),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token
             }
-        };
+        });
 
-        return fetch('http://192.168.43.200:5000/graphql', headers)
+        return refresh_token(key)
             .then(res => res.json())
+            .then(res => {
+                const access_token = res.access_token;
+                return fetch(
+                    'https://reactpress-api.herokuapp.com/graphql',
+                    headers(access_token)
+                ).then(res => res.json());
+            })
             .then(res => dispatch(requestClapFinished(res, data)));
     };
 };
