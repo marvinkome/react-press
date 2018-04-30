@@ -45,9 +45,12 @@ class Comment extends Component {
         e.preventDefault();
         const comment = this.state[id];
         this.props.handleReply(comment, uuid);
-        this.setState({
-            [id]: ''
-        });
+        this.setState(
+            {
+                [id]: ''
+            },
+            () => this.onClickReply
+        );
     };
     render() {
         let style = {

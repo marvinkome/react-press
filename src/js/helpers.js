@@ -11,18 +11,37 @@ export const truncate = (word, length) =>
         .join(' ');
 
 export const format_date = server_date => {
-    let date = new Date(server_date);
+    let date = moment.utc(server_date).format('YYYY-MM-DD HH:mm:ss');
+    let stillUtc = moment.utc(date).toDate();
 
     if (
         new Date(date).getFullYear() == new Date().getFullYear() &&
-        moment(date).week() !== moment(Date.now()).week()
+        moment(stillUtc)
+            .local()
+            .week() !==
+            moment(stillUtc)
+                .local()
+                .week()
     ) {
-        return moment(date).format('MMM DD');
-    } else if (moment(date).week() == moment(Date.now()).week()) {
-        return moment(date).fromNow();
+        return moment(stillUtc)
+            .local()
+            .format('MMM DD');
+    } else if (
+        moment(stillUtc)
+            .local()
+            .week() ==
+        moment(stillUtc)
+            .local()
+            .week()
+    ) {
+        return moment(stillUtc)
+            .local()
+            .fromNow();
     }
 
-    return moment(date).format('MMM DD [\']YY');
+    return moment(stillUtc)
+        .local()
+        .format('MMM DD [\']YY');
 };
 
 export const validate_password = password => {
@@ -42,7 +61,7 @@ export const strip_filename = name => {
 };
 
 export const upload_file = file => {
-    const url = 'http://192.168.43.200:5000/';
+    const url = 'https://reactpress-api.herokuapp.com/';
     const formData = new FormData();
     formData.append('file', file);
 
@@ -83,4 +102,15 @@ export const getCookie = cname => {
         }
     }
     return '';
+};
+
+export const deleteCookie = () => {
+    const cookies = document.cookie.split(';');
+
+    for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i];
+        let eqPos = cookie.indexOf('=');
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    }
 };

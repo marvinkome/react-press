@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { PostID } from '../../edit-post';
 import { edit_post, create_tags } from '../../../../js/redux/actions';
 import { upload_file } from '../../../../js/helpers';
+import history from '../../../../js/history';
 
 const mapStateToProps = state => ({
     data: state.user_data
@@ -117,7 +118,8 @@ class Body extends Component {
             res =>
                 res.msg == 'file uploaded' &&
                 this.setState({
-                    post_pic_url: 'http://192.168.43.200:5000' + res.url
+                    post_pic_url:
+                        'https://reactpress-api.herokuapp.com' + res.url
                 })
         );
     };
@@ -174,17 +176,31 @@ class Body extends Component {
                             })
                         );
                 })
-                .then(() => {
-                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                        <div ref={this.toast}>
-                            <span>Post has been edited</span>
-                        </div>
-                    );
-                    window.M.toast({
-                        html: toastHTML,
-                        displayLength: 4000
-                    });
-                });
+                .then(
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Post has been edited</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                        history.push('/admin/posts');
+                    },
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Error: Can{'\''}t save</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                    }
+                );
         }
     };
     render() {

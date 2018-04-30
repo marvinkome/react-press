@@ -29,9 +29,12 @@ class SideNav extends Component {
         instance.destroy();
     }
     onClickRoute = () => {
-        const sidenav = this.sideNav.current;
-        const instance = window.M.Sidenav.getInstance(sidenav);
-        instance.close();
+        const device_width = window.innerWidth;
+        if (device_width < 992) {
+            const sidenav = this.sideNav.current;
+            const instance = window.M.Sidenav.getInstance(sidenav);
+            instance.close();
+        }
     };
     render() {
         let display_name, pic_url;
@@ -62,7 +65,7 @@ class SideNav extends Component {
                     className="sidenav sidenav-fixed"
                     id="mobile-demo"
                 >
-                    <li className="grey darken-4">
+                    <li>
                         <div className="user-view">
                             <div className="background" />
                             <a>

@@ -81,9 +81,6 @@ export const create_post = post_data =>
                 body: ` +
     JSON.stringify(post_data.body) +
     `
-                userId: ` +
-    post_data.userId +
-    `
             }
         ){
             post{
@@ -231,13 +228,10 @@ export const delete_post = post_id => `
     }
 `;
 
-export const update_profile_picture = (pic_url, user_id) =>
+export const update_profile_picture = pic_url =>
     `
     mutation Mutation{
         updateUserProfilePic(
-            userId:` +
-    user_id +
-    `,
             newPic:"` +
     pic_url +
     `"
@@ -263,9 +257,6 @@ export const update_info = user_data =>
         ? 'newDescription: "' + user_data.description + '",'
         : ''
 }
-            userId: ` +
-    user_data.user_id +
-    `
         ){
             user{
                 fullName
@@ -282,9 +273,6 @@ export const create_comment = comment_data =>
             body: "` +
     comment_data.body +
     `", 
-            userId: ` +
-    comment_data.user_id +
-    `,
             postId: ` +
     comment_data.post_id +
     `
@@ -376,9 +364,6 @@ export const create_comment_reply = reply_data =>
             body: "` +
     reply_data.body +
     `", 
-            userId: ` +
-    reply_data.user_id +
-    `,
             parentId: ` +
     reply_data.parent_id +
     `
@@ -453,9 +438,6 @@ export const clap = clap_data =>
     `
     mutation Mutation{
         createClap(
-            userId: ` +
-    clap_data.user_id +
-    `,
             postId: ` +
     clap_data.post_id +
     `

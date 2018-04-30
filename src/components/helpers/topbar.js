@@ -6,10 +6,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout_user } from '../../js/redux/actions';
+import { logoutUser } from '../../js/redux/actions';
 
 const mapDispatchToProp = dispatch => ({
-    logout: () => dispatch(logout_user())
+    logout: () => dispatch(logoutUser())
 });
 
 class TopBar extends Component {
@@ -161,7 +161,7 @@ class TopBar extends Component {
                             <li>
                                 <Link
                                     className="hide-on-med-and-up"
-                                    to="/auth/login"
+                                    to="/auth/signup"
                                 >
                                     Get Started
                                 </Link>

@@ -99,7 +99,8 @@ class Body extends Component {
                     res =>
                         res.msg == 'file uploaded' &&
                         this.setState({
-                            pic_url: 'http://192.168.43.200:5000' + res.url
+                            pic_url:
+                                'https://reactpress-api.herokuapp.com' + res.url
                         })
                 )
                 .then(() => {
@@ -118,17 +119,30 @@ class Body extends Component {
                 })
                 .then(() => this.props.fetch_user_data())
                 .then(() => this.props.fetch_data())
-                .then(() => {
-                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                        <div ref={this.toast}>
-                            <span>Changes saved</span>
-                        </div>
-                    );
-                    window.M.toast({
-                        html: toastHTML,
-                        displayLength: 4000
-                    });
-                });
+                .then(
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Changes saved</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                    },
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div>
+                                <span>Can{'\''}t upload image </span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                    }
+                );
         }
     };
     onSaveClick = e => {
@@ -159,17 +173,30 @@ class Body extends Component {
                 .update_user_info(user_data)
                 .then(() => this.props.fetch_user_data())
                 .then(() => this.props.fetch_data())
-                .then(() => {
-                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                        <div ref={this.toast}>
-                            <span>Changes saved</span>
-                        </div>
-                    );
-                    window.M.toast({
-                        html: toastHTML,
-                        displayLength: 4000
-                    });
-                });
+                .then(
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>Changes saved</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                    },
+                    () => {
+                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                            <div ref={this.toast}>
+                                <span>can{'\''}t save data</span>
+                            </div>
+                        );
+                        window.M.toast({
+                            html: toastHTML,
+                            displayLength: 4000
+                        });
+                    }
+                );
         }
     };
     render() {

@@ -4,25 +4,35 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
+import { Err404 } from '../../helpers/errors';
 import Login from './login';
 import SignUp from './signup';
 
 const View = ({ section, history }) => {
-    let section_el = <Redirect to="/" />;
+    let section_el = <Err404 />;
 
     if (section == 'signup') {
-        section_el = <SignUp history={history} />;
-    } else if (section == 'login') {
-        section_el = <Login history={history} />;
-    }
-    return (
-        <div>
-            <div className="auth">
-                <div className="container">{section_el}</div>
+        section_el = (
+            <div>
+                <div className="auth">
+                    <div className="container">
+                        <SignUp history={history} />
+                    </div>
+                </div>
             </div>
-        </div>
-    );
+        );
+    } else if (section == 'login') {
+        section_el = (
+            <div>
+                <div className="auth">
+                    <div className="container">
+                        <Login history={history} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
+    return section_el;
 };
 
 View.propTypes = {
