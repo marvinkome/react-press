@@ -4,7 +4,7 @@ a simple mini blog built with react.
 
 ### To run locally
 
-```git
+```bash
 # First clone the repo
 git clone https://github.com/marvinkome/react-press
 
