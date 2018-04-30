@@ -1,6 +1,6 @@
 /* authentication */
 .auth {
-    background-image: url('http://192.168.43.200:8080/src/img/card.jpg');
+    background-image: url('./card.jpg');
     padding: 40px 0;
 }
 

@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../js/redux/actions';
+import './style/topbar.css';
 
 const mapDispatchToProp = dispatch => ({
     logout: () => dispatch(logoutUser())

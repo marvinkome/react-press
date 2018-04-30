@@ -2,12 +2,6 @@
  * ./src/style/index.css
  */
 
-@import url('./home.css');
-@import url('./topbar.css');
-@import url('./auth.css');
-@import url('./post.css');
-@import url('./admin/index.css');
-
 a {
     color: rgb(0, 100, 0);
 }

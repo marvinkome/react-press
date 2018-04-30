@@ -4,8 +4,11 @@
 
 import React, { Component } from 'react';
 import type from 'prop-types';
+import Loadable from 'react-loadable';
+
 import { Route, Switch, withRouter } from 'react-router-dom';
 import PrivateRoute from './helpers/privateRoute';
+
 import { connect } from 'react-redux';
 import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 
@@ -14,11 +17,42 @@ const mapDispatchToProps = dispatch => ({
     fetch_user: () => dispatch(fetch_user_data())
 });
 
-import Home from './home';
-import Post from './post';
-import Login from './login';
 import { Err404 } from './helpers/errors';
-import Admin, { EditPost } from './admin';
+
+const AsyncHome = Loadable({
+    loader: () => import('./home'),
+    loading() {
+        return <p>App is loading</p>;
+    }
+});
+
+const AsyncPost = Loadable({
+    loader: () => import('./post'),
+    loading() {
+        return <p>App is loading</p>;
+    }
+});
+
+const AsyncLogin = Loadable({
+    loader: () => import('./login'),
+    loading() {
+        return <p>App is loading</p>;
+    }
+});
+
+const AsyncAdmin = Loadable({
+    loader: () => import('./admin'),
+    loading() {
+        return <p>App is loading</p>;
+    }
+});
+
+const AsyncEditPost = Loadable({
+    loader: () => import('./admin/edit-post'),
+    loading() {
+        return <p>App is loading</p>;
+    }
+});
 
 class App extends Component {
     constructor(props) {
@@ -48,18 +82,22 @@ class App extends Component {
             return (
                 <Switch>
                     {/* Front end */}
-                    <Route path="/" component={Home} exact />
-                    <Route path="/post/:id" component={Post} exact />
+                    <Route path="/" component={AsyncHome} exact />
+                    <Route path="/post/:id" component={AsyncPost} exact />
 
                     {/* authentication */}
-                    <Route path="/auth/:section" component={Login} exact />
+                    <Route path="/auth/:section" component={AsyncLogin} exact />
 
                     {/* Backend */}
                     {/* <Route path="*" component={Err404} exact/> */}
-                    <PrivateRoute path="/admin/:path" component={Admin} exact />
+                    <PrivateRoute
+                        path="/admin/:path"
+                        component={AsyncAdmin}
+                        exact
+                    />
                     <PrivateRoute
                         path="/admin/edit-post/:id"
-                        component={EditPost}
+                        component={AsyncEditPost}
                         exact
                     />
 
