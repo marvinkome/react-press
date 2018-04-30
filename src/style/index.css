@@ -2,6 +2,8 @@
  * ./src/style/index.css
  */
 
+@import url('./admin/index.css');
+
 a {
     color: rgb(0, 100, 0);
 }

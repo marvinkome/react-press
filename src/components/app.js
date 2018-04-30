@@ -18,40 +18,41 @@ const mapDispatchToProps = dispatch => ({
 });
 
 import { Err404 } from './helpers/errors';
+import { AppLoading } from './helpers/preloader';
 
 const AsyncHome = Loadable({
     loader: () => import('./home'),
-    loading() {
-        return <p>App is loading</p>;
-    }
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
 });
 
 const AsyncPost = Loadable({
     loader: () => import('./post'),
-    loading() {
-        return <p>App is loading</p>;
-    }
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
 });
 
 const AsyncLogin = Loadable({
     loader: () => import('./login'),
-    loading() {
-        return <p>App is loading</p>;
-    }
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
 });
 
 const AsyncAdmin = Loadable({
     loader: () => import('./admin'),
-    loading() {
-        return <p>App is loading</p>;
-    }
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
 });
 
 const AsyncEditPost = Loadable({
     loader: () => import('./admin/edit-post'),
-    loading() {
-        return <p>App is loading</p>;
-    }
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
 });
 
 class App extends Component {

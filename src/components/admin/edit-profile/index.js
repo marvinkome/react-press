@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import View from './view';
+import './style/edit-profile.css';
 
 class EditProfile extends Component {
     render() {

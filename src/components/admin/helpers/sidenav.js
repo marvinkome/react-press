@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './style/sidenav.css';
 
 const mapStateToProps = state => ({
     data: state.user_data

@@ -4,28 +4,54 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import Loadable from 'react-loadable';
 
 import Sidenav from './helpers/sidenav';
-import Dashboard from './dashboard';
-import Posts from './posts';
-import NewPost from './new-post';
-import EditProfile from './edit-profile';
 import { Err404 } from '../helpers/errors';
+import { AppLoading } from '../helpers/preloader';
 
 import _EditPost from './edit-post';
 export const EditPost = _EditPost;
+
+const AsyncDashboard = Loadable({
+    loader: () => import('./dashboard'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
+
+const AsyncPosts = Loadable({
+    loader: () => import('./posts'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
+
+const AsyncNewPost = Loadable({
+    loader: () => import('./new-post'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
+
+const AsyncEditProfile = Loadable({
+    loader: () => import('./edit-profile'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
 
 export default class Admin extends Component {
     handlePath = path => {
         switch (path) {
         case 'dashboard':
-            return <Dashboard />;
+            return <AsyncDashboard />;
         case 'posts':
-            return <Posts />;
+            return <AsyncPosts />;
         case 'new-post':
-            return <NewPost />;
+            return <AsyncNewPost />;
         case 'edit-profile':
-            return <EditProfile />;
+            return <AsyncEditProfile />;
         default:
             return <Err404 />;
         }

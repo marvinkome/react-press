@@ -1,6 +1,6 @@
 /******* TopBar Component ******/
 .topbar {
-    background: hsl(0, 0%, 25%);;
+    background: hsl(0, 0%, 25%);
 }
 
 .topbar .brand-logo {
@@ -163,13 +163,13 @@
     .topbar .sidenav-trigger {
         margin-top: 6px;
     }
-    .topbar ~ ul.sidenav li a{
-        color: 	#404040;
+    .topbar ~ ul.sidenav li a {
+        color: #404040;
     }
-    .topbar ~ ul.sidenav .user-view{
+    .topbar ~ ul.sidenav .user-view {
         background-color: hsl(0, 0%, 25%);
     }
-    .topbar ~ ul.sidenav li a.email{
+    .topbar ~ ul.sidenav li a.email {
         padding-top: 20px;
     }
     .topbar .nav-wrapper .brand-logo {

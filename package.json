@@ -21,6 +21,7 @@
   "dependencies": {
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.3",
+    "express": "^4.16.3",
     "font-awesome": "^4.7.0",
     "materialize-css": "1.0.0-beta",
     "moment": "^2.22.0",
