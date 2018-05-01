@@ -2,6 +2,9 @@
 
 a simple mini blog built with react.
 
+### Online app
+To preview the website go to https://reactpress.herokuapp.com
+
 ### To run locally
 
 ```bash
