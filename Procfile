@@ -1,1 +1,1 @@
-web: babel-node server.js NODE_ENV=production
+web: npm start-server
