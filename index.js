@@ -7,9 +7,9 @@ import ReactDOM from 'react-dom';
 import Loadable from 'react-loadable';
 import { AppLoading } from './src/components/helpers/preloader';
 
-import('materialize-css/dist/js/materialize.js');
+import 'materialize-css/dist/js/materialize.js';
 
-import('materialize-css/dist/css/materialize.min.css');
+import 'materialize-css/dist/css/materialize.min.css';
 import('font-awesome/css/font-awesome.min.css');
 import './src/style/index.css';
 
@@ -19,15 +19,6 @@ const AsyncApp = Loadable({
     timeout: 10000,
     delay: 300
 });
-
-// const handle
-// const elem = (
-//     <Provider store={store}>
-//         <Router history={history}>
-//             <App/>
-//         </Router>
-//     </Provider>
-// );
 
 ReactDOM.render(
     <AsyncApp/>,
