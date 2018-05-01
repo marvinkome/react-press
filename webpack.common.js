@@ -1,9 +1,10 @@
 /*
-*  ./webpack.config.js
+*  ./webpack.common.js
 */
 
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './index.html',
@@ -15,7 +16,8 @@ module.exports = {
     entry: './index.js',
     output: {
         path: path.resolve('dist'),
-        filename: 'bundle.js'
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js'
     },
     module: {
         rules: [
@@ -34,7 +36,7 @@ module.exports = {
                 loader: ['style-loader','css-loader']
             },
             {
-                test: /\.(ttf|eot|woff|woff2|svg)$/,
+                test: /\.(ttf|eot|woff|woff2|svg|jpg)$/,
                 loader: 'file-loader',
                 options: {
                     name: 'fonts/[name].[ext]',
@@ -42,8 +44,8 @@ module.exports = {
             }
         ]
     },
-    devtool: 'cheap-module-source-map',
     plugins: [
-        HtmlWebpackPluginConfig
+        HtmlWebpackPluginConfig,
+        new BundleAnalyzerPlugin()
     ]
 };

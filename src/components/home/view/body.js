@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { fetch_more_data } from '../../../js/redux/actions';
 
 import PostCard from './post-card';
-import Preloader from './preloader';
+import Preloader from '../../helpers/preloader';
 
 const mapStateToProps = state => ({
     fetching: state.isFetching,

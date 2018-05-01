@@ -10,11 +10,11 @@ import { connect } from 'react-redux';
 import { clap, add_comment, reply_comment } from '../../../js/redux/actions';
 import history from '../../../js/history';
 
-import Preloader from './preloader';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
 import FAB from '../../helpers/fab';
+import Preloader from '../../helpers/preloader';
 
 const mapStateToProps = state => ({
     posts: state.post_data.posts,

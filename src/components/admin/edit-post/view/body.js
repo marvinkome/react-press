@@ -118,8 +118,7 @@ class Body extends Component {
             res =>
                 res.msg == 'file uploaded' &&
                 this.setState({
-                    post_pic_url:
-                        'https://reactpress-api.herokuapp.com' + res.url
+                    post_pic_url: 'http://0.0.0.0:5000' + res.url
                 })
         );
     };

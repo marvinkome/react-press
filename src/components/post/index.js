@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import type from 'prop-types';
 
 import View from './view';
+import './style/post.css';
 
 class Post extends Component {
     constructor(props) {

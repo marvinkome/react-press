@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import View from './view';
+import './style/auth.css';
 
 class Login extends Component {
     render() {
