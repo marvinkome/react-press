@@ -8,7 +8,7 @@ import * as mutations from './mutations';
 
 // Refresh token for protected query and mutations
 const refresh_token = token => {
-    return fetch('http://0.0.0.0:5000/refresh', {
+    return fetch('https://reactpress-api.herokuapp.com/refresh', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export const fetch_all_data = () => {
             }
         };
 
-        return fetch('http://0.0.0.0:5000/graphql', headers)
+        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveArticles(res)));
     };
@@ -152,7 +152,7 @@ export const fetch_more_data = cursor => {
             }
         };
 
-        return fetch('http://0.0.0.0:5000/graphql', headers)
+        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveMoreArticles(res)));
     };
@@ -176,7 +176,7 @@ export const fetch_user_data = () => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -197,7 +197,7 @@ export const login_user = data => {
             }
         };
 
-        return fetch('http://0.0.0.0:5000/login', headers)
+        return fetch('https://reactpress-api.herokuapp.com/login', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
     };
@@ -215,7 +215,7 @@ export const register_user = data => {
             }
         };
 
-        return fetch('http://0.0.0.0:5000/register', headers)
+        return fetch('https://reactpress-api.herokuapp.com/register', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
     };
@@ -242,7 +242,7 @@ export const create_tags = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -273,7 +273,7 @@ export const create_posts = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -299,7 +299,7 @@ export const edit_post = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -325,7 +325,7 @@ export const delete_post = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -356,7 +356,7 @@ export const update_profile_pic = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -382,7 +382,7 @@ export const update_user_info = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -408,7 +408,7 @@ export const add_comment = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -436,7 +436,7 @@ export const reply_comment = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
@@ -462,7 +462,7 @@ export const clap = data => {
             .then(res => {
                 const access_token = res.access_token;
                 return fetch(
-                    'http://0.0.0.0:5000/graphql',
+                    'https://reactpress-api.herokuapp.com/graphql',
                     headers(access_token)
                 ).then(res => res.json());
             })
