@@ -2,15 +2,26 @@
  * ./src/components/app
  */
 
+// React
 import React, { Component } from 'react';
+
+// Proptypes
 import type from 'prop-types';
+
+// Loadable
 import Loadable from 'react-loadable';
 
-import { Route, Switch, withRouter } from 'react-router-dom';
-import PrivateRoute from './helpers/privateRoute';
+// React Router v4
+import { Router, Route, Switch, withRouter } from 'react-router-dom';
+import history from '../js/history';
+import PrivateRoute from './helpers/privateRoute'; // HOC to protect routes
 
-import { connect } from 'react-redux';
+// Redux
+import store from '../js/redux/store';
 import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
+
+// React redux
+import { Provider, connect } from 'react-redux';
 
 const mapDispatchToProps = dispatch => ({
     fetch_data: () => dispatch(fetch_all_data()),
@@ -55,6 +66,27 @@ const AsyncEditPost = Loadable({
     delay: 300
 });
 
+const SwitchRoutes = () => (
+    <Switch>
+        {/* Front end */}
+        <Route path="/" component={AsyncHome} exact />
+        <Route path="/post/:id" component={AsyncPost} exact />
+
+        {/* authentication */}
+        <Route path="/auth/:section" component={AsyncLogin} exact />
+
+        {/* Backend */}
+        <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
+        <PrivateRoute
+            path="/admin/edit-post/:id"
+            component={AsyncEditPost}
+            exact
+        />
+
+        <Route component={Err404} />
+    </Switch>
+);
+
 class App extends Component {
     constructor(props) {
         super(props);
@@ -79,41 +111,27 @@ class App extends Component {
         );
     }
     render() {
-        if (this.state.render) {
-            return (
-                <Switch>
-                    {/* Front end */}
-                    <Route path="/" component={AsyncHome} exact />
-                    <Route path="/post/:id" component={AsyncPost} exact />
-
-                    {/* authentication */}
-                    <Route path="/auth/:section" component={AsyncLogin} exact />
-
-                    {/* Backend */}
-                    {/* <Route path="*" component={Err404} exact/> */}
-                    <PrivateRoute
-                        path="/admin/:path"
-                        component={AsyncAdmin}
-                        exact
-                    />
-                    <PrivateRoute
-                        path="/admin/edit-post/:id"
-                        component={AsyncEditPost}
-                        exact
-                    />
-
-                    <Route component={Err404} />
-                </Switch>
-            );
-        } else {
-            return <h5>Oops something went wrong</h5>;
-        }
+        return this.state.render ? (
+            <SwitchRoutes />
+        ) : (
+            <h5>Oops something went wrong</h5>
+        );
     }
 }
+
+const ConnectApp = withRouter(connect(null, mapDispatchToProps)(App));
+
+const Main = () => (
+    <Provider store={store}>
+        <Router history={history}>
+            <ConnectApp />
+        </Router>
+    </Provider>
+);
 
 App.propTypes = {
     fetch_data: type.func.isRequired,
     fetch_user: type.func.isRequired
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(App));
+export default Main;

@@ -12,6 +12,9 @@ module.exports = merge(common, {
     mode: 'production',
     devtool: 'cheap-module-source-map',
     cache: false,
+    performance: {
+        hints: false
+    },
     plugins: [
         new UglifyJSPlugin({
             sourceMap: true,

@@ -7,7 +7,7 @@
     "*.css"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config webpack.dev.js --host 192.168.43.200",
+    "start": "webpack-dev-server --config webpack.prod.js --host 192.168.43.200",
     "build": "webpack --config webpack.prod.js",
     "format": "prettier-eslint  --write  \"*/**/*.css\" && prettier-eslint  --write  \"*/**/*.js\" && eslint \"src/**/*.js\"",
     "precommit": "lint-staged"
