@@ -1,0 +1,52 @@
+/**
+ * ./src/style/home.css
+ */
+
+/***************** Body *******************/
+
+.body .card-title {
+    color: hsl(0, 0%, 13%);
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.body .card-content {
+    color: hsl(0, 0%, 29%);
+    font-weight: 500;
+    font-size: 17px;
+    max-height: 90% !important;
+}
+
+.body .card-action {
+    background: hsl(0, 0%, 97%);
+    border-bottom: 4px solid #404040;
+}
+
+.body .card .card-action .author {
+    display: flex;
+}
+
+.body .card .card-action .author .author-image {
+    max-width: 20%;
+    margin-right: 2px;
+}
+
+.body .card .card-action .author .author-image img {
+    width: 40px;
+}
+
+.body .card .card-action .author .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.body .card .card-action .author .info .name {
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.body .card .card-action .author .info .date {
+    font-weight: 500;
+    color: #404040;
+}
