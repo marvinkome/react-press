@@ -61,7 +61,7 @@ export const strip_filename = name => {
 };
 
 export const upload_file = file => {
-    const url = 'http://0.0.0.0:5000/';
+    const url = 'https://reactpress-api.herokuapp.com/';
     const formData = new FormData();
     formData.append('file', file);
 
