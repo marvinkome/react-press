@@ -100,7 +100,9 @@ class Body extends Component {
                         res.msg == 'file uploaded' &&
                         this.setState({
                             pic_url:
-                                'https://reactpress-api.herokuapp.com' + res.url
+                                process.env.NODE_ENV == 'production'
+                                    ? 'https://reactpress-api.herokuapp.com'
+                                    : 'http://0.0.0.0:5000' + res.url
                         })
                 )
                 .then(() => {

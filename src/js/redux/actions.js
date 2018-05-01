@@ -6,9 +6,14 @@ import * as constants from './constants';
 import * as query from './queries';
 import * as mutations from './mutations';
 
+const url =
+    process.env.NODE_ENV == 'production'
+        ? 'https://reactpress-api.herokuapp.com'
+        : 'http://0.0.0.0:5000';
+
 // Refresh token for protected query and mutations
 const refresh_token = token => {
-    return fetch('https://reactpress-api.herokuapp.com/refresh', {
+    return fetch(url + '/refresh', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -16,9 +21,6 @@ const refresh_token = token => {
         }
     });
 };
-
-const key = JSON.parse(localStorage.getItem('med-blog-ref'));
-
 /**
  * Redux sync actions for reducers
  */
@@ -136,7 +138,7 @@ export const fetch_all_data = () => {
             }
         };
 
-        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
+        return fetch(url + '/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveArticles(res)));
     };
@@ -152,7 +154,7 @@ export const fetch_more_data = cursor => {
             }
         };
 
-        return fetch('https://reactpress-api.herokuapp.com/graphql', headers)
+        return fetch(url + '/graphql', headers)
             .then(resp => resp.json())
             .then(res => dispatch(recieveMoreArticles(res)));
     };
@@ -171,14 +173,13 @@ export const fetch_user_data = () => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(recieveUserData(res)));
     };
@@ -197,7 +198,7 @@ export const login_user = data => {
             }
         };
 
-        return fetch('https://reactpress-api.herokuapp.com/login', headers)
+        return fetch(url + '/login', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
     };
@@ -215,7 +216,7 @@ export const register_user = data => {
             }
         };
 
-        return fetch('https://reactpress-api.herokuapp.com/register', headers)
+        return fetch(url + '/register', headers)
             .then(res => res.json())
             .then(res => dispatch(loginUser(res)));
     };
@@ -237,14 +238,13 @@ export const create_tags = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestCreateTagsFinished(res, data)));
     };
@@ -268,14 +268,13 @@ export const create_posts = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestCreatePostsFinished(res)));
     };
@@ -294,14 +293,13 @@ export const edit_post = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestEditPostFinished(res, data)));
     };
@@ -320,14 +318,13 @@ export const delete_post = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(() => dispatch(requestDeletePostFinished(data)));
     };
@@ -351,14 +348,13 @@ export const update_profile_pic = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
@@ -377,14 +373,13 @@ export const update_user_info = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
@@ -403,14 +398,13 @@ export const add_comment = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestCommentFinished(res, data)));
     };
@@ -431,14 +425,13 @@ export const reply_comment = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestCommentReplyFinished(res, data)));
     };
@@ -457,14 +450,13 @@ export const clap = data => {
             }
         });
 
-        return refresh_token(key)
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then(res => res.json())
             .then(res => {
                 const access_token = res.access_token;
-                return fetch(
-                    'https://reactpress-api.herokuapp.com/graphql',
-                    headers(access_token)
-                ).then(res => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then(
+                    res => res.json()
+                );
             })
             .then(res => dispatch(requestClapFinished(res, data)));
     };

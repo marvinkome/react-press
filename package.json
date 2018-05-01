@@ -7,8 +7,8 @@
     "*.css"
   ],
   "scripts": {
-    "start": "webpack-dev-server --config webpack.prod.js",
-    "start-server": "babel-node server.js",
+    "start": "webpack-dev-server --config webpack.dev.js",
+    "start-server": "node server.js",
     "build": "webpack --config webpack.prod.js",
     "postinstall": "yarn build",
     "format": "prettier-eslint  --write  \"*/**/*.css\" && prettier-eslint  --write  \"*/**/*.js\" && eslint \"src/**/*.js\"",

@@ -429,7 +429,7 @@ const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
 const loginUser = (state, res) => {
     const isLoggingIn = false;
 
-    if (res.login == true) {
+    if (res.login != undefined && res.login == true) {
         saveToStore(true, 'med-blog-logged-in');
         const refresh_token = res.refresh_token;
         saveToStore(refresh_token, 'med-blog-ref');
