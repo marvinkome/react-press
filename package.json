@@ -10,14 +10,8 @@
     "start": "webpack-dev-server --config webpack.dev.js",
     "start-server": "node server.js --require dotenv/config",
     "build": "webpack --config webpack.prod.js",
-    "format": "prettier-eslint  --write  \"*/**/*.css\" && prettier-eslint  --write  \"*/**/*.js\" && eslint \"src/**/*.js\"",
-    "precommit": "lint-staged"
-  },
-  "lint-staged": {
-    "*js": [
-      "yarn format",
-      "git add"
-    ]
+    "postinstall": "yarn build",
+    "format": "prettier-eslint  --write  \"*/**/*.css\" && prettier-eslint  --write  \"*/**/*.js\" && eslint \"src/**/*.js\""
   },
   "dependencies": {
     "dotenv": "^5.0.1",
