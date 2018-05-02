@@ -3,15 +3,18 @@
  */
 
 /***************** Body *******************/
+.body {
+    padding-top: 5rem;
+}
 
 .body .card-title {
     color: hsl(0, 0%, 13%);
     font-weight: 600;
-    font-size: 20px;
+    font-size: 21.516px;
 }
 
 .body .card-content {
-    color: hsl(0, 0%, 29%);
+    color: hsl(0, 0%, 34%);
     font-weight: 500;
     font-size: 17px;
     max-height: 90% !important;
@@ -43,10 +46,12 @@
 
 .body .card .card-action .author .info .name {
     font-weight: 700;
+    font-size: 15.11px;
     text-transform: capitalize;
 }
 
 .body .card .card-action .author .info .date {
     font-weight: 500;
+    font-size: 13.432px;
     color: #404040;
 }
