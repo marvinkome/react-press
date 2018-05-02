@@ -91,8 +91,7 @@ class SideNav extends Component {
                         >
                             <li>
                                 <a className="collapsible-header">
-                                    <span>Posts</span>
-                                    <i className="fa fa-angle-down" />
+                                    Posts
                                 </a>
                                 <div className="collapsible-body">
                                     <ul>
