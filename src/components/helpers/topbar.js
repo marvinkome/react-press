@@ -62,10 +62,7 @@ class TopBar extends Component {
                                         to="/admin/dashboard"
                                         title="Go to dashboard"
                                     >
-                                        <span>
-                                            Logged in as:{' '}
-                                            {this.props.user_data.user.fullName}
-                                        </span>
+                                        <span>Dashboard</span>
                                     </Link>
                                 </li>
                                 <li>
@@ -134,10 +131,7 @@ class TopBar extends Component {
                                         className="email white-text"
                                         title="Go to dashboard"
                                     >
-                                        <span>
-                                            Logged in as:{' '}
-                                            {this.props.user_data.user.fullName}
-                                        </span>
+                                        <span>Dashboard</span>
                                     </Link>
                                 </div>
                             </li>

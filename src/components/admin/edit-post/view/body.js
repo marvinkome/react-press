@@ -6,10 +6,10 @@ import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import PostEditor from './editor';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
 import { connect } from 'react-redux';
 import { PostID } from '../../edit-post';
 import { edit_post, create_tags } from '../../../../js/redux/actions';
-import { upload_file } from '../../../../js/helpers';
 import history from '../../../../js/history';
 
 const mapStateToProps = state => ({
@@ -114,15 +114,49 @@ class Body extends Component {
         );
     };
     onUploadClick = () => {
-        upload_file(this.state.file).then(
-            res =>
-                res.msg == 'file uploaded' &&
+        const ref = firebase
+            .storage()
+            .ref()
+            .child('images/' + this.state.file.name);
+        const task = ref.put(this.state.file);
+        task.on(
+            firebase.storage.TaskEvent.STATE_CHANGED,
+            () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Uploading... </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            },
+            () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Can{'\''}t upload image </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            },
+            () => {
                 this.setState({
-                    post_pic_url:
-                        process.env.NODE_ENV == 'production'
-                            ? 'https://reactpress-api.herokuapp.com'
-                            : 'http://0.0.0.0:5000' + res.url
-                })
+                    post_pic_url: task.snapshot.downloadURL
+                });
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Uploaded </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            }
         );
     };
     onPublishClick = e => {
@@ -166,6 +200,16 @@ class Body extends Component {
                 ...post_data,
                 postId: data.node.uuid
             };
+
+            const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                <div>
+                    <span>Saving... </span>
+                </div>
+            );
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 4000
+            });
 
             this.props
                 .edit_post(post_data)
@@ -249,7 +293,10 @@ class Body extends Component {
                                             src={
                                                 this.state.post_pic_url != ''
                                                     ? this.state.post_pic_url
-                                                    : data.post_pic_url
+                                                    : data.post_pic_url !=
+                                                      undefined
+                                                        ? data.post_pic_url
+                                                        : ''
                                             }
                                         />
                                     )}

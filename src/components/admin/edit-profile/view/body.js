@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
 import { connect } from 'react-redux';
 import {
     fetch_all_data,
@@ -12,7 +13,7 @@ import {
     update_profile_pic,
     update_user_info
 } from '../../../../js/redux/actions';
-import { upload_file, gcd } from '../../../../js/helpers';
+import { gcd } from '../../../../js/helpers';
 
 const mapStateToProps = state => ({
     data: state.user_data
@@ -67,84 +68,111 @@ class Body extends Component {
     };
     handleFileChange = e => {
         e.preventDefault();
-        this.setState({
-            file: e.target.files[0]
-        });
 
-        const objectURL = window.URL.createObjectURL(e.target.files[0]);
-        const img = new Image();
-
-        img.onload = () => {
-            const gcd_res = gcd(img.width, img.height);
-            const ratio =
-                String(img.width / gcd_res) +
-                ':' +
-                String(img.height / gcd_res);
+        if (e.target.files.length > 0) {
             this.setState({
-                image_ratio: ratio
+                file: e.target.files[0]
             });
-        };
-        img.src = objectURL;
+
+            const objectURL = window.URL.createObjectURL(e.target.files[0]);
+            const img = new Image();
+
+            img.onload = () => {
+                const gcd_res = gcd(img.width, img.height);
+                const ratio =
+                    String(img.width / gcd_res) +
+                    ':' +
+                    String(img.height / gcd_res);
+                this.setState({
+                    image_ratio: ratio
+                });
+            };
+            img.src = objectURL;
+        }
     };
     onUploadClick = e => {
         e.preventDefault();
 
-        if (this.props.data.data != undefined) {
+        if (this.props.data.data != undefined && navigator.onLine) {
             if (this.state.file == '') {
                 return alert('Please choose a file');
             }
 
-            upload_file(this.state.file)
-                .then(
-                    res =>
-                        res.msg == 'file uploaded' &&
-                        this.setState({
-                            pic_url:
-                                process.env.NODE_ENV == 'production'
-                                    ? 'https://reactpress-api.herokuapp.com'
-                                    : 'http://0.0.0.0:5000' + res.url
-                        })
-                )
-                .then(() => {
+            const ref = firebase
+                .storage()
+                .ref()
+                .child('images/' + this.state.file.name);
+            const task = ref.put(this.state.file);
+            task.on(
+                firebase.storage.TaskEvent.STATE_CHANGED,
+                () => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div>
+                            <span>File is uploading please wait </span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                },
+                () => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div>
+                            <span>Can{'\''}t upload image </span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                },
+                () => {
+                    this.setState({
+                        pic_url: task.snapshot.downloadURL
+                    });
+
                     if (
                         this.state.pic_url ==
                         this.props.data.data.user.gravatarUrl
                     ) {
                         return alert('Please choose a different file');
                     }
+
                     const user_data = this.props.data.data.user;
                     const data = {
                         pic_url: this.state.pic_url,
                         user_id: user_data.uuid
                     };
-                    return this.props.update_profile_pic(data);
-                })
-                .then(() => this.props.fetch_user_data())
-                .then(() => this.props.fetch_data())
-                .then(
-                    () => {
-                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                            <div ref={this.toast}>
-                                <span>Changes saved</span>
-                            </div>
-                        );
-                        window.M.toast({
-                            html: toastHTML,
-                            displayLength: 4000
+                    this.props
+                        .update_profile_pic(data)
+                        .then(() => this.props.fetch_user_data())
+                        .then(() => this.props.fetch_data())
+                        .then(() => {
+                            const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                                <div ref={this.toast}>
+                                    <span>Changes saved</span>
+                                </div>
+                            );
+                            window.M.toast({
+                                html: toastHTML,
+                                displayLength: 4000
+                            });
                         });
-                    },
-                    () => {
-                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                            <div>
-                                <span>Can{'\''}t upload image </span>
-                            </div>
-                        );
-                        window.M.toast({
-                            html: toastHTML,
-                            displayLength: 4000
-                        });
-                    }
-                );
+                }
+            );
+        } else {
+            const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                <div>
+                    <span>
+                        Can{'\''}t upload image, make sure you{'\''}re online
+                    </span>
+                </div>
+            );
+            window.M.toast({
+                html: toastHTML,
+                displayLength: 4000
+            });
         }
     };
     onSaveClick = e => {

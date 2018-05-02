@@ -8,9 +8,8 @@
   ],
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
-    "start-server": "node server.js",
+    "start-server": "node server.js --require dotenv/config",
     "build": "webpack --config webpack.prod.js",
-    "postinstall": "yarn build",
     "format": "prettier-eslint  --write  \"*/**/*.css\" && prettier-eslint  --write  \"*/**/*.js\" && eslint \"src/**/*.js\"",
     "precommit": "lint-staged"
   },
@@ -21,9 +20,11 @@
     ]
   },
   "dependencies": {
+    "dotenv": "^5.0.1",
     "draft-js": "^0.10.5",
     "draftjs-to-html": "^0.8.3",
     "express": "^4.16.3",
+    "firebase": "^4.13.1",
     "font-awesome": "^4.7.0",
     "materialize-css": "1.0.0-beta",
     "moment": "^2.22.0",
