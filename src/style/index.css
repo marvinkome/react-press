@@ -34,6 +34,10 @@ body {
         padding: 3.3% 4% !important;
     }
 
+    .preloader-cont.app-loader {
+        margin-left: 28%;
+    }
+
     .preloader-wrapper.small {
         width: 30px;
         height: 30px;
