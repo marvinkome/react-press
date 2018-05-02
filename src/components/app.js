@@ -101,7 +101,22 @@ class App extends Component {
         const localLogin = sessionLogin != undefined && sessionLogin == true;
 
         if (localLogin) {
-            this.props.fetch_user();
+            this.props.fetch_user().then(res => {
+                if (res.payload.msg == 'Not enough segments') {
+                    const toastHTML = `
+                            <div>
+                                <span>Session expired please login</span>
+                            </div>
+                        `;
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                    localStorage.setItem('med-blog-logged-in', false);
+                    localStorage.removeItem('med-blog-ref');
+                    history.push('/auth/login');
+                }
+            });
         }
 
         this.props.fetch_data().then(null, () =>

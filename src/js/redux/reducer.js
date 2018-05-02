@@ -503,13 +503,24 @@ const rootReducer = (state = initialState, action) => {
         return recieveUserData(state, action.payload);
 
     case constants.REQUEST_TAG_FINISHED:
-        return requestTagsFinished(state, action.tag, action.post_id);
+        return requestTagsFinished(
+            state,
+            action.tag.data.createTag.post,
+            action.post_id
+        );
 
     case constants.REQUEST_POST_FINISHED:
-        return requestPostsFinished(state, action.post);
+        return requestPostsFinished(
+            state,
+            action.post.data.createPost.post
+        );
 
     case constants.REQUEST_EDIT_POST_FINISHED:
-        return requestEditPostFinished(state, action.post, action.post_id);
+        return requestEditPostFinished(
+            state,
+            action.post.data.updatePost.post,
+            action.post_id
+        );
 
     case constants.REQUEST_DELETE_POST_FINISHED:
         return requestDeletePostFinished(state, action.post_id);
@@ -520,7 +531,7 @@ const rootReducer = (state = initialState, action) => {
     case constants.REQUEST_COMMENT_FINISHED:
         return requestCommentFinished(
             state,
-            action.post,
+            action.post.data.createComment.post,
             action.comment,
             action.data
         );
@@ -528,13 +539,17 @@ const rootReducer = (state = initialState, action) => {
     case constants.REQUEST_COMMENT_REPLY_FINISHED:
         return requestCommentReplyFinished(
             state,
-            action.post,
+            action.post.data.createCommentReply.post,
             action.commentReply,
             action.data
         );
 
     case constants.REQUEST_CLAP_FINISHED:
-        return requestClapFinished(state, action.post, action.data);
+        return requestClapFinished(
+            state,
+            action.post.data.createClap.post,
+            action.data
+        );
 
     default:
         return state;

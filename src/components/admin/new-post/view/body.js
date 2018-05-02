@@ -6,10 +6,10 @@ import React, { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 
 import PostEditor from './editor';
 import { create_posts, create_tags } from '../../../../js/redux/actions';
-import { upload_file } from '../../../../js/helpers';
 import history from '../../../../js/history';
 
 const mapDispatchToProp = dispatch => ({
@@ -65,152 +65,139 @@ class Body extends Component {
     };
     handleFileChange = e => {
         e.preventDefault();
-        this.setState({
-            file: e.target.files[0]
-        });
+        this.setState(
+            {
+                file: e.target.files[0]
+            },
+            () => this.onUploadClick(e)
+        );
+    };
+    onUploadClick = () => {
+        const ref = firebase
+            .storage()
+            .ref()
+            .child('images/' + this.state.file.name);
+        const task = ref.put(this.state.file);
+        task.on(
+            firebase.storage.TaskEvent.STATE_CHANGED,
+            () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Uploading... </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            },
+            () => {
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Can{'\''}t upload image </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            },
+            () => {
+                this.setState({
+                    post_pic_url: task.snapshot.downloadURL
+                });
+                const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                    <div>
+                        <span>Uploaded </span>
+                    </div>
+                );
+                window.M.toast({
+                    html: toastHTML,
+                    displayLength: 4000
+                });
+            }
+        );
     };
     onPublish = e => {
         e.preventDefault();
-        const { post_pic_url, title, body } = this.state;
+        const { title, body } = this.state;
 
         if (title == '') {
             return alert('Title is required before you publish');
         }
 
-        if (this.state.file != '') {
-            upload_file(this.state.file)
-                .then(
-                    res =>
-                        res.msg == 'file uploaded' &&
-                        this.setState({
-                            post_pic_url:
-                                process.env.NODE_ENV == 'production'
-                                    ? 'https://reactpress-api.herokuapp.com'
-                                    : 'http://0.0.0.0:5000' + res.url
-                        })
-                )
-                .then(
-                    this.props
-                        .create_post({
-                            title,
-                            body,
-                            postPicUrl: post_pic_url
-                        })
-                        .then(res => {
-                            this.state.tags.map(tag_name =>
-                                this.props.create_tag({
-                                    tag_name,
-                                    post_id: res.post.uuid
-                                })
-                            );
+        const toastHTML = ReactDOMServer.renderToStaticMarkup(
+            <div ref={this.toast}>
+                <span>Creating....</span>
+            </div>
+        );
+        window.M.toast({
+            html: toastHTML,
+            displayLength: 4000
+        });
 
-                            this.setState({
-                                post_id: res.post.id
-                            });
-                        })
-                        .then(
-                            () => {
-                                const tags = this.state.tags;
-                                if (this.chip_instance != undefined) {
-                                    tags.map((item, index) =>
-                                        this.chip_instance.deleteChip(index)
-                                    );
-                                }
+        const data = {
+            title,
+            body,
+            postPicUrl: this.state.post_pic_url
+        };
 
-                                this.setState({
-                                    reset: true,
-                                    title: '',
-                                    body: '',
-                                    post_pic_url: '',
-                                    file: '',
-                                    tags: []
-                                });
-
-                                const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                                    <div ref={this.toast}>
-                                        <span>Post has been created</span>
-                                    </div>
-                                );
-                                window.M.toast({
-                                    html: toastHTML,
-                                    displayLength: 4000
-                                });
-                                history.push('/admin/posts');
-                            },
-                            () => {
-                                const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                                    <div ref={this.toast}>
-                                        <span>Post creation failed</span>
-                                    </div>
-                                );
-                                window.M.toast({
-                                    html: toastHTML,
-                                    displayLength: 4000
-                                });
-                            }
-                        )
+        this.props
+            .create_post(data)
+            .then(res => {
+                this.state.tags.map(tag_name =>
+                    this.props.create_tag({
+                        tag_name,
+                        post_id: res.post.uuid
+                    })
                 );
-        } else {
-            this.props
-                .create_post({
-                    title,
-                    body,
-                    postPicUrl: post_pic_url
-                })
-                .then(res => {
-                    this.state.tags.map(tag_name =>
-                        this.props.create_tag({
-                            tag_name,
-                            post_id: res.post.uuid
-                        })
-                    );
+
+                this.setState({
+                    post_id: res.post.id
+                });
+            })
+            .then(
+                () => {
+                    const tags = this.state.tags;
+                    if (this.chip_instance != undefined) {
+                        tags.map((item, index) =>
+                            this.chip_instance.deleteChip(index)
+                        );
+                    }
 
                     this.setState({
-                        post_id: res.post.id
+                        reset: true,
+                        title: '',
+                        body: '',
+                        post_pic_url: '',
+                        file: '',
+                        tags: []
                     });
-                })
-                .then(
-                    () => {
-                        const tags = this.state.tags;
-                        if (this.chip_instance != undefined) {
-                            tags.map((item, index) =>
-                                this.chip_instance.deleteChip(index)
-                            );
-                        }
 
-                        this.setState({
-                            reset: true,
-                            title: '',
-                            body: '',
-                            post_pic_url: '',
-                            file: '',
-                            tags: []
-                        });
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div ref={this.toast}>
+                            <span>Post has been created</span>
+                        </div>
+                    );
 
-                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                            <div ref={this.toast}>
-                                <span>Post has been created</span>
-                            </div>
-                        );
-                        window.M.toast({
-                            html: toastHTML,
-                            displayLength: 4000
-                        });
-                        history.push('/admin/posts');
-                    },
-                    () => {
-                        const toastHTML = ReactDOMServer.renderToStaticMarkup(
-                            <div ref={this.toast}>
-                                <span>Post creation failed</span>
-                            </div>
-                        );
-                        window.M.toast({
-                            html: toastHTML,
-                            displayLength: 4000
-                        });
-                    }
-                );
-        }
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                    history.push('/admin/posts');
+                },
+                () => {
+                    const toastHTML = ReactDOMServer.renderToStaticMarkup(
+                        <div ref={this.toast}>
+                            <span>Error creating post</span>
+                        </div>
+                    );
+                    window.M.toast({
+                        html: toastHTML,
+                        displayLength: 4000
+                    });
+                }
+            );
     };
     render() {
         return (

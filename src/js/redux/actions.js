@@ -46,17 +46,17 @@ export const sendClap = () => ({
 export const requestCreateTagsFinished = (tag, data) => ({
     type: constants.REQUEST_TAG_FINISHED,
     post_id: data.post_id,
-    tag: tag.data.createTag.post
+    tag: tag
 });
 
 export const requestCreatePostsFinished = post => ({
     type: constants.REQUEST_POST_FINISHED,
-    post: post.data.createPost.post
+    post: post
 });
 
 export const requestEditPostFinished = (post, data) => ({
     type: constants.REQUEST_EDIT_POST_FINISHED,
-    post: post.data.updatePost.post,
+    post: post,
     post_id: data.postId
 });
 
@@ -72,21 +72,21 @@ export const requestUpdateUserFinished = () => ({
 // After request sync actions for post
 export const requestCommentFinished = (res, data) => ({
     type: constants.REQUEST_COMMENT_FINISHED,
-    post: res.data.createComment.post,
+    post: res,
     comment: res.data.createComment.comment,
     data
 });
 
 export const requestCommentReplyFinished = (res, data) => ({
     type: constants.REQUEST_COMMENT_REPLY_FINISHED,
-    post: res.data.createCommentReply.post,
+    post: res,
     commentReply: res.data.createCommentReply.commentReply,
     data
 });
 
 export const requestClapFinished = (res, data) => ({
     type: constants.REQUEST_CLAP_FINISHED,
-    post: res.data.createClap.post,
+    post: res,
     data
 });
 
