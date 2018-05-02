@@ -40,20 +40,12 @@ class TopBar extends Component {
                             data-target="mobile-topbar"
                             className="sidenav-trigger"
                         >
-                            <i className="fa fa-bars" />
+                            <i className="material-icons">menu</i>
                         </a>
                         <div className="blog-info">
                             <Link to="/" className="brand-logo">
                                 <span className="blog-title">ReactPress</span>
                             </Link>
-                            <div className="social">
-                                <a title="Twitter">
-                                    <i className="fa fa-twitter" />
-                                </a>
-                                <a title="Facebook">
-                                    <i className="fa fa-facebook" />
-                                </a>
-                            </div>
                         </div>
                         {this.props.user_data != undefined ? (
                             <ul className="right hide-on-small-only">

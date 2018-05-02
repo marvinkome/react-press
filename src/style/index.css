@@ -16,6 +16,11 @@ body {
     border-color: hsl(0, 0%, 30%);
 }
 
+.material-icons {
+    vertical-align: top;
+    display: inline-flex;
+    font-style: 23px;
+}
 @media screen and (min-width: 993px) {
     .preloader-wrapper.small {
         width: 50px;

@@ -36,7 +36,7 @@ class Body extends Component {
                         <div className="row">
                             <div className="col s12 ">
                                 <p>
-                                    <i className="fa fa-newspaper-o" />
+                                    <i className="material-icons">fiber_new</i>
                                     <Link
                                         to="/admin/new-post"
                                         title="Create a post"
@@ -46,7 +46,7 @@ class Body extends Component {
                                     </Link>
                                 </p>
                                 <p>
-                                    <i className="fa fa-commenting-o" />
+                                    <i className="material-icons">account_circle</i>
                                     <Link
                                         to="/admin/edit-profile"
                                         title="Edit profile"
@@ -55,7 +55,7 @@ class Body extends Component {
                                     </Link>
                                 </p>
                                 <p>
-                                    <i className="fa fa-eye" />
+                                    <i className="material-icons">open_in_new</i>
                                     <Link to="/" title="View blog">
                                         View site
                                     </Link>
@@ -72,19 +72,19 @@ class Body extends Component {
                         <div className="row">
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="fa fa-newspaper-o" />
+                                    <i className="material-icons">fiber_new</i>
                                     {post_count} blog posts
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="fa fa-commenting-o" />
+                                    <i className="material-icons">comment</i>
                                     {comment_count} comments
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="fa fa-reply" />
+                                    <i className="material-icons">reply</i>
                                     {comment_replies} comment replies
                                 </p>
                             </div>

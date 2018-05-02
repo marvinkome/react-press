@@ -10,7 +10,6 @@ import 'materialize-css/dist/css/materialize.min.css';
 import firebase from 'firebase';
 import './src/style/index.css';
 
-import('font-awesome/css/font-awesome.min.css');
 import('materialize-css/dist/js/materialize.js');
 
 const config = {

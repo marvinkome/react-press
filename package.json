@@ -19,7 +19,6 @@
     "draftjs-to-html": "^0.8.3",
     "express": "^4.16.3",
     "firebase": "^4.13.1",
-    "font-awesome": "^4.7.0",
     "materialize-css": "1.0.0-beta",
     "moment": "^2.22.0",
     "prop-types": "^15.6.1",
