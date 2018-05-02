@@ -27,6 +27,7 @@ class SideNav extends Component {
     componentWillUnmount() {
         const sidenav = this.sideNav.current;
         const instance = window.M.Sidenav.getInstance(sidenav);
+        instance.close();
         instance.destroy();
     }
     onClickRoute = () => {
@@ -57,7 +58,7 @@ class SideNav extends Component {
                             data-target="mobile-demo"
                             className="sidenav-trigger"
                         >
-                            <i className="fa fa-bars" />
+                            <i className="material-icons">menu</i>
                         </a>
                     </div>
                 </nav>

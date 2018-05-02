@@ -14,7 +14,7 @@ const Preloader = () => (
 export const AppLoading = ({ error, pastDelay, timedOut }) => (
     <div className="section container">
         <div className="row">
-            <div className="col m12 center-align preloader-cont circle">
+            <div className="col m12 center-align preloader-cont app-loader circle">
                 {error ? (
                     <div className="error">
                         <i className="fa fa-times-circle-o fa-4x red-text" />
