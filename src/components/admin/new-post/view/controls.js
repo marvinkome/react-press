@@ -14,28 +14,28 @@ class StyleButton extends Component {
         this.props.onToggle(e, this.props.style, this.props.type);
     };
     render() {
-        let className = 'fa fa-' + this.props.label;
+        let className = 'material-icons medium';
         if (this.props.active) {
             className += ' active';
         }
         return (
             <button className="btn-flat" onClick={this.onToggle}>
-                <i className={className} />
+                <i title={this.props.style} className={className}>{this.props.label}</i>
             </button>
         );
     }
 }
 
 const BLOCK_TYPES = [
-    { label: 'header', style: 'header-five' },
-    { label: 'quote-left', style: 'blockquote' },
-    { label: 'list-ul', style: 'ordered-list-item' }
+    { label: 'format_size', style: 'header-five' },
+    { label: 'format_quote', style: 'blockquote' },
+    { label: 'format_list_bulleted', style: 'ordered-list-item' }
 ];
 
 const INLINE_STYLES = [
-    { label: 'bold', style: 'BOLD' },
-    { label: 'italic', style: 'ITALIC' },
-    { label: 'underline', style: 'UNDERLINE' }
+    { label: 'format_bold', style: 'BOLD' },
+    { label: 'format_italic', style: 'ITALIC' },
+    { label: 'format_underline', style: 'UNDERLINE' }
 ];
 
 export const Controls = props => {

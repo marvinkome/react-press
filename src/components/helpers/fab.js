@@ -31,7 +31,7 @@ class FAB extends Component {
                     onClick={this.props.handleClap}
                     className="pulse btn-floating btn-large"
                 >
-                    <i className="fa fa-thumbs-up" />
+                    <i className="material-icons">thumb_up</i>
                 </a>
                 <ul>
                     <li>
