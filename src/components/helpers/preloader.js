@@ -50,7 +50,7 @@ export const AppLoading = ({ error, pastDelay, timedOut }) => (
 );
 
 AppLoading.propTypes = {
-    error: t.bool,
+    error: t.object,
     timedOut: t.bool,
     pastDelay: t.bool
 };
