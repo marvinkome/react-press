@@ -13,7 +13,7 @@
 .auth .signup-section {
     padding-top: 0;
     margin: 20px 0;
-    background-color:  #fff;
+    background-color: #fff;
 }
 
 .auth .section .login-form {
@@ -27,7 +27,7 @@
     background-color: #1679ca;
     color: #fff;
 }
-.auth .section .heading h5{
+.auth .section .heading h5 {
     font-weight: 500;
     font-size: 21.5116px;
     color: #fff;
@@ -42,11 +42,11 @@
     color: #fff;
 }
 
-.auth form .btn .progress{
+.auth form .btn .progress {
     background-color: transparent;
 }
 
-.auth form .btn .progress .indeterminate{
+.auth form .btn .progress .indeterminate {
     background-color: #00437a;
 }
 

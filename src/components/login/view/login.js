@@ -90,8 +90,8 @@ class Login extends Component {
                 <div className="heading">
                     <h5>Welcome Back</h5>
                     <p>
-                        Sign in to comment on 
-                        publications, appreciate stories you love, and more.
+                        Sign in to comment on publications, appreciate stories
+                        you love, and more.
                     </p>
                 </div>
 
@@ -114,10 +114,7 @@ class Login extends Component {
                             />
                         </div>
                         <div className="input-field col s12">
-                            <button
-                                type="submit"
-                                className="btn"
-                            >
+                            <button type="submit" className="btn">
                                 {!this.props.isLoggingIn ? (
                                     'Submit'
                                 ) : (

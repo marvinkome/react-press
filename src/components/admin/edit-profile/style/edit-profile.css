@@ -34,7 +34,7 @@
 .edit-profile .edit-picture .file-uploader .input-field .submit-btn {
     text-align: center;
 }
-.edit-profile .edit-picture .file-uploader .input-field .submit-btn .btn-flat{
+.edit-profile .edit-picture .file-uploader .input-field .submit-btn .btn-flat {
     color: #fff;
     background-color: #1679ca;
 }
@@ -42,7 +42,7 @@
     padding: 15px 20px;
     border-top: 4px solid #0e66af;
 }
-.edit-profile .edit-text .btn-flat{
+.edit-profile .edit-text .btn-flat {
     color: #fff;
 }
 

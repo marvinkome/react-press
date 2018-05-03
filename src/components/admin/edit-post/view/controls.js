@@ -20,7 +20,9 @@ class StyleButton extends Component {
         }
         return (
             <button className="btn-flat" onClick={this.onToggle}>
-                <i title={this.props.style} className={className}>{this.props.label}</i>
+                <i title={this.props.style} className={className}>
+                    {this.props.label}
+                </i>
             </button>
         );
     }

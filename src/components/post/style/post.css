@@ -50,7 +50,7 @@
     color: #000000b5;
     font-weight: 400;
     font-size: 17px;
-    word-spacing: .5px;
+    word-spacing: 0.5px;
 }
 
 .post-body .post .post-footer {
@@ -190,7 +190,7 @@
     }
 }
 
-@media screen and (max-width: 601px) and (min-width: 540px){
+@media screen and (max-width: 601px) and (min-width: 540px) {
     .post-body .post-content .post-title {
         padding-top: 5rem !important;
     }

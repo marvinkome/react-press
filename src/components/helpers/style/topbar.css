@@ -140,12 +140,12 @@
     }
     .navbar-wrapper .topbar .sidenav-trigger {
         margin-top: 6px;
-        color:#000 !important;
+        color: #000 !important;
     }
     .navbar-wrapper .topbar .sidenav-trigger i {
         line-height: 45px;
     }
-    .navbar-wrapper  ul.sidenav li a {
+    .navbar-wrapper ul.sidenav li a {
         color: #000000bf;
     }
     .navbar-wrapper ul.sidenav .user-view {

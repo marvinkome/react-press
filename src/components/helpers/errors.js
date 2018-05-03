@@ -14,10 +14,7 @@ export const Err404 = ({ history }) => {
             <Topbar />
             <div className="container">
                 <div className="center-align">
-                    <img
-                        className="responsive-img"
-                        src={img}
-                    />
+                    <img className="responsive-img" src={img} />
                 </div>
                 <h5 className="center">
                     I suggest you{' '}

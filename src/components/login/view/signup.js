@@ -101,8 +101,8 @@ class SignUp extends Component {
                 <div className="heading">
                     <h5>Join ReactPress</h5>
                     <p>
-                        Create an account to comment on 
-                        publications, appreciate stories you love, and more.
+                        Create an account to comment on publications, appreciate
+                        stories you love, and more.
                     </p>
                     <p>
                         * Password must contain atleast one uppercase letter or

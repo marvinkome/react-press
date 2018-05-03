@@ -22,7 +22,7 @@ class TopBar extends Component {
     }
     componentDidMount() {
         const sidenav = this.sidenav.current;
-        if(window.M){
+        if (window.M) {
             this.sidenavIns = window.M.Sidenav.init(sidenav);
         }
     }
@@ -48,7 +48,9 @@ class TopBar extends Component {
                             </a>
                             <div className="blog-info">
                                 <Link to="/" className="brand-logo">
-                                    <span className="blog-title">ReactPress</span>
+                                    <span className="blog-title">
+                                        ReactPress
+                                    </span>
                                 </Link>
                             </div>
                             {this.props.user_data != undefined ? (
@@ -88,7 +90,10 @@ class TopBar extends Component {
                             ) : (
                                 <ul className="right hide-on-small-only">
                                     <li>
-                                        <Link to="/auth/login" className="sign-in">
+                                        <Link
+                                            to="/auth/login"
+                                            className="sign-in"
+                                        >
                                             Sign in
                                         </Link>
                                     </li>
@@ -106,7 +111,11 @@ class TopBar extends Component {
                     </nav>
                 </div>
 
-                <ul ref={this.sidenav} className="sidenav hide-on-med-and-up" id="mobile-topbar">
+                <ul
+                    ref={this.sidenav}
+                    className="sidenav hide-on-med-and-up"
+                    id="mobile-topbar"
+                >
                     {this.props.user_data != undefined ? (
                         <div>
                             <li>
@@ -123,7 +132,10 @@ class TopBar extends Component {
                                             />
                                         </a>
                                     )}
-                                    <span className="email">Hello, {this.props.user_data.user.fullName}</span>
+                                    <span className="email">
+                                        Hello,{' '}
+                                        {this.props.user_data.user.fullName}
+                                    </span>
                                 </div>
                             </li>
                             <li>
