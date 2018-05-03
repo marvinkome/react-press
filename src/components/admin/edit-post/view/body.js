@@ -335,7 +335,7 @@ class Body extends Component {
                             <div className="card-action center">
                                 <button
                                     onClick={this.onPublishClick}
-                                    className="btn black"
+                                    className="btn publish"
                                 >
                                     Publish
                                 </button>

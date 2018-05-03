@@ -6,6 +6,7 @@ import React from 'react';
 import t from 'prop-types';
 import { Link } from 'react-router-dom';
 import Topbar from './topbar';
+import img from './404-Error.png';
 
 export const Err404 = ({ history }) => {
     return (
@@ -13,10 +14,7 @@ export const Err404 = ({ history }) => {
             <Topbar />
             <div className="container">
                 <div className="center-align">
-                    <img
-                        className="responsive-img"
-                        src="./src/img/404-Error.png"
-                    />
+                    <img className="responsive-img" src={img} />
                 </div>
                 <h5 className="center">
                     I suggest you{' '}

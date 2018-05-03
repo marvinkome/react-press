@@ -5,24 +5,49 @@
 }
 
 .auth .login-section {
+    padding-top: 0;
     margin: 50px 0;
-    background-color: hsl(166, 100%, 95%);
+    background-color: #fff;
 }
 
 .auth .signup-section {
+    padding-top: 0;
     margin: 20px 0;
-    background-color: hsl(166, 100%, 95%);
+    background-color: #fff;
 }
 
-.auth .section .heading,
 .auth .section .login-form {
     margin: 0 30%;
 }
 
+.auth .section .heading {
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 1rem 10%;
+    background-color: #1679ca;
+    color: #fff;
+}
+.auth .section .heading h5 {
+    font-weight: 500;
+    font-size: 21.5116px;
+    color: #fff;
+}
+
 .auth form .btn {
+    padding: 0;
     display: block;
     width: 40%;
     margin: auto;
+    background-color: #1679ca;
+    color: #fff;
+}
+
+.auth form .btn .progress {
+    background-color: transparent;
+}
+
+.auth form .btn .progress .indeterminate {
+    background-color: #00437a;
 }
 
 .auth ::placeholder {
@@ -53,12 +78,11 @@
     }
 }
 
-/* large screen */
+/* small screen */
 @media screen and (max-width: 600px) {
     .auth {
         padding: 10px 0;
     }
-    .auth .section .heading,
     .auth .section .login-form {
         margin: 0 10%;
     }

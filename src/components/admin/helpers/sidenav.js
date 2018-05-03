@@ -68,10 +68,14 @@ class SideNav extends Component {
                     id="mobile-demo"
                 >
                     <li>
-                        <div className="user-view">
+                        <div
+                            className={
+                                pic_url == '' ? 'user-view no-img' : 'user-view'
+                            }
+                        >
                             <div className="background" />
                             <a>
-                                {pic_url && (
+                                {pic_url !== '' && (
                                     <img className="circle" src={pic_url} />
                                 )}
                             </a>
@@ -91,9 +95,7 @@ class SideNav extends Component {
                             className="collapsible collapsible-accordion"
                         >
                             <li>
-                                <a className="collapsible-header">
-                                    Posts
-                                </a>
+                                <a className="collapsible-header">Posts</a>
                                 <div className="collapsible-body">
                                     <ul>
                                         <li onClick={this.onClickRoute}>

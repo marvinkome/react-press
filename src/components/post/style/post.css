@@ -5,6 +5,7 @@
 /************** Body **************/
 .post-body {
     padding: 5%;
+    padding-top: 3rem;
 }
 
 .post-body .author-image {
@@ -13,28 +14,22 @@
 
 .post-body .author-name {
     margin: 0;
-}
-
-.post-body .author-details a.follow {
-    border-radius: 8px;
-    height: 25px;
-    line-height: 25px;
-    margin-left: 15px;
-    margin-top: -5px;
-    border: 2px solid #404040;
-    background-color: rgba(255, 255, 255, 0.8);
-    text-transform: capitalize;
-    color: #404040;
+    font-size: 15.11px;
+    font-weight: 500;
+    color: #000000e0;
 }
 
 .post-body .author-desc {
     margin: 5px 0;
-    color: hsl(0, 0%, 45%);
+    font-size: 15.11px;
+    color: #000000bf;
 }
 
 .post-body .post-meta {
     margin: 0px;
-    color: hsl(0, 0%, 45%);
+    font-weight: 500;
+    font-size: 13.432px;
+    color: #000000bf;
 }
 
 .post-body .comment-author-info .post-meta a {
@@ -46,16 +41,16 @@
 }
 
 .post-body .post-content .post-title {
-    color: hsl(0, 0%, 13%);
+    color: #212121e8;
     font-weight: 700;
     font-size: 3rem;
 }
 
 .post-body .post-content .content {
-    color: hsl(0, 0%, 27%);
+    color: #000000b5;
     font-weight: 400;
     font-size: 17px;
-    word-spacing: 1px;
+    word-spacing: 0.5px;
 }
 
 .post-body .post .post-footer {
@@ -70,13 +65,18 @@
 }
 
 .post-body .fixed-action-btn a.btn-large {
-    background: #404040;
+    background: #93c1e6;
+    color: #000000a3;
+}
+
+.post-body .fixed-action-btn .btn-floating i {
+    color: #000000a3;
 }
 
 .post-body .fixed-action-btn a.btn-num {
-    border: 1px solid #404040;
+    border: 1px solid #93c1e6;
     background-color: #fff;
-    color: #404040;
+    color: #2d3033d4;
 }
 
 .post-body .response {
@@ -85,7 +85,8 @@
 
 .post-body .response h5 {
     font-weight: 600;
-    color: hsl(0, 0%, 20%);
+    font-size: 21.516px;
+    color: #000000de;
 }
 
 .post-body .response .resp-form {
@@ -138,18 +139,25 @@
         bottom: 50%;
     }
     .post-body .fixed-action-btn a.btn-large {
-        border: 1px solid #404040;
+        border: 1px solid #93c1e6;
         background-color: #fff;
     }
 
     .post-body .fixed-action-btn a.btn-large i {
-        color: #404040;
+        color: #000000a3;
     }
 
     .post-body .fixed-action-btn a.btn-num {
-        border: 1px solid #404040;
+        border: 1px solid #93c1e6;
         background-color: #fff;
-        color: #404040;
+        color: #2d3033d4;
+    }
+
+    .post-body .post-meta {
+        margin: 0px;
+        font-weight: 500;
+        font-size: 14.032px;
+        color: #000000bf;
     }
 }
 
@@ -182,13 +190,22 @@
     }
 }
 
+@media screen and (max-width: 601px) and (min-width: 540px) {
+    .post-body .post-content .post-title {
+        padding-top: 5rem !important;
+    }
+    .post-body .author-name {
+        margin-top: 20px !important;
+    }
+}
+
 /* small screens */
 @media screen and (max-width: 600px) {
     .post-body .author-desc {
         display: none;
     }
     .post-body .author-name {
-        margin-top: 0px;
+        margin-top: -3px;
     }
     .post-body .author-image {
         max-width: 27%;
@@ -204,8 +221,8 @@
         margin-top: 50px;
     }
     .post-body .post-content .post-title {
-        font-size: 2rem;
-        padding-top: 10px;
+        font-size: 21.5116px;
+        padding-top: 3rem;
     }
     .post-body .response .collection .comment-author .comment-author-image {
         max-width: 22%;

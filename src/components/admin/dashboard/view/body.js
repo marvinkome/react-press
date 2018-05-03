@@ -36,7 +36,11 @@ class Body extends Component {
                         <div className="row">
                             <div className="col s12 ">
                                 <p>
-                                    <i className="material-icons">fiber_new</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">
+                                            fiber_new
+                                        </i>
+                                    </span>
                                     <Link
                                         to="/admin/new-post"
                                         title="Create a post"
@@ -46,7 +50,11 @@ class Body extends Component {
                                     </Link>
                                 </p>
                                 <p>
-                                    <i className="material-icons">account_circle</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">
+                                            account_circle
+                                        </i>
+                                    </span>
                                     <Link
                                         to="/admin/edit-profile"
                                         title="Edit profile"
@@ -55,7 +63,11 @@ class Body extends Component {
                                     </Link>
                                 </p>
                                 <p>
-                                    <i className="material-icons">open_in_new</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">
+                                            open_in_new
+                                        </i>
+                                    </span>
                                     <Link to="/" title="View blog">
                                         View site
                                     </Link>
@@ -72,19 +84,29 @@ class Body extends Component {
                         <div className="row">
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="material-icons">fiber_new</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">
+                                            fiber_new
+                                        </i>
+                                    </span>
                                     {post_count} blog posts
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="material-icons">comment</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">
+                                            comment
+                                        </i>
+                                    </span>
                                     {comment_count} comments
                                 </p>
                             </div>
                             <div className="col m4 l3">
                                 <p>
-                                    <i className="material-icons">reply</i>
+                                    <span className="icon-bg">
+                                        <i className="material-icons">reply</i>
+                                    </span>
                                     {comment_replies} comment replies
                                 </p>
                             </div>

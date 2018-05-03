@@ -29,8 +29,7 @@
     }
     .admin-nav .nav-wrapper .brand-logo {
         margin-top: 0px;
-        font-size: 20px;
-        left: 14%;
+        left: 4%;
         transform: translateX(50%);
     }
     .admin-nav .nav-wrapper ul i {
@@ -40,7 +39,7 @@
 }
 
 .admin-nav {
-    background-color: #404040;
+    background-color: #1679ca;
 }
 .admin-nav .brand-logo,
 .admin-nav ul a,
@@ -48,18 +47,22 @@
     color: #ffffff !important;
 }
 .admin-nav .brand-logo {
-    font-size: 1.5rem;
+    font-size: 21.5116px;
+    font-weight: 700;
 }
 .sidenav .user-view .name {
     font-size: 16px;
     line-height: 24px;
     padding-bottom: 10px;
     font-weight: 700;
-    color: hsl(0, 0%, 90%);
+    color: #ffffff;
 }
 .sidenav .user-view {
     padding: 30px 28px 0;
-    background-color: #404040;
+    background-color: #1679ca;
+}
+.sidenav .user-view.no-img {
+    padding: 25% 28px 0;
 }
 .sidenav .collapsible {
     padding: 0 0px;
@@ -91,7 +94,7 @@
     padding-left: 45px !important;
 }
 .sidenav li > a {
-    color: #757575;
+    color: #000000b0;
     font-weight: 600;
 }
 .sidenav li > a.active {

@@ -3,23 +3,39 @@
  */
 
 /***************** Body *******************/
+.body {
+    padding-top: 5rem;
+}
 
 .body .card-title {
-    color: hsl(0, 0%, 13%);
+    color: #000000d9;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 21.516px;
+    margin-bottom: 1px !important;
+}
+
+.body .card-image {
+    max-height: 200px;
+    overflow: hidden;
+}
+
+.body .card-image img {
+    height: 100%;
 }
 
 .body .card-content {
-    color: hsl(0, 0%, 29%);
+    color: #000000bf;
     font-weight: 500;
     font-size: 17px;
-    max-height: 90% !important;
+    max-height: 363.61px;
+    height: 363.61px;
+    overflow: hidden;
+    margin-bottom: 15px;
 }
 
 .body .card-action {
-    background: hsl(0, 0%, 97%);
-    border-bottom: 4px solid #404040;
+    background: #f2f2f2; /* #93c1e6; */
+    border-bottom: 4px solid #0e66af;
 }
 
 .body .card .card-action .author {
@@ -43,10 +59,19 @@
 
 .body .card .card-action .author .info .name {
     font-weight: 700;
+    font-size: 15.11px;
     text-transform: capitalize;
+    color: #000000e0;
 }
 
 .body .card .card-action .author .info .date {
     font-weight: 500;
-    color: #404040;
+    font-size: 13.432px;
+    color: #000000bf;
+}
+
+@media screen and (max-width: 600px) {
+    .body {
+        padding-top: 3rem;
+    }
 }

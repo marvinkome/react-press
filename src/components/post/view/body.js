@@ -168,7 +168,7 @@ class Body extends Component {
                             <Preloader />
                         </div>
                     ) : post != undefined ? (
-                        <div>
+                        <div className="section">
                             <div className="col m11">
                                 <AuthorInfo data={post.node} />
 

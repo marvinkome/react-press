@@ -4,6 +4,7 @@
 }
 .edit-profile .edit-picture,
 .edit-profile .edit-text {
+    border-left: 4px solid #0e66af;
     margin: 15px 30px;
     background-color: #fff;
 }
@@ -33,8 +34,16 @@
 .edit-profile .edit-picture .file-uploader .input-field .submit-btn {
     text-align: center;
 }
+.edit-profile .edit-picture .file-uploader .input-field .submit-btn .btn-flat {
+    color: #fff;
+    background-color: #1679ca;
+}
 .edit-profile .edit-text {
     padding: 15px 20px;
+    border-top: 4px solid #0e66af;
+}
+.edit-profile .edit-text .btn-flat {
+    color: #fff;
 }
 
 /* small screen */
@@ -55,5 +64,10 @@
     }
     .edit-profile .edit-picture .file-uploader .input-field .file-path-wrapper {
         padding-right: 17px;
+    }
+    .edit-profile .edit-picture,
+    .edit-profile .edit-text {
+        border-top: 4px solid #0e66af;
+        border-left: none;
     }
 }

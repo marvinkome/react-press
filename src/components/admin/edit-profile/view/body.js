@@ -285,7 +285,7 @@ class Body extends Component {
                                             this.state.image_ratio != '' &&
                                             this.state.image_ratio != '1:1'
                                                 ? 'btn-flat disabled'
-                                                : 'btn-flat black white-text'
+                                                : 'btn-flat'
                                         }
                                         onClick={this.onUploadClick}
                                     >
@@ -322,7 +322,7 @@ class Body extends Component {
                         <div className="input-field center col s12">
                             <button
                                 onClick={this.onSaveClick}
-                                className="btn-flat black white-text"
+                                className="btn-flat"
                             >
                                 Save
                             </button>
