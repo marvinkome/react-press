@@ -22,7 +22,9 @@ class TopBar extends Component {
     }
     componentDidMount() {
         const sidenav = this.sidenav.current;
-        this.sidenavIns = window.M.Sidenav.init(sidenav);
+        if(window.M){
+            this.sidenavIns = window.M.Sidenav.init(sidenav);
+        }
     }
     componentWillUnmount() {
         this.sidenavIns.close();
@@ -40,7 +42,7 @@ class TopBar extends Component {
                             <a
                                 href="#"
                                 data-target="mobile-topbar"
-                                className="sidenav-trigger"
+                                className="sidenav-trigger hide-on-med-and-up"
                             >
                                 <i className="material-icons">menu</i>
                             </a>
@@ -104,7 +106,7 @@ class TopBar extends Component {
                     </nav>
                 </div>
 
-                <ul ref={this.sidenav} className="sidenav" id="mobile-topbar">
+                <ul ref={this.sidenav} className="sidenav hide-on-med-and-up" id="mobile-topbar">
                     {this.props.user_data != undefined ? (
                         <div>
                             <li>
@@ -121,13 +123,7 @@ class TopBar extends Component {
                                             />
                                         </a>
                                     )}
-                                    <Link
-                                        to="/admin/dashboard"
-                                        className="email white-text"
-                                        title="Go to dashboard"
-                                    >
-                                        <span>Hello, {this.props.user_data.user.fullName}</span>
-                                    </Link>
+                                    <span className="email">Hello, {this.props.user_data.user.fullName}</span>
                                 </div>
                             </li>
                             <li>
@@ -147,6 +143,11 @@ class TopBar extends Component {
                         </div>
                     ) : (
                         <div>
+                            <li>
+                                <div className="user-view guest">
+                                    <span className="email">Hello, Guest</span>
+                                </div>
+                            </li>
                             <li>
                                 <Link
                                     className="hide-on-med-and-up"

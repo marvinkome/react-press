@@ -88,7 +88,7 @@ class SignUp extends Component {
     };
     render() {
         const password = this.state.password;
-        let button_class = 'btn black white-text';
+        let button_class = 'btn';
         let input_class = '';
 
         if (!validate_password(password)) {
@@ -99,10 +99,10 @@ class SignUp extends Component {
         return (
             <div className="signup-section section center z-depth-1">
                 <div className="heading">
-                    <h5>Join MedBlog</h5>
+                    <h5>Join ReactPress</h5>
                     <p>
-                        Create an account to follow your favorite authors and
-                        publications, applaud stories you love, and more.
+                        Create an account to comment on 
+                        publications, appreciate stories you love, and more.
                     </p>
                     <p>
                         * Password must contain atleast one uppercase letter or

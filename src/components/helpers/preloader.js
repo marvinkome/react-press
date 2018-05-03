@@ -12,9 +12,9 @@ const Preloader = () => (
 );
 
 export const AppLoading = ({ error, pastDelay, timedOut }) => (
-    <div className="section container">
-        <div className="row">
-            <div className="col m12 center-align preloader-cont app-loader circle">
+    <div className="section container valign-wrapper" style={{height: '100vh'}}>
+        <div style={{margin: 'auto', width: '50%'}}>
+            <div className="center-align app-loader">
                 {error ? (
                     <div className="error">
                         <i className="fa fa-times-circle-o fa-4x red-text" />
@@ -23,18 +23,8 @@ export const AppLoading = ({ error, pastDelay, timedOut }) => (
                 ) : (
                     pastDelay && (
                         <div>
-                            <div className="preloader-wrapper small active">
-                                <div className="spinner-layer spinner-blue-only">
-                                    <div className="circle-clipper left">
-                                        <div className="circle" />
-                                    </div>
-                                    <div className="gap-patch">
-                                        <div className="circle" />
-                                    </div>
-                                    <div className="circle-clipper right">
-                                        <div className="circle" />
-                                    </div>
-                                </div>
+                            <div className="progress" style={{backgroundColor: '#90caf94f'}}>
+                                <div className="indeterminate" style={{backgroundColor: '#0e66af'}}></div>
                             </div>
                             <h5>
                                 {timedOut

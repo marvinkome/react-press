@@ -1,6 +1,6 @@
 /******* TopBar Component ******/
 .navbar-wrapper .topbar {
-    background: hsl(36, 98%, 46%);
+    background: #1679ca;
 }
 
 .navbar-wrapper .topbar .brand-logo {
@@ -13,9 +13,10 @@
 }
 .navbar-wrapper .topbar .blog-title {
     font-size: 21.516px;
+    font-weight: 700;
     padding-left: 10px;
     padding-top: 9px;
-    color: hsl(0, 0%, 14%);
+    color: #fff;
 }
 
 .navbar-wrapper .topbar .social {
@@ -35,6 +36,7 @@
 
 .navbar-wrapper .topbar .nav-wrapper .user-image {
     width: 50px;
+    margin-top: 10px;
 }
 
 .navbar-wrapper .topbar .nav-wrapper a.user-profile {
@@ -42,14 +44,16 @@
 }
 
 .navbar-wrapper .topbar .nav-wrapper li a {
-    color: rgba(255, 255, 255, 0.8);
+    color: #000000;
+    font-size: 15.11px;
+    margin-top: 10px;
 }
 
 .navbar-wrapper .topbar .nav-wrapper li a.btn {
     background-color: transparent;
     border-radius: 3px;
-    color: rgba(255, 255, 255, 0.8);
-    border: 1.4px solid rgba(255, 255, 255, 0.8);
+    color: #fff;
+    border: 1.4px solid #fff;
 }
 
 .navbar-wrapper .topbar .nav-content .menu {
@@ -136,16 +140,25 @@
     }
     .navbar-wrapper .topbar .sidenav-trigger {
         margin-top: 6px;
-        color:hsl(0, 0%, 14%);
+        color:#000 !important;
+    }
+    .navbar-wrapper .topbar .sidenav-trigger i {
+        line-height: 45px;
     }
     .navbar-wrapper  ul.sidenav li a {
-        color: #404040;
+        color: #000000bf;
     }
     .navbar-wrapper ul.sidenav .user-view {
-        background-color: hsl(0, 0%, 25%);
+        background-color: #0e66af;
     }
-    .navbar-wrapper ul.sidenav li a.email {
+    .navbar-wrapper ul.sidenav .user-view.guest {
+        padding-top: 25px;
+    }
+    .navbar-wrapper ul.sidenav li span.email {
         padding-top: 20px;
+        color: #000000b5;
+        font-size: 15.11px;
+        font-weight: 500;
     }
     .navbar-wrapper .topbar .nav-wrapper .brand-logo {
         font-size: 35px;

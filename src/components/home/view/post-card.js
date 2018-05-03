@@ -8,17 +8,25 @@ import { Link } from 'react-router-dom';
 import { truncate, format_date } from '../../../js/helpers';
 
 const PostCard = ({ post }) => {
+    const truncate_length = post.postPicUrl != undefined && post.postPicUrl != '' ?  20 : 40;
+    const cardStyle = post.postPicUrl != undefined && post.postPicUrl != '' ? 
+        {
+            height: '200px',
+            maxHeight: '200px'
+        } : {};
     return (
-        <div className="card medium">
+        <div className="card">
             <div className="card-image">
-                <img src={post.postPicUrl} />
+                {post.postPicUrl != undefined && post.postPicUrl != '' &&
+                    <img src={post.postPicUrl} />
+                }
             </div>
             <Link to={'/post/' + post.id}>
-                <div className="card-content">
+                <div className="card-content" style={cardStyle}>
                     <span className="card-title">{post.title}</span>
                     <p
                         dangerouslySetInnerHTML={{
-                            __html: truncate(post.body, 40)
+                            __html: truncate(post.body, truncate_length)
                         }}
                     />
                 </div>

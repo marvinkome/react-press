@@ -5,7 +5,7 @@
 @import url('./admin/index.css');
 
 a {
-    color: rgb(0, 100, 0);
+    color: #548ab6;
 }
 
 body {
@@ -15,11 +15,21 @@ body {
 .spinner-layer {
     border-color: hsl(0, 0%, 30%);
 }
-
+.icon-bg {
+    padding: 9px;
+    border-radius: 50%;
+    background: #90caf94f;
+}
 .material-icons {
     vertical-align: top;
     display: inline-flex;
-    font-style: 23px;
+    font-size: 23px;
+}
+.icon-bg .material-icons {
+    vertical-align: top;
+    display: inline-flex;
+    font-size: 19px;
+    line-height: 24px;
 }
 @media screen and (min-width: 993px) {
     .preloader-wrapper.small {
