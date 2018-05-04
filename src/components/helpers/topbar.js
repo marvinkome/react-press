@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../js/redux/actions';
+import img from '../../img/default-pic.png';
 import './style/topbar.css';
 
 const mapDispatchToProp = dispatch => ({
@@ -156,7 +157,17 @@ class TopBar extends Component {
                     ) : (
                         <div>
                             <li>
-                                <div className="user-view guest">
+                                <div className="user-view">
+                                    <a>
+                                        <img
+                                            className="circle"
+                                            src={img}
+                                            style={{
+                                                borderRadius: '50%',
+                                                backgroundColor: '#fafafa'
+                                            }}
+                                        />
+                                    </a>
                                     <span className="email">Hello, Guest</span>
                                 </div>
                             </li>
