@@ -13,8 +13,8 @@ const PostCard = ({ post }) => {
     const cardStyle =
         post.postPicUrl != undefined && post.postPicUrl != ''
             ? {
-                height: '200px',
-                maxHeight: '200px'
+                height: '240px',
+                maxHeight: '240px'
             }
             : {};
     return (
