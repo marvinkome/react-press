@@ -1,6 +1,6 @@
 /* authentication */
 .auth {
-    background-image: url('./card.jpg');
+    background-color: hsl(0, 0%, 97%);
     padding: 40px 0;
 }
 

@@ -6,6 +6,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import img from '../../../img/default-pic.png';
 import './style/sidenav.css';
 
 const mapStateToProps = state => ({
@@ -68,15 +69,16 @@ class SideNav extends Component {
                     id="mobile-demo"
                 >
                     <li>
-                        <div
-                            className={
-                                pic_url == '' ? 'user-view no-img' : 'user-view'
-                            }
-                        >
+                        <div className='user-view'>
                             <div className="background" />
                             <a>
-                                {pic_url !== '' && (
+                                {pic_url !== '' ? (
                                     <img className="circle" src={pic_url} />
+                                ) : (
+                                    <img className="circle" src={img} style={{
+                                        borderRadius: '50%',
+                                        backgroundColor: '#fafafa'
+                                    }} />
                                 )}
                             </a>
                             <a>

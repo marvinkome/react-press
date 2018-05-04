@@ -6,7 +6,7 @@ import React from 'react';
 import t from 'prop-types';
 import { Link } from 'react-router-dom';
 import Topbar from './topbar';
-import img from './404-Error.png';
+import img from '../../img/404.png';
 
 export const Err404 = ({ history }) => {
     return (

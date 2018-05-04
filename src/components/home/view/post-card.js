@@ -6,6 +6,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { truncate, format_date } from '../../../js/helpers';
+import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
     const truncate_length =
@@ -13,10 +14,19 @@ const PostCard = ({ post }) => {
     const cardStyle =
         post.postPicUrl != undefined && post.postPicUrl != ''
             ? {
-                height: '200px',
-                maxHeight: '200px'
+                height: '240px',
+                maxHeight: '240px'
             }
             : {};
+
+    const imgStyle = post.author.gravatarUrl != null && post.author.gravatarUrl != '' ? {
+        borderRadius: '50%',
+        backgroundColor: '#fafafa'
+    } : {};
+    const img = post.author.gravatarUrl != undefined && post.author.gravatarUrl != '' ?
+        post.author.gravatarUrl  : defImg;
+    
+    
     return (
         <div className="card">
             <div className="card-image">
@@ -36,14 +46,11 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        {post.author.gravatarUrl != null ? (
-                            <img
-                                className="circle"
-                                src={post.author.gravatarUrl}
-                            />
-                        ) : (
-                            ''
-                        )}
+                        <img
+                            className="circle"
+                            src={img}
+                            style={imgStyle}
+                        />
                     </div>
                     <div className="info">
                         <span className="name">

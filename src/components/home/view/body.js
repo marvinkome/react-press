@@ -63,7 +63,7 @@ class Body extends Component {
             <div className="body section container">
                 <div className="row">
                     {this.props.fetching ? (
-                        <div className="col m12 center-align preloader-cont circle">
+                        <div className="col s12">
                             <Preloader />
                         </div>
                     ) : this.props.posts.length > 0 ? (
@@ -78,7 +78,7 @@ class Body extends Component {
                             ))}
                         </div>
                     ) : (
-                        <div className="col m12">
+                        <div className="col s12">
                             <h5 className="center">No posts</h5>
                         </div>
                     )}
