@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { format_date } from '../../../js/helpers';
+import defImg from '../../../img/default-pic.png';
 
 class Comment extends Component {
     constructor(props) {
@@ -95,11 +96,20 @@ class Comment extends Component {
                         <li className="collection-item">
                             <div className="comment-author row">
                                 <div className="comment-author-image col s4 m1">
-                                    <img
-                                        src={obj.node.author.gravatarUrl}
-                                        alt=""
-                                        className="responsive-img circle"
-                                    />
+                                    {   
+                                        obj.node.author.gravatarUrl != undefined || 
+                                        obj.node.author.gravatarUrl != '' ? 
+                                            (<img
+                                                src={obj.node.author.gravatarUrl}
+                                                alt=""
+                                                className="responsive-img circle"
+                                            />) 
+                                            : (<img
+                                                src={defImg}
+                                                alt=""
+                                                className="responsive-img circle"
+                                            />)
+                                    }
                                 </div>
                                 <div className="comment-author-info col s8 m11">
                                     <p className="title">
@@ -161,13 +171,22 @@ class Comment extends Component {
                         </li>
                         {obj.node.replies.edges.map(reply => (
                             <li key={reply.node.id} className="collection-item">
-                                <div className="comment-author row">
+                                <div className="comment-author row">{/* reply.node.author.gravatarUrl */}
                                     <div className="comment-author-image col s4 m1">
-                                        <img
-                                            src={reply.node.author.gravatarUrl}
-                                            alt=""
-                                            className="responsive-img circle"
-                                        />
+                                        {   
+                                            reply.node.author.gravatarUrl != undefined || 
+                                            reply.node.author.gravatarUrl != '' ? 
+                                                (<img
+                                                    src={reply.node.author.gravatarUrl}
+                                                    alt=""
+                                                    className="responsive-img circle"
+                                                />) 
+                                                : (<img
+                                                    src={defImg}
+                                                    alt=""
+                                                    className="responsive-img circle"
+                                                />)
+                                        }
                                     </div>
                                     <div className="comment-author-info col s8 m11">
                                         <p className="title">
