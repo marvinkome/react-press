@@ -69,16 +69,20 @@ class SideNav extends Component {
                     id="mobile-demo"
                 >
                     <li>
-                        <div className='user-view'>
+                        <div className="user-view">
                             <div className="background" />
                             <a>
                                 {pic_url !== '' ? (
                                     <img className="circle" src={pic_url} />
                                 ) : (
-                                    <img className="circle" src={img} style={{
-                                        borderRadius: '50%',
-                                        backgroundColor: '#fafafa'
-                                    }} />
+                                    <img
+                                        className="circle"
+                                        src={img}
+                                        style={{
+                                            borderRadius: '50%',
+                                            backgroundColor: '#fafafa'
+                                        }}
+                                    />
                                 )}
                             </a>
                             <a>

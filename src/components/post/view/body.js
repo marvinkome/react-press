@@ -33,9 +33,11 @@ class Body extends Component {
         super(props);
         this.fabRef = React.createRef();
     }
-    componentDidMount(){
+    componentDidMount() {
         if (this.props.posts.length != 0) {
-            const post = this.props.posts.find(obj => obj.node.id == this.props.post_id);
+            const post = this.props.posts.find(
+                obj => obj.node.id == this.props.post_id
+            );
             document.title = 'ReactPress - ' + post.node.title;
         }
     }

@@ -8,14 +8,19 @@ import { format_date } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const AuthorInfo = ({ data }) => {
-    const imgStyle = data.author.gravatarUrl != null && data.author.gravatarUrl != '' ? {
-        borderRadius: '50%',
-        backgroundColor: '#fafafa'
-    } : {};
-    const img = data.author.gravatarUrl != undefined && data.author.gravatarUrl != '' ? 
-        data.author.gravatarUrl : defImg;
+    const imgStyle =
+        data.author.gravatarUrl != null && data.author.gravatarUrl != ''
+            ? {
+                borderRadius: '50%',
+                backgroundColor: '#fafafa'
+            }
+            : {};
+    const img =
+        data.author.gravatarUrl != undefined && data.author.gravatarUrl != ''
+            ? data.author.gravatarUrl
+            : defImg;
 
-    return(
+    return (
         <div className="author-info">
             <div className="author-image col s3">
                 <img

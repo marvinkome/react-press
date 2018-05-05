@@ -19,14 +19,18 @@ const PostCard = ({ post }) => {
             }
             : {};
 
-    const imgStyle = post.author.gravatarUrl != null && post.author.gravatarUrl != '' ? {
-        borderRadius: '50%',
-        backgroundColor: '#fafafa'
-    } : {};
-    const img = post.author.gravatarUrl != undefined && post.author.gravatarUrl != '' ?
-        post.author.gravatarUrl  : defImg;
-    
-    
+    const imgStyle =
+        post.author.gravatarUrl != null && post.author.gravatarUrl != ''
+            ? {
+                borderRadius: '50%',
+                backgroundColor: '#fafafa'
+            }
+            : {};
+    const img =
+        post.author.gravatarUrl != undefined && post.author.gravatarUrl != ''
+            ? post.author.gravatarUrl
+            : defImg;
+
     return (
         <div className="card">
             <div className="card-image">
@@ -46,11 +50,7 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img
-                            className="circle"
-                            src={img}
-                            style={imgStyle}
-                        />
+                        <img className="circle" src={img} style={imgStyle} />
                     </div>
                     <div className="info">
                         <span className="name">
