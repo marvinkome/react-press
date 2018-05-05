@@ -2,8 +2,8 @@
  * ./app/js/history
  */
 
-import { createHashHistory } from 'history';
+import { createBrowserHistory } from 'history';
 
-export default createHashHistory({
+export default createBrowserHistory({
     // add configurations here
 });
