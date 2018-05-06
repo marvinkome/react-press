@@ -1,10 +1,28 @@
-commit c07dcac4b133e4dde47b455fa3562b7438f64d0e (HEAD -> master, origin/master)
+commit 655e1d7883bc7067b38f892f8ad903f4eec7bd82 (HEAD -> develop)
+Author: marvinkome <marvinkome@gmail.com>
+Date:   Sun May 6 18:40:17 2018 +0100
+
+    Redesign admin posts listing, add page view details to app
+
+commit 73a7651b6b11aa8eaf85954d6e5e6f07191d86c8 (heroku/master, master)
+Author: marvinkome <marvinkome@gmail.com>
+Date:   Sun May 6 00:21:55 2018 +0100
+
+    Edit prev commit
+
+commit 09eb345d28f591ede68d03848414dc6cdbc8e24d
+Author: marvinkome <marvinkome@gmail.com>
+Date:   Sun May 6 00:15:23 2018 +0100
+
+    Edit prev commit
+
+commit c07dcac4b133e4dde47b455fa3562b7438f64d0e (origin/master)
 Author: marvinkome <marvinkome@gmail.com>
 Date:   Sat May 5 23:19:36 2018 +0100
 
     Default image in comment also
 
-commit ecab124901c44e8fa6931f499f7de4c227231205 (heroku/master)
+commit ecab124901c44e8fa6931f499f7de4c227231205
 Author: marvinkome <marvinkome@gmail.com>
 Date:   Sat May 5 01:50:57 2018 +0100
 
@@ -32,7 +50,7 @@ Date:   Sat May 5 01:29:03 2018 +0100
     
     Add dynamic title to homepage and post page
 
-commit b7d2722015634be2c1ffab9ec3f0f8989c5bb028 (origin/develop, develop)
+commit b7d2722015634be2c1ffab9ec3f0f8989c5bb028 (origin/develop)
 Author: marvinkome <marvinkome@gmail.com>
 Date:   Sat May 5 01:26:22 2018 +0100
 
