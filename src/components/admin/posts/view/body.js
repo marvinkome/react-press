@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { delete_post } from '../../../../js/redux/actions';
-import { format_date } from '../../../../js/helpers';
+import { format_date, truncate } from '../../../../js/helpers';
 
 const mapStateToProps = state => ({
     data: state.user_data
@@ -18,6 +18,22 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class Body extends Component {
+    constructor(props){
+        super(props);
+
+        this.accordion = React.createRef();
+        this.instance = null;
+    }
+    componentDidMount(){
+        const elem = this.accordion.current;
+        this.instance = window.M.Collapsible.init(elem);
+    }
+    componentWillUnmount(){
+        if (this.instance !== null){
+            this.instance.close();
+            this.instance.destroy();
+        }
+    }
     handleDelete(id) {
         const confirmDelete = confirm('This post will be permanently deleted');
         if (confirmDelete == true) {
@@ -25,7 +41,6 @@ class Body extends Component {
         }
     }
     render() {
-        const device_width = window.innerWidth;
         const data = this.props.data.data;
         if (data != undefined) {
             data.user.posts.edges.sort((a, b) => {
@@ -44,152 +59,72 @@ class Body extends Component {
                 {data && (
                     <div>
                         <div className="posts-info">
-                            <p>
+                            <h5 className="center">
                                 <span>
-                                    All ({data.user.posts.edges.length}){' '}
+                                    All Post ({data.user.posts.edges.length}){' '}
                                 </span>
-                            </p>
+                            </h5>
                         </div>
-                        <div className="posts-list z-depth-1">
-                            {device_width > 600 ? (
-                                data.user.posts.edges.length > 0 ? (
-                                    <table className="striped">
-                                        <thead>
-                                            <tr>
-                                                <th>Tilte</th>
-                                                <th>Tags</th>
-                                                <th>Date Published</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {data.user.posts.edges.map(post => (
-                                                <tr key={post.node.id}>
-                                                    <td className="big">
-                                                        <p>
-                                                            {post.node.title}{' '}
-                                                        </p>
-                                                    </td>
-                                                    <td className="big">
+                        <div className="posts-list">
+                            {data.user.posts.edges.length > 0 ? (
+                                <ul ref={this.accordion} className="collapsible popout">
+                                    {data.user.posts.edges.map(post => (
+                                        <li key={post.node.id}>
+                                            <div className="collapsible-header">
+                                                <span className="post-title">
+                                                    {post.node.title}
+                                                    <i className="material-icons">arrow_drop_down</i>
+                                                </span>
+                                                <span>{format_date(post.node.timestamp)}</span>
+                                            </div>
+
+                                            <div className="collapsible-body">
+                                                <div className="post-body" dangerouslySetInnerHTML={{
+                                                    __html: truncate(post.node.body, 30)
+                                                }}/>
+
+                                                <div className="post-tags">
+                                                    <p>
+                                                        Tags:{' '}
                                                         {post.node.tags.edges.map(
                                                             tag => (
                                                                 <span
                                                                     key={
-                                                                        tag.node
+                                                                        tag
+                                                                            .node
                                                                             .id
                                                                     }
                                                                 >
                                                                     {
-                                                                        tag.node
+                                                                        tag
+                                                                            .node
                                                                             .name
                                                                     },{' '}
                                                                 </span>
                                                             )
                                                         )}
-                                                    </td>
-                                                    <td className="big">
-                                                        <p>
-                                                            {format_date(
-                                                                post.node
-                                                                    .timestamp
-                                                            )}{' '}
-                                                        </p>
-                                                    </td>
-                                                    <td className="small">
-                                                        <Link
-                                                            to={
-                                                                '/post/' +
-                                                                post.node.id
-                                                            }
-                                                            title="View"
-                                                        >
-                                                            <span className="view">
-                                                                View
-                                                            </span>
-                                                        </Link>
-                                                        <Link
-                                                            to={
-                                                                '/admin/edit-post/' +
-                                                                post.node.id
-                                                            }
-                                                            title="Edit"
-                                                        >
-                                                            <span className="edit">
-                                                                Edit
-                                                            </span>
-                                                        </Link>
-                                                        <a
-                                                            onClick={() =>
-                                                                this.handleDelete(
-                                                                    post.node
-                                                                        .uuid
-                                                                )
-                                                            }
-                                                            title="Delete"
-                                                            style={{
-                                                                cursor:
-                                                                    'pointer'
-                                                            }}
-                                                        >
-                                                            <span className="delete">
-                                                                Delete
-                                                            </span>
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                ) : (
-                                    <div className="container">
-                                        <h6 className="center">No Posts</h6>
-                                    </div>
-                                )
-                            ) : data.user.posts.edges.length > 0 ? (
-                                <div className="mobile-list">
-                                    <ul className="collection">
-                                        {data.user.posts.edges.map(post => (
-                                            <li
-                                                key={post.node.id}
-                                                className="collection-item"
-                                            >
-                                                <div className="post">
-                                                    <h5>{post.node.title}</h5>
-                                                    {post.node.tags.edges >
-                                                        0 && (
-                                                        <p>
-                                                            Tags:{' '}
-                                                            {post.node.tags.edges.map(
-                                                                tag => (
-                                                                    <span
-                                                                        key={
-                                                                            tag
-                                                                                .node
-                                                                                .id
-                                                                        }
-                                                                    >
-                                                                        {
-                                                                            tag
-                                                                                .node
-                                                                                .name
-                                                                        },{' '}
-                                                                    </span>
-                                                                )
-                                                            )}
-                                                        </p>
-                                                    )}
-                                                    <p>
-                                                        {format_date(
-                                                            post.node.timestamp
-                                                        )}{' '}
                                                     </p>
-                                                    <p className="actions">
+                                                </div>
+
+                                                <div className="post-claps">
+                                                    <p>
+                                                        Claps:{' '}
+                                                        {post.node.claps.totalCount};<br/>
+                                                        Viewed:{' '}
+                                                        {post.node.views != null ? post.node.views : 0}
+                                                        {' times'}
+                                                    </p>
+                                                </div>
+                                                
+                                                <div className="actions">
+                                                    <p>
                                                         <Link
                                                             to={
                                                                 '/post/' +
                                                                 post.node.id
                                                             }
                                                             title="View"
+                                                            className="btn btn-flat"
                                                         >
                                                             <span className="view">
                                                                 View
@@ -201,6 +136,7 @@ class Body extends Component {
                                                                 post.node.id
                                                             }
                                                             title="Edit"
+                                                            className="btn btn-flat"
                                                         >
                                                             <span className="edit">
                                                                 Edit
@@ -214,6 +150,7 @@ class Body extends Component {
                                                                 )
                                                             }
                                                             title="Delete"
+                                                            className="btn btn-flat"
                                                             style={{
                                                                 cursor:
                                                                     'pointer'
@@ -225,13 +162,13 @@ class Body extends Component {
                                                         </a>
                                                     </p>
                                                 </div>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
                             ) : (
                                 <div className="container">
-                                    <h6 className="center">No Posts</h6>
+                                    <h5 className="center">No Posts</h5>
                                 </div>
                             )}
                         </div>

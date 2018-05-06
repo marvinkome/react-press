@@ -9,6 +9,7 @@ export const fetch_query = `
                     body
                     timestamp
                     postPicUrl
+                    views
                     author {
                         fullName
                         description
@@ -74,6 +75,7 @@ export const fetch_more = last_cursor => `
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -146,6 +148,7 @@ export const fetch_user_data_query = `
                         body
                         postPicUrl
                         timestamp
+                        views
                         tags{
                             edges{
                                 node{
@@ -153,6 +156,9 @@ export const fetch_user_data_query = `
                                     name
                                 }
                             }
+                        }
+                        claps {
+                            totalCount
                         }
                     }
                 }

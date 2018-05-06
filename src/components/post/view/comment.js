@@ -97,7 +97,7 @@ class Comment extends Component {
                             <div className="comment-author row">
                                 <div className="comment-author-image col s4 m1">
                                     {   
-                                        obj.node.author.gravatarUrl != undefined || 
+                                        obj.node.author.gravatarUrl != null && 
                                         obj.node.author.gravatarUrl != '' ? 
                                             (<img
                                                 src={obj.node.author.gravatarUrl}
@@ -174,7 +174,7 @@ class Comment extends Component {
                                 <div className="comment-author row">{/* reply.node.author.gravatarUrl */}
                                     <div className="comment-author-image col s4 m1">
                                         {   
-                                            reply.node.author.gravatarUrl != undefined || 
+                                            reply.node.author.gravatarUrl != null && 
                                             reply.node.author.gravatarUrl != '' ? 
                                                 (<img
                                                     src={reply.node.author.gravatarUrl}

@@ -18,6 +18,7 @@ export const create_tag = (tagname, post_id) =>
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -90,6 +91,7 @@ export const create_post = post_data =>
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -169,6 +171,7 @@ export const edit_post = post_data =>
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -284,6 +287,7 @@ export const create_comment = comment_data =>
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -375,6 +379,7 @@ export const create_comment_reply = reply_data =>
                 body
                 timestamp
                 postPicUrl
+                views
                 author {
                     fullName
                     description
@@ -449,6 +454,67 @@ export const clap = clap_data =>
                 body
                 timestamp
                 postPicUrl
+                views
+                author {
+                    fullName
+                    description
+                    gravatarUrl
+                }
+                tags {
+                    edges {
+                        node {
+                            id
+                            name
+                        }
+                    }
+                }
+                claps {
+                    totalCount
+                }
+                comments {
+                    edges {
+                        node {
+                            id
+                            uuid
+                            body
+                            timestamp
+                            author{
+                                fullName
+                                gravatarUrl
+                            }
+                            replies{
+                                edges{
+                                    node{
+                                        id
+                                        timestamp
+                                        body
+                                        parentId
+                                        author{
+                                            fullName
+                                            gravatarUrl
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
+export const viewPage = post_id => `
+    mutation Mutation {
+        viewPost(postId: ${post_id}){
+            post{
+                id
+                uuid
+                title
+                body
+                timestamp
+                postPicUrl
+                views
                 author {
                     fullName
                     description

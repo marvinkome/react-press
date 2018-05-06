@@ -8,7 +8,7 @@ export const truncate = (word, length) =>
     word
         .split(' ')
         .splice(0, length)
-        .join(' ');
+        .join(' ') + ' ....';
 
 export const format_date = server_date => {
     let date = moment.utc(server_date).format('YYYY-MM-DD HH:mm:ss');

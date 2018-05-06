@@ -35,6 +35,19 @@ class TopBar extends Component {
         this.props.logout();
     };
     render() {
+        let style = {
+            borderRadius: '50%',
+            backgroundColor: '#fafafa'
+        };
+        let defImg = img;
+
+        if (this.props.user_data != undefined){
+            if (this.props.user_data.user.gravatarUrl != null){
+                defImg = this.props.user_data.user.gravatarUrl;
+                style = {};
+            }
+        }
+
         return (
             <div className="navbar-wrapper">
                 <div className="navbar-fixed">
@@ -80,10 +93,8 @@ class TopBar extends Component {
                                         >
                                             <img
                                                 className="user-image responsive-img circle"
-                                                src={
-                                                    this.props.user_data.user
-                                                        .gravatarUrl
-                                                }
+                                                src={defImg}
+                                                style={style}
                                             />
                                         </Link>
                                     </li>
@@ -121,18 +132,13 @@ class TopBar extends Component {
                         <div>
                             <li>
                                 <div className="user-view">
-                                    {this.props.user_data.user.gravatarUrl !=
-                                        null && (
-                                        <a>
-                                            <img
-                                                className="circle"
-                                                src={
-                                                    this.props.user_data.user
-                                                        .gravatarUrl
-                                                }
-                                            />
-                                        </a>
-                                    )}
+                                    <a>
+                                        <img
+                                            className="circle"
+                                            src={defImg}
+                                            style={style}
+                                        />
+                                    </a>
                                     <span className="email">
                                         Hello,{' '}
                                         {this.props.user_data.user.fullName}
@@ -161,11 +167,8 @@ class TopBar extends Component {
                                     <a>
                                         <img
                                             className="circle"
-                                            src={img}
-                                            style={{
-                                                borderRadius: '50%',
-                                                backgroundColor: '#fafafa'
-                                            }}
+                                            src={defImg}
+                                            style={style}
                                         />
                                     </a>
                                     <span className="email">Hello, Guest</span>
