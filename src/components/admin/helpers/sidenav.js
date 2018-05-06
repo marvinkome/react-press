@@ -40,15 +40,23 @@ class SideNav extends Component {
         }
     };
     render() {
-        let display_name, pic_url;
+        let display_name;
+        let style = {
+            borderRadius: '50%',
+            backgroundColor: '#fafafa'
+        };
+        let pic_url = img;
 
         if (this.props.data.data != undefined) {
             const data = this.props.data.data.user;
             display_name = data.fullName;
-            pic_url = data.gravatarUrl;
+
+            if (data.gravatarUrl !== null){
+                pic_url = data.gravatarUrl;
+                style = {};
+            }  
         } else {
             display_name = '';
-            pic_url = '';
         }
         return (
             <div>
@@ -72,18 +80,7 @@ class SideNav extends Component {
                         <div className="user-view">
                             <div className="background" />
                             <a>
-                                {pic_url !== '' ? (
-                                    <img className="circle" src={pic_url} />
-                                ) : (
-                                    <img
-                                        className="circle"
-                                        src={img}
-                                        style={{
-                                            borderRadius: '50%',
-                                            backgroundColor: '#fafafa'
-                                        }}
-                                    />
-                                )}
+                                <img className="circle" src={pic_url} style={style} />
                             </a>
                             <a>
                                 <span className="name">{display_name}</span>

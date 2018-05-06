@@ -392,6 +392,50 @@ const requestClapFinished = (state, post, data) => {
     return new_state;
 };
 
+const requestViewPageFinished = (state, post, post_id) => {
+
+    const new_post = updateObject(state.post_data, {
+        posts: updateNestedItemArray(
+            state.post_data.posts,
+            post_id,
+            selected_post =>
+                updateObject(selected_post, {
+                    node: {
+                        ...post
+                    }
+                }),
+            'uuid'
+        )
+    });
+
+    const new_user = updateObject(state.user_data, {
+        data: updateObject(state.user_data.data, {
+            user: updateObject(state.user_data.data.user, {
+                posts: updateObject(state.user_data.data.user.posts, {
+                    edges: updateNestedItemArray(
+                        state.user_data.data.user.posts.edges,
+                        post_id,
+                        selected_post =>
+                            updateObject(selected_post, {
+                                node: {
+                                    ...post
+                                }
+                            }),
+                        'uuid'
+                    )
+                })
+            })
+        })
+    });
+
+    const new_state = updateObject(state, {
+        post_data: new_post,
+        user_data: new_user
+    });
+
+    return new_state;
+};
+
 const recieveArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
@@ -549,6 +593,13 @@ const rootReducer = (state = initialState, action) => {
             state,
             action.post.data.createClap.post,
             action.data
+        );
+
+    case constants.VIEW_PAGE:
+        return requestViewPageFinished(
+            state,
+            action.post.data.viewPost.post,
+            action.pageId
         );
 
     default:

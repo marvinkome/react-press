@@ -9,7 +9,7 @@ import * as mutations from './mutations';
 const url =
     process.env.NODE_ENV == 'production'
         ? 'https://reactpress-api.herokuapp.com'
-        : 'http://0.0.0.0:5000';
+        : 'http://127.0.0.1:5000';
 
 // Refresh token for protected query and mutations
 const refresh_token = token => {
@@ -88,6 +88,12 @@ export const requestClapFinished = (res, data) => ({
     type: constants.REQUEST_CLAP_FINISHED,
     post: res,
     data
+});
+
+export const requestViewPageFinished = (res, pageId) => ({
+    type: constants.VIEW_PAGE,
+    post: res,
+    pageId
 });
 
 // After request sync actions - general
@@ -459,5 +465,21 @@ export const clap = data => {
                 );
             })
             .then(res => dispatch(requestClapFinished(res, data)));
+    };
+};
+
+export const view_page = pageId => {
+    return dispatch => {
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({query: mutations.viewPage(pageId)}),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch(url + '/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(requestViewPageFinished(res, pageId)));
     };
 };

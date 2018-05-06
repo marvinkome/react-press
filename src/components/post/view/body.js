@@ -7,7 +7,7 @@ import ReactDOMServer from 'react-dom/server';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 
-import { clap, add_comment, reply_comment } from '../../../js/redux/actions';
+import { clap, add_comment, reply_comment, view_page } from '../../../js/redux/actions';
 import history from '../../../js/history';
 
 import PostCard from './post-card';
@@ -25,7 +25,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     clap: data => dispatch(clap(data)),
     comment: data => dispatch(add_comment(data)),
-    reply_comment: data => dispatch(reply_comment(data))
+    reply_comment: data => dispatch(reply_comment(data)),
+    page_viewed: data => dispatch(view_page(data))
 });
 
 class Body extends Component {
@@ -39,6 +40,7 @@ class Body extends Component {
                 obj => obj.node.id == this.props.post_id
             );
             document.title = 'ReactPress - ' + post.node.title;
+            this.props.page_viewed(post.node.uuid);
         }
     }
     onClap = () => {
@@ -227,7 +229,8 @@ Body.propTypes = {
     fetching: types.bool.isRequired,
     clap: types.func.isRequired,
     comment: types.func.isRequired,
-    reply_comment: types.func.isRequired
+    reply_comment: types.func.isRequired,
+    page_viewed: types.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);

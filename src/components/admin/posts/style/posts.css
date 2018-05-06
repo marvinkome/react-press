@@ -10,17 +10,65 @@
 
 .admin-posts .posts-info span {
     padding-right: 5px;
+    font-size: 19px;
 }
 
 .admin-posts .posts-list {
-    margin: 0 30px;
     background-color: #fff;
     padding: 12px 15px;
-    border-left: 4px solid #0e66af;
 }
 
-.admin-posts .posts-list .heading h5 {
+.admin-posts .posts-list .collapsible-header:focus{
+    outline: none;
+}
+
+.admin-posts .posts-list .collapsible-body{
+    padding: 0;
+    padding-top: 1px;
+    background-color: #fbfbfb;
+    border: none;
+    border-left: #0e66af 4px solid;
+}
+
+.admin-posts .posts-list .collapsible-body > *{
+    padding: 0 2rem;
+}
+
+.admin-posts .posts-list .collapsible-body .post-body{
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.admin-posts .posts-list .collapsible-body .post-tags,
+.admin-posts .posts-list .collapsible-body .post-claps {
+    font-size: 13.216px;
+    color: #545050;
+}
+
+.admin-posts .posts-list .collapsible-body .actions{
+    padding-bottom: 1px;
+    padding-left: 17px;
+}
+
+.admin-posts .posts-list .collapsible-body .actions .btn-flat:hover{
+    background: none;
+}
+
+.admin-posts .posts-list .collapsible-body .actions .delete {
+    color: rgba(228, 17, 17, 0.89);
+}
+
+.admin-posts .posts-list .collapsible-body .actions .view {
+    color: #222;
+}
+
+.admin-posts .posts-list .collapsible-body .actions .edit {
+    color: #2d587c;
+}
+
+.admin-posts .posts-list .post-title {
     font-size: 19px;
+    font-weight: 600;
 }
 
 .admin-posts .posts-list table td.big {
@@ -64,9 +112,20 @@
     color: hsl(0, 0%, 40%);
 }
 
+/* large screen */
+@media screen and (min-width: 993px) {
+    .admin-posts .posts-list .post-title {
+        flex: 1;
+    }
+}
 @media screen and (max-width: 600px) {
     .admin-posts .posts-list {
-        border-top: 4px solid #0e66af;
         border-left: none;
+    }
+    .admin-posts .posts-list .collapsible-header {
+        display: block;
+    }
+    .admin-posts .posts-list .post-title {
+        display: block;
     }
 }
