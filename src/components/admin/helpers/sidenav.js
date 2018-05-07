@@ -7,10 +7,16 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import img from '../../../img/default-pic.png';
+import { logoutUser } from '../../../js/redux/actions';
+import history from '../../../js/history';
 import './style/sidenav.css';
 
 const mapStateToProps = state => ({
     data: state.user_data
+});
+
+const mapDispatchToProp = dispatch => ({
+    logout: () => dispatch(logoutUser())
 });
 
 class SideNav extends Component {
@@ -38,6 +44,10 @@ class SideNav extends Component {
             const instance = window.M.Sidenav.getInstance(sidenav);
             instance.close();
         }
+    };
+    handleLogout = () => {
+        this.props.logout();
+        history.push('/');
     };
     render() {
         let display_name;
@@ -116,13 +126,18 @@ class SideNav extends Component {
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <div className="divider" />
-                    </li>
                     <li onClick={this.onClickRoute}>
                         <Link to="/admin/edit-profile">
                             <span>Edit Profile</span>
                         </Link>
+                    </li>
+                    <li>
+                        <div className="divider" />
+                    </li>
+                    <li onClick={this.onClickRoute}>
+                        <a onClick={this.handleLogout}>
+                            <span>Logout</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -131,6 +146,7 @@ class SideNav extends Component {
 }
 
 SideNav.propTypes = {
-    data: PropTypes.object
+    data: PropTypes.object,
+    logout: PropTypes.func.isRequired
 };
-export default connect(mapStateToProps)(SideNav);
+export default connect(mapStateToProps, mapDispatchToProp)(SideNav);

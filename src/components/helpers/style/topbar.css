@@ -10,6 +10,7 @@
 
 .navbar-wrapper .topbar .blog-info {
     display: inline-block;
+    margin-top: 12px;
 }
 .navbar-wrapper .topbar .blog-title {
     font-size: 21.516px;
@@ -44,9 +45,13 @@
 }
 
 .navbar-wrapper .topbar .nav-wrapper li a {
-    color: #000000;
+    color: #fff;
     font-size: 15.11px;
     margin-top: 10px;
+}
+
+.navbar-wrapper .topbar .nav-wrapper li a:hover {
+    color: #ffffffb3;
 }
 
 .navbar-wrapper .topbar .nav-wrapper li a.btn {
@@ -146,7 +151,7 @@
         line-height: 45px;
     }
     .navbar-wrapper ul.sidenav li a {
-        color: #000000bf;
+        color: #fff;
     }
     .navbar-wrapper ul.sidenav .user-view {
         background-color: #0e66af;
@@ -156,7 +161,7 @@
     }
     .navbar-wrapper ul.sidenav li span.email {
         padding-top: 20px;
-        color: #000000b5;
+        color: #fff;
         font-size: 15.11px;
         font-weight: 500;
     }
