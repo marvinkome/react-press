@@ -108,7 +108,7 @@ class Body extends Component {
 
                                                 <div className="post-claps">
                                                     <p>
-                                                        Claps:{' '}
+                                                        Likes :{' '}
                                                         {post.node.claps.totalCount};<br/>
                                                         Viewed:{' '}
                                                         {post.node.views != null ? post.node.views : 0}
