@@ -4,11 +4,10 @@
 
 import moment from 'moment';
 
-export const truncate = (word, length) =>
-    word
-        .split(' ')
-        .splice(0, length)
-        .join(' ') + ' ....';
+export const truncate = (word, length) => {
+    const new_word = word.split(' ').splice(0, length).join(' ') + ' ..read more';
+    return word.split(' ').length < length ? word : new_word;
+};
 
 export const format_date = server_date => {
     let date = moment.utc(server_date).format('YYYY-MM-DD HH:mm:ss');
