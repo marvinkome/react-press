@@ -11,15 +11,15 @@ class PostCard extends Component {
             <div className="post">
                 <div className="post-content">
                     <h2 className="post-title">{this.props.data.title}</h2>
-                    {this.props.data.postPicUrl != undefined ||
-                        (this.props.data.postPicUrl != '' && (
-                            <div className="post-image center">
-                                <img
-                                    src={this.props.data.postPicUrl}
-                                    className="responsive-img"
-                                />
-                            </div>
-                        ))}
+                    {(this.props.data.postPicUrl != undefined ||
+                     this.props.data.postPicUrl != '') && (
+                        <div className="post-image center">
+                            <img
+                                src={this.props.data.postPicUrl}
+                                className="responsive-img"
+                            />
+                        </div>
+                    )}
                     <div>
                         <div
                             className="content"
