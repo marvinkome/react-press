@@ -6,9 +6,11 @@ import React from 'react';
 import t from 'prop-types';
 import { Link } from 'react-router-dom';
 import Topbar from './topbar';
+import { DEFAULT_TITLE } from './constants';
 import img from '../../img/404.png';
 
 export const Err404 = ({ history }) => {
+    document.title = 'Page not found - ' - DEFAULT_TITLE;
     return (
         <div>
             <Topbar />

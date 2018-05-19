@@ -10,6 +10,8 @@ import { connect } from 'react-redux';
 import { register_user, fetch_user_data } from '../../../js/redux/actions';
 import { validate_password } from '../../../js/helpers';
 
+import { DEFAULT_TITLE } from '../../helpers/constants';
+
 const mapDispatchToProps = dispatch => {
     return {
         register_user: data => dispatch(register_user(data)),
@@ -50,6 +52,9 @@ class SignUp extends Component {
             });
             this.props.history.goBack();
         }
+    }
+    componentDidMount(){
+        document.title = 'Sign Up - ' + DEFAULT_TITLE; 
     }
     handleChange = e => {
         e.preventDefault();

@@ -5,7 +5,10 @@ a simple mini blog built with react.
 ### Online app
 To preview the website go to https://reactpress.herokuapp.com
 
-### To run locally
+## Contributions
+Please yes!! check the issues page for good issues you can fix
+
+### To setup local development
 
 ```bash
 # First clone the repo
