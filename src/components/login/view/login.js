@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { login_user, fetch_user_data } from '../../../js/redux/actions';
 
+import { DEFAULT_TITLE } from '../../helpers/constants';
+
 const mapDispatchToProps = dispatch => {
     return {
         login_user: data => dispatch(login_user(data)),
@@ -48,6 +50,9 @@ class Login extends Component {
             });
             this.props.history.goBack();
         }
+    }
+    componentDidMount(){
+        document.title = 'Login - ' + DEFAULT_TITLE;
     }
     handleChange = e => {
         e.preventDefault();

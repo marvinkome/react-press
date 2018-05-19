@@ -16,6 +16,8 @@ import Comment from './comment';
 import FAB from '../../helpers/fab';
 import Preloader from '../../helpers/preloader';
 
+import { DEFAULT_TITLE } from '../../helpers/constants';
+
 const mapStateToProps = state => ({
     posts: state.post_data.posts,
     user: state.user_data,
@@ -39,7 +41,7 @@ class Body extends Component {
             const post = this.props.posts.find(
                 obj => obj.node.id == this.props.post_id
             );
-            document.title = 'ReactPress - ' + post.node.title;
+            document.title = post.node.title + ' - ' + DEFAULT_TITLE;
             this.props.page_viewed(post.node.uuid);
         }
     }
