@@ -11,12 +11,12 @@ const Preloader = () => (
     </div>
 );
 
-export const AppLoading = ({ error, pastDelay, timedOut }) => (
+export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
     <div
         className="section container valign-wrapper"
         style={{ height: '100vh' }}
     >
-        <div style={{ margin: 'auto', width: '50%' }}>
+        <div style={{ margin: 'auto', width: '50%', marginLeft: admin ? '40%' : 'inherit'}}>
             <div className="center-align app-loader">
                 {error ? (
                     <div className="error">
@@ -51,7 +51,8 @@ export const AppLoading = ({ error, pastDelay, timedOut }) => (
 AppLoading.propTypes = {
     error: t.object,
     timedOut: t.bool,
-    pastDelay: t.bool
+    pastDelay: t.bool,
+    admin: t.bool
 };
 
 export default Preloader;
