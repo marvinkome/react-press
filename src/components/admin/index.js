@@ -13,30 +13,32 @@ import { AppLoading } from '../helpers/preloader';
 import _EditPost from './edit-post';
 export const EditPost = _EditPost;
 
+const Loader = (props) => <AppLoading {...props} admin/>;
+
 const AsyncDashboard = Loadable({
     loader: () => import('./dashboard'),
-    loading: AppLoading,
+    loading: Loader,
     timeout: 10000,
     delay: 300
 });
 
 const AsyncPosts = Loadable({
     loader: () => import('./posts'),
-    loading: AppLoading,
+    loading: Loader,
     timeout: 10000,
     delay: 300
 });
 
 const AsyncNewPost = Loadable({
     loader: () => import('./new-post'),
-    loading: AppLoading,
+    loading: Loader,
     timeout: 10000,
     delay: 300
 });
 
 const AsyncEditProfile = Loadable({
     loader: () => import('./edit-profile'),
-    loading: AppLoading,
+    loading: Loader,
     timeout: 10000,
     delay: 300
 });
