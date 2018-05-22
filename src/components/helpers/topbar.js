@@ -90,24 +90,6 @@ class TopBar extends Component {
                             {this.props.user_data != undefined ? (
                                 <ul className="right hide-on-small-only">
                                     <li>
-                                        <Link
-                                            to="/admin/dashboard"
-                                            title="Go to dashboard"
-                                        >
-                                            <span>Dashboard</span>
-                                        </Link>
-                                    </li>
-                                    <li>
-                                        <a
-                                            title="Logout"
-                                            onClick={
-                                                this.handleLogout
-                                            }
-                                        >
-                                            <span>Logout</span>
-                                        </a>
-                                    </li>
-                                    <li>
                                         <a
                                             ref={this.dropdown}
                                             className="dropdown-trigger user-profile"
