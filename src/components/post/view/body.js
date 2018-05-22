@@ -181,7 +181,7 @@ class Body extends Component {
             <div className="post-body section container">
                 <div className="row">
                     {this.props.fetching ? (
-                        <div className="col m12 center-align preloader-cont circle">
+                        <div className="col s12">
                             <Preloader />
                         </div>
                     ) : post != undefined ? (
