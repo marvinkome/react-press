@@ -10,7 +10,9 @@ import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
     const truncate_length =
-        post.postPicUrl != undefined && post.postPicUrl != '' ? 20 : 40;
+        post.postPicUrl != undefined && post.postPicUrl != ''
+            ? 20
+            : 40;
     const cardStyle =
         post.postPicUrl != undefined && post.postPicUrl != ''
             ? {
@@ -20,14 +22,16 @@ const PostCard = ({ post }) => {
             : {};
 
     const imgStyle =
-        post.author.gravatarUrl != null && post.author.gravatarUrl != ''
+        post.author.gravatarUrl != null &&
+        post.author.gravatarUrl != ''
             ? {
                 borderRadius: '50%',
                 backgroundColor: '#fafafa'
             }
             : {};
     const img =
-        post.author.gravatarUrl != undefined && post.author.gravatarUrl != ''
+        post.author.gravatarUrl != undefined &&
+        post.author.gravatarUrl != ''
             ? post.author.gravatarUrl
             : defImg;
 
@@ -35,14 +39,19 @@ const PostCard = ({ post }) => {
         <div className="card">
             <div className="card-image">
                 {post.postPicUrl != undefined &&
-                    post.postPicUrl != '' && <img src={post.postPicUrl} />}
+                    post.postPicUrl != '' && (
+                    <img src={post.postPicUrl} />
+                )}
             </div>
             <Link to={'/post/' + post.id}>
                 <div className="card-content" style={cardStyle}>
                     <span className="card-title">{post.title}</span>
                     <p
                         dangerouslySetInnerHTML={{
-                            __html: truncate(post.body, truncate_length)
+                            __html: truncate(
+                                post.body,
+                                truncate_length
+                            )
                         }}
                     />
                 </div>
@@ -50,7 +59,11 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img className="circle" src={img} style={imgStyle} />
+                        <img
+                            className="circle"
+                            src={img}
+                            style={imgStyle}
+                        />
                     </div>
                     <div className="info">
                         <span className="name">

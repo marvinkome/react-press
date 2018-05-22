@@ -42,7 +42,7 @@ const AsyncEditProfile = Loadable({
 });
 
 export default class Admin extends Component {
-    handlePath = path => {
+    handlePath = (path) => {
         switch (path) {
         case 'dashboard':
             return <AsyncDashboard />;

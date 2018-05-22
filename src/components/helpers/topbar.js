@@ -10,7 +10,7 @@ import { logoutUser } from '../../js/redux/actions';
 import img from '../../img/default-pic.png';
 import './style/topbar.css';
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProp = (dispatch) => ({
     logout: () => dispatch(logoutUser())
 });
 
@@ -19,17 +19,37 @@ class TopBar extends Component {
         super(props);
 
         this.sidenav = React.createRef();
+        this.dropdown = React.createRef();
         this.sidenavIns;
+        this.dropdownIns;
     }
     componentDidMount() {
+        const dropdown = this.dropdown.current;
         const sidenav = this.sidenav.current;
         if (window.M) {
             this.sidenavIns = window.M.Sidenav.init(sidenav);
+            this.dropdownIns = window.M.Dropdown.init(dropdown, {
+                constrainWidth: false,
+                coverTrigger: false,
+                container: 'DIV.dropdown-container'
+            });
+        }
+    }
+    componentDidUpdate() {
+        if (this.dropdown.current != null) {
+            const dropdown = this.dropdown.current;
+            this.dropdownIns = window.M.Dropdown.init(dropdown, {
+                constrainWidth: false,
+                coverTrigger: false,
+                container: 'DIV.dropdown-container'
+            });
         }
     }
     componentWillUnmount() {
         this.sidenavIns.close();
         this.sidenavIns.destroy();
+        this.dropdownIns.close();
+        this.dropdownIns.destroy();
     }
     handleLogout = () => {
         this.props.logout();
@@ -41,8 +61,8 @@ class TopBar extends Component {
         };
         let defImg = img;
 
-        if (this.props.user_data != undefined){
-            if (this.props.user_data.user.gravatarUrl != null){
+        if (this.props.user_data != undefined) {
+            if (this.props.user_data.user.gravatarUrl != null) {
                 defImg = this.props.user_data.user.gravatarUrl;
                 style = {};
             }
@@ -80,23 +100,58 @@ class TopBar extends Component {
                                     <li>
                                         <a
                                             title="Logout"
-                                            onClick={this.handleLogout}
+                                            onClick={
+                                                this.handleLogout
+                                            }
                                         >
                                             <span>Logout</span>
                                         </a>
                                     </li>
                                     <li>
-                                        <Link
-                                            to="/admin/dashboard"
-                                            title="Go to dashboard"
-                                            className="user-profile"
+                                        <a
+                                            ref={this.dropdown}
+                                            className="dropdown-trigger user-profile"
+                                            data-target="dropdown-menu"
                                         >
                                             <img
                                                 className="user-image responsive-img circle"
                                                 src={defImg}
                                                 style={style}
                                             />
-                                        </Link>
+                                        </a>
+                                        <div className="dropdown-container">
+                                            <ul
+                                                className="dropdown-content"
+                                                id="dropdown-menu"
+                                            >
+                                                <li>
+                                                    <Link to="/admin/new-post">
+                                                        New Post
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/admin/posts">
+                                                        All Posts
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <div className="divider" />
+                                                    <Link to="/admin/dashboard">
+                                                        Dashboard
+                                                    </Link>
+                                                </li>
+                                                <li>
+                                                    <a
+                                                        onClick={
+                                                            this
+                                                                .handleLogout
+                                                        }
+                                                    >
+                                                        Logout
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             ) : (
@@ -141,7 +196,10 @@ class TopBar extends Component {
                                     </a>
                                     <span className="email">
                                         Hello,{' '}
-                                        {this.props.user_data.user.fullName}
+                                        {
+                                            this.props.user_data.user
+                                                .fullName
+                                        }
                                     </span>
                                 </div>
                             </li>
@@ -154,7 +212,10 @@ class TopBar extends Component {
                                 </Link>
                             </li>
                             <li>
-                                <a title="Logout" onClick={this.handleLogout}>
+                                <a
+                                    title="Logout"
+                                    onClick={this.handleLogout}
+                                >
                                     <span>Logout</span>
                                 </a>
                             </li>
@@ -171,7 +232,9 @@ class TopBar extends Component {
                                             style={style}
                                         />
                                     </a>
-                                    <span className="email">Hello, Guest</span>
+                                    <span className="email">
+                                        Hello, Guest
+                                    </span>
                                 </div>
                             </li>
                             <li>

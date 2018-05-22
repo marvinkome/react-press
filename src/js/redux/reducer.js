@@ -10,8 +10,13 @@ const updateObject = (oldObj, newValues) => {
     return Object.assign({}, oldObj, newValues);
 };
 
-const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
-    const updatedItems = array.map(item => {
+const updateNestedItemArray = (
+    array,
+    itemId,
+    callback,
+    key = 'id'
+) => {
+    const updatedItems = array.map((item) => {
         if (item['node'][key] !== itemId) {
             return item;
         }
@@ -24,9 +29,11 @@ const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
 };
 
 const removeItemInNestedArray = (array, itemId, key = 'id') => {
-    let selected_item = array.find(item => item['node'][key] == itemId);
+    let selected_item = array.find(
+        (item) => item['node'][key] == itemId
+    );
 
-    return array.filter(item => item !== selected_item);
+    return array.filter((item) => item !== selected_item);
 };
 
 const saveToStore = (store, key) => {
@@ -38,7 +45,7 @@ const saveToStore = (store, key) => {
     return true;
 };
 
-const removeFromStore = key => {
+const removeFromStore = (key) => {
     if (localStorage) {
         localStorage.removeItem(key);
     }
@@ -47,28 +54,28 @@ const removeFromStore = key => {
 };
 
 // Case reducers
-const sendRequest = state => {
+const sendRequest = (state) => {
     const isFetching = true;
     return updateObject(state, {
         isFetching
     });
 };
 
-const sendloginRequest = state => {
+const sendloginRequest = (state) => {
     const isLoggingIn = true;
     return updateObject(state, {
         isLoggingIn
     });
 };
 
-const sendCommentRequest = state => {
+const sendCommentRequest = (state) => {
     const isSendingComment = true;
     return updateObject(state, {
         isSendingComment
     });
 };
 
-const sendClapRequest = state => {
+const sendClapRequest = (state) => {
     const isClapping = true;
     return updateObject(state, {
         isClapping
@@ -81,7 +88,7 @@ const requestTagsFinished = (state, tag_post, post_id) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            post =>
+            (post) =>
                 updateObject(post, {
                     node: {
                         ...tag_post
@@ -98,7 +105,7 @@ const requestTagsFinished = (state, tag_post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        post =>
+                        (post) =>
                             updateObject(post, {
                                 node: {
                                     ...tag_post
@@ -134,11 +141,13 @@ const requestPostsFinished = (state, post) => {
         data: updateObject(state.user_data.data, {
             user: updateObject(state.user_data.data.user, {
                 posts: updateObject(state.user_data.data.user.posts, {
-                    edges: state.user_data.data.user.posts.edges.concat({
-                        node: {
-                            ...post
+                    edges: state.user_data.data.user.posts.edges.concat(
+                        {
+                            node: {
+                                ...post
+                            }
                         }
-                    })
+                    )
                 })
             })
         })
@@ -160,7 +169,7 @@ const requestEditPostFinished = (state, post, post_id) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -177,7 +186,7 @@ const requestEditPostFinished = (state, post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -203,7 +212,11 @@ const requestDeletePostFinished = (state, post_id) => {
     const isFetching = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: removeItemInNestedArray(state.post_data.posts, post_id, 'uuid')
+        posts: removeItemInNestedArray(
+            state.post_data.posts,
+            post_id,
+            'uuid'
+        )
     });
 
     const new_user = updateObject(state.user_data, {
@@ -229,7 +242,7 @@ const requestDeletePostFinished = (state, post_id) => {
     return new_state;
 };
 
-const requestUserEditFinished = state => {
+const requestUserEditFinished = (state) => {
     return updateObject(state, {
         isFetching: false
     });
@@ -242,7 +255,7 @@ const requestCommentFinished = (state, post, comment, data) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -259,7 +272,7 @@ const requestCommentFinished = (state, post, comment, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -268,13 +281,18 @@ const requestCommentFinished = (state, post, comment, data) => {
                         'uuid'
                     )
                 }),
-                comments: updateObject(state.user_data.data.user.comments, {
-                    edges: state.user_data.data.user.comments.edges.concat({
-                        node: {
-                            ...comment
-                        }
-                    })
-                })
+                comments: updateObject(
+                    state.user_data.data.user.comments,
+                    {
+                        edges: state.user_data.data.user.comments.edges.concat(
+                            {
+                                node: {
+                                    ...comment
+                                }
+                            }
+                        )
+                    }
+                )
             })
         })
     });
@@ -288,14 +306,19 @@ const requestCommentFinished = (state, post, comment, data) => {
     return new_state;
 };
 
-const requestCommentReplyFinished = (state, post, comment_rep, data) => {
+const requestCommentReplyFinished = (
+    state,
+    post,
+    comment_rep,
+    data
+) => {
     const isSendingComment = false;
 
     const new_post = updateObject(state.post_data, {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -312,7 +335,7 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -353,7 +376,7 @@ const requestClapFinished = (state, post, data) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -370,7 +393,7 @@ const requestClapFinished = (state, post, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -393,12 +416,11 @@ const requestClapFinished = (state, post, data) => {
 };
 
 const requestViewPageFinished = (state, post, post_id) => {
-
     const new_post = updateObject(state.post_data, {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -415,7 +437,7 @@ const requestViewPageFinished = (state, post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -453,7 +475,12 @@ const recieveArticles = (state, articles, cursor, hasNextPage) => {
     return store;
 };
 
-const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
+const recieveMoreArticles = (
+    state,
+    articles,
+    cursor,
+    hasNextPage
+) => {
     const isFetching = false;
     const lastFetch = Date.now();
 

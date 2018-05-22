@@ -11,11 +11,11 @@ import { logoutUser } from '../../../js/redux/actions';
 import history from '../../../js/history';
 import './style/sidenav.css';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProp = (dispatch) => ({
     logout: () => dispatch(logoutUser())
 });
 
@@ -61,10 +61,10 @@ class SideNav extends Component {
             const data = this.props.data.data.user;
             display_name = data.fullName;
 
-            if (data.gravatarUrl !== null){
+            if (data.gravatarUrl !== null) {
                 pic_url = data.gravatarUrl;
                 style = {};
-            }  
+            }
         } else {
             display_name = '';
         }
@@ -90,10 +90,16 @@ class SideNav extends Component {
                         <div className="user-view">
                             <div className="background" />
                             <a>
-                                <img className="circle" src={pic_url} style={style} />
+                                <img
+                                    className="circle"
+                                    src={pic_url}
+                                    style={style}
+                                />
                             </a>
                             <a>
-                                <span className="name">{display_name}</span>
+                                <span className="name">
+                                    {display_name}
+                                </span>
                             </a>
                         </div>
                     </li>
@@ -108,15 +114,25 @@ class SideNav extends Component {
                             className="collapsible collapsible-accordion"
                         >
                             <li>
-                                <a className="collapsible-header">Posts</a>
+                                <a className="collapsible-header">
+                                    Posts
+                                </a>
                                 <div className="collapsible-body">
                                     <ul>
-                                        <li onClick={this.onClickRoute}>
+                                        <li
+                                            onClick={
+                                                this.onClickRoute
+                                            }
+                                        >
                                             <Link to="/admin/posts">
                                                 <span>All Posts</span>
                                             </Link>
                                         </li>
-                                        <li onClick={this.onClickRoute}>
+                                        <li
+                                            onClick={
+                                                this.onClickRoute
+                                            }
+                                        >
                                             <Link to="/admin/new-post">
                                                 <span>New Post</span>
                                             </Link>

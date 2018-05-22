@@ -7,7 +7,12 @@ import ReactDOMServer from 'react-dom/server';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 
-import { clap, add_comment, reply_comment, view_page } from '../../../js/redux/actions';
+import {
+    clap,
+    add_comment,
+    reply_comment,
+    view_page
+} from '../../../js/redux/actions';
 import history from '../../../js/history';
 
 import PostCard from './post-card';
@@ -18,17 +23,17 @@ import Preloader from '../../helpers/preloader';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     posts: state.post_data.posts,
     user: state.user_data,
     fetching: state.isFetching
 });
 
-const mapDispatchToProps = dispatch => ({
-    clap: data => dispatch(clap(data)),
-    comment: data => dispatch(add_comment(data)),
-    reply_comment: data => dispatch(reply_comment(data)),
-    page_viewed: data => dispatch(view_page(data))
+const mapDispatchToProps = (dispatch) => ({
+    clap: (data) => dispatch(clap(data)),
+    comment: (data) => dispatch(add_comment(data)),
+    reply_comment: (data) => dispatch(reply_comment(data)),
+    page_viewed: (data) => dispatch(view_page(data))
 });
 
 class Body extends Component {
@@ -39,7 +44,7 @@ class Body extends Component {
     componentDidMount() {
         if (this.props.posts.length != 0) {
             const post = this.props.posts.find(
-                obj => obj.node.id == this.props.post_id
+                (obj) => obj.node.id == this.props.post_id
             );
             document.title = post.node.title + ' - ' + DEFAULT_TITLE;
             this.props.page_viewed(post.node.uuid);
@@ -51,7 +56,7 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.node.id == post_id);
+            post = posts.find((obj) => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
@@ -84,13 +89,13 @@ class Body extends Component {
             history.push('/auth/login');
         }
     };
-    onCommitPublish = comment => {
+    onCommitPublish = (comment) => {
         const { posts, post_id } = this.props;
 
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.node.id == post_id);
+            post = posts.find((obj) => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
@@ -129,7 +134,7 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.node.id == post_id);
+            post = posts.find((obj) => obj.node.id == post_id);
         }
 
         if (this.props.user.data != undefined && post != undefined) {
@@ -169,7 +174,7 @@ class Body extends Component {
         let post = undefined;
 
         if (posts.length != 0) {
-            post = posts.find(obj => obj.node.id == post_id);
+            post = posts.find((obj) => obj.node.id == post_id);
         }
 
         return (
@@ -187,7 +192,9 @@ class Body extends Component {
                                 <PostCard data={post.node} />
 
                                 <Comment
-                                    handleComment={this.onCommitPublish}
+                                    handleComment={
+                                        this.onCommitPublish
+                                    }
                                     handleReply={this.onCommentReply}
                                     data={post.node.comments}
                                 />
@@ -195,7 +202,9 @@ class Body extends Component {
                             <div className="col m1">
                                 <FAB
                                     handleClap={this.onClap}
-                                    claps_count={post.node.claps.totalCount}
+                                    claps_count={
+                                        post.node.claps.totalCount
+                                    }
                                 />
                             </div>
                         </div>

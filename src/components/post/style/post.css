@@ -110,11 +110,19 @@
     margin: 5px 0 0 0;
 }
 
-.post-body .response .collection .comment-author .comment-author-image {
+.post-body
+    .response
+    .collection
+    .comment-author
+    .comment-author-image {
     max-width: 8%;
 }
 
-.post-body .response .collection .comment-author .comment-author-info {
+.post-body
+    .response
+    .collection
+    .comment-author
+    .comment-author-info {
     padding-left: 1px;
 }
 
@@ -224,7 +232,11 @@
         font-size: 21.5116px;
         padding-top: 3rem;
     }
-    .post-body .response .collection .comment-author .comment-author-image {
+    .post-body
+        .response
+        .collection
+        .comment-author
+        .comment-author-image {
         max-width: 22%;
     }
     .post-body .preloader-cont {

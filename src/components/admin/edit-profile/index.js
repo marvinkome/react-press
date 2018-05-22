@@ -8,7 +8,7 @@ import { DEFAULT_TITLE } from '../../helpers/constants';
 import './style/edit-profile.css';
 
 class EditProfile extends Component {
-    componentDidMount(){
+    componentDidMount() {
         document.title = 'Edit Profile - ' + DEFAULT_TITLE;
     }
     render() {

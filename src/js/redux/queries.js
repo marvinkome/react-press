@@ -64,7 +64,7 @@ export const fetch_query = `
     }
 `;
 
-export const fetch_more = last_cursor => `
+export const fetch_more = (last_cursor) => `
 {
     allPost(first:12, sortBy:"timestamp", after:"${last_cursor}"){
         edges{

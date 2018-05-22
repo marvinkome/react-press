@@ -7,19 +7,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { register_user, fetch_user_data } from '../../../js/redux/actions';
+import {
+    register_user,
+    fetch_user_data
+} from '../../../js/redux/actions';
 import { validate_password } from '../../../js/helpers';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        register_user: data => dispatch(register_user(data)),
+        register_user: (data) => dispatch(register_user(data)),
         fetch_data: () => dispatch(fetch_user_data())
     };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         isLogging: state.isLoggingIn
     };
@@ -39,7 +42,8 @@ class SignUp extends Component {
         const sessionLogin = JSON.parse(
             localStorage.getItem('med-blog-logged-in')
         );
-        const localLogin = sessionLogin != undefined && sessionLogin == true;
+        const localLogin =
+            sessionLogin != undefined && sessionLogin == true;
         if (localLogin) {
             const toastHTML = `
                 <div>
@@ -53,21 +57,24 @@ class SignUp extends Component {
             this.props.history.goBack();
         }
     }
-    componentDidMount(){
-        document.title = 'Sign Up - ' + DEFAULT_TITLE; 
+    componentDidMount() {
+        document.title = 'Sign Up - ' + DEFAULT_TITLE;
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
         if (navigator.onLine) {
             this.props.register_user(this.state).then(
-                res => {
-                    if (res.payload.msg == 'Authentication successfull') {
+                (res) => {
+                    if (
+                        res.payload.msg ==
+                        'Authentication successfull'
+                    ) {
                         this.props
                             .fetch_data()
                             .then(() => this.props.history.goBack());
@@ -77,10 +84,11 @@ class SignUp extends Component {
                         });
                     }
                 },
-                error => {
+                (error) => {
                     this.setState({
                         auth_message:
-                            String(error) == 'TypeError: Failed to fetch' &&
+                            String(error) ==
+                                'TypeError: Failed to fetch' &&
                             'Can\'t login server error'
                     });
                 }
@@ -106,17 +114,21 @@ class SignUp extends Component {
                 <div className="heading">
                     <h5>Join ReactPress</h5>
                     <p>
-                        Create an account to comment on publications, appreciate
-                        stories you love, and more.
+                        Create an account to comment on publications,
+                        appreciate stories you love, and more.
                     </p>
                     <p>
-                        * Password must contain atleast one uppercase letter or
-                        one number. And must be atleast 6 characters long
+                        * Password must contain atleast one uppercase
+                        letter or one number. And must be atleast 6
+                        characters long
                     </p>
                 </div>
 
                 <div className="login-form">
-                    <form onSubmit={this.handleSubmit} className="row">
+                    <form
+                        onSubmit={this.handleSubmit}
+                        className="row"
+                    >
                         <div className="input-field col s12">
                             <input
                                 type="email"
@@ -143,7 +155,10 @@ class SignUp extends Component {
                             />
                         </div>
                         <div className="input-field col s12">
-                            <button type="submit" className={button_class}>
+                            <button
+                                type="submit"
+                                className={button_class}
+                            >
                                 {!this.props.isLoggingIn ? (
                                     'Submit'
                                 ) : (

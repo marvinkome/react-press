@@ -15,15 +15,15 @@ import {
 } from '../../../../js/redux/actions';
 import { gcd } from '../../../../js/helpers';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     fetch_user_data: () => dispatch(fetch_user_data()),
     fetch_data: () => dispatch(fetch_all_data()),
-    update_profile_pic: data => dispatch(update_profile_pic(data)),
-    update_user_info: data => dispatch(update_user_info(data))
+    update_profile_pic: (data) => dispatch(update_profile_pic(data)),
+    update_user_info: (data) => dispatch(update_user_info(data))
 });
 
 class Body extends Component {
@@ -60,13 +60,13 @@ class Body extends Component {
             });
         }
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleFileChange = e => {
+    handleFileChange = (e) => {
         e.preventDefault();
 
         if (e.target.files.length > 0) {
@@ -74,7 +74,9 @@ class Body extends Component {
                 file: e.target.files[0]
             });
 
-            const objectURL = window.URL.createObjectURL(e.target.files[0]);
+            const objectURL = window.URL.createObjectURL(
+                e.target.files[0]
+            );
             const img = new Image();
 
             img.onload = () => {
@@ -90,7 +92,7 @@ class Body extends Component {
             img.src = objectURL;
         }
     };
-    onUploadClick = e => {
+    onUploadClick = (e) => {
         e.preventDefault();
 
         if (this.props.data.data != undefined && navigator.onLine) {
@@ -108,7 +110,9 @@ class Body extends Component {
                 () => {
                     const toastHTML = ReactDOMServer.renderToStaticMarkup(
                         <div>
-                            <span>File is uploading please wait </span>
+                            <span>
+                                File is uploading please wait{' '}
+                            </span>
                         </div>
                     );
                     window.M.toast({
@@ -136,7 +140,9 @@ class Body extends Component {
                         this.state.pic_url ==
                         this.props.data.data.user.gravatarUrl
                     ) {
-                        return alert('Please choose a different file');
+                        return alert(
+                            'Please choose a different file'
+                        );
                     }
 
                     const user_data = this.props.data.data.user;
@@ -165,7 +171,8 @@ class Body extends Component {
             const toastHTML = ReactDOMServer.renderToStaticMarkup(
                 <div>
                     <span>
-                        Can{'\''}t upload image, make sure you{'\''}re online
+                        Can{'\''}t upload image, make sure you{'\''}re
+                        online
                     </span>
                 </div>
             );
@@ -175,7 +182,7 @@ class Body extends Component {
             });
         }
     };
-    onSaveClick = e => {
+    onSaveClick = (e) => {
         e.preventDefault();
         let user_data = {};
         if (this.props.data.data != undefined) {
@@ -266,7 +273,9 @@ class Body extends Component {
                                     <input
                                         type="file"
                                         ref={this.fileInput}
-                                        onChange={this.handleFileChange}
+                                        onChange={
+                                            this.handleFileChange
+                                        }
                                         accept="image/*"
                                     />
                                 </div>
@@ -282,8 +291,10 @@ class Body extends Component {
                                 <div className="submit-btn">
                                     <a
                                         className={
-                                            this.state.image_ratio != '' &&
-                                            this.state.image_ratio != '1:1'
+                                            this.state.image_ratio !=
+                                                '' &&
+                                            this.state.image_ratio !=
+                                                '1:1'
                                                 ? 'btn-flat disabled'
                                                 : 'btn-flat'
                                         }

@@ -16,26 +16,26 @@ class Comment extends Component {
             replying: false
         };
     }
-    componentWillReceiveProps = np => {
+    componentWillReceiveProps = (np) => {
         if (this.state.data != np.data) {
             this.setState({
                 data: np.data
             });
         }
     };
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    onClickReply = e => {
+    onClickReply = (e) => {
         e.preventDefault();
         this.setState({
             replying: !this.state.replying
         });
     };
-    onCommentPublish = e => {
+    onCommentPublish = (e) => {
         e.preventDefault();
         this.props.handleComment(this.state.comment);
         this.setState({
@@ -91,37 +91,46 @@ class Comment extends Component {
                     </form>
                 </div>
 
-                {this.state.data.edges.map(obj => (
+                {this.state.data.edges.map((obj) => (
                     <ul key={obj.node.id} className="collection">
                         <li className="collection-item">
                             <div className="comment-author row">
                                 <div className="comment-author-image col s4 m1">
-                                    {   
-                                        obj.node.author.gravatarUrl != null && 
-                                        obj.node.author.gravatarUrl != '' ? 
-                                            (<img
-                                                src={obj.node.author.gravatarUrl}
+                                    {obj.node.author.gravatarUrl !=
+                                        null &&
+                                    obj.node.author.gravatarUrl !=
+                                        '' ? (
+                                            <img
+                                                src={
+                                                    obj.node.author
+                                                        .gravatarUrl
+                                                }
                                                 alt=""
                                                 className="responsive-img circle"
-                                            />) 
-                                            : (<img
+                                            />
+                                        ) : (
+                                            <img
                                                 src={defImg}
                                                 alt=""
                                                 className="responsive-img circle"
-                                            />)
-                                    }
+                                            />
+                                        )}
                                 </div>
                                 <div className="comment-author-info col s8 m11">
                                     <p className="title">
                                         {obj.node.author.fullName}
                                     </p>
                                     <span className="post-meta">
-                                        {format_date(obj.node.timestamp)}
+                                        {format_date(
+                                            obj.node.timestamp
+                                        )}
                                     </span>{' '}
                                     -{' '}
                                     <span className="post-meta">
                                         <a
-                                            onClick={this.onClickReply}
+                                            onClick={
+                                                this.onClickReply
+                                            }
                                             title="reply"
                                         >
                                             {this.state.replying
@@ -132,7 +141,9 @@ class Comment extends Component {
                                 </div>
                             </div>
 
-                            <div className="comment-resp">{obj.node.body}</div>
+                            <div className="comment-resp">
+                                {obj.node.body}
+                            </div>
 
                             <div style={style} className="reply-form">
                                 <form className="row">
@@ -144,15 +155,20 @@ class Comment extends Component {
                                                         obj.node.id
                                                 ]
                                             }
-                                            onChange={this.handleChange}
+                                            onChange={
+                                                this.handleChange
+                                            }
                                             className="materialize-textarea"
                                             placeholder="Write a reply"
-                                            id={'comment_reply_' + obj.node.id}
+                                            id={
+                                                'comment_reply_' +
+                                                obj.node.id
+                                            }
                                         />
                                     </div>
                                     <div className="col 12 input-field">
                                         <button
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.onCommentReply(
                                                     e,
                                                     'comment_reply_' +
@@ -169,31 +185,45 @@ class Comment extends Component {
                                 </form>
                             </div>
                         </li>
-                        {obj.node.replies.edges.map(reply => (
-                            <li key={reply.node.id} className="collection-item">
-                                <div className="comment-author row">{/* reply.node.author.gravatarUrl */}
+                        {obj.node.replies.edges.map((reply) => (
+                            <li
+                                key={reply.node.id}
+                                className="collection-item"
+                            >
+                                <div className="comment-author row">
+                                    {/* reply.node.author.gravatarUrl */}
                                     <div className="comment-author-image col s4 m1">
-                                        {   
-                                            reply.node.author.gravatarUrl != null && 
-                                            reply.node.author.gravatarUrl != '' ? 
-                                                (<img
-                                                    src={reply.node.author.gravatarUrl}
+                                        {reply.node.author
+                                            .gravatarUrl != null &&
+                                        reply.node.author
+                                            .gravatarUrl != '' ? (
+                                                <img
+                                                    src={
+                                                        reply.node.author
+                                                            .gravatarUrl
+                                                    }
                                                     alt=""
                                                     className="responsive-img circle"
-                                                />) 
-                                                : (<img
+                                                />
+                                            ) : (
+                                                <img
                                                     src={defImg}
                                                     alt=""
                                                     className="responsive-img circle"
-                                                />)
-                                        }
+                                                />
+                                            )}
                                     </div>
                                     <div className="comment-author-info col s8 m11">
                                         <p className="title">
-                                            {reply.node.author.fullName}
+                                            {
+                                                reply.node.author
+                                                    .fullName
+                                            }
                                         </p>
                                         <span className="post-meta">
-                                            {format_date(reply.node.timestamp)}
+                                            {format_date(
+                                                reply.node.timestamp
+                                            )}
                                         </span>
                                     </div>
                                 </div>

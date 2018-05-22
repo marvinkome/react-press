@@ -38,6 +38,12 @@
         ],
         "react/jsx-uses-vars": [
             "error"
+        ],
+        "max-len": [
+            "error",
+            {
+                "code": 100
+            }
         ]
     }
 }

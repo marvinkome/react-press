@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
@@ -17,9 +17,10 @@ class Body extends Component {
 
         if (this.props.data.data != undefined) {
             post_count = this.props.data.data.user.posts.edges.length;
-            comment_count = this.props.data.data.user.comments.edges.length;
-            comment_replies = this.props.data.data.user.commentReplies.edges
+            comment_count = this.props.data.data.user.comments.edges
                 .length;
+            comment_replies = this.props.data.data.user.commentReplies
+                .edges.length;
         } else {
             post_count = 0;
             comment_count = 0;
@@ -105,7 +106,9 @@ class Body extends Component {
                             <div className="col m4 l3">
                                 <p>
                                     <span className="icon-bg">
-                                        <i className="material-icons">reply</i>
+                                        <i className="material-icons">
+                                            reply
+                                        </i>
                                     </span>
                                     {comment_replies} comment replies
                                 </p>

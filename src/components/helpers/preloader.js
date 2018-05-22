@@ -28,11 +28,15 @@ export const AppLoading = ({ error, pastDelay, timedOut }) => (
                         <div>
                             <div
                                 className="progress"
-                                style={{ backgroundColor: '#90caf94f' }}
+                                style={{
+                                    backgroundColor: '#90caf94f'
+                                }}
                             >
                                 <div
                                     className="indeterminate"
-                                    style={{ backgroundColor: '#0e66af' }}
+                                    style={{
+                                        backgroundColor: '#0e66af'
+                                    }}
                                 />
                             </div>
                             <h5>

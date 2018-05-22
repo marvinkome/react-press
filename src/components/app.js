@@ -23,7 +23,7 @@ import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 // React redux
 import { Provider, connect } from 'react-redux';
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     fetch_data: () => dispatch(fetch_all_data()),
     fetch_user: () => dispatch(fetch_user_data())
 });
@@ -76,7 +76,11 @@ const SwitchRoutes = () => (
         <Route path="/auth/:section" component={AsyncLogin} exact />
 
         {/* Backend */}
-        <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
+        <PrivateRoute
+            path="/admin/:path"
+            component={AsyncAdmin}
+            exact
+        />
         <PrivateRoute
             path="/admin/edit-post/:id"
             component={AsyncEditPost}
@@ -98,10 +102,11 @@ class App extends Component {
         const sessionLogin = JSON.parse(
             localStorage.getItem('med-blog-logged-in')
         );
-        const localLogin = sessionLogin != undefined && sessionLogin == true;
+        const localLogin =
+            sessionLogin != undefined && sessionLogin == true;
 
         if (localLogin) {
-            this.props.fetch_user().then(res => {
+            this.props.fetch_user().then((res) => {
                 if (res.payload.msg == 'Not enough segments') {
                     const toastHTML = `
                             <div>

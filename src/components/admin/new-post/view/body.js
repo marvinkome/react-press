@@ -9,12 +9,15 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 
 import PostEditor from './editor';
-import { create_posts, create_tags } from '../../../../js/redux/actions';
+import {
+    create_posts,
+    create_tags
+} from '../../../../js/redux/actions';
 import history from '../../../../js/history';
 
-const mapDispatchToProp = dispatch => ({
-    create_post: data => dispatch(create_posts(data)),
-    create_tag: data => dispatch(create_tags(data))
+const mapDispatchToProp = (dispatch) => ({
+    create_post: (data) => dispatch(create_posts(data)),
+    create_tag: (data) => dispatch(create_tags(data))
 });
 
 class Body extends Component {
@@ -39,31 +42,31 @@ class Body extends Component {
         this.chip_instance = window.M.Chips.init(chip, {
             placeholder: 'Enter a tag',
             secondaryPlaceholder: '+Tag',
-            onChipAdd: e => {
+            onChipAdd: (e) => {
                 let tag = e[0].M_Chips.chipsData.pop();
                 this.handleTagAdd(tag.tag);
             }
         });
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleEditor = data => {
+    handleEditor = (data) => {
         const orig_data = '<div>' + data + '</div>';
         this.setState({
             reset: false,
             body: orig_data
         });
     };
-    handleTagAdd = tag => {
+    handleTagAdd = (tag) => {
         this.setState({
             tags: [...this.state.tags, tag]
         });
     };
-    handleFileChange = e => {
+    handleFileChange = (e) => {
         e.preventDefault();
         this.setState(
             {
@@ -118,7 +121,7 @@ class Body extends Component {
             }
         );
     };
-    onPublish = e => {
+    onPublish = (e) => {
         e.preventDefault();
         const { title, body } = this.state;
 
@@ -144,8 +147,8 @@ class Body extends Component {
 
         this.props
             .create_post(data)
-            .then(res => {
-                this.state.tags.map(tag_name =>
+            .then((res) => {
+                this.state.tags.map((tag_name) =>
                     this.props.create_tag({
                         tag_name,
                         post_id: res.post.data.createPost.post.uuid
@@ -203,7 +206,7 @@ class Body extends Component {
             <div className="main admin-add-post">
                 <div className="post-form row">
                     <div className="col m8 s12">
-                        <form onSubmit={e => e.preventDefault()}>
+                        <form onSubmit={(e) => e.preventDefault()}>
                             <div className="input-field">
                                 <input
                                     value={this.state.title}
@@ -232,9 +235,12 @@ class Body extends Component {
                                                 <span>File</span>
                                                 <input
                                                     type="file"
-                                                    ref={this.fileInput}
+                                                    ref={
+                                                        this.fileInput
+                                                    }
                                                     onChange={
-                                                        this.handleFileChange
+                                                        this
+                                                            .handleFileChange
                                                     }
                                                     accept="image/*"
                                                 />
@@ -250,7 +256,9 @@ class Body extends Component {
                                 </div>
 
                                 <div className="tag-section">
-                                    <span className="card-title">Add Tags</span>
+                                    <span className="card-title">
+                                        Add Tags
+                                    </span>
                                     <div
                                         className="chips chips-placeholder"
                                         ref={this.chip}

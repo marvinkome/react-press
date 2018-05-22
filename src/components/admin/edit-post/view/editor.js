@@ -33,16 +33,25 @@ class PostEditor extends Component {
         let editorState;
 
         if (validate_html(this.props.current_body)) {
-            const blockFromHtml = convertFromHTML(this.props.current_body);
+            const blockFromHtml = convertFromHTML(
+                this.props.current_body
+            );
             contentState = ContentState.createFromBlockArray(
                 blockFromHtml.contentBlocks,
                 blockFromHtml.entityMap
             );
         } else {
-            contentState = ContentState.createFromText(this.props.current_body);
+            contentState = ContentState.createFromText(
+                this.props.current_body
+            );
         }
-        const word_length = count_words_in_html(this.props.current_body);
-        editorState = EditorState.push(this.state.editorState, contentState);
+        const word_length = count_words_in_html(
+            this.props.current_body
+        );
+        editorState = EditorState.push(
+            this.state.editorState,
+            contentState
+        );
         editorState = EditorState.moveFocusToEnd(editorState);
 
         this.setState({
@@ -54,8 +63,10 @@ class PostEditor extends Component {
         const editor = this.editor.current;
         editor.focus();
     };
-    onChange = editorState => {
-        const rawContentState = convertToRaw(editorState.getCurrentContent());
+    onChange = (editorState) => {
+        const rawContentState = convertToRaw(
+            editorState.getCurrentContent()
+        );
         const html = draftToHtml(rawContentState);
         const word_length = count_words_in_html(html);
 
@@ -66,7 +77,10 @@ class PostEditor extends Component {
         this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
-        const newState = RichUtils.handleKeyCommand(editorState, command);
+        const newState = RichUtils.handleKeyCommand(
+            editorState,
+            command
+        );
         if (newState) {
             this.onChange(newState);
             return true;
@@ -76,11 +90,17 @@ class PostEditor extends Component {
     toggleCommand = (e, command, type) => {
         if (type == 'block') {
             this.onChange(
-                RichUtils.toggleBlockType(this.state.editorState, command)
+                RichUtils.toggleBlockType(
+                    this.state.editorState,
+                    command
+                )
             );
         } else if (type == 'inline') {
             this.onChange(
-                RichUtils.toggleInlineStyle(this.state.editorState, command)
+                RichUtils.toggleInlineStyle(
+                    this.state.editorState,
+                    command
+                )
             );
         }
     };
@@ -91,7 +111,10 @@ class PostEditor extends Component {
                     editorState={this.state.editorState}
                     onToggle={this.toggleCommand}
                 />
-                <div className="editor-input" onClick={this.editorFocus}>
+                <div
+                    className="editor-input"
+                    onClick={this.editorFocus}
+                >
                     <Editor
                         editorState={this.state.editorState}
                         handleKeyCommand={this.handleKeyCommand}

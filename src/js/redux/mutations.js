@@ -68,7 +68,7 @@ export const create_tag = (tagname, post_id) =>
     }
 `;
 
-export const create_post = post_data =>
+export const create_post = (post_data) =>
     `
     mutation Mutation{
         createPost(
@@ -141,7 +141,7 @@ export const create_post = post_data =>
     }
 `;
 
-export const edit_post = post_data =>
+export const edit_post = (post_data) =>
     `
     mutation Mutation{
         updatePost(
@@ -221,7 +221,7 @@ export const edit_post = post_data =>
     }
 `;
 
-export const delete_post = post_id => `
+export const delete_post = (post_id) => `
     mutation Mutation{
         deletePost(postId: ${post_id}){
             post{
@@ -231,7 +231,7 @@ export const delete_post = post_id => `
     }
 `;
 
-export const update_profile_picture = pic_url =>
+export const update_profile_picture = (pic_url) =>
     `
     mutation Mutation{
         updateUserProfilePic(
@@ -246,7 +246,7 @@ export const update_profile_picture = pic_url =>
     }
 `;
 
-export const update_info = user_data =>
+export const update_info = (user_data) =>
     `
     mutation Mutation{
         updateUserInfo(
@@ -257,7 +257,9 @@ export const update_info = user_data =>
 }
             ${
     user_data.description != undefined
-        ? 'newDescription: "' + user_data.description + '",'
+        ? 'newDescription: "' +
+                      user_data.description +
+                      '",'
         : ''
 }
         ){
@@ -269,7 +271,7 @@ export const update_info = user_data =>
     }
 `;
 
-export const create_comment = comment_data =>
+export const create_comment = (comment_data) =>
     `
     mutation Mutation{
         createComment(
@@ -361,7 +363,7 @@ export const create_comment = comment_data =>
     }
 `;
 
-export const create_comment_reply = reply_data =>
+export const create_comment_reply = (reply_data) =>
     `
     mutation Mutation{
         createCommentReply(
@@ -439,7 +441,7 @@ export const create_comment_reply = reply_data =>
     }
 `;
 
-export const clap = clap_data =>
+export const clap = (clap_data) =>
     `
     mutation Mutation{
         createClap(
@@ -504,7 +506,7 @@ export const clap = clap_data =>
     }
 `;
 
-export const viewPage = post_id => `
+export const viewPage = (post_id) => `
     mutation Mutation {
         viewPost(postId: ${post_id}){
             post{
