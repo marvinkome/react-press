@@ -153,6 +153,7 @@ export const fetch_profile_query = (fullname) => `
             title
             timestamp
             body
+            postPicUrl
           }
         }
       }
