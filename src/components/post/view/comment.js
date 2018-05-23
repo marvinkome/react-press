@@ -4,7 +4,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { format_date } from '../../../js/helpers';
+import { Link } from 'react-router-dom';
+import { format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 class Comment extends Component {
@@ -117,9 +118,17 @@ class Comment extends Component {
                                         )}
                                 </div>
                                 <div className="comment-author-info col s8 m11">
-                                    <p className="title">
-                                        {obj.node.author.fullName}
-                                    </p>
+                                    <Link 
+                                        to={get_profile_link(
+                                            obj.node.author.fullName,
+                                            obj.node.author.id
+                                        )}
+                                        title='View profile'
+                                    >
+                                        <p className="title">
+                                            {obj.node.author.fullName}
+                                        </p>
+                                    </Link>
                                     <span className="post-meta">
                                         {format_date(
                                             obj.node.timestamp
@@ -214,12 +223,17 @@ class Comment extends Component {
                                             )}
                                     </div>
                                     <div className="comment-author-info col s8 m11">
-                                        <p className="title">
-                                            {
-                                                reply.node.author
-                                                    .fullName
-                                            }
-                                        </p>
+                                        <Link 
+                                            to={get_profile_link(
+                                                reply.node.author.fullName,
+                                                reply.node.author.id
+                                            )}
+                                            title='View profile'
+                                        >
+                                            <p className="title">
+                                                {reply.node.author.fullName}
+                                            </p>
+                                        </Link>
                                         <span className="post-meta">
                                             {format_date(
                                                 reply.node.timestamp

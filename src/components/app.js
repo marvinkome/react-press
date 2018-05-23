@@ -45,6 +45,13 @@ const AsyncPost = Loadable({
     delay: 300
 });
 
+const AsyncProfilePage = Loadable({
+    loader: () => import('./profile-page'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
+
 const AsyncLogin = Loadable({
     loader: () => import('./login'),
     loading: AppLoading,
@@ -71,6 +78,7 @@ const SwitchRoutes = () => (
         {/* Front end */}
         <Route path="/" component={AsyncHome} exact />
         <Route path="/post/:id" component={AsyncPost} exact />
+        <Route path="/profile/:username" component={AsyncProfilePage} exact />
 
         {/* authentication */}
         <Route path="/auth/:section" component={AsyncLogin} exact />

@@ -16,7 +16,13 @@ export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
         className="section container valign-wrapper"
         style={{ height: '100vh' }}
     >
-        <div style={{ margin: 'auto', width: '50%', marginLeft: admin ? '40%' : 'inherit'}}>
+        <div
+            style={{
+                margin: 'auto',
+                width: '50%',
+                marginLeft: admin ? '40%' : 'inherit'
+            }}
+        >
             <div className="center-align app-loader">
                 {error ? (
                     <div className="error">

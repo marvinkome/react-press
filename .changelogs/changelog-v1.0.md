@@ -1,0 +1,149 @@
+- *Tue May 22 16:45:07 2018 +0100* - **Fix topbar**
+- *Tue May 22 16:41:11 2018 +0100* - **Merge branch 'develop' of https://github.com/marvinkome/react-press into develop**
+- *Tue May 22 16:40:56 2018 +0100* - **Add prettier and add dropdown in topbar user profile picture**
+- *Sun May 20 13:21:21 2018 +0100* - **Merge pull request #67 from marvinkome/master**
+- *Sun May 20 13:17:24 2018 +0100* - **Fix issue #59**
+- *Sun May 20 12:59:05 2018 +0100* - **Fix issue #58**
+- *Sat May 19 16:54:39 2018 +0100* - **Merge pull request #65 from marvinkome/develop**
+- *Sat May 19 16:26:12 2018 +0100* - **Fix truncate issues**
+- *Sat May 19 15:59:16 2018 +0100* - **Sidenav and site-title fixes**
+- *Sat May 19 15:40:20 2018 +0100* - **Merge pull request #63 from marvinkome/develop**
+- *Sat May 19 15:34:55 2018 +0100* - **Images not showing on post page**
+- *Sat May 19 15:27:32 2018 +0100* - **Merge pull request #62 from marvinkome/develop**
+- *Sat May 19 15:22:32 2018 +0100* - **Merge pull request #61 from marvinkome/master**
+- *Sat May 19 15:18:54 2018 +0100* - **Merge branch 'master' of https://github.com/marvinkome/react-press**
+- *Sat May 19 15:18:07 2018 +0100* - **Fix title issue**
+- *Mon May 14 13:10:58 2018 +0100* - **Update README.md**
+- *Sat May 12 19:34:06 2018 +0100* - **Merge pull request #50 from marvinkome/develop**
+- *Mon May 7 13:54:24 2018 +0100* - **Merge pull request #49 from marvinkome/master**
+- *Mon May 7 13:52:31 2018 +0100* - **add logout to dashboard sidenav, add hover design to menu**
+- *Sun May 6 18:46:17 2018 +0100* - **Merge pull request #48 from marvinkome/develop**
+- *Sun May 6 18:40:50 2018 +0100* - **Regenerate changelog**
+- *Sun May 6 18:40:17 2018 +0100* - **Redesign admin posts listing, add page view details to app**
+- *Sun May 6 00:21:55 2018 +0100* - **Edit prev commit**
+- *Sun May 6 00:15:23 2018 +0100* - **Edit prev commit**
+- *Sat May 5 23:19:36 2018 +0100* - **Default image in comment also**
+- *Sat May 5 01:50:57 2018 +0100* - **add lock to git**
+- *Sat May 5 01:35:47 2018 +0100* - **pretified**
+- *Sat May 5 01:29:34 2018 +0100* - **Merge branch 'master' of https://github.com/marvinkome/react-press**
+- *Sat May 5 01:29:03 2018 +0100* - **Merge pull request #47 from marvinkome/develop**
+- *Sat May 5 01:26:22 2018 +0100* - **Add dynamic title to homepage and post page**
+- *Sat May 5 01:05:25 2018 +0100* - **Merge pull request #46 from marvinkome/develop**
+- *Sat May 5 01:01:02 2018 +0100* - **use browser history instead**
+- *Sat May 5 01:00:17 2018 +0100* - **Use browser history instead**
+- *Fri May 4 23:14:47 2018 +0100* - **Merge pull request #45 from marvinkome/master**
+- *Fri May 4 18:43:15 2018 +0100* - **Edit**
+- *Fri May 4 18:32:34 2018 +0100* - **Add default user image**
+- *Fri May 4 01:50:25 2018 +0100* - **Fixed api fetch preloader**
+- *Fri May 4 01:15:33 2018 +0100* - **Merge branch 'master' of https://github.com/marvinkome/react-press**
+- *Fri May 4 01:14:47 2018 +0100* - **Fix home breaking style**
+- *Thu May 3 03:41:28 2018 +0100* - **Merge pull request #44 from marvinkome/develop**
+- *Thu May 3 03:18:41 2018 +0100* - **Merge pull request #43 from marvinkome/master**
+- *Thu May 3 03:14:32 2018 +0100* - **prettified**
+- *Thu May 3 03:04:27 2018 +0100* - **Change app theme**
+- *Wed May 2 19:19:30 2018 +0100* - **Merge branch 'develop'**
+- *Wed May 2 19:14:57 2018 +0100* - **change header color**
+- *Wed May 2 14:41:48 2018 +0100* - **Merge pull request #42 from marvinkome/develop**
+- *Wed May 2 14:23:22 2018 +0100* - **Fixed 'compoents being fixed after changing route'**
+- *Wed May 2 13:22:29 2018 +0100* - **Merge pull request #41 from marvinkome/develop**
+- *Wed May 2 13:19:43 2018 +0100* - **Merge pull request #40 from marvinkome/master**
+- *Wed May 2 03:49:52 2018 +0100* - **Edit**
+- *Wed May 2 03:37:37 2018 +0100* - **Removed font awesome**
+- *Wed May 2 03:20:25 2018 +0100* - **Add google icons**
+- *Wed May 2 02:24:29 2018 +0100* - **Merge pull request #39 from marvinkome/develop**
+- *Wed May 2 02:21:25 2018 +0100* - **Add post install script**
+- *Wed May 2 02:03:58 2018 +0100* - **Use firebase to store images**
+- *Tue May 1 13:45:55 2018 +0100* - **Merge pull request #38 from marvinkome/master**
+- *Tue May 1 13:39:49 2018 +0100* - **Merge branch 'master' of https://github.com/marvinkome/react-press**
+- *Tue May 1 13:35:33 2018 +0100* - **Update readme**
+- *Tue May 1 13:22:03 2018 +0100* - **Merge pull request #37 from marvinkome/develop**
+- *Tue May 1 13:07:34 2018 +0100* - **Fixed login issues**
+- *Tue May 1 04:01:13 2018 +0100* - **Edit**
+- *Tue May 1 04:00:00 2018 +0100* - **Edit**
+- *Tue May 1 03:55:24 2018 +0100* - **Edit**
+- *Tue May 1 03:46:52 2018 +0100* - **Edit**
+- *Tue May 1 03:30:57 2018 +0100* - **Edit**
+- *Tue May 1 03:22:50 2018 +0100* - **Edited**
+- *Tue May 1 03:03:02 2018 +0100* - **Merge pull request #36 from marvinkome/develop**
+- *Tue May 1 02:53:12 2018 +0100* - **Production preparation**
+- *Tue May 1 02:36:58 2018 +0100* - **Serve app from express**
+- *Tue May 1 02:23:08 2018 +0100* - **Serve files from express server**
+- *Tue May 1 01:39:34 2018 +0100* - **Merge pull request #35 from marvinkome/develop**
+- *Tue May 1 01:36:59 2018 +0100* - **Merge branch 'develop' of https://github.com/marvinkome/react-press into develop**
+- *Tue May 1 01:27:52 2018 +0100* - **Improved perfomance for app**
+- *Mon Apr 30 14:33:24 2018 +0100* - **Split code component and route wise**
+- *Mon Apr 30 06:03:08 2018 +0100* - **Implemented code spliting and added optimization for production**
+- *Mon Apr 30 03:16:50 2018 +0100* - **Merge pull request #34 from marvinkome/master**
+- *Mon Apr 30 03:15:35 2018 +0100* - **Update README.md**
+- *Mon Apr 30 03:06:23 2018 +0100* - **Merge pull request #33 from marvinkome/develop**
+- *Mon Apr 30 03:01:30 2018 +0100* - **Changed the session based auth system to token based. Fixed minor issues. Updated readMe**
+- *Sun Apr 29 01:22:51 2018 +0100* - **Merge pull request #32 from marvinkome/develop**
+- *Sun Apr 29 01:10:58 2018 +0100* - **Fixed the mobile look, add error 404 page, change theme color, and extra bug fixes**
+- *Sat Apr 28 23:10:06 2018 +0100* - **Merge pull request #31 from marvinkome/develop**
+- *Sat Apr 28 23:03:58 2018 +0100* - **Added user authentication**
+- *Fri Apr 27 18:40:19 2018 +0100* - **Merge pull request #30 from marvinkome/develop**
+- *Fri Apr 27 17:52:26 2018 +0100* - **Finishing touches for v1**
+- *Fri Apr 27 02:39:50 2018 +0100* - **Merge pull request #29 from marvinkome/develop**
+- *Fri Apr 27 02:31:46 2018 +0100* - **Removed load-more button**
+- *Fri Apr 27 02:22:38 2018 +0100* - **Pagination and inifite scrol added**
+- *Thu Apr 26 23:04:33 2018 +0100* - **Extra simple design touch**
+- *Thu Apr 26 20:36:55 2018 +0100* - **Merge pull request #28 from marvinkome/develop**
+- *Thu Apr 26 20:27:21 2018 +0100* - **Refactor commenting, clapping, creating and editing post and editing profile**
+- *Thu Apr 26 11:50:39 2018 +0100* - **Refactor edit post action and reducer**
+- *Thu Apr 26 01:46:03 2018 +0100* - **Merge pull request #27 from marvinkome/develop**
+- *Thu Apr 26 01:40:15 2018 +0100* - **Refactor  reducer to save to store after mutation**
+- *Thu Apr 26 00:45:01 2018 +0100* - **Error handler**
+- *Wed Apr 25 23:26:08 2018 +0100* - **Merge pull request #25 from marvinkome/develop**
+- *Wed Apr 25 20:35:41 2018 +0100* - **Ability to add comment and replies**
+- *Wed Apr 25 17:31:48 2018 +0100* - **Merge pull request #24 from marvinkome/develop**
+- *Wed Apr 25 17:27:26 2018 +0100* - **Implemented clap feature**
+- *Tue Apr 24 08:40:34 2018 +0100* - **Added admin switch for admin section**
+- *Mon Apr 23 23:45:27 2018 +0100* - **Dynamic sidenav**
+- *Mon Apr 23 23:32:47 2018 +0100* - **Merge pull request #23 from marvinkome/develop**
+- *Mon Apr 23 23:28:02 2018 +0100* - **Ability to edit user profile**
+- *Mon Apr 23 16:22:05 2018 +0100* - **Merge pull request #22 from marvinkome/develop**
+- *Mon Apr 23 16:10:22 2018 +0100* - **Ability to delete posts**
+- *Mon Apr 23 03:36:31 2018 +0100* - **Merge pull request #21 from marvinkome/develop**
+- *Mon Apr 23 03:29:09 2018 +0100* - **ability to create and edit posts**
+- *Sun Apr 22 00:28:45 2018 +0100* - **Merge pull request #20 from marvinkome/develop**
+- *Sat Apr 21 23:32:25 2018 +0100* - **Send user data to dashboard**
+- *Sat Apr 21 17:20:13 2018 +0100* - **Merge pull request #19 from marvinkome/develop**
+- *Sat Apr 21 17:18:05 2018 +0100* - **Recieve user data**
+- *Fri Apr 20 05:10:10 2018 +0100* - **Merge pull request #18 from marvinkome/develop**
+- *Fri Apr 20 05:04:36 2018 +0100* - **Added login and signup functionalities**
+- *Thu Apr 19 18:01:04 2018 +0100* - **Merge pull request #17 from marvinkome/develop**
+- *Thu Apr 19 17:45:02 2018 +0100* - **Added login page. fixed litte design issues**
+- *Thu Apr 19 01:31:45 2018 +0100* - **Merge pull request #16 from marvinkome/develop**
+- *Thu Apr 19 01:24:41 2018 +0100* - **Finished design for project**
+- *Wed Apr 18 23:41:44 2018 +0100* - **Merge pull request #15 from marvinkome/develop**
+- *Wed Apr 18 22:30:17 2018 +0100* - **Completed admin design**
+- *Wed Apr 18 04:36:07 2018 +0100* - **Merge pull request #13 from marvinkome/develop**
+- *Wed Apr 18 04:33:38 2018 +0100* - **Added the rich-text editor and completed new-post page**
+- *Tue Apr 17 21:15:08 2018 +0100* - **Merge pull request #12 from marvinkome/develop**
+- *Tue Apr 17 21:06:50 2018 +0100* - **Added the posts listing admin page**
+- *Tue Apr 17 16:01:10 2018 +0100* - **Basic dashboard completed**
+- *Tue Apr 17 04:09:22 2018 +0100* - **Merge pull request #11 from marvinkome/develop**
+- *Tue Apr 17 04:05:39 2018 +0100* - **added quick action card to dashboard**
+- *Mon Apr 16 18:42:47 2018 +0100* - **Setup admin route and dashboard page**
+- *Mon Apr 16 15:06:28 2018 +0100* - **Merge pull request #10 from marvinkome/develop**
+- *Mon Apr 16 15:01:54 2018 +0100* - **Get images from server and redesign comments**
+- *Sun Apr 15 04:05:49 2018 +0100* - **Merge pull request #9 from marvinkome/develop**
+- *Sun Apr 15 04:03:12 2018 +0100* - **Ability to Recieve comment data**
+- *Sun Apr 15 02:04:34 2018 +0100* - **Merge pull request #8 from marvinkome/develop**
+- *Sun Apr 15 02:00:47 2018 +0100* - **Connect with server to get data**
+- *Sat Apr 14 14:44:20 2018 +0100* - **Merge pull request #7 from marvinkome/develop**
+- *Sat Apr 14 14:41:35 2018 +0100* - **Added redux for state management**
+- *Fri Apr 13 16:52:32 2018 +0100* - **Merge pull request #6 from marvinkome/develop**
+- *Fri Apr 13 15:25:13 2018 +0100* - **Comment design**
+- *Fri Apr 13 13:42:32 2018 +0100* - **Merge pull request #5 from marvinkome/develop**
+- *Fri Apr 13 13:34:35 2018 +0100* - **Design for medium screens**
+- *Fri Apr 13 03:43:04 2018 +0100* - **Merge pull request #4 from marvinkome/develop**
+- *Fri Apr 13 03:37:53 2018 +0100* - **Added the post page and precommt hooks**
+- *Wed Apr 11 00:35:27 2018 +0100* - **Merge pull request #3 from marvinkome/develop**
+- *Wed Apr 11 00:31:54 2018 +0100* - **Merge branch 'develop' of https://github.com/marvinkome/medium-blog into develop**
+- *Wed Apr 11 00:30:06 2018 +0100* - **Added the body. Finished View Component and Home Path**
+- *Tue Apr 10 23:05:44 2018 +0100* - **Merge pull request #2 from marvinkome/master**
+- *Tue Apr 10 23:04:30 2018 +0100* - **Merge pull request #1 from marvinkome/develop**
+- *Tue Apr 10 22:57:47 2018 +0100* - **Created a top bar component**
+- *Tue Apr 10 12:12:45 2018 +0100* - **Initial Commit2**
+- *Tue Apr 10 11:31:06 2018 +0100* - **Initial commit**

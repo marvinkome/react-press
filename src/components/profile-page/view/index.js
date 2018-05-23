@@ -1,5 +1,5 @@
 /**
- * ./src/components/post/view
+ * ./src/components/profile-page/view
  */
 
 import React, { Component } from 'react';
@@ -15,11 +15,11 @@ const mapStateToProps = (state) => ({
 
 class View extends Component {
     render() {
-        const { user_data, id } = this.props;
+        const { user_data, user } = this.props;
         return (
             <div>
                 <TopBar user_data={user_data.data} />
-                <Body post_id={id} />
+                <Body user={user}/>
             </div>
         );
     }
@@ -27,7 +27,7 @@ class View extends Component {
 
 View.propTypes = {
     user_data: types.object.isRequired,
-    id: types.string.isRequired
+    user: types.string.isRequired
 };
 
 export default connect(mapStateToProps)(View);

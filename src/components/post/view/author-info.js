@@ -4,7 +4,8 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
-import { format_date } from '../../../js/helpers';
+import { Link } from 'react-router-dom';
+import { format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const AuthorInfo = ({ data }) => {
@@ -29,10 +30,16 @@ const AuthorInfo = ({ data }) => {
                     src={img}
                     className="responsive-img circle"
                     style={imgStyle}
+                    title={data.author.fullName}
                 />
             </div>
             <div className="author-details col s9">
-                <p className="author-name">{data.author.fullName}</p>
+                <Link 
+                    to={get_profile_link(data.author.fullName, data.author.id)} 
+                    title={'View Profile'}
+                >
+                    <p className="author-name">{data.author.fullName}</p>
+                </Link>
                 <p className="author-desc">
                     {data.author.description}
                 </p>

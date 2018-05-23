@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { truncate, format_date } from '../../../js/helpers';
+import { truncate, format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
@@ -66,11 +66,14 @@ const PostCard = ({ post }) => {
                         />
                     </div>
                     <div className="info">
-                        <span className="name">
-                            {post.author != null
-                                ? post.author.fullName
-                                : undefined}
-                        </span>
+                        <Link 
+                            to={get_profile_link(post.author.fullName, post.author.id)}
+                            title={post.author.fullName}
+                        >
+                            <span className="name">
+                                {post.author != null ? post.author.fullName : undefined}
+                            </span>
+                        </Link>
                         <span className="date">
                             {format_date(post.timestamp)}
                         </span>

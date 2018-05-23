@@ -10,12 +10,7 @@ const updateObject = (oldObj, newValues) => {
     return Object.assign({}, oldObj, newValues);
 };
 
-const updateNestedItemArray = (
-    array,
-    itemId,
-    callback,
-    key = 'id'
-) => {
+const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
     const updatedItems = array.map((item) => {
         if (item['node'][key] !== itemId) {
             return item;
@@ -36,6 +31,19 @@ const removeItemInNestedArray = (array, itemId, key = 'id') => {
     return array.filter((item) => item !== selected_item);
 };
 
+const removeDuplicateInArray = (propertyName, inputArray, duplicateKey) => {
+    let duplicate = false;
+
+    inputArray.map( item => {
+        if(item[propertyName] === duplicateKey){
+            delete item[propertyName];
+            duplicate = true;
+        }
+    });
+
+    return duplicate;
+};
+
 const saveToStore = (store, key) => {
     if (localStorage) {
         store = JSON.stringify(store);
@@ -54,6 +62,7 @@ const removeFromStore = (key) => {
 };
 
 // Case reducers
+// Before request is complete
 const sendRequest = (state) => {
     const isFetching = true;
     return updateObject(state, {
@@ -82,6 +91,8 @@ const sendClapRequest = (state) => {
     });
 };
 
+// After request is complete
+// admin requests
 const requestTagsFinished = (state, tag_post, post_id) => {
     const isFetching = false;
     const new_post = updateObject(state.post_data, {
@@ -248,6 +259,7 @@ const requestUserEditFinished = (state) => {
     });
 };
 
+// Post requests
 const requestCommentFinished = (state, post, comment, data) => {
     const isSendingComment = false;
 
@@ -306,12 +318,7 @@ const requestCommentFinished = (state, post, comment, data) => {
     return new_state;
 };
 
-const requestCommentReplyFinished = (
-    state,
-    post,
-    comment_rep,
-    data
-) => {
+const requestCommentReplyFinished = (state, post, comment_rep, data) => {
     const isSendingComment = false;
 
     const new_post = updateObject(state.post_data, {
@@ -458,6 +465,7 @@ const requestViewPageFinished = (state, post, post_id) => {
     return new_state;
 };
 
+// fetch requests
 const recieveArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
@@ -475,12 +483,7 @@ const recieveArticles = (state, articles, cursor, hasNextPage) => {
     return store;
 };
 
-const recieveMoreArticles = (
-    state,
-    articles,
-    cursor,
-    hasNextPage
-) => {
+const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
 
@@ -497,6 +500,27 @@ const recieveMoreArticles = (
     return store;
 };
 
+const recieveUserProfileData = (state, profile_data) => {
+    if(profile_data == null){
+        return state;
+    }
+    const isFetching = false;
+    const lastFetch = Date.now();
+
+    removeDuplicateInArray('id', state.public_users.users, profile_data.id);
+
+    const store = updateObject(state, {
+        isFetching,
+        lastFetch,
+        public_users: updateObject(state.public_users, {
+            users: state.public_users.users.concat(profile_data)
+        })
+    });
+
+    return store;
+};
+
+// auth requests
 const loginUser = (state, res) => {
     const isLoggingIn = false;
 
@@ -534,6 +558,7 @@ const recieveUserData = (state, user_data) => {
     return store;
 };
 
+// Reducer
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case constants.SEND_REQUEST:
@@ -627,6 +652,12 @@ const rootReducer = (state = initialState, action) => {
             state,
             action.post.data.viewPost.post,
             action.pageId
+        );
+
+    case constants.RECIEVE_USER_PROFILE:
+        return recieveUserProfileData(
+            state,
+            action.payload
         );
 
     default:

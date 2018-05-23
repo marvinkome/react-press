@@ -10,7 +10,7 @@ import { DEFAULT_TITLE } from './constants';
 import img from '../../img/404.png';
 
 export const Err404 = ({ history }) => {
-    document.title = 'Page not found - ' - DEFAULT_TITLE;
+    document.title = 'Page not found - ' + DEFAULT_TITLE;
     return (
         <div>
             <Topbar />

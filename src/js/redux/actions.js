@@ -111,6 +111,11 @@ export const recieveMoreArticles = (res) => ({
     hasNextPage: res.data.allPost.pageInfo.hasNextPage
 });
 
+export const recieveUserProfile = (res) => ({
+    type: constants.RECIEVE_USER_PROFILE,
+    payload: res.data.publicUser
+});
+
 // After auth request
 export const recieveUserData = (payload) => ({
     type: constants.RECIEVE_USER_DATA,
@@ -193,6 +198,24 @@ export const fetch_user_data = () => {
                 ).then((res) => res.json());
             })
             .then((res) => dispatch(recieveUserData(res)));
+    };
+};
+
+export const fetch_profile_data = (username) => {
+    return dispatch => {
+        dispatch(sendRequest);
+        
+        const headers = {
+            method: 'POST',
+            body: JSON.stringify({ query: query.fetch_profile_query(username) }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        };
+
+        return fetch(url + '/graphql', headers)
+            .then(res => res.json())
+            .then(res => dispatch(recieveUserProfile(res)));
     };
 };
 

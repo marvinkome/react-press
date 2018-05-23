@@ -1,3 +1,62 @@
+const post_query = `
+    post{
+        id
+        uuid
+        title
+        body
+        timestamp
+        postPicUrl
+        views
+        author {
+            id
+            fullName
+            description
+            gravatarUrl
+        }
+        tags {
+            edges {
+                node {
+                    id
+                    name
+                }
+            }
+        }
+        claps {
+            totalCount
+        }
+        comments {
+            edges {
+                node {
+                    id
+                    uuid
+                    body
+                    timestamp
+                    author{
+                        id
+                        fullName
+                        gravatarUrl
+                    }
+                    replies{
+                        edges{
+                            node{
+                                id
+                                timestamp
+                                body
+                                parentId
+                                author{
+                                    id
+                                    fullName
+                                    gravatarUrl
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export const create_tag = (tagname, post_id) =>
     `
     mutation Mutation{
@@ -11,59 +70,7 @@ export const create_tag = (tagname, post_id) =>
     `
             }
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
@@ -84,59 +91,7 @@ export const create_post = (post_data) =>
     `
             }
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
@@ -164,59 +119,7 @@ export const edit_post = (post_data) =>
     post_data.postId +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
@@ -282,65 +185,14 @@ export const create_comment = (comment_data) =>
     comment_data.post_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
             comment {
                 id
                 uuid
                 body
                 timestamp
                 author{
+                    id
                     fullName
                     gravatarUrl
                 }
@@ -352,6 +204,7 @@ export const create_comment = (comment_data) =>
                             body
                             parentId
                             author{
+                                id
                                 fullName
                                 gravatarUrl
                             }
@@ -374,65 +227,14 @@ export const create_comment_reply = (reply_data) =>
     reply_data.parent_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
             commentReply{
                 id
                 timestamp
                 body
                 parentId
                 author{
+                    id
                     fullName
                     gravatarUrl
                 }
@@ -449,59 +251,7 @@ export const clap = (clap_data) =>
     clap_data.post_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
@@ -509,59 +259,7 @@ export const clap = (clap_data) =>
 export const viewPage = (post_id) => `
     mutation Mutation {
         viewPost(postId: ${post_id}){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
