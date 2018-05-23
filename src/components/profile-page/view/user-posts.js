@@ -6,10 +6,21 @@ import { truncate, format_date } from '../../../js/helpers';
 
 class UserPosts extends Component {
     render() {
+        if ( this.props.data.posts.edges.length != 0 ) {
+            this.props.data.posts.edges.sort((a, b) => {
+                if (a.node.timestamp > b.node.timestamp) {
+                    return -1;
+                }
+                if (a.node.timestamp < b.node.timestamp) {
+                    return 1;
+                }
+                return 0;
+            });
+        }
         return (
             <div className="section user-posts">
                 <div className="row">
-                    <div className="col s12">
+                    <div className="col s12 m8">
                         <h5>Latest Posts by {this.props.data.fullName}</h5>
 
                         {this.props.data.posts.edges.map((obj) => (
@@ -23,7 +34,7 @@ class UserPosts extends Component {
                                     <span className="card-title">{obj.node.title}</span>
                                     <p
                                         dangerouslySetInnerHTML={{
-                                            __html: truncate(obj.node.title, 20)
+                                            __html: truncate(obj.node.body, 40)
                                         }}
                                     />
                                 </div>

@@ -13,12 +13,6 @@
         "format": "yarn pretty && yarn lint",
         "postinstall": "yarn build"
     },
-    "husky": {
-      "hooks": {
-        "pre-commit": 
-          "git log v1.0 --decorate --pretty=format:\"- *%cd* - **%s**\" > .changelogs/v1.0.md"
-      }
-    },
     "dependencies": {
         "dotenv": "^5.0.1",
         "draft-js": "^0.10.5",
