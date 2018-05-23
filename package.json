@@ -12,17 +12,17 @@
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",
         "postinstall": "yarn build",
-        "precommit": "lint-staged",
-        "checkout:merge": "git checkout master && git merge develop",
+        "checkout:master": "git checkout master && git merge develop",
+        "checkout:dev": "git checkout develop && git merge master",
         "push:heroku": "git push heroku master",
         "push:master": "git push origin master",
-        "release": "yarn checkout:merge && yarn push:master && yarn push:heroku"
+        "release": "yarn checkout:master && yarn push:master && yarn push:heroku && yarn checkout:dev"
     },
-    "lint-staged": {
-        "*": [
-          "git log v1.0 --decorate --pretty=format:'- *%cd* - **%s**' -- .changelogs/v1.0.md",
-          "git add"
-        ]
+    "husky": {
+      "hooks": {
+        "pre-commit": 
+          "git log v1.0 --decorate --pretty=format:\"- *%cd* - **%s**\" > .changelogs/v1.0.md"
+      }
     },
     "dependencies": {
         "dotenv": "^5.0.1",
