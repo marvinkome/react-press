@@ -11,12 +11,7 @@
         "pretty": "prettier-eslint --write 'src/**/*.+(css|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",
-        "postinstall": "yarn build",
-        "checkout:master": "git checkout master && git merge develop",
-        "checkout:dev": "git checkout develop && git merge master",
-        "push:heroku": "git push heroku master",
-        "push:master": "git push origin master",
-        "release": "yarn checkout:master && yarn push:master && yarn push:heroku && yarn checkout:dev"
+        "postinstall": "yarn build"
     },
     "husky": {
       "hooks": {
