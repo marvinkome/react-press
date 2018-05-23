@@ -20,17 +20,20 @@ class UserPosts extends Component {
         return (
             <div className="section user-posts">
                 <div className="row">
-                    <div className="col s12 m8">
+                    <div className="col s12 m12">
                         <h5>Latest Posts by {this.props.data.fullName}</h5>
 
                         {this.props.data.posts.edges.map((obj) => (
                             <div className="card" key={obj.node.id}>
-                                <div className="card-image">
-                                    {obj.node.postPicUrl !== null && (
-                                        <img src={obj.node.postPicUrl} className="responsive-img" />
-                                    )}
-                                </div>
                                 <div className="card-content">
+                                    <div className="card-image">
+                                        {obj.node.postPicUrl !== null && (
+                                            <img 
+                                                src={obj.node.postPicUrl}
+                                                className="responsive-img" 
+                                            />
+                                        )}
+                                    </div>
                                     <span className="card-title">{obj.node.title}</span>
                                     <p
                                         dangerouslySetInnerHTML={{
