@@ -12,14 +12,14 @@ import { validate_password } from '../../../js/helpers';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
     return {
-        register_user: data => dispatch(register_user(data)),
+        register_user: (data) => dispatch(register_user(data)),
         fetch_data: () => dispatch(fetch_user_data())
     };
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         isLogging: state.isLoggingIn
     };
@@ -36,9 +36,7 @@ class SignUp extends Component {
         };
     }
     componentWillMount() {
-        const sessionLogin = JSON.parse(
-            localStorage.getItem('med-blog-logged-in')
-        );
+        const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
         const localLogin = sessionLogin != undefined && sessionLogin == true;
         if (localLogin) {
             const toastHTML = `
@@ -53,31 +51,29 @@ class SignUp extends Component {
             this.props.history.goBack();
         }
     }
-    componentDidMount(){
-        document.title = 'Sign Up - ' + DEFAULT_TITLE; 
+    componentDidMount() {
+        document.title = 'Sign Up - ' + DEFAULT_TITLE;
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleSubmit = e => {
+    handleSubmit = (e) => {
         e.preventDefault();
         if (navigator.onLine) {
             this.props.register_user(this.state).then(
-                res => {
+                (res) => {
                     if (res.payload.msg == 'Authentication successfull') {
-                        this.props
-                            .fetch_data()
-                            .then(() => this.props.history.goBack());
+                        this.props.fetch_data().then(() => this.props.history.goBack());
                     } else {
                         this.setState({
                             auth_message: res.payload.msg
                         });
                     }
                 },
-                error => {
+                (error) => {
                     this.setState({
                         auth_message:
                             String(error) == 'TypeError: Failed to fetch' &&
@@ -106,12 +102,12 @@ class SignUp extends Component {
                 <div className="heading">
                     <h5>Join ReactPress</h5>
                     <p>
-                        Create an account to comment on publications, appreciate
-                        stories you love, and more.
+                        Create an account to comment on publications, appreciate stories you love,
+                        and more.
                     </p>
                     <p>
-                        * Password must contain atleast one uppercase letter or
-                        one number. And must be atleast 6 characters long
+                        * Password must contain atleast one uppercase letter or one number. And must
+                        be atleast 6 characters long
                     </p>
                 </div>
 
@@ -152,9 +148,7 @@ class SignUp extends Component {
                                     </div>
                                 )}
                             </button>
-                            <p className="red-text">
-                                {this.state.auth_message}
-                            </p>
+                            <p className="red-text">{this.state.auth_message}</p>
                         </div>
                     </form>
                 </div>

@@ -1,0 +1,11 @@
+{
+    "editor.rulers": [
+        100
+    ],
+    "material-icon-theme.folders.color": "#ff00ff",
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#07375f",
+        "activityBar.background": "#073a64",
+        "activityBar.foreground": "#fff"
+    }
+}

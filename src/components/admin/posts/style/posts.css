@@ -18,11 +18,11 @@
     padding: 12px 15px;
 }
 
-.admin-posts .posts-list .collapsible-header:focus{
+.admin-posts .posts-list .collapsible-header:focus {
     outline: none;
 }
 
-.admin-posts .posts-list .collapsible-body{
+.admin-posts .posts-list .collapsible-body {
     padding: 0;
     padding-top: 1px;
     background-color: #fbfbfb;
@@ -30,11 +30,11 @@
     border-left: #0e66af 4px solid;
 }
 
-.admin-posts .posts-list .collapsible-body > *{
+.admin-posts .posts-list .collapsible-body > * {
     padding: 0 2rem;
 }
 
-.admin-posts .posts-list .collapsible-body .post-body{
+.admin-posts .posts-list .collapsible-body .post-body {
     font-size: 15px;
     font-weight: 500;
 }
@@ -45,12 +45,12 @@
     color: #545050;
 }
 
-.admin-posts .posts-list .collapsible-body .actions{
+.admin-posts .posts-list .collapsible-body .actions {
     padding-bottom: 1px;
     padding-left: 17px;
 }
 
-.admin-posts .posts-list .collapsible-body .actions .btn-flat:hover{
+.admin-posts .posts-list .collapsible-body .actions .btn-flat:hover {
     background: none;
 }
 

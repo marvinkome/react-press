@@ -11,11 +11,11 @@ import { logoutUser } from '../../../js/redux/actions';
 import history from '../../../js/history';
 import './style/sidenav.css';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProp = (dispatch) => ({
     logout: () => dispatch(logoutUser())
 });
 
@@ -61,10 +61,10 @@ class SideNav extends Component {
             const data = this.props.data.data.user;
             display_name = data.fullName;
 
-            if (data.gravatarUrl !== null){
+            if (data.gravatarUrl !== null) {
                 pic_url = data.gravatarUrl;
                 style = {};
-            }  
+            }
         } else {
             display_name = '';
         }
@@ -73,19 +73,12 @@ class SideNav extends Component {
                 <nav className="admin-nav">
                     <div className="nav-wrapper">
                         <a className="brand-logo">ReactPress</a>
-                        <a
-                            data-target="mobile-demo"
-                            className="sidenav-trigger"
-                        >
+                        <a data-target="mobile-demo" className="sidenav-trigger">
                             <i className="material-icons">menu</i>
                         </a>
                     </div>
                 </nav>
-                <ul
-                    ref={this.sideNav}
-                    className="sidenav sidenav-fixed"
-                    id="mobile-demo"
-                >
+                <ul ref={this.sideNav} className="sidenav sidenav-fixed" id="mobile-demo">
                     <li>
                         <div className="user-view">
                             <div className="background" />
@@ -103,10 +96,7 @@ class SideNav extends Component {
                         </Link>
                     </li>
                     <li>
-                        <ul
-                            ref={this.collapsible}
-                            className="collapsible collapsible-accordion"
-                        >
+                        <ul ref={this.collapsible} className="collapsible collapsible-accordion">
                             <li>
                                 <a className="collapsible-header">Posts</a>
                                 <div className="collapsible-body">

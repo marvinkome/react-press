@@ -11,7 +11,7 @@ const updateObject = (oldObj, newValues) => {
 };
 
 const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
-    const updatedItems = array.map(item => {
+    const updatedItems = array.map((item) => {
         if (item['node'][key] !== itemId) {
             return item;
         }
@@ -24,9 +24,22 @@ const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
 };
 
 const removeItemInNestedArray = (array, itemId, key = 'id') => {
-    let selected_item = array.find(item => item['node'][key] == itemId);
+    let selected_item = array.find((item) => item['node'][key] == itemId);
 
-    return array.filter(item => item !== selected_item);
+    return array.filter((item) => item !== selected_item);
+};
+
+const removeDuplicateInArray = (propertyName, inputArray, duplicateKey) => {
+    let duplicate = false;
+
+    inputArray.map((item) => {
+        if (item[propertyName] === duplicateKey) {
+            delete item[propertyName];
+            duplicate = true;
+        }
+    });
+
+    return duplicate;
 };
 
 const saveToStore = (store, key) => {
@@ -38,7 +51,7 @@ const saveToStore = (store, key) => {
     return true;
 };
 
-const removeFromStore = key => {
+const removeFromStore = (key) => {
     if (localStorage) {
         localStorage.removeItem(key);
     }
@@ -47,41 +60,44 @@ const removeFromStore = key => {
 };
 
 // Case reducers
-const sendRequest = state => {
+// Before request is complete
+const sendRequest = (state) => {
     const isFetching = true;
     return updateObject(state, {
         isFetching
     });
 };
 
-const sendloginRequest = state => {
+const sendloginRequest = (state) => {
     const isLoggingIn = true;
     return updateObject(state, {
         isLoggingIn
     });
 };
 
-const sendCommentRequest = state => {
+const sendCommentRequest = (state) => {
     const isSendingComment = true;
     return updateObject(state, {
         isSendingComment
     });
 };
 
-const sendClapRequest = state => {
+const sendClapRequest = (state) => {
     const isClapping = true;
     return updateObject(state, {
         isClapping
     });
 };
 
+// After request is complete
+// admin requests
 const requestTagsFinished = (state, tag_post, post_id) => {
     const isFetching = false;
     const new_post = updateObject(state.post_data, {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            post =>
+            (post) =>
                 updateObject(post, {
                     node: {
                         ...tag_post
@@ -98,7 +114,7 @@ const requestTagsFinished = (state, tag_post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        post =>
+                        (post) =>
                             updateObject(post, {
                                 node: {
                                     ...tag_post
@@ -160,7 +176,7 @@ const requestEditPostFinished = (state, post, post_id) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -177,7 +193,7 @@ const requestEditPostFinished = (state, post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -229,12 +245,13 @@ const requestDeletePostFinished = (state, post_id) => {
     return new_state;
 };
 
-const requestUserEditFinished = state => {
+const requestUserEditFinished = (state) => {
     return updateObject(state, {
         isFetching: false
     });
 };
 
+// Post requests
 const requestCommentFinished = (state, post, comment, data) => {
     const isSendingComment = false;
 
@@ -242,7 +259,7 @@ const requestCommentFinished = (state, post, comment, data) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -259,7 +276,7 @@ const requestCommentFinished = (state, post, comment, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -295,7 +312,7 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -312,7 +329,7 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -321,18 +338,13 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
                         'uuid'
                     )
                 }),
-                commentReplies: updateObject(
-                    state.user_data.data.user.commentReplies,
-                    {
-                        edges: state.user_data.data.user.commentReplies.edges.concat(
-                            {
-                                node: {
-                                    ...comment_rep
-                                }
-                            }
-                        )
-                    }
-                )
+                commentReplies: updateObject(state.user_data.data.user.commentReplies, {
+                    edges: state.user_data.data.user.commentReplies.edges.concat({
+                        node: {
+                            ...comment_rep
+                        }
+                    })
+                })
             })
         })
     });
@@ -353,7 +365,7 @@ const requestClapFinished = (state, post, data) => {
         posts: updateNestedItemArray(
             state.post_data.posts,
             data.post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -370,7 +382,7 @@ const requestClapFinished = (state, post, data) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         data.post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -393,12 +405,11 @@ const requestClapFinished = (state, post, data) => {
 };
 
 const requestViewPageFinished = (state, post, post_id) => {
-
     const new_post = updateObject(state.post_data, {
         posts: updateNestedItemArray(
             state.post_data.posts,
             post_id,
-            selected_post =>
+            (selected_post) =>
                 updateObject(selected_post, {
                     node: {
                         ...post
@@ -415,7 +426,7 @@ const requestViewPageFinished = (state, post, post_id) => {
                     edges: updateNestedItemArray(
                         state.user_data.data.user.posts.edges,
                         post_id,
-                        selected_post =>
+                        (selected_post) =>
                             updateObject(selected_post, {
                                 node: {
                                     ...post
@@ -436,6 +447,7 @@ const requestViewPageFinished = (state, post, post_id) => {
     return new_state;
 };
 
+// fetch requests
 const recieveArticles = (state, articles, cursor, hasNextPage) => {
     const isFetching = false;
     const lastFetch = Date.now();
@@ -470,6 +482,27 @@ const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
     return store;
 };
 
+const recieveUserProfileData = (state, profile_data) => {
+    if (profile_data == null) {
+        return state;
+    }
+    const isFetching = false;
+    const lastFetch = Date.now();
+
+    removeDuplicateInArray('id', state.public_users.users, profile_data.id);
+
+    const store = updateObject(state, {
+        isFetching,
+        lastFetch,
+        public_users: updateObject(state.public_users, {
+            users: state.public_users.users.concat(profile_data)
+        })
+    });
+
+    return store;
+};
+
+// auth requests
 const loginUser = (state, res) => {
     const isLoggingIn = false;
 
@@ -507,6 +540,7 @@ const recieveUserData = (state, user_data) => {
     return store;
 };
 
+// Reducer
 const rootReducer = (state = initialState, action) => {
     switch (action.type) {
     case constants.SEND_REQUEST:
@@ -522,20 +556,10 @@ const rootReducer = (state = initialState, action) => {
         return sendClapRequest(state);
 
     case constants.RECIEVE_ARTICLES:
-        return recieveArticles(
-            state,
-            action.payload,
-            action.cursor,
-            action.hasNextPage
-        );
+        return recieveArticles(state, action.payload, action.cursor, action.hasNextPage);
 
     case constants.RECIEVE_MORE_ARTICLES:
-        return recieveMoreArticles(
-            state,
-            action.payload,
-            action.cursor,
-            action.hasNextPage
-        );
+        return recieveMoreArticles(state, action.payload, action.cursor, action.hasNextPage);
 
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
@@ -547,24 +571,13 @@ const rootReducer = (state = initialState, action) => {
         return recieveUserData(state, action.payload);
 
     case constants.REQUEST_TAG_FINISHED:
-        return requestTagsFinished(
-            state,
-            action.tag.data.createTag.post,
-            action.post_id
-        );
+        return requestTagsFinished(state, action.tag.data.createTag.post, action.post_id);
 
     case constants.REQUEST_POST_FINISHED:
-        return requestPostsFinished(
-            state,
-            action.post.data.createPost.post
-        );
+        return requestPostsFinished(state, action.post.data.createPost.post);
 
     case constants.REQUEST_EDIT_POST_FINISHED:
-        return requestEditPostFinished(
-            state,
-            action.post.data.updatePost.post,
-            action.post_id
-        );
+        return requestEditPostFinished(state, action.post.data.updatePost.post, action.post_id);
 
     case constants.REQUEST_DELETE_POST_FINISHED:
         return requestDeletePostFinished(state, action.post_id);
@@ -589,18 +602,13 @@ const rootReducer = (state = initialState, action) => {
         );
 
     case constants.REQUEST_CLAP_FINISHED:
-        return requestClapFinished(
-            state,
-            action.post.data.createClap.post,
-            action.data
-        );
+        return requestClapFinished(state, action.post.data.createClap.post, action.data);
 
     case constants.VIEW_PAGE:
-        return requestViewPageFinished(
-            state,
-            action.post.data.viewPost.post,
-            action.pageId
-        );
+        return requestViewPageFinished(state, action.post.data.viewPost.post, action.pageId);
+
+    case constants.RECIEVE_USER_PROFILE:
+        return recieveUserProfileData(state, action.payload);
 
     default:
         return state;

@@ -12,7 +12,10 @@ const state = {
     post_data: {
         posts: []
     },
-    user_data: {}
+    user_data: {},
+    public_users: {
+        users: []
+    }
 };
 
 export default state;

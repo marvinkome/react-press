@@ -10,7 +10,7 @@ import { logoutUser } from '../../js/redux/actions';
 import img from '../../img/default-pic.png';
 import './style/topbar.css';
 
-const mapDispatchToProp = dispatch => ({
+const mapDispatchToProp = (dispatch) => ({
     logout: () => dispatch(logoutUser())
 });
 
@@ -19,17 +19,42 @@ class TopBar extends Component {
         super(props);
 
         this.sidenav = React.createRef();
+        this.dropdown = React.createRef();
         this.sidenavIns;
+        this.dropdownIns;
     }
     componentDidMount() {
+        const dropdown = this.dropdown.current;
         const sidenav = this.sidenav.current;
         if (window.M) {
             this.sidenavIns = window.M.Sidenav.init(sidenav);
+            this.dropdownIns = window.M.Dropdown.init(dropdown, {
+                constrainWidth: false,
+                coverTrigger: false,
+                container: 'DIV.dropdown-container'
+            });
+        }
+    }
+    componentDidUpdate() {
+        if (this.dropdown.current != null) {
+            const dropdown = this.dropdown.current;
+            this.dropdownIns = window.M.Dropdown.init(dropdown, {
+                constrainWidth: false,
+                coverTrigger: false,
+                container: 'DIV.dropdown-container'
+            });
         }
     }
     componentWillUnmount() {
-        this.sidenavIns.close();
-        this.sidenavIns.destroy();
+        if (this.sidenavIns !== undefined) {
+            this.sidenavIns.close();
+            this.sidenavIns.destroy();
+        }
+
+        if (this.dropdownIns !== undefined) {
+            this.dropdownIns.close();
+            this.dropdownIns.destroy();
+        }
     }
     handleLogout = () => {
         this.props.logout();
@@ -41,8 +66,8 @@ class TopBar extends Component {
         };
         let defImg = img;
 
-        if (this.props.user_data != undefined){
-            if (this.props.user_data.user.gravatarUrl != null){
+        if (this.props.user_data != undefined) {
+            if (this.props.user_data.user.gravatarUrl != null) {
                 defImg = this.props.user_data.user.gravatarUrl;
                 style = {};
             }
@@ -62,58 +87,51 @@ class TopBar extends Component {
                             </a>
                             <div className="blog-info">
                                 <Link to="/" className="brand-logo">
-                                    <span className="blog-title">
-                                        ReactPress
-                                    </span>
+                                    <span className="blog-title">ReactPress</span>
                                 </Link>
                             </div>
                             {this.props.user_data != undefined ? (
                                 <ul className="right hide-on-small-only">
                                     <li>
-                                        <Link
-                                            to="/admin/dashboard"
-                                            title="Go to dashboard"
-                                        >
-                                            <span>Dashboard</span>
-                                        </Link>
-                                    </li>
-                                    <li>
                                         <a
-                                            title="Logout"
-                                            onClick={this.handleLogout}
-                                        >
-                                            <span>Logout</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <Link
-                                            to="/admin/dashboard"
-                                            title="Go to dashboard"
-                                            className="user-profile"
+                                            ref={this.dropdown}
+                                            className="dropdown-trigger user-profile"
+                                            data-target="dropdown-menu"
                                         >
                                             <img
                                                 className="user-image responsive-img circle"
                                                 src={defImg}
                                                 style={style}
                                             />
-                                        </Link>
+                                        </a>
+                                        <div className="dropdown-container">
+                                            <ul className="dropdown-content" id="dropdown-menu">
+                                                <li>
+                                                    <Link to="/admin/new-post">New Post</Link>
+                                                </li>
+                                                <li>
+                                                    <Link to="/admin/posts">All Posts</Link>
+                                                </li>
+                                                <li>
+                                                    <div className="divider" />
+                                                    <Link to="/admin/dashboard">Dashboard</Link>
+                                                </li>
+                                                <li>
+                                                    <a onClick={this.handleLogout}>Logout</a>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </li>
                                 </ul>
                             ) : (
                                 <ul className="right hide-on-small-only">
                                     <li>
-                                        <Link
-                                            to="/auth/login"
-                                            className="sign-in"
-                                        >
+                                        <Link to="/auth/login" className="sign-in">
                                             Sign in
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link
-                                            to="/auth/signup"
-                                            className="sign-up btn"
-                                        >
+                                        <Link to="/auth/signup" className="sign-up btn">
                                             Get started
                                         </Link>
                                     </li>
@@ -123,33 +141,21 @@ class TopBar extends Component {
                     </nav>
                 </div>
 
-                <ul
-                    ref={this.sidenav}
-                    className="sidenav hide-on-med-and-up"
-                    id="mobile-topbar"
-                >
+                <ul ref={this.sidenav} className="sidenav hide-on-med-and-up" id="mobile-topbar">
                     {this.props.user_data != undefined ? (
                         <div>
                             <li>
                                 <div className="user-view">
                                     <a>
-                                        <img
-                                            className="circle"
-                                            src={defImg}
-                                            style={style}
-                                        />
+                                        <img className="circle" src={defImg} style={style} />
                                     </a>
                                     <span className="email">
-                                        Hello,{' '}
-                                        {this.props.user_data.user.fullName}
+                                        Hello, {this.props.user_data.user.fullName}
                                     </span>
                                 </div>
                             </li>
                             <li>
-                                <Link
-                                    to="/admin/dashboard"
-                                    title="Go to dashboard"
-                                >
+                                <Link to="/admin/dashboard" title="Go to dashboard">
                                     <span>Dashboard</span>
                                 </Link>
                             </li>
@@ -165,29 +171,19 @@ class TopBar extends Component {
                             <li>
                                 <div className="user-view">
                                     <a>
-                                        <img
-                                            className="circle"
-                                            src={defImg}
-                                            style={style}
-                                        />
+                                        <img className="circle" src={defImg} style={style} />
                                     </a>
                                     <span className="email">Hello, Guest</span>
                                 </div>
                             </li>
                             <li>
-                                <Link
-                                    className="hide-on-med-and-up"
-                                    to="/auth/login"
-                                >
+                                <Link className="hide-on-med-and-up" to="/auth/login">
                                     Sign In
                                 </Link>
                             </li>
                             <div className="divider" />
                             <li>
-                                <Link
-                                    className="hide-on-med-and-up"
-                                    to="/auth/signup"
-                                >
+                                <Link className="hide-on-med-and-up" to="/auth/signup">
                                     Get Started
                                 </Link>
                             </li>

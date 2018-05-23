@@ -4,7 +4,8 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { format_date } from '../../../js/helpers';
+import { Link } from 'react-router-dom';
+import { format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 class Comment extends Component {
@@ -16,26 +17,26 @@ class Comment extends Component {
             replying: false
         };
     }
-    componentWillReceiveProps = np => {
+    componentWillReceiveProps = (np) => {
         if (this.state.data != np.data) {
             this.setState({
                 data: np.data
             });
         }
     };
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    onClickReply = e => {
+    onClickReply = (e) => {
         e.preventDefault();
         this.setState({
             replying: !this.state.replying
         });
     };
-    onCommentPublish = e => {
+    onCommentPublish = (e) => {
         e.preventDefault();
         this.props.handleComment(this.state.comment);
         this.setState({
@@ -80,53 +81,50 @@ class Comment extends Component {
                             />
                         </div>
                         <div className="col 12 input-field">
-                            <button
-                                onClick={this.onCommentPublish}
-                                type="submit"
-                                className="btn"
-                            >
+                            <button onClick={this.onCommentPublish} type="submit" className="btn">
                                 Publish
                             </button>
                         </div>
                     </form>
                 </div>
 
-                {this.state.data.edges.map(obj => (
+                {this.state.data.edges.map((obj) => (
                     <ul key={obj.node.id} className="collection">
                         <li className="collection-item">
                             <div className="comment-author row">
                                 <div className="comment-author-image col s4 m1">
-                                    {   
-                                        obj.node.author.gravatarUrl != null && 
-                                        obj.node.author.gravatarUrl != '' ? 
-                                            (<img
+                                    {obj.node.author.gravatarUrl != null &&
+                                    obj.node.author.gravatarUrl != '' ? (
+                                            <img
                                                 src={obj.node.author.gravatarUrl}
                                                 alt=""
                                                 className="responsive-img circle"
-                                            />) 
-                                            : (<img
+                                            />
+                                        ) : (
+                                            <img
                                                 src={defImg}
                                                 alt=""
                                                 className="responsive-img circle"
-                                            />)
-                                    }
+                                            />
+                                        )}
                                 </div>
                                 <div className="comment-author-info col s8 m11">
-                                    <p className="title">
-                                        {obj.node.author.fullName}
-                                    </p>
+                                    <Link
+                                        to={get_profile_link(
+                                            obj.node.author.fullName,
+                                            obj.node.author.id
+                                        )}
+                                        title="View profile"
+                                    >
+                                        <p className="title">{obj.node.author.fullName}</p>
+                                    </Link>
                                     <span className="post-meta">
                                         {format_date(obj.node.timestamp)}
                                     </span>{' '}
                                     -{' '}
                                     <span className="post-meta">
-                                        <a
-                                            onClick={this.onClickReply}
-                                            title="reply"
-                                        >
-                                            {this.state.replying
-                                                ? 'close'
-                                                : 'reply'}
+                                        <a onClick={this.onClickReply} title="reply">
+                                            {this.state.replying ? 'close' : 'reply'}
                                         </a>
                                     </span>
                                 </div>
@@ -138,12 +136,7 @@ class Comment extends Component {
                                 <form className="row">
                                     <div className="input-field col s12">
                                         <textarea
-                                            value={
-                                                this.state[
-                                                    'comment_reply_' +
-                                                        obj.node.id
-                                                ]
-                                            }
+                                            value={this.state['comment_reply_' + obj.node.id]}
                                             onChange={this.handleChange}
                                             className="materialize-textarea"
                                             placeholder="Write a reply"
@@ -152,11 +145,10 @@ class Comment extends Component {
                                     </div>
                                     <div className="col 12 input-field">
                                         <button
-                                            onClick={e =>
+                                            onClick={(e) =>
                                                 this.onCommentReply(
                                                     e,
-                                                    'comment_reply_' +
-                                                        obj.node.id,
+                                                    'comment_reply_' + obj.node.id,
                                                     obj.node.uuid
                                                 )
                                             }
@@ -169,38 +161,43 @@ class Comment extends Component {
                                 </form>
                             </div>
                         </li>
-                        {obj.node.replies.edges.map(reply => (
+                        {obj.node.replies.edges.map((reply) => (
                             <li key={reply.node.id} className="collection-item">
-                                <div className="comment-author row">{/* reply.node.author.gravatarUrl */}
+                                <div className="comment-author row">
+                                    {/* reply.node.author.gravatarUrl */}
                                     <div className="comment-author-image col s4 m1">
-                                        {   
-                                            reply.node.author.gravatarUrl != null && 
-                                            reply.node.author.gravatarUrl != '' ? 
-                                                (<img
+                                        {reply.node.author.gravatarUrl != null &&
+                                        reply.node.author.gravatarUrl != '' ? (
+                                                <img
                                                     src={reply.node.author.gravatarUrl}
                                                     alt=""
                                                     className="responsive-img circle"
-                                                />) 
-                                                : (<img
+                                                />
+                                            ) : (
+                                                <img
                                                     src={defImg}
                                                     alt=""
                                                     className="responsive-img circle"
-                                                />)
-                                        }
+                                                />
+                                            )}
                                     </div>
                                     <div className="comment-author-info col s8 m11">
-                                        <p className="title">
-                                            {reply.node.author.fullName}
-                                        </p>
+                                        <Link
+                                            to={get_profile_link(
+                                                reply.node.author.fullName,
+                                                reply.node.author.id
+                                            )}
+                                            title="View profile"
+                                        >
+                                            <p className="title">{reply.node.author.fullName}</p>
+                                        </Link>
                                         <span className="post-meta">
                                             {format_date(reply.node.timestamp)}
                                         </span>
                                     </div>
                                 </div>
 
-                                <div className="comment-resp">
-                                    {reply.node.body}
-                                </div>
+                                <div className="comment-resp">{reply.node.body}</div>
                             </li>
                         ))}
                     </ul>

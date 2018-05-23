@@ -12,13 +12,13 @@ import { PostID } from '../../edit-post';
 import { edit_post, create_tags } from '../../../../js/redux/actions';
 import history from '../../../../js/history';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
-const mapDispatchToProps = dispatch => ({
-    edit_post: data => dispatch(edit_post(data)),
-    create_tag: data => dispatch(create_tags(data))
+const mapDispatchToProps = (dispatch) => ({
+    edit_post: (data) => dispatch(edit_post(data)),
+    create_tag: (data) => dispatch(create_tags(data))
 });
 
 class Body extends Component {
@@ -38,9 +38,7 @@ class Body extends Component {
     }
     componentWillReceiveProps(np) {
         if (np.data.data != undefined) {
-            const data = np.data.data.user.posts.edges.find(
-                obj => obj.node.id == np.value
-            );
+            const data = np.data.data.user.posts.edges.find((obj) => obj.node.id == np.value);
             this.setState({
                 title: data.node.title,
                 post_pic_url: data.node.postPicUrl,
@@ -49,8 +47,8 @@ class Body extends Component {
         }
         if (this.chipInstance != '' && np.data.data != undefined) {
             np.data.data.user.posts.edges
-                .find(obj => obj.node.id == np.value)
-                .node.tags.edges.map(obj =>
+                .find((obj) => obj.node.id == np.value)
+                .node.tags.edges.map((obj) =>
                     this.chipInstance.addChip({
                         tag: obj.node.name
                     })
@@ -69,7 +67,7 @@ class Body extends Component {
         });
         if (this.props.data.data != undefined) {
             const data = this.props.data.data.user.posts.edges.find(
-                obj => obj.node.id == this.props.value
+                (obj) => obj.node.id == this.props.value
             );
             this.setState({
                 title: data.node.title,
@@ -79,32 +77,32 @@ class Body extends Component {
         }
         if (this.chipInstance != '' && this.props.data.data != undefined) {
             this.props.data.data.user.posts.edges
-                .find(obj => obj.node.id == this.props.value)
-                .node.tags.edges.map(obj =>
+                .find((obj) => obj.node.id == this.props.value)
+                .node.tags.edges.map((obj) =>
                     this.chipInstance.addChip({
                         tag: obj.node.name
                     })
                 );
         }
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleEditor = data => {
+    handleEditor = (data) => {
         const orig_data = '<div>' + data + '</div>';
         this.setState({
             body: orig_data
         });
     };
-    handleTagAdd = tag => {
-        this.setState(prevState => ({
+    handleTagAdd = (tag) => {
+        this.setState((prevState) => ({
             tags: [...prevState.tags, tag]
         }));
     };
-    handleFileChange = e => {
+    handleFileChange = (e) => {
         e.preventDefault();
         this.setState(
             {
@@ -159,14 +157,14 @@ class Body extends Component {
             }
         );
     };
-    onPublishClick = e => {
+    onPublishClick = (e) => {
         e.preventDefault();
         let post_data = {};
         let new_tags = [];
 
         if (this.props.data.data != undefined) {
             const data = this.props.data.data.user.posts.edges.find(
-                obj => obj.node.id == this.props.value
+                (obj) => obj.node.id == this.props.value
             );
 
             if (this.state.title != data.node.title) {
@@ -191,9 +189,7 @@ class Body extends Component {
             }
 
             if (this.state.tags.length > data.node.tags.edges.length) {
-                new_tags = [
-                    ...this.state.tags.slice(data.node.tags.edges.length)
-                ];
+                new_tags = [...this.state.tags.slice(data.node.tags.edges.length)];
             }
 
             post_data = {
@@ -215,7 +211,7 @@ class Body extends Component {
                 .edit_post(post_data)
                 .then(() => {
                     new_tags.length != 0 &&
-                        new_tags.map(tag_name =>
+                        new_tags.map((tag_name) =>
                             this.props.create_tag({
                                 tag_name,
                                 post_id: data.node.uuid
@@ -253,7 +249,7 @@ class Body extends Component {
         let data = null;
         if (this.props.data.data != undefined) {
             data = this.props.data.data.user.posts.edges.find(
-                obj => obj.node.id == this.props.value
+                (obj) => obj.node.id == this.props.value
             ).node;
         }
         return (
@@ -284,17 +280,14 @@ class Body extends Component {
                         <div className="card">
                             <div className="card-content">
                                 <div className="image-section">
-                                    <span className="card-title">
-                                        Add featured image
-                                    </span>
+                                    <span className="card-title">Add featured image</span>
                                     {this.props.data.data != undefined && (
                                         <img
                                             className="responsive-img"
                                             src={
                                                 this.state.post_pic_url != ''
                                                     ? this.state.post_pic_url
-                                                    : data.post_pic_url !=
-                                                      undefined
+                                                    : data.post_pic_url != undefined
                                                         ? data.post_pic_url
                                                         : ''
                                             }
@@ -307,9 +300,7 @@ class Body extends Component {
                                                 <input
                                                     type="file"
                                                     ref={this.fileInput}
-                                                    onChange={
-                                                        this.handleFileChange
-                                                    }
+                                                    onChange={this.handleFileChange}
                                                     accept="image/*"
                                                 />
                                             </div>
@@ -326,17 +317,11 @@ class Body extends Component {
 
                                 <div className="tag-section">
                                     <span className="card-title">Add Tags</span>
-                                    <div
-                                        className="chips chips-placeholder"
-                                        ref={this.chip}
-                                    />
+                                    <div className="chips chips-placeholder" ref={this.chip} />
                                 </div>
                             </div>
                             <div className="card-action center">
-                                <button
-                                    onClick={this.onPublishClick}
-                                    className="btn publish"
-                                >
+                                <button onClick={this.onPublishClick} className="btn publish">
                                     Publish
                                 </button>
                             </div>
@@ -355,10 +340,8 @@ Body.propTypes = {
     value: PropTypes.string.isRequired
 };
 
-const BodyConsumer = props => (
-    <PostID.Consumer>
-        {value => <Body {...props} value={value} />}
-    </PostID.Consumer>
+const BodyConsumer = (props) => (
+    <PostID.Consumer>{(value) => <Body {...props} value={value} />}</PostID.Consumer>
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(BodyConsumer);

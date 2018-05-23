@@ -9,7 +9,7 @@ import './style/dashboard.css';
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
 class Dashboard extends Component {
-    componentDidMount(){
+    componentDidMount() {
         document.title = 'Dashboard - ' + DEFAULT_TITLE;
     }
     render() {

@@ -29,6 +29,7 @@ export const VIEW_PAGE = 'VIEW_PAGE';
 // General query
 export const RECIEVE_ARTICLES = 'RECIEVE_ARTICLES';
 export const RECIEVE_MORE_ARTICLES = 'RECIEVE_MORE_ARTICLES';
+export const RECIEVE_USER_PROFILE = 'RECIEVE_USER_PROFILE';
 
 /* 
  * Auth requests

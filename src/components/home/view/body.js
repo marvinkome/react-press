@@ -11,15 +11,15 @@ import { fetch_more_data } from '../../../js/redux/actions';
 import PostCard from './post-card';
 import Preloader from '../../helpers/preloader';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     fetching: state.isFetching,
     posts: state.post_data.posts,
     cursor: state.cursor,
     hasMore: state.hasNextPage
 });
 
-const mapDispatchToProps = dispatch => ({
-    fetch_more: cursor => dispatch(fetch_more_data(cursor))
+const mapDispatchToProps = (dispatch) => ({
+    fetch_more: (cursor) => dispatch(fetch_more_data(cursor))
 });
 
 class Body extends Component {
@@ -32,14 +32,12 @@ class Body extends Component {
     onScroll = () => {
         if (
             window.innerHeight + window.scrollY >= document.body.offsetHeight &&
-            (this.props.posts.length > 0 &&
-                this.props.cursor != '' &&
-                this.props.hasMore)
+            (this.props.posts.length > 0 && this.props.cursor != '' && this.props.hasMore)
         ) {
             this.props.fetch_more(this.props.cursor);
         }
     };
-    fetch_more = e => {
+    fetch_more = (e) => {
         e.preventDefault();
         if (this.props.hasMore) {
             this.props.fetch_more(this.props.cursor);
@@ -68,11 +66,8 @@ class Body extends Component {
                         </div>
                     ) : this.props.posts.length > 0 ? (
                         <div>
-                            {this.props.posts.map(obj => (
-                                <div
-                                    key={obj.node.id}
-                                    className="col l4 m6 s12"
-                                >
+                            {this.props.posts.map((obj) => (
+                                <div key={obj.node.id} className="col l4 m6 s12">
                                     <PostCard post={obj.node} />
                                 </div>
                             ))}

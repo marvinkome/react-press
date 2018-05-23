@@ -12,9 +12,9 @@ import PostEditor from './editor';
 import { create_posts, create_tags } from '../../../../js/redux/actions';
 import history from '../../../../js/history';
 
-const mapDispatchToProp = dispatch => ({
-    create_post: data => dispatch(create_posts(data)),
-    create_tag: data => dispatch(create_tags(data))
+const mapDispatchToProp = (dispatch) => ({
+    create_post: (data) => dispatch(create_posts(data)),
+    create_tag: (data) => dispatch(create_tags(data))
 });
 
 class Body extends Component {
@@ -39,31 +39,31 @@ class Body extends Component {
         this.chip_instance = window.M.Chips.init(chip, {
             placeholder: 'Enter a tag',
             secondaryPlaceholder: '+Tag',
-            onChipAdd: e => {
+            onChipAdd: (e) => {
                 let tag = e[0].M_Chips.chipsData.pop();
                 this.handleTagAdd(tag.tag);
             }
         });
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleEditor = data => {
+    handleEditor = (data) => {
         const orig_data = '<div>' + data + '</div>';
         this.setState({
             reset: false,
             body: orig_data
         });
     };
-    handleTagAdd = tag => {
+    handleTagAdd = (tag) => {
         this.setState({
             tags: [...this.state.tags, tag]
         });
     };
-    handleFileChange = e => {
+    handleFileChange = (e) => {
         e.preventDefault();
         this.setState(
             {
@@ -118,7 +118,7 @@ class Body extends Component {
             }
         );
     };
-    onPublish = e => {
+    onPublish = (e) => {
         e.preventDefault();
         const { title, body } = this.state;
 
@@ -144,8 +144,8 @@ class Body extends Component {
 
         this.props
             .create_post(data)
-            .then(res => {
-                this.state.tags.map(tag_name =>
+            .then((res) => {
+                this.state.tags.map((tag_name) =>
                     this.props.create_tag({
                         tag_name,
                         post_id: res.post.data.createPost.post.uuid
@@ -159,9 +159,7 @@ class Body extends Component {
                 () => {
                     const tags = this.state.tags;
                     if (this.chip_instance != undefined) {
-                        tags.map((item, index) =>
-                            this.chip_instance.deleteChip(index)
-                        );
+                        tags.map((item, index) => this.chip_instance.deleteChip(index));
                     }
 
                     this.setState({
@@ -203,7 +201,7 @@ class Body extends Component {
             <div className="main admin-add-post">
                 <div className="post-form row">
                     <div className="col m8 s12">
-                        <form onSubmit={e => e.preventDefault()}>
+                        <form onSubmit={(e) => e.preventDefault()}>
                             <div className="input-field">
                                 <input
                                     value={this.state.title}
@@ -214,18 +212,13 @@ class Body extends Component {
                                 />
                             </div>
                         </form>
-                        <PostEditor
-                            reset={this.state.reset}
-                            onStateChange={this.handleEditor}
-                        />
+                        <PostEditor reset={this.state.reset} onStateChange={this.handleEditor} />
                     </div>
                     <div className="col m4 s12">
                         <div className="card">
                             <div className="card-content">
                                 <div className="image-section">
-                                    <span className="card-title">
-                                        Add featured image
-                                    </span>
+                                    <span className="card-title">Add featured image</span>
                                     <form>
                                         <div className="file-field input-field">
                                             <div className="btn btn-flat">
@@ -233,17 +226,12 @@ class Body extends Component {
                                                 <input
                                                     type="file"
                                                     ref={this.fileInput}
-                                                    onChange={
-                                                        this.handleFileChange
-                                                    }
+                                                    onChange={this.handleFileChange}
                                                     accept="image/*"
                                                 />
                                             </div>
                                             <div className="file-path-wrapper">
-                                                <input
-                                                    className="file-path validate"
-                                                    type="text"
-                                                />
+                                                <input className="file-path validate" type="text" />
                                             </div>
                                         </div>
                                     </form>
@@ -251,17 +239,11 @@ class Body extends Component {
 
                                 <div className="tag-section">
                                     <span className="card-title">Add Tags</span>
-                                    <div
-                                        className="chips chips-placeholder"
-                                        ref={this.chip}
-                                    />
+                                    <div className="chips chips-placeholder" ref={this.chip} />
                                 </div>
                             </div>
                             <div className="card-action center">
-                                <button
-                                    onClick={this.onPublish}
-                                    className="btn publish"
-                                >
+                                <button onClick={this.onPublish} className="btn publish">
                                     Publish
                                 </button>
                             </div>

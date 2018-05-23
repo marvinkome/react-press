@@ -12,11 +12,14 @@ const Preloader = () => (
 );
 
 export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
-    <div
-        className="section container valign-wrapper"
-        style={{ height: '100vh' }}
-    >
-        <div style={{ margin: 'auto', width: '50%', marginLeft: admin ? '40%' : 'inherit'}}>
+    <div className="section container valign-wrapper" style={{ height: '100vh' }}>
+        <div
+            style={{
+                margin: 'auto',
+                width: '50%',
+                marginLeft: admin ? '40%' : 'inherit'
+            }}
+        >
             <div className="center-align app-loader">
                 {error ? (
                     <div className="error">
@@ -28,18 +31,18 @@ export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
                         <div>
                             <div
                                 className="progress"
-                                style={{ backgroundColor: '#90caf94f' }}
+                                style={{
+                                    backgroundColor: '#90caf94f'
+                                }}
                             >
                                 <div
                                     className="indeterminate"
-                                    style={{ backgroundColor: '#0e66af' }}
+                                    style={{
+                                        backgroundColor: '#0e66af'
+                                    }}
                                 />
                             </div>
-                            <h5>
-                                {timedOut
-                                    ? 'Sorry for taking long...'
-                                    : 'Loading...'}
-                            </h5>
+                            <h5>{timedOut ? 'Sorry for taking long...' : 'Loading...'}</h5>
                         </div>
                     )
                 )}

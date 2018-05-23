@@ -1,5 +1,5 @@
 /**
- * ./src/components/home/view
+ * ./src/components/post/view
  */
 
 import React, { Component } from 'react';
@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import TopBar from '../../helpers/topbar';
 import Body from './body';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     user_data: state.user_data
 });
 

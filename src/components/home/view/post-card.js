@@ -5,12 +5,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { truncate, format_date } from '../../../js/helpers';
+import { truncate, format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
-    const truncate_length =
-        post.postPicUrl != undefined && post.postPicUrl != '' ? 20 : 40;
+    const truncate_length = post.postPicUrl != undefined && post.postPicUrl != '' ? 20 : 40;
     const cardStyle =
         post.postPicUrl != undefined && post.postPicUrl != ''
             ? {
@@ -53,14 +52,15 @@ const PostCard = ({ post }) => {
                         <img className="circle" src={img} style={imgStyle} />
                     </div>
                     <div className="info">
-                        <span className="name">
-                            {post.author != null
-                                ? post.author.fullName
-                                : undefined}
-                        </span>
-                        <span className="date">
-                            {format_date(post.timestamp)}
-                        </span>
+                        <Link
+                            to={get_profile_link(post.author.fullName, post.author.id)}
+                            title={post.author.fullName}
+                        >
+                            <span className="name">
+                                {post.author != null ? post.author.fullName : undefined}
+                            </span>
+                        </Link>
+                        <span className="date">{format_date(post.timestamp)}</span>
                     </div>
                 </div>
             </div>

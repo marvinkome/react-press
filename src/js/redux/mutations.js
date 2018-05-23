@@ -1,3 +1,62 @@
+const post_query = `
+    post{
+        id
+        uuid
+        title
+        body
+        timestamp
+        postPicUrl
+        views
+        author {
+            id
+            fullName
+            description
+            gravatarUrl
+        }
+        tags {
+            edges {
+                node {
+                    id
+                    name
+                }
+            }
+        }
+        claps {
+            totalCount
+        }
+        comments {
+            edges {
+                node {
+                    id
+                    uuid
+                    body
+                    timestamp
+                    author{
+                        id
+                        fullName
+                        gravatarUrl
+                    }
+                    replies{
+                        edges{
+                            node{
+                                id
+                                timestamp
+                                body
+                                parentId
+                                author{
+                                    id
+                                    fullName
+                                    gravatarUrl
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export const create_tag = (tagname, post_id) =>
     `
     mutation Mutation{
@@ -11,64 +70,12 @@ export const create_tag = (tagname, post_id) =>
     `
             }
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
 
-export const create_post = post_data =>
+export const create_post = (post_data) =>
     `
     mutation Mutation{
         createPost(
@@ -84,77 +91,17 @@ export const create_post = post_data =>
     `
             }
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
 
-export const edit_post = post_data =>
+export const edit_post = (post_data) =>
     `
     mutation Mutation{
         updatePost(
-            ${
-    post_data.title != undefined
-        ? 'title: "' + post_data.title + '",'
-        : ''
-}
-            ${
-    post_data.body != undefined
-        ? 'body: ' + JSON.stringify(post_data.body) + ','
-        : ''
-}
+            ${post_data.title != undefined ? 'title: "' + post_data.title + '",' : ''}
+            ${post_data.body != undefined ? 'body: ' + JSON.stringify(post_data.body) + ',' : ''}
             ${
     post_data.postPicUrl != undefined
         ? 'postPicUrl: "' + post_data.postPicUrl + '",'
@@ -164,64 +111,12 @@ export const edit_post = post_data =>
     post_data.postId +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
 
-export const delete_post = post_id => `
+export const delete_post = (post_id) => `
     mutation Mutation{
         deletePost(postId: ${post_id}){
             post{
@@ -231,7 +126,7 @@ export const delete_post = post_id => `
     }
 `;
 
-export const update_profile_picture = pic_url =>
+export const update_profile_picture = (pic_url) =>
     `
     mutation Mutation{
         updateUserProfilePic(
@@ -246,15 +141,11 @@ export const update_profile_picture = pic_url =>
     }
 `;
 
-export const update_info = user_data =>
+export const update_info = (user_data) =>
     `
     mutation Mutation{
         updateUserInfo(
-            ${
-    user_data.full_name != undefined
-        ? 'newFullName: "' + user_data.full_name + '",'
-        : ''
-}
+            ${user_data.full_name != undefined ? 'newFullName: "' + user_data.full_name + '",' : ''}
             ${
     user_data.description != undefined
         ? 'newDescription: "' + user_data.description + '",'
@@ -269,7 +160,7 @@ export const update_info = user_data =>
     }
 `;
 
-export const create_comment = comment_data =>
+export const create_comment = (comment_data) =>
     `
     mutation Mutation{
         createComment(
@@ -280,65 +171,14 @@ export const create_comment = comment_data =>
     comment_data.post_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
             comment {
                 id
                 uuid
                 body
                 timestamp
                 author{
+                    id
                     fullName
                     gravatarUrl
                 }
@@ -350,6 +190,7 @@ export const create_comment = comment_data =>
                             body
                             parentId
                             author{
+                                id
                                 fullName
                                 gravatarUrl
                             }
@@ -361,7 +202,7 @@ export const create_comment = comment_data =>
     }
 `;
 
-export const create_comment_reply = reply_data =>
+export const create_comment_reply = (reply_data) =>
     `
     mutation Mutation{
         createCommentReply(
@@ -372,65 +213,14 @@ export const create_comment_reply = reply_data =>
     reply_data.parent_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
             commentReply{
                 id
                 timestamp
                 body
                 parentId
                 author{
+                    id
                     fullName
                     gravatarUrl
                 }
@@ -439,7 +229,7 @@ export const create_comment_reply = reply_data =>
     }
 `;
 
-export const clap = clap_data =>
+export const clap = (clap_data) =>
     `
     mutation Mutation{
         createClap(
@@ -447,119 +237,15 @@ export const clap = clap_data =>
     clap_data.post_id +
     `
         ){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;
 
-export const viewPage = post_id => `
+export const viewPage = (post_id) => `
     mutation Mutation {
         viewPost(postId: ${post_id}){
-            post{
-                id
-                uuid
-                title
-                body
-                timestamp
-                postPicUrl
-                views
-                author {
-                    fullName
-                    description
-                    gravatarUrl
-                }
-                tags {
-                    edges {
-                        node {
-                            id
-                            name
-                        }
-                    }
-                }
-                claps {
-                    totalCount
-                }
-                comments {
-                    edges {
-                        node {
-                            id
-                            uuid
-                            body
-                            timestamp
-                            author{
-                                fullName
-                                gravatarUrl
-                            }
-                            replies{
-                                edges{
-                                    node{
-                                        id
-                                        timestamp
-                                        body
-                                        parentId
-                                        author{
-                                            fullName
-                                            gravatarUrl
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            ${post_query}
         }
     }
 `;

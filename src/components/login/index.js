@@ -9,12 +9,7 @@ import './style/auth.css';
 
 class Login extends Component {
     render() {
-        return (
-            <View
-                section={this.props.match.params.section}
-                history={this.props.history}
-            />
-        );
+        return <View section={this.props.match.params.section} history={this.props.history} />;
     }
 }
 

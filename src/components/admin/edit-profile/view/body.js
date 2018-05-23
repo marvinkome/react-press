@@ -15,15 +15,15 @@ import {
 } from '../../../../js/redux/actions';
 import { gcd } from '../../../../js/helpers';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     data: state.user_data
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     fetch_user_data: () => dispatch(fetch_user_data()),
     fetch_data: () => dispatch(fetch_all_data()),
-    update_profile_pic: data => dispatch(update_profile_pic(data)),
-    update_user_info: data => dispatch(update_user_info(data))
+    update_profile_pic: (data) => dispatch(update_profile_pic(data)),
+    update_user_info: (data) => dispatch(update_user_info(data))
 });
 
 class Body extends Component {
@@ -60,13 +60,13 @@ class Body extends Component {
             });
         }
     }
-    handleChange = e => {
+    handleChange = (e) => {
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    handleFileChange = e => {
+    handleFileChange = (e) => {
         e.preventDefault();
 
         if (e.target.files.length > 0) {
@@ -79,10 +79,7 @@ class Body extends Component {
 
             img.onload = () => {
                 const gcd_res = gcd(img.width, img.height);
-                const ratio =
-                    String(img.width / gcd_res) +
-                    ':' +
-                    String(img.height / gcd_res);
+                const ratio = String(img.width / gcd_res) + ':' + String(img.height / gcd_res);
                 this.setState({
                     image_ratio: ratio
                 });
@@ -90,7 +87,7 @@ class Body extends Component {
             img.src = objectURL;
         }
     };
-    onUploadClick = e => {
+    onUploadClick = (e) => {
         e.preventDefault();
 
         if (this.props.data.data != undefined && navigator.onLine) {
@@ -132,10 +129,7 @@ class Body extends Component {
                         pic_url: task.snapshot.downloadURL
                     });
 
-                    if (
-                        this.state.pic_url ==
-                        this.props.data.data.user.gravatarUrl
-                    ) {
+                    if (this.state.pic_url == this.props.data.data.user.gravatarUrl) {
                         return alert('Please choose a different file');
                     }
 
@@ -175,7 +169,7 @@ class Body extends Component {
             });
         }
     };
-    onSaveClick = e => {
+    onSaveClick = (e) => {
         e.preventDefault();
         let user_data = {};
         if (this.props.data.data != undefined) {
@@ -237,8 +231,7 @@ class Body extends Component {
                         <h5>Change Profile Picture</h5>
                         <p
                             className={
-                                this.state.image_ratio != '' &&
-                                this.state.image_ratio != '1:1'
+                                this.state.image_ratio != '' && this.state.image_ratio != '1:1'
                                     ? 'red-text'
                                     : undefined
                             }
@@ -249,10 +242,7 @@ class Body extends Component {
                     <div className="preview-cont center">
                         <div className="img-preview">
                             {this.state.pic_url ? (
-                                <img
-                                    className="responsive-img circle"
-                                    src={this.state.pic_url}
-                                />
+                                <img className="responsive-img circle" src={this.state.pic_url} />
                             ) : (
                                 'No Profile picture'
                             )}
@@ -320,10 +310,7 @@ class Body extends Component {
                             />
                         </div>
                         <div className="input-field center col s12">
-                            <button
-                                onClick={this.onSaveClick}
-                                className="btn-flat"
-                            >
+                            <button onClick={this.onSaveClick} className="btn-flat">
                                 Save
                             </button>
                         </div>

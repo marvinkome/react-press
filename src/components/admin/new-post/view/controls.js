@@ -9,7 +9,7 @@ class StyleButton extends Component {
     constructor() {
         super();
     }
-    onToggle = e => {
+    onToggle = (e) => {
         e.preventDefault();
         this.props.onToggle(e, this.props.style, this.props.type);
     };
@@ -40,7 +40,7 @@ const INLINE_STYLES = [
     { label: 'format_underline', style: 'UNDERLINE' }
 ];
 
-export const Controls = props => {
+export const Controls = (props) => {
     const { editorState } = props;
     const currentStyle = props.editorState.getCurrentInlineStyle();
     const selection = editorState.getSelection();
@@ -50,7 +50,7 @@ export const Controls = props => {
         .getType();
     return (
         <div className="editor-controls">
-            {BLOCK_TYPES.map(type => (
+            {BLOCK_TYPES.map((type) => (
                 <StyleButton
                     key={type.label}
                     active={type.style === blockType}
@@ -60,7 +60,7 @@ export const Controls = props => {
                     type="block"
                 />
             ))}
-            {INLINE_STYLES.map(type => (
+            {INLINE_STYLES.map((type) => (
                 <StyleButton
                     key={type.label}
                     active={currentStyle.has(type.style)}

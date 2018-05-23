@@ -12,7 +12,7 @@ const PrivateRoute = ({ component: PrivComponent, ...rest }) => {
     return (
         <Route
             {...rest}
-            render={npprops =>
+            render={(npprops) =>
                 localLogin ? (
                     <PrivComponent {...npprops} />
                 ) : (

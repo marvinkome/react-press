@@ -1,0 +1,76 @@
+/************** Body **************/
+.page-body {
+    padding: 5%;
+    padding-top: 3rem;
+}
+
+.page-body .author-desc p {
+    color: #000000bf;
+    font-size: 17px;
+}
+
+.page-body .author-meta-info {
+    color: #0000008a;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.page-body .author-image {
+    border: 3px solid #fff;
+    border-top-color: #1778ca;
+    border-radius: 50%;
+    width: 130px;
+    max-width: 130px;
+}
+
+.page-body .user-posts h5 {
+    font-size: 25px;
+    color: #000000;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+
+.page-body .user-posts .card-title {
+    font-weight: 500;
+    color: #000000;
+    font-size: 21px;
+}
+
+.page-body .user-posts .card-action {
+    background: #f2f2f2;
+    border-bottom: 4px solid #0e66af;
+}
+
+.page-body .user-posts .card .card-action .author {
+    display: flex;
+}
+
+.page-body .user-posts .card .card-action .author .author-image {
+    max-width: 6%;
+    width: 6%;
+    margin-right: 2px;
+    border: none;
+}
+
+.page-body .user-posts .card .card-action .author .author-image img {
+    width: 40px;
+}
+
+.page-body .user-posts .card .card-action .author .info {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.page-body .user-posts .card .card-action .author .info .name {
+    font-weight: 700;
+    font-size: 15.11px;
+    text-transform: capitalize;
+    color: #000000e0;
+}
+
+.page-body .user-posts .card .card-action .author .info .date {
+    font-weight: 500;
+    font-size: 13.432px;
+    color: #000000bf;
+}

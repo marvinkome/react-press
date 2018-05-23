@@ -23,7 +23,7 @@ import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 // React redux
 import { Provider, connect } from 'react-redux';
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     fetch_data: () => dispatch(fetch_all_data()),
     fetch_user: () => dispatch(fetch_user_data())
 });
@@ -40,6 +40,13 @@ const AsyncHome = Loadable({
 
 const AsyncPost = Loadable({
     loader: () => import('./post'),
+    loading: AppLoading,
+    timeout: 10000,
+    delay: 300
+});
+
+const AsyncProfilePage = Loadable({
+    loader: () => import('./profile-page'),
     loading: AppLoading,
     timeout: 10000,
     delay: 300
@@ -71,17 +78,14 @@ const SwitchRoutes = () => (
         {/* Front end */}
         <Route path="/" component={AsyncHome} exact />
         <Route path="/post/:id" component={AsyncPost} exact />
+        <Route path="/profile/:username" component={AsyncProfilePage} exact />
 
         {/* authentication */}
         <Route path="/auth/:section" component={AsyncLogin} exact />
 
         {/* Backend */}
         <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
-        <PrivateRoute
-            path="/admin/edit-post/:id"
-            component={AsyncEditPost}
-            exact
-        />
+        <PrivateRoute path="/admin/edit-post/:id" component={AsyncEditPost} exact />
 
         <Route component={Err404} />
     </Switch>
@@ -95,13 +99,11 @@ class App extends Component {
         };
     }
     componentDidMount() {
-        const sessionLogin = JSON.parse(
-            localStorage.getItem('med-blog-logged-in')
-        );
+        const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
         const localLogin = sessionLogin != undefined && sessionLogin == true;
 
         if (localLogin) {
-            this.props.fetch_user().then(res => {
+            this.props.fetch_user().then((res) => {
                 if (res.payload.msg == 'Not enough segments') {
                     const toastHTML = `
                             <div>
@@ -126,11 +128,7 @@ class App extends Component {
         );
     }
     render() {
-        return this.state.render ? (
-            <SwitchRoutes />
-        ) : (
-            <h5>Oops something went wrong</h5>
-        );
+        return this.state.render ? <SwitchRoutes /> : <h5>Oops something went wrong</h5>;
     }
 }
 

@@ -12,7 +12,7 @@ import './style/edit-post.css';
 export const PostID = React.createContext();
 
 class EditPost extends Component {
-    componentDidMount(){
+    componentDidMount() {
         document.title = 'Edit Post - ' + DEFAULT_TITLE;
     }
     render() {

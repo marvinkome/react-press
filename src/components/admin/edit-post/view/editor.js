@@ -54,7 +54,7 @@ class PostEditor extends Component {
         const editor = this.editor.current;
         editor.focus();
     };
-    onChange = editorState => {
+    onChange = (editorState) => {
         const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
         const word_length = count_words_in_html(html);
@@ -75,22 +75,15 @@ class PostEditor extends Component {
     };
     toggleCommand = (e, command, type) => {
         if (type == 'block') {
-            this.onChange(
-                RichUtils.toggleBlockType(this.state.editorState, command)
-            );
+            this.onChange(RichUtils.toggleBlockType(this.state.editorState, command));
         } else if (type == 'inline') {
-            this.onChange(
-                RichUtils.toggleInlineStyle(this.state.editorState, command)
-            );
+            this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, command));
         }
     };
     render() {
         return (
             <div className="editor z-depth-1">
-                <Controls
-                    editorState={this.state.editorState}
-                    onToggle={this.toggleCommand}
-                />
+                <Controls editorState={this.state.editorState} onToggle={this.toggleCommand} />
                 <div className="editor-input" onClick={this.editorFocus}>
                     <Editor
                         editorState={this.state.editorState}

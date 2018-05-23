@@ -8,7 +8,7 @@ import { DEFAULT_TITLE } from '../../helpers/constants';
 import './style/posts.css';
 
 class Post extends Component {
-    componentDidMount(){
+    componentDidMount() {
         document.title = 'All Post - ' + DEFAULT_TITLE;
     }
     render() {

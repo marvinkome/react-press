@@ -13,7 +13,7 @@ import { AppLoading } from '../helpers/preloader';
 import _EditPost from './edit-post';
 export const EditPost = _EditPost;
 
-const Loader = (props) => <AppLoading {...props} admin/>;
+const Loader = (props) => <AppLoading {...props} admin />;
 
 const AsyncDashboard = Loadable({
     loader: () => import('./dashboard'),
@@ -44,7 +44,7 @@ const AsyncEditProfile = Loadable({
 });
 
 export default class Admin extends Component {
-    handlePath = path => {
+    handlePath = (path) => {
         switch (path) {
         case 'dashboard':
             return <AsyncDashboard />;
