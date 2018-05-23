@@ -186,25 +186,20 @@ export const fetch_user_data = () => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then((res) => dispatch(recieveUserData(res)));
     };
 };
 
 export const fetch_profile_data = (username) => {
-    return dispatch => {
+    return (dispatch) => {
         dispatch(sendRequest);
-        
+
         const headers = {
             method: 'POST',
             body: JSON.stringify({ query: query.fetch_profile_query(username) }),
@@ -214,8 +209,8 @@ export const fetch_profile_data = (username) => {
         };
 
         return fetch(url + '/graphql', headers)
-            .then(res => res.json())
-            .then(res => dispatch(recieveUserProfile(res)));
+            .then((res) => res.json())
+            .then((res) => dispatch(recieveUserProfile(res)));
     };
 };
 
@@ -264,10 +259,7 @@ export const create_tags = (data) => {
         const headers = (token) => ({
             method: 'POST',
             body: JSON.stringify({
-                query: mutations.create_tag(
-                    data.tag_name,
-                    data.post_id
-                )
+                query: mutations.create_tag(data.tag_name, data.post_id)
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -275,20 +267,13 @@ export const create_tags = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
-            .then((res) =>
-                dispatch(requestCreateTagsFinished(res, data))
-            );
+            .then((res) => dispatch(requestCreateTagsFinished(res, data)));
     };
 };
 
@@ -312,16 +297,11 @@ export const create_posts = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then((res) => dispatch(requestCreatePostsFinished(res)));
     };
@@ -342,20 +322,13 @@ export const edit_post = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
-            .then((res) =>
-                dispatch(requestEditPostFinished(res, data))
-            );
+            .then((res) => dispatch(requestEditPostFinished(res, data)));
     };
 };
 
@@ -374,16 +347,11 @@ export const delete_post = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then(() => dispatch(requestDeletePostFinished(data)));
     };
@@ -396,10 +364,7 @@ export const update_profile_pic = (data) => {
         const headers = (token) => ({
             method: 'POST',
             body: JSON.stringify({
-                query: mutations.update_profile_picture(
-                    data.pic_url,
-                    data.user_id
-                )
+                query: mutations.update_profile_picture(data.pic_url, data.user_id)
             }),
             headers: {
                 'Content-Type': 'application/json',
@@ -407,16 +372,11 @@ export const update_profile_pic = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
@@ -437,16 +397,11 @@ export const update_user_info = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then(() => dispatch(requestUpdateUserFinished()));
     };
@@ -467,20 +422,13 @@ export const add_comment = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
-            .then((res) =>
-                dispatch(requestCommentFinished(res, data))
-            );
+            .then((res) => dispatch(requestCommentFinished(res, data)));
     };
 };
 
@@ -499,20 +447,13 @@ export const reply_comment = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
-            .then((res) =>
-                dispatch(requestCommentReplyFinished(res, data))
-            );
+            .then((res) => dispatch(requestCommentReplyFinished(res, data)));
     };
 };
 
@@ -529,16 +470,11 @@ export const clap = (data) => {
             }
         });
 
-        return refresh_token(
-            JSON.parse(localStorage.getItem('med-blog-ref'))
-        )
+        return refresh_token(JSON.parse(localStorage.getItem('med-blog-ref')))
             .then((res) => res.json())
             .then((res) => {
                 const access_token = res.access_token;
-                return fetch(
-                    url + '/graphql',
-                    headers(access_token)
-                ).then((res) => res.json());
+                return fetch(url + '/graphql', headers(access_token)).then((res) => res.json());
             })
             .then((res) => dispatch(requestClapFinished(res, data)));
     };
@@ -558,8 +494,6 @@ export const view_page = (pageId) => {
 
         return fetch(url + '/graphql', headers)
             .then((res) => res.json())
-            .then((res) =>
-                dispatch(requestViewPageFinished(res, pageId))
-            );
+            .then((res) => dispatch(requestViewPageFinished(res, pageId)));
     };
 };

@@ -10,16 +10,14 @@ import defImg from '../../../img/default-pic.png';
 
 const AuthorInfo = ({ data }) => {
     const imgStyle =
-        data.author.gravatarUrl != null &&
-        data.author.gravatarUrl != ''
+        data.author.gravatarUrl != null && data.author.gravatarUrl != ''
             ? {
                 borderRadius: '50%',
                 backgroundColor: '#fafafa'
             }
             : {};
     const img =
-        data.author.gravatarUrl != undefined &&
-        data.author.gravatarUrl != ''
+        data.author.gravatarUrl != undefined && data.author.gravatarUrl != ''
             ? data.author.gravatarUrl
             : defImg;
 
@@ -34,18 +32,14 @@ const AuthorInfo = ({ data }) => {
                 />
             </div>
             <div className="author-details col s9">
-                <Link 
-                    to={get_profile_link(data.author.fullName, data.author.id)} 
+                <Link
+                    to={get_profile_link(data.author.fullName, data.author.id)}
                     title={'View Profile'}
                 >
                     <p className="author-name">{data.author.fullName}</p>
                 </Link>
-                <p className="author-desc">
-                    {data.author.description}
-                </p>
-                <p className="post-meta">
-                    {format_date(data.timestamp)}
-                </p>
+                <p className="author-desc">{data.author.description}</p>
+                <p className="post-meta">{format_date(data.timestamp)}</p>
             </div>
         </div>
     );

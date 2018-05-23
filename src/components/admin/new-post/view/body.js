@@ -9,10 +9,7 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 
 import PostEditor from './editor';
-import {
-    create_posts,
-    create_tags
-} from '../../../../js/redux/actions';
+import { create_posts, create_tags } from '../../../../js/redux/actions';
 import history from '../../../../js/history';
 
 const mapDispatchToProp = (dispatch) => ({
@@ -162,9 +159,7 @@ class Body extends Component {
                 () => {
                     const tags = this.state.tags;
                     if (this.chip_instance != undefined) {
-                        tags.map((item, index) =>
-                            this.chip_instance.deleteChip(index)
-                        );
+                        tags.map((item, index) => this.chip_instance.deleteChip(index));
                     }
 
                     this.setState({
@@ -217,59 +212,38 @@ class Body extends Component {
                                 />
                             </div>
                         </form>
-                        <PostEditor
-                            reset={this.state.reset}
-                            onStateChange={this.handleEditor}
-                        />
+                        <PostEditor reset={this.state.reset} onStateChange={this.handleEditor} />
                     </div>
                     <div className="col m4 s12">
                         <div className="card">
                             <div className="card-content">
                                 <div className="image-section">
-                                    <span className="card-title">
-                                        Add featured image
-                                    </span>
+                                    <span className="card-title">Add featured image</span>
                                     <form>
                                         <div className="file-field input-field">
                                             <div className="btn btn-flat">
                                                 <span>File</span>
                                                 <input
                                                     type="file"
-                                                    ref={
-                                                        this.fileInput
-                                                    }
-                                                    onChange={
-                                                        this
-                                                            .handleFileChange
-                                                    }
+                                                    ref={this.fileInput}
+                                                    onChange={this.handleFileChange}
                                                     accept="image/*"
                                                 />
                                             </div>
                                             <div className="file-path-wrapper">
-                                                <input
-                                                    className="file-path validate"
-                                                    type="text"
-                                                />
+                                                <input className="file-path validate" type="text" />
                                             </div>
                                         </div>
                                     </form>
                                 </div>
 
                                 <div className="tag-section">
-                                    <span className="card-title">
-                                        Add Tags
-                                    </span>
-                                    <div
-                                        className="chips chips-placeholder"
-                                        ref={this.chip}
-                                    />
+                                    <span className="card-title">Add Tags</span>
+                                    <div className="chips chips-placeholder" ref={this.chip} />
                                 </div>
                             </div>
                             <div className="card-action center">
-                                <button
-                                    onClick={this.onPublish}
-                                    className="btn publish"
-                                >
+                                <button onClick={this.onPublish} className="btn publish">
                                     Publish
                                 </button>
                             </div>

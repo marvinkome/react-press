@@ -35,39 +35,18 @@
     height: 300px;
     overflow-y: scroll;
 }
-.admin-add-post
-    .post-form
-    .editor
-    .editor-input
-    .DraftEditor-root
-    span {
+.admin-add-post .post-form .editor .editor-input .DraftEditor-root span {
     font-size: 16px;
 }
-.admin-add-post
-    .post-form
-    .editor
-    .editor-input
-    .DraftEditor-root
-    h5
-    span {
+.admin-add-post .post-form .editor .editor-input .DraftEditor-root h5 span {
     font-size: 20px;
 }
-.admin-add-post
-    .post-form
-    .editor
-    .editor-input
-    .DraftEditor-root
-    blockquote {
+.admin-add-post .post-form .editor .editor-input .DraftEditor-root blockquote {
     border-left-color: hsl(0, 0%, 35%);
     padding-left: 12px;
     color: hsl(0, 0%, 50%);
 }
-.admin-add-post
-    .post-form
-    .editor
-    .editor-input
-    .DraftEditor-root
-    ol {
+.admin-add-post .post-form .editor .editor-input .DraftEditor-root ol {
     padding-left: 20px;
 }
 

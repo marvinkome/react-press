@@ -19,7 +19,7 @@ class View extends Component {
         return (
             <div>
                 <TopBar user_data={user_data.data} />
-                <Body user={user}/>
+                <Body user={user} />
             </div>
         );
     }

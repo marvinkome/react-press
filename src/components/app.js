@@ -84,16 +84,8 @@ const SwitchRoutes = () => (
         <Route path="/auth/:section" component={AsyncLogin} exact />
 
         {/* Backend */}
-        <PrivateRoute
-            path="/admin/:path"
-            component={AsyncAdmin}
-            exact
-        />
-        <PrivateRoute
-            path="/admin/edit-post/:id"
-            component={AsyncEditPost}
-            exact
-        />
+        <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
+        <PrivateRoute path="/admin/edit-post/:id" component={AsyncEditPost} exact />
 
         <Route component={Err404} />
     </Switch>
@@ -107,11 +99,8 @@ class App extends Component {
         };
     }
     componentDidMount() {
-        const sessionLogin = JSON.parse(
-            localStorage.getItem('med-blog-logged-in')
-        );
-        const localLogin =
-            sessionLogin != undefined && sessionLogin == true;
+        const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
+        const localLogin = sessionLogin != undefined && sessionLogin == true;
 
         if (localLogin) {
             this.props.fetch_user().then((res) => {
@@ -139,11 +128,7 @@ class App extends Component {
         );
     }
     render() {
-        return this.state.render ? (
-            <SwitchRoutes />
-        ) : (
-            <h5>Oops something went wrong</h5>
-        );
+        return this.state.render ? <SwitchRoutes /> : <h5>Oops something went wrong</h5>;
     }
 }
 

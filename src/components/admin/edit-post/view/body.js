@@ -38,9 +38,7 @@ class Body extends Component {
     }
     componentWillReceiveProps(np) {
         if (np.data.data != undefined) {
-            const data = np.data.data.user.posts.edges.find(
-                (obj) => obj.node.id == np.value
-            );
+            const data = np.data.data.user.posts.edges.find((obj) => obj.node.id == np.value);
             this.setState({
                 title: data.node.title,
                 post_pic_url: data.node.postPicUrl,
@@ -77,10 +75,7 @@ class Body extends Component {
                 body: data.node.body
             });
         }
-        if (
-            this.chipInstance != '' &&
-            this.props.data.data != undefined
-        ) {
+        if (this.chipInstance != '' && this.props.data.data != undefined) {
             this.props.data.data.user.posts.edges
                 .find((obj) => obj.node.id == this.props.value)
                 .node.tags.edges.map((obj) =>
@@ -193,14 +188,8 @@ class Body extends Component {
                 };
             }
 
-            if (
-                this.state.tags.length > data.node.tags.edges.length
-            ) {
-                new_tags = [
-                    ...this.state.tags.slice(
-                        data.node.tags.edges.length
-                    )
-                ];
+            if (this.state.tags.length > data.node.tags.edges.length) {
+                new_tags = [...this.state.tags.slice(data.node.tags.edges.length)];
             }
 
             post_data = {
@@ -269,8 +258,7 @@ class Body extends Component {
                     <div className="col m8 s12">
                         <form>
                             <div className="input-field">
-                                {this.props.data.data !=
-                                    undefined && (
+                                {this.props.data.data != undefined && (
                                     <input
                                         value={this.state.title}
                                         id="title"
@@ -292,21 +280,14 @@ class Body extends Component {
                         <div className="card">
                             <div className="card-content">
                                 <div className="image-section">
-                                    <span className="card-title">
-                                        Add featured image
-                                    </span>
-                                    {this.props.data.data !=
-                                        undefined && (
+                                    <span className="card-title">Add featured image</span>
+                                    {this.props.data.data != undefined && (
                                         <img
                                             className="responsive-img"
                                             src={
-                                                this.state
-                                                    .post_pic_url !=
-                                                ''
-                                                    ? this.state
-                                                        .post_pic_url
-                                                    : data.post_pic_url !=
-                                                      undefined
+                                                this.state.post_pic_url != ''
+                                                    ? this.state.post_pic_url
+                                                    : data.post_pic_url != undefined
                                                         ? data.post_pic_url
                                                         : ''
                                             }
@@ -318,13 +299,8 @@ class Body extends Component {
                                                 <span>File</span>
                                                 <input
                                                     type="file"
-                                                    ref={
-                                                        this.fileInput
-                                                    }
-                                                    onChange={
-                                                        this
-                                                            .handleFileChange
-                                                    }
+                                                    ref={this.fileInput}
+                                                    onChange={this.handleFileChange}
                                                     accept="image/*"
                                                 />
                                             </div>
@@ -340,20 +316,12 @@ class Body extends Component {
                                 </div>
 
                                 <div className="tag-section">
-                                    <span className="card-title">
-                                        Add Tags
-                                    </span>
-                                    <div
-                                        className="chips chips-placeholder"
-                                        ref={this.chip}
-                                    />
+                                    <span className="card-title">Add Tags</span>
+                                    <div className="chips chips-placeholder" ref={this.chip} />
                                 </div>
                             </div>
                             <div className="card-action center">
-                                <button
-                                    onClick={this.onPublishClick}
-                                    className="btn publish"
-                                >
+                                <button onClick={this.onPublishClick} className="btn publish">
                                     Publish
                                 </button>
                             </div>
@@ -373,11 +341,7 @@ Body.propTypes = {
 };
 
 const BodyConsumer = (props) => (
-    <PostID.Consumer>
-        {(value) => <Body {...props} value={value} />}
-    </PostID.Consumer>
+    <PostID.Consumer>{(value) => <Body {...props} value={value} />}</PostID.Consumer>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-    BodyConsumer
-);
+export default connect(mapStateToProps, mapDispatchToProps)(BodyConsumer);

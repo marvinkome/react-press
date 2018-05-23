@@ -10,10 +10,13 @@
     "start": "webpack-dev-server --config webpack.dev.js --host 192.168.43.200",
     "start-server": "node server.js --require dotenv/config",
     "build": "webpack --config webpack.prod.js",
-    "postinstall": "yarn build",
     "pretty": "prettier-eslint --write 'src/**/*.+(css|js|md)'",
     "lint": "eslint --fix 'src/**/*.+(js)'",
-    "format": "yarn pretty && yarn lint"
+    "format": "yarn pretty && yarn lint",
+    "postinstall": "yarn build"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": ["git add", "yarn pretty"]
   },
   "dependencies": {
     "dotenv": "^5.0.1",

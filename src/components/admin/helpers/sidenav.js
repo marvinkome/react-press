@@ -73,33 +73,20 @@ class SideNav extends Component {
                 <nav className="admin-nav">
                     <div className="nav-wrapper">
                         <a className="brand-logo">ReactPress</a>
-                        <a
-                            data-target="mobile-demo"
-                            className="sidenav-trigger"
-                        >
+                        <a data-target="mobile-demo" className="sidenav-trigger">
                             <i className="material-icons">menu</i>
                         </a>
                     </div>
                 </nav>
-                <ul
-                    ref={this.sideNav}
-                    className="sidenav sidenav-fixed"
-                    id="mobile-demo"
-                >
+                <ul ref={this.sideNav} className="sidenav sidenav-fixed" id="mobile-demo">
                     <li>
                         <div className="user-view">
                             <div className="background" />
                             <a>
-                                <img
-                                    className="circle"
-                                    src={pic_url}
-                                    style={style}
-                                />
+                                <img className="circle" src={pic_url} style={style} />
                             </a>
                             <a>
-                                <span className="name">
-                                    {display_name}
-                                </span>
+                                <span className="name">{display_name}</span>
                             </a>
                         </div>
                     </li>
@@ -109,30 +96,17 @@ class SideNav extends Component {
                         </Link>
                     </li>
                     <li>
-                        <ul
-                            ref={this.collapsible}
-                            className="collapsible collapsible-accordion"
-                        >
+                        <ul ref={this.collapsible} className="collapsible collapsible-accordion">
                             <li>
-                                <a className="collapsible-header">
-                                    Posts
-                                </a>
+                                <a className="collapsible-header">Posts</a>
                                 <div className="collapsible-body">
                                     <ul>
-                                        <li
-                                            onClick={
-                                                this.onClickRoute
-                                            }
-                                        >
+                                        <li onClick={this.onClickRoute}>
                                             <Link to="/admin/posts">
                                                 <span>All Posts</span>
                                             </Link>
                                         </li>
-                                        <li
-                                            onClick={
-                                                this.onClickRoute
-                                            }
-                                        >
+                                        <li onClick={this.onClickRoute}>
                                             <Link to="/admin/new-post">
                                                 <span>New Post</span>
                                             </Link>

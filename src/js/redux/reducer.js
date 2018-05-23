@@ -24,9 +24,7 @@ const updateNestedItemArray = (array, itemId, callback, key = 'id') => {
 };
 
 const removeItemInNestedArray = (array, itemId, key = 'id') => {
-    let selected_item = array.find(
-        (item) => item['node'][key] == itemId
-    );
+    let selected_item = array.find((item) => item['node'][key] == itemId);
 
     return array.filter((item) => item !== selected_item);
 };
@@ -34,8 +32,8 @@ const removeItemInNestedArray = (array, itemId, key = 'id') => {
 const removeDuplicateInArray = (propertyName, inputArray, duplicateKey) => {
     let duplicate = false;
 
-    inputArray.map( item => {
-        if(item[propertyName] === duplicateKey){
+    inputArray.map((item) => {
+        if (item[propertyName] === duplicateKey) {
             delete item[propertyName];
             duplicate = true;
         }
@@ -152,13 +150,11 @@ const requestPostsFinished = (state, post) => {
         data: updateObject(state.user_data.data, {
             user: updateObject(state.user_data.data.user, {
                 posts: updateObject(state.user_data.data.user.posts, {
-                    edges: state.user_data.data.user.posts.edges.concat(
-                        {
-                            node: {
-                                ...post
-                            }
+                    edges: state.user_data.data.user.posts.edges.concat({
+                        node: {
+                            ...post
                         }
-                    )
+                    })
                 })
             })
         })
@@ -223,11 +219,7 @@ const requestDeletePostFinished = (state, post_id) => {
     const isFetching = false;
 
     const new_post = updateObject(state.post_data, {
-        posts: removeItemInNestedArray(
-            state.post_data.posts,
-            post_id,
-            'uuid'
-        )
+        posts: removeItemInNestedArray(state.post_data.posts, post_id, 'uuid')
     });
 
     const new_user = updateObject(state.user_data, {
@@ -293,18 +285,13 @@ const requestCommentFinished = (state, post, comment, data) => {
                         'uuid'
                     )
                 }),
-                comments: updateObject(
-                    state.user_data.data.user.comments,
-                    {
-                        edges: state.user_data.data.user.comments.edges.concat(
-                            {
-                                node: {
-                                    ...comment
-                                }
-                            }
-                        )
-                    }
-                )
+                comments: updateObject(state.user_data.data.user.comments, {
+                    edges: state.user_data.data.user.comments.edges.concat({
+                        node: {
+                            ...comment
+                        }
+                    })
+                })
             })
         })
     });
@@ -351,18 +338,13 @@ const requestCommentReplyFinished = (state, post, comment_rep, data) => {
                         'uuid'
                     )
                 }),
-                commentReplies: updateObject(
-                    state.user_data.data.user.commentReplies,
-                    {
-                        edges: state.user_data.data.user.commentReplies.edges.concat(
-                            {
-                                node: {
-                                    ...comment_rep
-                                }
-                            }
-                        )
-                    }
-                )
+                commentReplies: updateObject(state.user_data.data.user.commentReplies, {
+                    edges: state.user_data.data.user.commentReplies.edges.concat({
+                        node: {
+                            ...comment_rep
+                        }
+                    })
+                })
             })
         })
     });
@@ -501,7 +483,7 @@ const recieveMoreArticles = (state, articles, cursor, hasNextPage) => {
 };
 
 const recieveUserProfileData = (state, profile_data) => {
-    if(profile_data == null){
+    if (profile_data == null) {
         return state;
     }
     const isFetching = false;
@@ -574,20 +556,10 @@ const rootReducer = (state = initialState, action) => {
         return sendClapRequest(state);
 
     case constants.RECIEVE_ARTICLES:
-        return recieveArticles(
-            state,
-            action.payload,
-            action.cursor,
-            action.hasNextPage
-        );
+        return recieveArticles(state, action.payload, action.cursor, action.hasNextPage);
 
     case constants.RECIEVE_MORE_ARTICLES:
-        return recieveMoreArticles(
-            state,
-            action.payload,
-            action.cursor,
-            action.hasNextPage
-        );
+        return recieveMoreArticles(state, action.payload, action.cursor, action.hasNextPage);
 
     case constants.LOGIN_USER:
         return loginUser(state, action.payload);
@@ -599,24 +571,13 @@ const rootReducer = (state = initialState, action) => {
         return recieveUserData(state, action.payload);
 
     case constants.REQUEST_TAG_FINISHED:
-        return requestTagsFinished(
-            state,
-            action.tag.data.createTag.post,
-            action.post_id
-        );
+        return requestTagsFinished(state, action.tag.data.createTag.post, action.post_id);
 
     case constants.REQUEST_POST_FINISHED:
-        return requestPostsFinished(
-            state,
-            action.post.data.createPost.post
-        );
+        return requestPostsFinished(state, action.post.data.createPost.post);
 
     case constants.REQUEST_EDIT_POST_FINISHED:
-        return requestEditPostFinished(
-            state,
-            action.post.data.updatePost.post,
-            action.post_id
-        );
+        return requestEditPostFinished(state, action.post.data.updatePost.post, action.post_id);
 
     case constants.REQUEST_DELETE_POST_FINISHED:
         return requestDeletePostFinished(state, action.post_id);
@@ -641,24 +602,13 @@ const rootReducer = (state = initialState, action) => {
         );
 
     case constants.REQUEST_CLAP_FINISHED:
-        return requestClapFinished(
-            state,
-            action.post.data.createClap.post,
-            action.data
-        );
+        return requestClapFinished(state, action.post.data.createClap.post, action.data);
 
     case constants.VIEW_PAGE:
-        return requestViewPageFinished(
-            state,
-            action.post.data.viewPost.post,
-            action.pageId
-        );
+        return requestViewPageFinished(state, action.post.data.viewPost.post, action.pageId);
 
     case constants.RECIEVE_USER_PROFILE:
-        return recieveUserProfileData(
-            state,
-            action.payload
-        );
+        return recieveUserProfileData(state, action.payload);
 
     default:
         return state;

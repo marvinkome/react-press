@@ -20,10 +20,7 @@ export const Err404 = ({ history }) => {
                 </div>
                 <h5 className="center">
                     I suggest you{' '}
-                    <a
-                        onClick={() => history.goBack()}
-                        style={{ cursor: 'pointer' }}
-                    >
+                    <a onClick={() => history.goBack()} style={{ cursor: 'pointer' }}>
                         go back
                     </a>{' '}
                     {'or '}

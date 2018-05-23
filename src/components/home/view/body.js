@@ -31,11 +31,8 @@ class Body extends Component {
     }
     onScroll = () => {
         if (
-            window.innerHeight + window.scrollY >=
-                document.body.offsetHeight &&
-            (this.props.posts.length > 0 &&
-                this.props.cursor != '' &&
-                this.props.hasMore)
+            window.innerHeight + window.scrollY >= document.body.offsetHeight &&
+            (this.props.posts.length > 0 && this.props.cursor != '' && this.props.hasMore)
         ) {
             this.props.fetch_more(this.props.cursor);
         }
@@ -70,10 +67,7 @@ class Body extends Component {
                     ) : this.props.posts.length > 0 ? (
                         <div>
                             {this.props.posts.map((obj) => (
-                                <div
-                                    key={obj.node.id}
-                                    className="col l4 m6 s12"
-                                >
+                                <div key={obj.node.id} className="col l4 m6 s12">
                                     <PostCard post={obj.node} />
                                 </div>
                             ))}

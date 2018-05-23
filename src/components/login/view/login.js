@@ -7,10 +7,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import {
-    login_user,
-    fetch_user_data
-} from '../../../js/redux/actions';
+import { login_user, fetch_user_data } from '../../../js/redux/actions';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
@@ -37,11 +34,8 @@ class Login extends Component {
         };
     }
     componentWillMount() {
-        const sessionLogin = JSON.parse(
-            localStorage.getItem('med-blog-logged-in')
-        );
-        const localLogin =
-            sessionLogin != undefined && sessionLogin == true;
+        const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
+        const localLogin = sessionLogin != undefined && sessionLogin == true;
         if (localLogin) {
             const toastHTML = `
                 <div>
@@ -69,13 +63,8 @@ class Login extends Component {
         if (navigator.onLine) {
             this.props.login_user(this.state).then(
                 (res) => {
-                    if (
-                        res.payload.msg ==
-                        'Authentication successfull'
-                    ) {
-                        this.props
-                            .fetch_data()
-                            .then(() => this.props.history.goBack());
+                    if (res.payload.msg == 'Authentication successfull') {
+                        this.props.fetch_data().then(() => this.props.history.goBack());
                     } else {
                         this.setState({
                             auth_message: res.payload.msg
@@ -85,9 +74,7 @@ class Login extends Component {
                 (error) => {
                     this.setState({
                         auth_message:
-                            String(error) ==
-                                'TypeError: Failed to fetch' &&
-                            'Can\'t login server'
+                            String(error) == 'TypeError: Failed to fetch' && 'Can\'t login server'
                     });
                 }
             );
@@ -103,16 +90,12 @@ class Login extends Component {
                 <div className="heading">
                     <h5>Welcome Back</h5>
                     <p>
-                        Sign in to comment on publications, appreciate
-                        stories you love, and more.
+                        Sign in to comment on publications, appreciate stories you love, and more.
                     </p>
                 </div>
 
                 <div className="login-form">
-                    <form
-                        className="row"
-                        onSubmit={this.handleSubmit}
-                    >
+                    <form className="row" onSubmit={this.handleSubmit}>
                         <div className="input-field col s12">
                             <input
                                 type="text"
@@ -139,9 +122,7 @@ class Login extends Component {
                                     </div>
                                 )}
                             </button>
-                            <p className="red-text">
-                                {this.state.auth_message}
-                            </p>
+                            <p className="red-text">{this.state.auth_message}</p>
                         </div>
                     </form>
                 </div>

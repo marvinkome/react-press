@@ -9,10 +9,7 @@ import { truncate, format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
-    const truncate_length =
-        post.postPicUrl != undefined && post.postPicUrl != ''
-            ? 20
-            : 40;
+    const truncate_length = post.postPicUrl != undefined && post.postPicUrl != '' ? 20 : 40;
     const cardStyle =
         post.postPicUrl != undefined && post.postPicUrl != ''
             ? {
@@ -22,16 +19,14 @@ const PostCard = ({ post }) => {
             : {};
 
     const imgStyle =
-        post.author.gravatarUrl != null &&
-        post.author.gravatarUrl != ''
+        post.author.gravatarUrl != null && post.author.gravatarUrl != ''
             ? {
                 borderRadius: '50%',
                 backgroundColor: '#fafafa'
             }
             : {};
     const img =
-        post.author.gravatarUrl != undefined &&
-        post.author.gravatarUrl != ''
+        post.author.gravatarUrl != undefined && post.author.gravatarUrl != ''
             ? post.author.gravatarUrl
             : defImg;
 
@@ -39,19 +34,14 @@ const PostCard = ({ post }) => {
         <div className="card">
             <div className="card-image">
                 {post.postPicUrl != undefined &&
-                    post.postPicUrl != '' && (
-                    <img src={post.postPicUrl} />
-                )}
+                    post.postPicUrl != '' && <img src={post.postPicUrl} />}
             </div>
             <Link to={'/post/' + post.id}>
                 <div className="card-content" style={cardStyle}>
                     <span className="card-title">{post.title}</span>
                     <p
                         dangerouslySetInnerHTML={{
-                            __html: truncate(
-                                post.body,
-                                truncate_length
-                            )
+                            __html: truncate(post.body, truncate_length)
                         }}
                     />
                 </div>
@@ -59,14 +49,10 @@ const PostCard = ({ post }) => {
             <div className="card-action">
                 <div className="author">
                     <div className="author-image">
-                        <img
-                            className="circle"
-                            src={img}
-                            style={imgStyle}
-                        />
+                        <img className="circle" src={img} style={imgStyle} />
                     </div>
                     <div className="info">
-                        <Link 
+                        <Link
                             to={get_profile_link(post.author.fullName, post.author.id)}
                             title={post.author.fullName}
                         >
@@ -74,9 +60,7 @@ const PostCard = ({ post }) => {
                                 {post.author != null ? post.author.fullName : undefined}
                             </span>
                         </Link>
-                        <span className="date">
-                            {format_date(post.timestamp)}
-                        </span>
+                        <span className="date">{format_date(post.timestamp)}</span>
                     </div>
                 </div>
             </div>

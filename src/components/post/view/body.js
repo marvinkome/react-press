@@ -7,12 +7,7 @@ import ReactDOMServer from 'react-dom/server';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 
-import {
-    clap,
-    add_comment,
-    reply_comment,
-    view_page
-} from '../../../js/redux/actions';
+import { clap, add_comment, reply_comment, view_page } from '../../../js/redux/actions';
 import history from '../../../js/history';
 
 import PostCard from './post-card';
@@ -43,9 +38,7 @@ class Body extends Component {
     }
     componentDidMount() {
         if (this.props.posts.length != 0) {
-            const post = this.props.posts.find(
-                (obj) => obj.node.id == this.props.post_id
-            );
+            const post = this.props.posts.find((obj) => obj.node.id == this.props.post_id);
             document.title = post.node.title + ' - ' + DEFAULT_TITLE;
             this.props.page_viewed(post.node.uuid);
         }
@@ -192,9 +185,7 @@ class Body extends Component {
                                 <PostCard data={post.node} />
 
                                 <Comment
-                                    handleComment={
-                                        this.onCommitPublish
-                                    }
+                                    handleComment={this.onCommitPublish}
                                     handleReply={this.onCommentReply}
                                     data={post.node.comments}
                                 />
@@ -202,26 +193,18 @@ class Body extends Component {
                             <div className="col m1">
                                 <FAB
                                     handleClap={this.onClap}
-                                    claps_count={
-                                        post.node.claps.totalCount
-                                    }
+                                    claps_count={post.node.claps.totalCount}
                                 />
                             </div>
                         </div>
                     ) : (
                         <div className="container">
                             <div className="center-align">
-                                <img
-                                    className="responsive-img"
-                                    src="./src/img/404-Error.png"
-                                />
+                                <img className="responsive-img" src="./src/img/404-Error.png" />
                             </div>
                             <h5 className="center">
                                 I suggest you{' '}
-                                <a
-                                    onClick={() => history.goBack()}
-                                    style={{ cursor: 'pointer' }}
-                                >
+                                <a onClick={() => history.goBack()} style={{ cursor: 'pointer' }}>
                                     go back
                                 </a>
                             </h5>

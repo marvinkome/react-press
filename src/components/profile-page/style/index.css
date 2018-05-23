@@ -25,15 +25,15 @@
 
 .page-body .user-posts h5 {
     font-size: 25px;
-    color:#000000;
+    color: #000000;
     margin-bottom: 40px;
     font-weight: 500;
 }
 
 .page-body .user-posts .card-title {
     font-weight: 500;
-    color:#000000;
-    font-size: 21px
+    color: #000000;
+    font-size: 21px;
 }
 
 .page-body .user-posts .card-action {

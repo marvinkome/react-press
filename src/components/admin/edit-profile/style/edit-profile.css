@@ -34,12 +34,7 @@
 .edit-profile .edit-picture .file-uploader .input-field .submit-btn {
     text-align: center;
 }
-.edit-profile
-    .edit-picture
-    .file-uploader
-    .input-field
-    .submit-btn
-    .btn-flat {
+.edit-profile .edit-picture .file-uploader .input-field .submit-btn .btn-flat {
     color: #fff;
     background-color: #1679ca;
 }
@@ -63,18 +58,10 @@
         padding: 0 5%;
     }
     .edit-profile .edit-picture .file-uploader .input-field .btn,
-    .edit-profile
-        .edit-picture
-        .file-uploader
-        .input-field
-        .file-path-wrapper {
+    .edit-profile .edit-picture .file-uploader .input-field .file-path-wrapper {
         padding-left: 0;
     }
-    .edit-profile
-        .edit-picture
-        .file-uploader
-        .input-field
-        .file-path-wrapper {
+    .edit-profile .edit-picture .file-uploader .input-field .file-path-wrapper {
         padding-right: 17px;
     }
     .edit-profile .edit-picture,

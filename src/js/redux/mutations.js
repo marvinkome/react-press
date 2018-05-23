@@ -100,16 +100,8 @@ export const edit_post = (post_data) =>
     `
     mutation Mutation{
         updatePost(
-            ${
-    post_data.title != undefined
-        ? 'title: "' + post_data.title + '",'
-        : ''
-}
-            ${
-    post_data.body != undefined
-        ? 'body: ' + JSON.stringify(post_data.body) + ','
-        : ''
-}
+            ${post_data.title != undefined ? 'title: "' + post_data.title + '",' : ''}
+            ${post_data.body != undefined ? 'body: ' + JSON.stringify(post_data.body) + ',' : ''}
             ${
     post_data.postPicUrl != undefined
         ? 'postPicUrl: "' + post_data.postPicUrl + '",'
@@ -153,16 +145,10 @@ export const update_info = (user_data) =>
     `
     mutation Mutation{
         updateUserInfo(
-            ${
-    user_data.full_name != undefined
-        ? 'newFullName: "' + user_data.full_name + '",'
-        : ''
-}
+            ${user_data.full_name != undefined ? 'newFullName: "' + user_data.full_name + '",' : ''}
             ${
     user_data.description != undefined
-        ? 'newDescription: "' +
-                      user_data.description +
-                      '",'
+        ? 'newDescription: "' + user_data.description + '",'
         : ''
 }
         ){

@@ -7,11 +7,8 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 
 const PrivateRoute = ({ component: PrivComponent, ...rest }) => {
-    const sessionLogin = JSON.parse(
-        localStorage.getItem('med-blog-logged-in')
-    );
-    const localLogin =
-        sessionLogin != undefined && sessionLogin == true;
+    const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
+    const localLogin = sessionLogin != undefined && sessionLogin == true;
     return (
         <Route
             {...rest}

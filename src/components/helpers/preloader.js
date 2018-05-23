@@ -12,10 +12,7 @@ const Preloader = () => (
 );
 
 export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
-    <div
-        className="section container valign-wrapper"
-        style={{ height: '100vh' }}
-    >
+    <div className="section container valign-wrapper" style={{ height: '100vh' }}>
         <div
             style={{
                 margin: 'auto',
@@ -45,11 +42,7 @@ export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
                                     }}
                                 />
                             </div>
-                            <h5>
-                                {timedOut
-                                    ? 'Sorry for taking long...'
-                                    : 'Loading...'}
-                            </h5>
+                            <h5>{timedOut ? 'Sorry for taking long...' : 'Loading...'}</h5>
                         </div>
                     )
                 )}

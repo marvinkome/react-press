@@ -10,16 +10,11 @@ class PostCard extends Component {
         return (
             <div className="post">
                 <div className="post-content">
-                    <h2 className="post-title">
-                        {this.props.data.title}
-                    </h2>
+                    <h2 className="post-title">{this.props.data.title}</h2>
                     {(this.props.data.postPicUrl != undefined ||
                         this.props.data.postPicUrl != '') && (
                         <div className="post-image center">
-                            <img
-                                src={this.props.data.postPicUrl}
-                                className="responsive-img"
-                            />
+                            <img src={this.props.data.postPicUrl} className="responsive-img" />
                         </div>
                     )}
                     <div>
@@ -35,9 +30,7 @@ class PostCard extends Component {
                 <div className="post-footer">
                     {this.props.data.tags.edges.map((obj) => (
                         <div key={obj.node.id} className="post-tag">
-                            <span title={obj.node.name}>
-                                {obj.node.name}
-                            </span>
+                            <span title={obj.node.name}>{obj.node.name}</span>
                         </div>
                     ))}
                 </div>

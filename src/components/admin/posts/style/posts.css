@@ -85,32 +85,17 @@
 }
 
 .admin-posts .posts-list table td.small .delete,
-.admin-posts
-    .posts-list
-    .mobile-list
-    .collection-item
-    .actions
-    .delete {
+.admin-posts .posts-list .mobile-list .collection-item .actions .delete {
     color: rgba(228, 17, 17, 0.89);
 }
 
 .admin-posts .posts-list table td.small .view,
-.admin-posts
-    .posts-list
-    .mobile-list
-    .collection-item
-    .actions
-    .vies {
+.admin-posts .posts-list .mobile-list .collection-item .actions .vies {
     color: #222;
 }
 
 .admin-posts .posts-list table td.small .edit,
-.admin-posts
-    .posts-list
-    .mobile-list
-    .collection-item
-    .actions
-    .edit {
+.admin-posts .posts-list .mobile-list .collection-item .actions .edit {
     color: #2d587c;
 }
 

@@ -74,17 +74,12 @@ class Body extends Component {
                 file: e.target.files[0]
             });
 
-            const objectURL = window.URL.createObjectURL(
-                e.target.files[0]
-            );
+            const objectURL = window.URL.createObjectURL(e.target.files[0]);
             const img = new Image();
 
             img.onload = () => {
                 const gcd_res = gcd(img.width, img.height);
-                const ratio =
-                    String(img.width / gcd_res) +
-                    ':' +
-                    String(img.height / gcd_res);
+                const ratio = String(img.width / gcd_res) + ':' + String(img.height / gcd_res);
                 this.setState({
                     image_ratio: ratio
                 });
@@ -110,9 +105,7 @@ class Body extends Component {
                 () => {
                     const toastHTML = ReactDOMServer.renderToStaticMarkup(
                         <div>
-                            <span>
-                                File is uploading please wait{' '}
-                            </span>
+                            <span>File is uploading please wait </span>
                         </div>
                     );
                     window.M.toast({
@@ -136,13 +129,8 @@ class Body extends Component {
                         pic_url: task.snapshot.downloadURL
                     });
 
-                    if (
-                        this.state.pic_url ==
-                        this.props.data.data.user.gravatarUrl
-                    ) {
-                        return alert(
-                            'Please choose a different file'
-                        );
+                    if (this.state.pic_url == this.props.data.data.user.gravatarUrl) {
+                        return alert('Please choose a different file');
                     }
 
                     const user_data = this.props.data.data.user;
@@ -171,8 +159,7 @@ class Body extends Component {
             const toastHTML = ReactDOMServer.renderToStaticMarkup(
                 <div>
                     <span>
-                        Can{'\''}t upload image, make sure you{'\''}re
-                        online
+                        Can{'\''}t upload image, make sure you{'\''}re online
                     </span>
                 </div>
             );
@@ -244,8 +231,7 @@ class Body extends Component {
                         <h5>Change Profile Picture</h5>
                         <p
                             className={
-                                this.state.image_ratio != '' &&
-                                this.state.image_ratio != '1:1'
+                                this.state.image_ratio != '' && this.state.image_ratio != '1:1'
                                     ? 'red-text'
                                     : undefined
                             }
@@ -256,10 +242,7 @@ class Body extends Component {
                     <div className="preview-cont center">
                         <div className="img-preview">
                             {this.state.pic_url ? (
-                                <img
-                                    className="responsive-img circle"
-                                    src={this.state.pic_url}
-                                />
+                                <img className="responsive-img circle" src={this.state.pic_url} />
                             ) : (
                                 'No Profile picture'
                             )}
@@ -273,9 +256,7 @@ class Body extends Component {
                                     <input
                                         type="file"
                                         ref={this.fileInput}
-                                        onChange={
-                                            this.handleFileChange
-                                        }
+                                        onChange={this.handleFileChange}
                                         accept="image/*"
                                     />
                                 </div>
@@ -291,10 +272,8 @@ class Body extends Component {
                                 <div className="submit-btn">
                                     <a
                                         className={
-                                            this.state.image_ratio !=
-                                                '' &&
-                                            this.state.image_ratio !=
-                                                '1:1'
+                                            this.state.image_ratio != '' &&
+                                            this.state.image_ratio != '1:1'
                                                 ? 'btn-flat disabled'
                                                 : 'btn-flat'
                                         }
@@ -331,10 +310,7 @@ class Body extends Component {
                             />
                         </div>
                         <div className="input-field center col s12">
-                            <button
-                                onClick={this.onSaveClick}
-                                className="btn-flat"
-                            >
+                            <button onClick={this.onSaveClick} className="btn-flat">
                                 Save
                             </button>
                         </div>

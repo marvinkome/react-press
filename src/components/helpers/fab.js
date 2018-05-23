@@ -27,17 +27,12 @@ class FAB extends Component {
     render() {
         return (
             <div ref={this.fabRef} className="fixed-action-btn">
-                <a
-                    onClick={this.props.handleClap}
-                    className="pulse btn-floating btn-large"
-                >
+                <a onClick={this.props.handleClap} className="pulse btn-floating btn-large">
                     <i className="material-icons">thumb_up</i>
                 </a>
                 <ul>
                     <li>
-                        <a className="btn-floating btn-num">
-                            {this.state.claps}
-                        </a>
+                        <a className="btn-floating btn-num">{this.state.claps}</a>
                     </li>
                 </ul>
             </div>

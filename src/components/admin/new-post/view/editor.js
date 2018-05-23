@@ -4,12 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {
-    Editor,
-    EditorState,
-    RichUtils,
-    convertToRaw
-} from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw } from 'draft-js';
 import { Controls } from './controls';
 import draftToHtml from 'draftjs-to-html';
 import { count_words_in_html } from '../../../../js/helpers';
@@ -38,9 +33,7 @@ class PostEditor extends Component {
         editor.focus();
     };
     onChange = (editorState) => {
-        const rawContentState = convertToRaw(
-            editorState.getCurrentContent()
-        );
+        const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
         const word_length = count_words_in_html(html);
 
@@ -52,10 +45,7 @@ class PostEditor extends Component {
         this.props.onStateChange(html);
     };
     handleKeyCommand = (command, editorState) => {
-        const newState = RichUtils.handleKeyCommand(
-            editorState,
-            command
-        );
+        const newState = RichUtils.handleKeyCommand(editorState, command);
         if (newState) {
             this.onChange(newState);
             return true;
@@ -64,32 +54,16 @@ class PostEditor extends Component {
     };
     toggleCommand = (e, command, type) => {
         if (type == 'block') {
-            this.onChange(
-                RichUtils.toggleBlockType(
-                    this.state.editorState,
-                    command
-                )
-            );
+            this.onChange(RichUtils.toggleBlockType(this.state.editorState, command));
         } else if (type == 'inline') {
-            this.onChange(
-                RichUtils.toggleInlineStyle(
-                    this.state.editorState,
-                    command
-                )
-            );
+            this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, command));
         }
     };
     render() {
         return (
             <div className="editor z-depth-1">
-                <Controls
-                    editorState={this.state.editorState}
-                    onToggle={this.toggleCommand}
-                />
-                <div
-                    className="editor-input"
-                    onClick={this.editorFocus}
-                >
+                <Controls editorState={this.state.editorState} onToggle={this.toggleCommand} />
+                <div className="editor-input" onClick={this.editorFocus}>
                     <Editor
                         editorState={this.state.editorState}
                         handleKeyCommand={this.handleKeyCommand}
