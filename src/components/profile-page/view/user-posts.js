@@ -6,7 +6,7 @@ import { truncate, format_date } from '../../../js/helpers';
 
 class UserPosts extends Component {
     render() {
-        if ( this.props.data.posts.edges.length != 0 ) {
+        if (this.props.data.posts.edges.length != 0) {
             this.props.data.posts.edges.sort((a, b) => {
                 if (a.node.timestamp > b.node.timestamp) {
                     return -1;
@@ -28,9 +28,9 @@ class UserPosts extends Component {
                                 <div className="card-content">
                                     <div className="card-image">
                                         {obj.node.postPicUrl !== null && (
-                                            <img 
+                                            <img
                                                 src={obj.node.postPicUrl}
-                                                className="responsive-img" 
+                                                className="responsive-img"
                                             />
                                         )}
                                     </div>

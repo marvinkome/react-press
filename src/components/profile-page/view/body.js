@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import AuthorInfo from './author-info';
 import UserPosts from './user-posts';
 
-import Preloader from '../../helpers/preloader';
+import { AppLoading } from '../../helpers/preloader';
 import { DEFAULT_TITLE } from '../../helpers/constants';
 import { fetch_profile_data } from '../../../js/redux/actions';
 
@@ -17,7 +17,7 @@ class Body extends Component {
         super(props);
 
         this.state = {
-            profile: undefined,
+            profile: {},
             render: true,
             user_id: ''
         };
@@ -50,12 +50,6 @@ class Body extends Component {
                 profile
             });
         }
-
-        if (this.state.profile !== undefined) {
-            document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
-        } else {
-            document.title = 'User not found - ' + DEFAULT_TITLE;
-        }
     }
 
     componentWillReceiveProps(props) {
@@ -69,10 +63,17 @@ class Body extends Component {
     }
 
     componentDidUpdate() {
-        if (this.state.profile !== undefined) {
-            document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
+        if(!(
+            Object.keys(this.state.profile).length === 0 &&
+            this.state.profile.constructor === Object
+        )) {
+            if (this.state.profile !== undefined) {
+                document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
+            } else {
+                document.title = 'User not found - ' + DEFAULT_TITLE;
+            }
         } else {
-            document.title = 'User not found - ' + DEFAULT_TITLE;
+            document.title = DEFAULT_TITLE;
         }
     }
 
@@ -84,18 +85,27 @@ class Body extends Component {
                     <div className="col s12">
                         {/* check if its fetching user */}
                         {this.props.fetching ? (
-                            <Preloader /> // show preloader
-                        ) : // check if the correct profile was found
-                            this.state.profile !== undefined ? (
+                            <AppLoading />
+                        ) : (
+                            // check if the correct profile was found
+                            !(
+                                Object.keys(this.state.profile).length === 0 &&
+                                this.state.profile.constructor === Object
+                            ) && (
                                 <div>
-                                    <AuthorInfo data={this.state.profile} />
-                                    <UserPosts data={this.state.profile} />
+                                    {this.state.profile !== undefined ? (
+                                        <div>
+                                            <AuthorInfo data={this.state.profile} />
+                                            <UserPosts data={this.state.profile} />
+                                        </div>
+                                    ) : (
+                                        <div>
+                                            <h5 className="center">User not found</h5>
+                                        </div>
+                                    )}
                                 </div>
-                            ) : (
-                                <div>
-                                    <h5 className="center">User not found</h5>
-                                </div>
-                            )}
+                            )
+                        )}
                     </div>
                 </div>
             </div>
