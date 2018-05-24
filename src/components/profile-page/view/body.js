@@ -63,10 +63,7 @@ class Body extends Component {
     }
 
     componentDidUpdate() {
-        if(!(
-            Object.keys(this.state.profile).length === 0 &&
-            this.state.profile.constructor === Object
-        )) {
+        if(!this.checkEmptyObject(this.state.profile)) {
             if (this.state.profile !== undefined) {
                 document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
             } else {
@@ -75,6 +72,15 @@ class Body extends Component {
         } else {
             document.title = DEFAULT_TITLE;
         }
+    }
+
+    checkEmptyObject = (obj) => {
+        for(let prop in obj) {
+            if(obj.hasOwnProperty(prop))
+                return false;
+        }
+    
+        return JSON.stringify(obj) === JSON.stringify({});
     }
 
     render() {
@@ -88,10 +94,7 @@ class Body extends Component {
                             <AppLoading />
                         ) : (
                             // check if the correct profile was found
-                            !(
-                                Object.keys(this.state.profile).length === 0 &&
-                                this.state.profile.constructor === Object
-                            ) && (
+                            !this.checkEmptyObject(this.state.profile) && (
                                 <div>
                                     {this.state.profile !== undefined ? (
                                         <div>
