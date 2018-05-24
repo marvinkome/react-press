@@ -9,7 +9,7 @@ export const truncate = (word, length) => {
         word
             .split(' ')
             .splice(0, length)
-            .join(' ') + ' ..read more';
+            .join(' ') + ' ...';
     return word.split(' ').length < length ? word : new_word;
 };
 
