@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import types from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import defImg from '../../../img/default-pic.png';
 import { truncate, format_date } from '../../../js/helpers';
@@ -34,7 +35,9 @@ class UserPosts extends Component {
                                             />
                                         )}
                                     </div>
-                                    <span className="card-title">{obj.node.title}</span>
+                                    <Link to={'/post/' + obj.node.id}>
+                                        <span className="card-title">{obj.node.title}</span>
+                                    </Link>
                                     <p
                                         dangerouslySetInnerHTML={{
                                             __html: truncate(obj.node.body, 40)
