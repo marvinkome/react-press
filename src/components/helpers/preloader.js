@@ -23,8 +23,7 @@ export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
             <div className="center-align app-loader">
                 {error ? (
                     <div className="error">
-                        <i className="fa fa-times-circle-o fa-4x red-text" />
-                        <h5>Error Loading</h5>
+                        <h5>Error Loading. Please check you internet conection and reload</h5>
                     </div>
                 ) : (
                     pastDelay && (
