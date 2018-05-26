@@ -1,0 +1,97 @@
+/**
+ * ./src/style/home.css
+ */
+
+/***************** Body Block*******************/
+.body {
+    padding-top: 5rem;
+    width: 80%;
+
+    /* Post card */
+    .post-card{
+        height: 300px;
+        max-height: 300px;
+
+        .post-card__image {
+            height: 100%;
+            max-height: 100%;
+            width: 40%;
+            max-width: 40%;
+            background-color: #000; // Testing
+        }
+
+        /* Post content children */
+        .post-card__title {
+            font-size: 1.4em;
+            font-weight: 600;
+            letter-spacing: -0.7px;
+            margin-top: -0.3rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+
+            .post-card__title--link {
+                color: hsl(0, 0%, 16%);
+
+                &:hover {
+                    color: hsl(0, 0%, 6%);
+                }
+            }
+        }
+        .post-card__text {
+            color: hsl(0,0%,40%);
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            display: -webkit-box;
+            -webkit-line-clamp: 5;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* Post action */
+        .post-card__meta {
+            padding: 9px 24px;
+            background: hsl(0, 0%, 99%);
+            border-top: none;
+            border-bottom: 4px solid #0e66af;
+
+            .post-card__meta__author {
+                display: flex;
+    
+                .post-card__meta__author-image {
+                    max-width: 20%;
+                    margin-right: 2px;
+    
+                    img {
+                        width: 40px;
+                    }
+                }
+    
+                .post-card__meta__info {
+                    display: flex;
+                    flex-direction: column;
+                    margin-left: 10px;
+    
+                    .post-card__meta__name {
+                        font-weight: 700;
+                        font-size: 15.11px;
+                        text-transform: capitalize;
+                        color: #000000e0;
+                    }
+    
+                    .post-card__meta__date {
+                        font-weight: 500;
+                        font-size: 13.432px;
+                        color: #000000bf;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        padding-top: 3rem;
+    }
+}

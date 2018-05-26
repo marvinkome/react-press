@@ -5,19 +5,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { truncate, format_date, get_profile_link } from '../../../js/helpers';
+import { format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
 const PostCard = ({ post }) => {
-    const truncate_length = post.postPicUrl != undefined && post.postPicUrl != '' ? 20 : 40;
-    const cardStyle =
-        post.postPicUrl != undefined && post.postPicUrl != ''
-            ? {
-                height: '240px',
-                maxHeight: '240px'
-            }
-            : {};
-
     const imgStyle =
         post.author.gravatarUrl != null && post.author.gravatarUrl != ''
             ? {
@@ -31,36 +22,45 @@ const PostCard = ({ post }) => {
             : defImg;
 
     return (
-        <div className="card">
-            <div className="card-image">
-                {post.postPicUrl != undefined &&
-                    post.postPicUrl != '' && <img src={post.postPicUrl} />}
-            </div>
-            <Link to={'/post/' + post.id}>
-                <div className="card-content" style={cardStyle}>
-                    <span className="card-title">{post.title}</span>
-                    <p
-                        dangerouslySetInnerHTML={{
-                            __html: truncate(post.body, truncate_length)
-                        }}
-                    />
-                </div>
-            </Link>
-            <div className="card-action">
-                <div className="author">
-                    <div className="author-image">
-                        <img className="circle" src={img} style={imgStyle} />
+        <div>
+            <div className="post-card card horizontal">
+                {post.postPicUrl != undefined && post.postPicUrl != '' && (
+                    <div className="post-card__image card-image">
+                        <img src={post.postPicUrl} />
                     </div>
-                    <div className="info">
-                        <Link
-                            to={get_profile_link(post.author.fullName, post.author.id)}
-                            title={post.author.fullName}
-                        >
-                            <span className="name">
-                                {post.author != null ? post.author.fullName : undefined}
-                            </span>
-                        </Link>
-                        <span className="date">{format_date(post.timestamp)}</span>
+                )}
+                <div className="card-stacked">
+                    <div className="card-content">
+                        <h1 className="post-card__title">
+                            <Link to={'/post/' + post.id} className="post-card__title--link">
+                                {post.title}
+                            </Link>
+                        </h1>
+                        <p className="post-card__text"
+                            dangerouslySetInnerHTML={{
+                                __html: post.body
+                            }}
+                        />
+                    </div>
+                    <div className="post-card__meta card-action">
+                        <div className="post-card__meta__author">
+                            <div className="post-card__meta__author-image">
+                                <img className="circle" src={img} style={imgStyle} />
+                            </div>
+                            <div className="post-card__meta__info">
+                                <Link
+                                    to={get_profile_link(post.author.fullName, post.author.id)}
+                                    title={post.author.fullName}
+                                >
+                                    <span className="post-card__meta__name">
+                                        {post.author != null ? post.author.fullName : undefined}
+                                    </span>
+                                </Link>
+                                <span className="post-card__meta__date">
+                                    {format_date(post.timestamp)}
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
