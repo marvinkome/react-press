@@ -46,12 +46,12 @@ class TopBar extends Component {
         }
     }
     componentWillUnmount() {
-        if (this.sidenavIns !== undefined) {
+        if (this.sidenavIns !== undefined && this.sidenavIns !== null) {
             this.sidenavIns.close();
             this.sidenavIns.destroy();
         }
 
-        if (this.dropdownIns !== undefined) {
+        if (this.dropdownIns !== undefined && this.sidenavIns !== null) {
             this.dropdownIns.close();
             this.dropdownIns.destroy();
         }
