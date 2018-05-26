@@ -67,7 +67,7 @@ class Body extends Component {
                     ) : this.props.posts.length > 0 ? (
                         <div>
                             {this.props.posts.map((obj) => (
-                                <div key={obj.node.id} className="col l6 m6 s12">
+                                <div key={obj.node.id} className="col l6 m10 s12">
                                     <PostCard post={obj.node} />
                                 </div>
                             ))}

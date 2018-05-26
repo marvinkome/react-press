@@ -21,13 +21,15 @@ const PostCard = ({ post }) => {
             ? post.author.gravatarUrl
             : defImg;
 
+    const cardImgStyle = {
+        backgroundImage: 'url(\''+ post.postPicUrl +'\')'
+    };
+
     return (
         <div>
             <div className="post-card card horizontal">
                 {post.postPicUrl != undefined && post.postPicUrl != '' && (
-                    <div className="post-card__image card-image">
-                        <img src={post.postPicUrl} />
-                    </div>
+                    <div className="post-card__image card-image" style={cardImgStyle}/>
                 )}
                 <div className="card-stacked">
                     <div className="card-content">
