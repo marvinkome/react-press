@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "sideEffects": ["*.css"],
+    "sideEffects": [
+        "*.css"
+    ],
     "scripts": {
         "start": "webpack-dev-server --config webpack.dev.js --host 192.168.43.200",
         "start-server": "node server.js --require dotenv/config",
@@ -28,7 +30,8 @@
         "react-redux": "^5.0.7",
         "react-router-dom": "^4.2.2",
         "redux": "^3.7.2",
-        "redux-thunk": "^2.2.0"
+        "redux-thunk": "^2.2.0",
+        "socket.io-client": "^2.1.1"
     },
     "devDependencies": {
         "babel-core": "^6.26.0",
