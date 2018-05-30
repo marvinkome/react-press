@@ -8,11 +8,14 @@ import { DEFAULT_TITLE } from '../helpers/constants';
 import './style/home.css';
 
 class Home extends Component {
+    constructor(props){
+        super(props);
+    }
     componentDidMount() {
         document.title = 'HomePage - ' + DEFAULT_TITLE;
     }
     render() {
-        return <View />;
+        return <View/>;
     }
 }
 

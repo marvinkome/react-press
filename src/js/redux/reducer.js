@@ -4,6 +4,7 @@
 
 import initialState from './initialState';
 import * as constants from './constants';
+import {subscribeToNotifications} from '../socketio';
 
 // Utility functions
 const updateObject = (oldObj, newValues) => {
@@ -419,6 +420,15 @@ const requestViewPageFinished = (state, post, post_id) => {
         )
     });
 
+    // check if user is logged in
+    if(state.user_data.data == undefined) {
+        const new_state = updateObject(state, {
+            post_data: new_post
+        });
+
+        return new_state;
+    }
+    
     const new_user = updateObject(state.user_data, {
         data: updateObject(state.user_data.data, {
             user: updateObject(state.user_data.data.user, {
@@ -531,6 +541,9 @@ const logoutUser = (state, logout) => {
 const recieveUserData = (state, user_data) => {
     const lastFetch = Date.now();
     const isFetching = false;
+    
+    subscribeToNotifications();
+    
     const store = updateObject(state, {
         isFetching,
         lastFetch,
