@@ -4,7 +4,7 @@
 
 import initialState from './initialState';
 import * as constants from './constants';
-import {subscribeToNotifications} from '../socketio';
+import { Socket } from '../socketio';
 
 // Utility functions
 const updateObject = (oldObj, newValues) => {
@@ -542,7 +542,11 @@ const recieveUserData = (state, user_data) => {
     const lastFetch = Date.now();
     const isFetching = false;
     
-    subscribeToNotifications();
+    const socket = Socket(localStorage.getItem('med-blog-ref'));
+    
+    // socket.checkForAllNotifications((msg) => console.log(msg));
+    // socket.onNewNotification((msg) => console.log(msg));
+
     
     const store = updateObject(state, {
         isFetching,

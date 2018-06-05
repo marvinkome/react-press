@@ -1,9 +1,21 @@
 
 import openSocket from 'socket.io-client';
 
-const socket = openSocket('http://localhost:5000/test');
+export const Socket = (token) => {
+    const socket = openSocket('http://localhost:5000', {
+        transportOptions: {
+            polling: {
+                extraHeaders: {
+                    Authorization: 'Bearer ' + token
+                }
+            }
+        }
+    });
 
-export const subscribeToNotifications = () => {
     window.socket = socket;
-    socket.on('response', (msg) => console.log(msg));
+
+    return {
+        checkForAllNotifications: (cb) => socket.on('notifications', (msg) => cb(msg)),
+        onNewNotification: (cb) => socket.on('new notification', (msg) => cb(msg)),
+    };
 };
