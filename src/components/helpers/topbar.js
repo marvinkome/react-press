@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../js/redux/actions';
 import img from '../../img/default-pic.png';
+import * as MD from 'react-icons/lib/md';
 import './style/topbar.css';
 
 const mapDispatchToProp = (dispatch) => ({
@@ -66,7 +67,7 @@ class TopBar extends Component {
         };
         let defImg = img;
 
-        if (this.props.user_data != undefined) {
+        if (this.props.user_data != undefined && this.props.user_data !== null) {
             if (this.props.user_data.user.gravatarUrl != null) {
                 defImg = this.props.user_data.user.gravatarUrl;
                 style = {};
@@ -90,8 +91,13 @@ class TopBar extends Component {
                                     <span className="blog-title">ReactPress</span>
                                 </Link>
                             </div>
-                            {this.props.user_data != undefined ? (
+                            {this.props.user_data != undefined && this.props.user_data !== null ? (
                                 <ul className="right hide-on-small-only">
+                                    <li>
+                                        <a>
+                                            <MD.MdNotificationsNone style={{fontSize: '20px'}}/>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a
                                             ref={this.dropdown}
@@ -142,7 +148,7 @@ class TopBar extends Component {
                 </div>
 
                 <ul ref={this.sidenav} className="sidenav hide-on-med-and-up" id="mobile-topbar">
-                    {this.props.user_data != undefined ? (
+                    {this.props.user_data != undefined && this.props.user_data !== null ? (
                         <div>
                             <li>
                                 <div className="user-view">
