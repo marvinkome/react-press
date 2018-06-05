@@ -421,14 +421,14 @@ const requestViewPageFinished = (state, post, post_id) => {
     });
 
     // check if user is logged in
-    if(state.user_data.data == undefined) {
+    if (state.user_data.data == undefined) {
         const new_state = updateObject(state, {
             post_data: new_post
         });
 
         return new_state;
     }
-    
+
     const new_user = updateObject(state.user_data, {
         data: updateObject(state.user_data.data, {
             user: updateObject(state.user_data.data.user, {
@@ -541,13 +541,12 @@ const logoutUser = (state, logout) => {
 const recieveUserData = (state, user_data) => {
     const lastFetch = Date.now();
     const isFetching = false;
-    
+
     const socket = Socket(localStorage.getItem('med-blog-ref'));
-    
+
     // socket.checkForAllNotifications((msg) => console.log(msg));
     // socket.onNewNotification((msg) => console.log(msg));
 
-    
     const store = updateObject(state, {
         isFetching,
         lastFetch,

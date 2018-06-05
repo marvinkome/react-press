@@ -63,7 +63,7 @@ class Body extends Component {
     }
 
     componentDidUpdate() {
-        if(!this.checkEmptyObject(this.state.profile)) {
+        if (!this.checkEmptyObject(this.state.profile)) {
             if (this.state.profile !== undefined) {
                 document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
             } else {
@@ -75,13 +75,12 @@ class Body extends Component {
     }
 
     checkEmptyObject = (obj) => {
-        for(let prop in obj) {
-            if(obj.hasOwnProperty(prop))
-                return false;
+        for (let prop in obj) {
+            if (obj.hasOwnProperty(prop)) return false;
         }
-    
+
         return JSON.stringify(obj) === JSON.stringify({});
-    }
+    };
 
     render() {
         // Check if server didn't produce any error

@@ -22,14 +22,15 @@ const PostCard = ({ post }) => {
             : defImg;
 
     const cardImgStyle = {
-        backgroundImage: 'url(\''+ post.postPicUrl +'\')'
+        backgroundImage: 'url(\'' + post.postPicUrl + '\')'
     };
 
     return (
         <div>
             <div className="post-card card horizontal">
-                {post.postPicUrl != undefined && post.postPicUrl != '' && (
-                    <div className="post-card__image card-image" style={cardImgStyle}/>
+                {post.postPicUrl != undefined &&
+                    post.postPicUrl != '' && (
+                    <div className="post-card__image card-image" style={cardImgStyle} />
                 )}
                 <div className="card-stacked">
                     <div className="card-content">
@@ -38,7 +39,8 @@ const PostCard = ({ post }) => {
                                 {post.title}
                             </Link>
                         </h1>
-                        <p className="post-card__text"
+                        <p
+                            className="post-card__text"
                             dangerouslySetInnerHTML={{
                                 __html: post.body
                             }}

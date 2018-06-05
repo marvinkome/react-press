@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { logoutUser } from '../../js/redux/actions';
 import img from '../../img/default-pic.png';
 import * as MD from 'react-icons/lib/md';
-import './style/topbar.css';
+import './topbar.less';
 
 const mapDispatchToProp = (dispatch) => ({
     logout: () => dispatch(logoutUser())
@@ -61,16 +61,13 @@ class TopBar extends Component {
         this.props.logout();
     };
     render() {
-        let style = {
-            borderRadius: '50%',
-            backgroundColor: '#fafafa'
-        };
+        let defaultImageClass = ' defImg';
         let defImg = img;
 
-        if (this.props.user_data != undefined && this.props.user_data !== null) {
-            if (this.props.user_data.user.gravatarUrl != null) {
+        if (this.props.user_data !== undefined && this.props.user_data !== null) {
+            if (this.props.user_data.user.gravatarUrl !== null) {
                 defImg = this.props.user_data.user.gravatarUrl;
-                style = {};
+                defaultImageClass = '';
             }
         }
 
@@ -84,18 +81,22 @@ class TopBar extends Component {
                                 data-target="mobile-topbar"
                                 className="sidenav-trigger hide-on-med-and-up"
                             >
-                                <i className="material-icons">menu</i>
+                                <MD.MdMenu/>
                             </a>
-                            <div className="blog-info">
-                                <Link to="/" className="brand-logo">
-                                    <span className="blog-title">ReactPress</span>
-                                </Link>
-                            </div>
+
+                            <Link to="/" className="brand-logo center">
+                                <span className="blog-title">ReactPress</span>
+                            </Link>
+
+                            <a className="notification-icon-on-small right hide-on-med-and-up">
+                                <MD.MdNotificationsNone />
+                            </a>
+
                             {this.props.user_data != undefined && this.props.user_data !== null ? (
                                 <ul className="right hide-on-small-only">
                                     <li>
-                                        <a>
-                                            <MD.MdNotificationsNone style={{fontSize: '20px'}}/>
+                                        <a className="notification-icon">
+                                            <MD.MdNotificationsNone />
                                         </a>
                                     </li>
                                     <li>
@@ -105,9 +106,11 @@ class TopBar extends Component {
                                             data-target="dropdown-menu"
                                         >
                                             <img
-                                                className="user-image responsive-img circle"
+                                                className={
+                                                    'user-image responsive-img circle' +
+                                                    defaultImageClass
+                                                }
                                                 src={defImg}
-                                                style={style}
                                             />
                                         </a>
                                         <div className="dropdown-container">
@@ -144,6 +147,15 @@ class TopBar extends Component {
                                 </ul>
                             )}
                         </div>
+
+                        <div className="nav-content">
+                            <div>
+                                <span><a>home</a></span>
+                                <span><a>design</a></span>
+                                <span><a>programming</a></span>
+                                <span><a>entrepreneur</a></span>
+                            </div>
+                        </div>
                     </nav>
                 </div>
 
@@ -153,7 +165,10 @@ class TopBar extends Component {
                             <li>
                                 <div className="user-view">
                                     <a>
-                                        <img className="circle" src={defImg} style={style} />
+                                        <img
+                                            className={'circle' + defaultImageClass}
+                                            src={defImg}
+                                        />
                                     </a>
                                     <span className="email">
                                         Hello, {this.props.user_data.user.fullName}
@@ -177,7 +192,10 @@ class TopBar extends Component {
                             <li>
                                 <div className="user-view">
                                     <a>
-                                        <img className="circle" src={defImg} style={style} />
+                                        <img
+                                            className={'circle' + defaultImageClass}
+                                            src={defImg}
+                                        />
                                     </a>
                                     <span className="email">Hello, Guest</span>
                                 </div>

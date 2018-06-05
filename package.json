@@ -10,7 +10,7 @@
         "start": "webpack-dev-server --config webpack.dev.js",
         "start-server": "node server.js --require dotenv/config",
         "build": "webpack --config webpack.prod.js",
-        "pretty": "prettier-eslint --write 'src/**/*.+(css|js|md)'",
+        "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",
         "postinstall": "yarn build",

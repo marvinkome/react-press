@@ -1,4 +1,3 @@
-
 import openSocket from 'socket.io-client';
 
 export const Socket = (token) => {
@@ -16,6 +15,6 @@ export const Socket = (token) => {
 
     return {
         checkForAllNotifications: (cb) => socket.on('notifications', (msg) => cb(msg)),
-        onNewNotification: (cb) => socket.on('new notification', (msg) => cb(msg)),
+        onNewNotification: (cb) => socket.on('new notification', (msg) => cb(msg))
     };
 };
