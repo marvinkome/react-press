@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import type from 'prop-types';
 
 import View from './view';
-import './style/index.css';
+import './style.less';
 
 class ProfilePage extends Component {
     constructor(props) {

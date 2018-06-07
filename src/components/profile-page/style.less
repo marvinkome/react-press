@@ -1,0 +1,141 @@
+/************** Body **************/
+.page-body {
+    padding: 0rem 10% 2% 10%;
+
+    @media screen and (max-width: 600px) {
+        padding: 2%;
+    }
+
+    .author-info {
+        padding-bottom: 0px;
+
+        .author-image {
+            width: 130px;
+            max-width: 130px;
+
+            @media screen and (max-width: 600px) {
+            }
+
+            img {
+                border-radius: 50%;
+                background-color: hsl(0, 0%, 90%);
+
+                @media screen and (max-width: 600px) {
+                    border-radius: 0px;
+                }
+            }
+        }
+
+        .author-desc {
+            h1 {
+                font-size: 36px;
+                letter-spacing: -1.3px;
+                font-weight: 600;
+                margin-bottom: 13px;
+                margin-top: 10px;
+
+                @media screen and (max-width: 600px) {
+                    margin-top: 15px;
+                }
+            }
+
+            p {
+                color: #000000bf;
+                font-size: 17px;
+            }
+
+            .author-meta-info {
+                color: #0000008a;
+                font-size: 15px;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .user-posts {
+        padding-top: 0px;
+
+        h5 {
+            font-size: 20px;
+            color: #424242;
+            margin-bottom: 30px;
+            margin-top: 0px;
+            font-weight: 500;
+            letter-spacing: -1px;
+        }
+
+        .card {
+            .card-image {
+                margin-top: 15px;
+                margin-bottom: 23px;
+                border-radius: 3px;
+                max-height: 230px;
+                height: 230px;
+                overflow: hidden;
+
+                @media screen and (max-width: 600px) {
+                    margin-bottom: 1px;
+                    max-height: 150px;
+                }
+            }
+            .card-title {
+                font-weight: 600;
+                color: #333;
+                font-size: 30px;
+                margin-bottom: 19px;
+
+                @media screen and (max-width: 600px) {
+                    font-size: 25px;
+                }
+            }
+            .card-content p {
+                font-size: 17px;
+                color: #737373;
+            }
+            .card-action {
+                border-top: none;
+                border-bottom: 4px solid #0e66af;
+                padding-top: 0;
+
+                .author {
+                    display: flex;
+
+                    .author-image {
+                        max-width: 8%;
+                        width: 8%;
+                        margin-right: 2px;
+                        border: none;
+
+                        @media screen and (max-width: 600px) {
+                            max-width: 17%;
+                            width: 17%;
+                        }
+
+                        img {
+                            width: 40px;
+                        }
+                    }
+
+                    .info {
+                        display: flex;
+                        flex-direction: column;
+                        margin-left: 10px;
+
+                        .name {
+                            font-weight: 700;
+                            font-size: 15.11px;
+                            text-transform: capitalize;
+                            color: #000000e0;
+                        }
+
+                        .date {
+                            font-weight: 500;
+                            font-size: 13.432px;
+                            color: #000000bf;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

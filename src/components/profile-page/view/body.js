@@ -57,13 +57,15 @@ class Body extends Component {
         const profile = props.profiles.find((obj) => obj.id == this.state.user_id);
 
         // Then add it to store
-        this.setState({
-            profile
-        });
+        if( profile !== undefined ) {
+            this.setState({
+                profile
+            });
+        }
     }
 
     componentDidUpdate() {
-        if (!this.checkEmptyObject(this.state.profile)) {
+        if (this.objectIsEmpty(this.state.profile) === false) {
             if (this.state.profile !== undefined) {
                 document.title = this.state.profile.fullName + ' - ' + DEFAULT_TITLE;
             } else {
@@ -74,7 +76,9 @@ class Body extends Component {
         }
     }
 
-    checkEmptyObject = (obj) => {
+    objectIsEmpty = (obj) => {
+        if (obj === undefined ) return true;
+
         for (let prop in obj) {
             if (obj.hasOwnProperty(prop)) return false;
         }
@@ -82,32 +86,32 @@ class Body extends Component {
         return JSON.stringify(obj) === JSON.stringify({});
     };
 
+    renderPage = () => (
+        <div>
+            <AuthorInfo data={this.state.profile} />
+            <UserPosts data={this.state.profile} />
+        </div>
+    );
+
+    renderNoUserErr = () => (
+        <div>
+            <h5 className="center">User not found</h5>
+        </div>
+    );
+
     render() {
         // Check if server didn't produce any error
+
         return this.state.render ? (
             <div className="page-body section container">
                 <div className="row">
                     <div className="col s12">
-                        {/* check if its fetching user */}
                         {this.props.fetching ? (
                             <AppLoading />
-                        ) : (
-                            // check if the correct profile was found
-                            !this.checkEmptyObject(this.state.profile) && (
-                                <div>
-                                    {this.state.profile !== undefined ? (
-                                        <div>
-                                            <AuthorInfo data={this.state.profile} />
-                                            <UserPosts data={this.state.profile} />
-                                        </div>
-                                    ) : (
-                                        <div>
-                                            <h5 className="center">User not found</h5>
-                                        </div>
-                                    )}
-                                </div>
-                            )
-                        )}
+                        ) : this.objectIsEmpty(this.state.profile) === false &&
+                                this.state.profile !== undefined ? 
+                            this.renderPage() : 
+                            this.renderNoUserErr()}
                     </div>
                 </div>
             </div>

@@ -73,12 +73,10 @@ export class SignUp extends Component {
                     auth_message: res.payload.msg
                 });
             }
-
         } catch (error) {
             this.setState({
                 auth_message:
-                    String(error) == 'TypeError: Failed to fetch' &&
-                    'Can\'t login server error'
+                    String(error) == 'TypeError: Failed to fetch' && 'Can\'t login server error'
             });
         }
     };
@@ -97,8 +95,8 @@ export class SignUp extends Component {
                 <div className="heading">
                     <h5>Join ReactPress</h5>
                     <p>
-                        Sign up to share your story with the world, 
-                        appreciate stories you love, and more.
+                        Sign up to share your story with the world, appreciate stories you love, and
+                        more.
                     </p>
                     <p>
                         * Password must contain atleast one uppercase letter or one number. And must

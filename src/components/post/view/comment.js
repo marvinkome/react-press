@@ -79,7 +79,7 @@ class Comment extends Component {
                         <span className="post-meta">{format_date(obj.node.timestamp)}</span> -{' '}
                         <span className="post-meta">
                             <a onClick={(e) => this.onClickReply(e, obj.node.id)} title="reply">
-                                {this.state['replying'+ obj.node.id] ? 'close' : 'reply'}
+                                {this.state['replying' + obj.node.id] ? 'close' : 'reply'}
                             </a>
                         </span>
                     </div>
@@ -87,10 +87,10 @@ class Comment extends Component {
 
                 <div className="comment-resp">{obj.node.body}</div>
 
-                <div 
-                    className={'reply-form ' + (this.state['replying'+ obj.node.id] ? 
-                        'show' : null
-                    )}
+                <div
+                    className={
+                        'reply-form ' + (this.state['replying' + obj.node.id] ? 'show' : null)
+                    }
                 >
                     <form className="row">
                         <div className="input-field col s12">
@@ -119,7 +119,6 @@ class Comment extends Component {
                         </div>
                     </form>
                 </div>
-
             </li>
             {obj.node.replies.edges.map((reply) => this.renderCommentReply(reply))}
         </ul>

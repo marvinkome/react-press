@@ -16,7 +16,7 @@ describe('auth tests renders', () => {
             }
         };
 
-        const wrapper = shallow(<AuthPage {...props}/>);
+        const wrapper = shallow(<AuthPage {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -27,7 +27,7 @@ describe('auth tests renders', () => {
             history: {}
         };
 
-        const wrapper = shallow(<View {...props}/>);
+        const wrapper = shallow(<View {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -38,7 +38,7 @@ describe('auth tests renders', () => {
             history: {}
         };
 
-        const wrapper = shallow(<View {...props}/>);
+        const wrapper = shallow(<View {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -49,7 +49,7 @@ describe('auth tests renders', () => {
             history: {}
         };
 
-        const wrapper = shallow(<View {...props}/>);
+        const wrapper = shallow(<View {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
@@ -64,7 +64,7 @@ describe('Login tests', () => {
             goBack: jest.fn()
         }
     };
-    const wrapper = shallow(<Login {...props}/>);
+    const wrapper = shallow(<Login {...props} />);
 
     it('renders correctly', () => {
         expect(wrapper).toMatchSnapshot();
@@ -87,7 +87,7 @@ describe('Signup tests', () => {
             goBack: jest.fn()
         }
     };
-    const wrapper = shallow(<SignUp {...props}/>);
+    const wrapper = shallow(<SignUp {...props} />);
 
     it('renders correctly', () => {
         expect(wrapper).toMatchSnapshot();

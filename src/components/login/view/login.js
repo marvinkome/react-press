@@ -20,7 +20,8 @@ export class Login extends Component {
             auth_message: ''
         };
     }
-    componentWillMount() { // Check if user is already logged in
+    componentWillMount() {
+        // Check if user is already logged in
         const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
         const isLoggedin = sessionLogin !== undefined && sessionLogin === true;
 
@@ -59,7 +60,7 @@ export class Login extends Component {
                     auth_message: res.payload.msg
                 });
             }
-        } catch(e) {
+        } catch (e) {
             this.setState({
                 auth_message:
                     String(e) == 'TypeError: Failed to fetch' && 'Can\'t login server error'
@@ -72,8 +73,8 @@ export class Login extends Component {
                 <div className="heading">
                     <h5>Welcome Back</h5>
                     <p>
-                        Sign in to share your story with the world, 
-                        appreciate stories you love, and more.
+                        Sign in to share your story with the world, appreciate stories you love, and
+                        more.
                     </p>
                 </div>
 
