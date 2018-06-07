@@ -25,6 +25,7 @@
             "<rootDir>/config/test-shim.js",
             "<rootDir>/config/test-setup.js"
         ],
+        "setupTestFrameworkScriptFile": "<rootDir>/__mocks__/moduleMock.js",
         "moduleFileExtensions": [
             "jsx",
             "js"

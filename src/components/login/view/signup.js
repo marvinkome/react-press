@@ -25,7 +25,7 @@ const mapStateToProps = (state) => {
     };
 };
 
-class SignUp extends Component {
+export class SignUp extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -60,30 +60,25 @@ class SignUp extends Component {
             [e.target.id]: e.target.value
         });
     };
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        if (navigator.onLine) {
-            this.props.register_user(this.state).then(
-                (res) => {
-                    if (res.payload.msg == 'Authentication successfull') {
-                        this.props.fetch_data().then(() => this.props.history.goBack());
-                    } else {
-                        this.setState({
-                            auth_message: res.payload.msg
-                        });
-                    }
-                },
-                (error) => {
-                    this.setState({
-                        auth_message:
-                            String(error) == 'TypeError: Failed to fetch' &&
-                            'Can\'t login server error'
-                    });
-                }
-            );
-        } else {
+
+        try {
+            const res = await this.props.register_user(this.state);
+            if (res.payload.msg == 'Authentication successfull') {
+                await this.props.fetch_data();
+                await this.props.history.goBack();
+            } else {
+                this.setState({
+                    auth_message: res.payload.msg
+                });
+            }
+
+        } catch (error) {
             this.setState({
-                auth_message: 'You are offline'
+                auth_message:
+                    String(error) == 'TypeError: Failed to fetch' &&
+                    'Can\'t login server error'
             });
         }
     };
@@ -102,8 +97,8 @@ class SignUp extends Component {
                 <div className="heading">
                     <h5>Join ReactPress</h5>
                     <p>
-                        Create an account to comment on publications, appreciate stories you love,
-                        and more.
+                        Sign up to share your story with the world, 
+                        appreciate stories you love, and more.
                     </p>
                     <p>
                         * Password must contain atleast one uppercase letter or one number. And must

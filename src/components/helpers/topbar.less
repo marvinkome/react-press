@@ -1,5 +1,5 @@
 /******* TopBar Component ******/
-@primary_color: #1679ca;
+@primary_color: #437298;
 @menu_color: #292929;
 @nav_bar_color: hsl(0, 0%, 99.1%);
 
@@ -48,6 +48,11 @@
                     }
                 }
 
+                @media screen and (max-width: 992px) and (min-width: 601px) {
+                    left: 0%;
+                    transform: translateX(0%);
+                }
+
                 .blog-title {
                     font-size: 30.516px;
                     font-weight: 700;
@@ -81,7 +86,8 @@
                 li a {
                     color: @menu_color + hsl(0, 0%, 44%);
                     font-size: 15.11px;
-                    margin-top: 10px;
+                    margin-top: 3px;
+                    transition: all .3s ease-in-out;
 
                     &:hover {
                         color: @menu_color;
@@ -91,8 +97,16 @@
                     &.btn {
                         background-color: transparent;
                         border-radius: 3px;
-                        color: #fff;
-                        border: 1.4px solid #fff;
+                        color: #535353;
+                        border: 1px solid @primary_color;
+                        margin-top: 0;
+                        box-shadow: 0px 0px @nav_bar_color;
+                        font-size: 14px;
+                        line-height: 36px;
+                    }
+
+                    &.sign-up, &.sign-in {
+                        color: @primary_color
                     }
 
                     &.notification-icon {
@@ -130,6 +144,7 @@
                             font-weight: 500;
                             padding: 7px 25px;
                             margin: 0;
+                            transition: all .3s ease-in-out;
 
                             &:hover {
                                 color: #595959;
@@ -194,6 +209,7 @@
                     text-transform: uppercase;
                     letter-spacing: 0.4px;
                     padding-right: 14px;
+                    transition: all .3s ease-in-out;
                     cursor: pointer;
 
                     &:hover {

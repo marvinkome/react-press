@@ -178,7 +178,7 @@ ShallowWrapper {
           >
             <img
               className="responsive-img"
-              src="./src/img/404-Error.png"
+              src="test-file-stub"
             />
           </div>
           <h5
@@ -215,7 +215,7 @@ ShallowWrapper {
           >
             <img
               className="responsive-img"
-              src="./src/img/404-Error.png"
+              src="test-file-stub"
             />
           </div>
           <h5
@@ -249,7 +249,7 @@ ShallowWrapper {
             >
               <img
                 className="responsive-img"
-                src="./src/img/404-Error.png"
+                src="test-file-stub"
               />
             </div>,
             <h5
@@ -280,7 +280,7 @@ ShallowWrapper {
             "props": Object {
               "children": <img
                 className="responsive-img"
-                src="./src/img/404-Error.png"
+                src="test-file-stub"
               />,
               "className": "center-align",
             },
@@ -291,7 +291,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "className": "responsive-img",
-                "src": "./src/img/404-Error.png",
+                "src": "test-file-stub",
               },
               "ref": null,
               "rendered": null,
@@ -366,7 +366,7 @@ ShallowWrapper {
             >
               <img
                 className="responsive-img"
-                src="./src/img/404-Error.png"
+                src="test-file-stub"
               />
             </div>
             <h5
@@ -403,7 +403,7 @@ ShallowWrapper {
             >
               <img
                 className="responsive-img"
-                src="./src/img/404-Error.png"
+                src="test-file-stub"
               />
             </div>
             <h5
@@ -437,7 +437,7 @@ ShallowWrapper {
               >
                 <img
                   className="responsive-img"
-                  src="./src/img/404-Error.png"
+                  src="test-file-stub"
                 />
               </div>,
               <h5
@@ -468,7 +468,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <img
                   className="responsive-img"
-                  src="./src/img/404-Error.png"
+                  src="test-file-stub"
                 />,
                 "className": "center-align",
               },
@@ -479,7 +479,7 @@ ShallowWrapper {
                 "nodeType": "host",
                 "props": Object {
                   "className": "responsive-img",
-                  "src": "./src/img/404-Error.png",
+                  "src": "test-file-stub",
                 },
                 "ref": null,
                 "rendered": null,

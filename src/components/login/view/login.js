@@ -11,20 +11,7 @@ import { login_user, fetch_user_data } from '../../../js/redux/actions';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        login_user: (data) => dispatch(login_user(data)),
-        fetch_data: () => dispatch(fetch_user_data())
-    };
-};
-
-const mapStateToProps = (state) => {
-    return {
-        isLoggingIn: state.isLoggingIn
-    };
-};
-
-class Login extends Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -33,10 +20,11 @@ class Login extends Component {
             auth_message: ''
         };
     }
-    componentWillMount() {
+    componentWillMount() { // Check if user is already logged in
         const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
-        const localLogin = sessionLogin != undefined && sessionLogin == true;
-        if (localLogin) {
+        const isLoggedin = sessionLogin !== undefined && sessionLogin === true;
+
+        if (isLoggedin) {
             const toastHTML = `
                 <div>
                     <span>You are already logged in</span>
@@ -58,29 +46,23 @@ class Login extends Component {
             [e.target.id]: e.target.value
         });
     };
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
-        if (navigator.onLine) {
-            this.props.login_user(this.state).then(
-                (res) => {
-                    if (res.payload.msg == 'Authentication successfull') {
-                        this.props.fetch_data().then(() => this.props.history.goBack());
-                    } else {
-                        this.setState({
-                            auth_message: res.payload.msg
-                        });
-                    }
-                },
-                (error) => {
-                    this.setState({
-                        auth_message:
-                            String(error) == 'TypeError: Failed to fetch' && 'Can\'t login server'
-                    });
-                }
-            );
-        } else {
+
+        try {
+            const res = await this.props.login_user(this.state);
+            if (res.payload.msg == 'Authentication successfull') {
+                await this.props.fetch_data();
+                await this.props.history.goBack();
+            } else {
+                this.setState({
+                    auth_message: res.payload.msg
+                });
+            }
+        } catch(e) {
             this.setState({
-                auth_message: 'You are offline'
+                auth_message:
+                    String(e) == 'TypeError: Failed to fetch' && 'Can\'t login server error'
             });
         }
     };
@@ -90,7 +72,8 @@ class Login extends Component {
                 <div className="heading">
                     <h5>Welcome Back</h5>
                     <p>
-                        Sign in to comment on publications, appreciate stories you love, and more.
+                        Sign in to share your story with the world, 
+                        appreciate stories you love, and more.
                     </p>
                 </div>
 
@@ -135,9 +118,6 @@ class Login extends Component {
                             Sign up
                         </Link>
                     </p>
-                    {/* <p>
-                        <a title="Terms of service">Terms of service</a>
-                    </p> */}
                 </div>
             </div>
         );
@@ -149,6 +129,19 @@ Login.propTypes = {
     isLoggingIn: PropTypes.bool.isRequired,
     fetch_data: PropTypes.func.isRequired,
     history: PropTypes.object
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        login_user: (data) => dispatch(login_user(data)),
+        fetch_data: () => dispatch(fetch_user_data())
+    };
+};
+
+const mapStateToProps = (state) => {
+    return {
+        isLoggingIn: state.isLoggingIn
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
