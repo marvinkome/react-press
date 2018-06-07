@@ -13,7 +13,7 @@ import history from '../../../js/history';
 import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
-import FAB from '../../helpers/fab';
+import FAB from './fab';
 import Preloader from '../../helpers/preloader';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';

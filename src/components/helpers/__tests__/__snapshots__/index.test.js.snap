@@ -1,0 +1,3574 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`topbar tests dropdown opens on user image click 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TopBar
+    logout={[MockFunction]}
+    user_data={
+      Object {
+        "user": Object {},
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className=""
+        >
+          <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <a
+                      className="notification-icon"
+                    >
+                      <MdNotificationsNone />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-trigger user-profile"
+                      data-target="dropdown-menu"
+                    >
+                      <img
+                        className="user-image responsive-img circle"
+                      />
+                    </a>
+                    <Dropdown
+                      handleLogout={[Function]}
+                    />
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>
+        </div>,
+        <ul
+          className="sidenav hide-on-med-and-up"
+          id="mobile-topbar"
+        >
+          <MobileSideNav
+            data={
+              Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              }
+            }
+            logout={[Function]}
+          />
+        </ul>,
+      ],
+      "className": "navbar-wrapper",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <a
+                      className="notification-icon"
+                    >
+                      <MdNotificationsNone />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-trigger user-profile"
+                      data-target="dropdown-menu"
+                    >
+                      <img
+                        className="user-image responsive-img circle"
+                      />
+                    </a>
+                    <Dropdown
+                      handleLogout={[Function]}
+                    />
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>,
+          "className": "",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>,
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>,
+            ],
+            "className": "topbar nav-extended",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>,
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>,
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>,
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>
+                  </ul>,
+                ],
+                "className": "nav-wrapper",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdMenu />,
+                    "className": "sidenav-trigger hide-on-med-and-up",
+                    "data-target": "mobile-topbar",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>,
+                    "className": "brand-logo center",
+                    "replace": false,
+                    "to": "/",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "ReactPress",
+                      "className": "blog-title",
+                    },
+                    "ref": null,
+                    "rendered": "ReactPress",
+                    "type": "span",
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdNotificationsNone />,
+                    "className": "notification-icon-on-small right hide-on-med-and-up",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>,
+                    "className": "right hide-on-small-only",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>,
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <MdNotificationsNone />,
+                            "className": "notification-icon",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {},
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                          "type": "a",
+                        },
+                        "type": "li",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <a
+                              className="dropdown-trigger user-profile"
+                              data-target="dropdown-menu"
+                            >
+                              <img
+                                className="user-image responsive-img circle"
+                              />
+                            </a>,
+                            <Dropdown
+                              handleLogout={[Function]}
+                            />,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <img
+                                className="user-image responsive-img circle"
+                              />,
+                              "className": "dropdown-trigger user-profile",
+                              "data-target": "dropdown-menu",
+                            },
+                            "ref": Object {
+                              "current": null,
+                            },
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "className": "user-image responsive-img circle",
+                                "src": undefined,
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "img",
+                            },
+                            "type": "a",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {
+                              "handleLogout": [Function],
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "li",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": "ul",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <NavMenu />,
+                "className": "nav-content",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "nav",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <MobileSideNav
+            data={
+              Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              }
+            }
+            logout={[Function]}
+          />,
+          "className": "sidenav hide-on-med-and-up",
+          "id": "mobile-topbar",
+        },
+        "ref": Object {
+          "current": null,
+        },
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "data": Object {
+              "image": undefined,
+              "imageClass": "",
+              "isLoggedIn": true,
+              "username": undefined,
+            },
+            "logout": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "ul",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className=""
+          >
+            <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>
+          </div>,
+          <ul
+            className="sidenav hide-on-med-and-up"
+            id="mobile-topbar"
+          >
+            <MobileSideNav
+              data={
+                Object {
+                  "image": undefined,
+                  "imageClass": "",
+                  "isLoggedIn": true,
+                  "username": undefined,
+                }
+              }
+              logout={[Function]}
+            />
+          </ul>,
+        ],
+        "className": "navbar-wrapper",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>,
+            "className": "",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="nav-wrapper"
+                >
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>
+                  </ul>
+                </div>,
+                <div
+                  className="nav-content"
+                >
+                  <NavMenu />
+                </div>,
+              ],
+              "className": "topbar nav-extended",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      className="sidenav-trigger hide-on-med-and-up"
+                      data-target="mobile-topbar"
+                      href="#"
+                    >
+                      <MdMenu />
+                    </a>,
+                    <Link
+                      className="brand-logo center"
+                      replace={false}
+                      to="/"
+                    >
+                      <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>
+                    </Link>,
+                    <a
+                      className="notification-icon-on-small right hide-on-med-and-up"
+                    >
+                      <MdNotificationsNone />
+                    </a>,
+                    <ul
+                      className="right hide-on-small-only"
+                    >
+                      <div>
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>
+                      </div>
+                    </ul>,
+                  ],
+                  "className": "nav-wrapper",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdMenu />,
+                      "className": "sidenav-trigger hide-on-med-and-up",
+                      "data-target": "mobile-topbar",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>,
+                      "className": "brand-logo center",
+                      "replace": false,
+                      "to": "/",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "ReactPress",
+                        "className": "blog-title",
+                      },
+                      "ref": null,
+                      "rendered": "ReactPress",
+                      "type": "span",
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdNotificationsNone />,
+                      "className": "notification-icon-on-small right hide-on-med-and-up",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div>
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>
+                      </div>,
+                      "className": "right hide-on-small-only",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <li>
+                            <a
+                              className="notification-icon"
+                            >
+                              <MdNotificationsNone />
+                            </a>
+                          </li>,
+                          <li>
+                            <a
+                              className="dropdown-trigger user-profile"
+                              data-target="dropdown-menu"
+                            >
+                              <img
+                                className="user-image responsive-img circle"
+                              />
+                            </a>
+                            <Dropdown
+                              handleLogout={[Function]}
+                            />
+                          </li>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <a
+                              className="notification-icon"
+                            >
+                              <MdNotificationsNone />
+                            </a>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <MdNotificationsNone />,
+                              "className": "notification-icon",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {},
+                              "ref": null,
+                              "rendered": null,
+                              "type": [Function],
+                            },
+                            "type": "a",
+                          },
+                          "type": "li",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <a
+                                className="dropdown-trigger user-profile"
+                                data-target="dropdown-menu"
+                              >
+                                <img
+                                  className="user-image responsive-img circle"
+                                />
+                              </a>,
+                              <Dropdown
+                                handleLogout={[Function]}
+                              />,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <img
+                                  className="user-image responsive-img circle"
+                                />,
+                                "className": "dropdown-trigger user-profile",
+                                "data-target": "dropdown-menu",
+                              },
+                              "ref": Object {
+                                "current": null,
+                              },
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "className": "user-image responsive-img circle",
+                                  "src": undefined,
+                                },
+                                "ref": null,
+                                "rendered": null,
+                                "type": "img",
+                              },
+                              "type": "a",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {
+                                "handleLogout": [Function],
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": [Function],
+                            },
+                          ],
+                          "type": "li",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    "type": "ul",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavMenu />,
+                  "className": "nav-content",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": "nav",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <MobileSideNav
+              data={
+                Object {
+                  "image": undefined,
+                  "imageClass": "",
+                  "isLoggedIn": true,
+                  "username": undefined,
+                }
+              }
+              logout={[Function]}
+            />,
+            "className": "sidenav hide-on-med-and-up",
+            "id": "mobile-topbar",
+          },
+          "ref": Object {
+            "current": null,
+          },
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "data": Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              },
+              "logout": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "ul",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`topbar tests renders correctly when logged in 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TopBar
+    logout={[MockFunction]}
+    user_data={
+      Object {
+        "user": Object {},
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className=""
+        >
+          <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <a
+                      className="notification-icon"
+                    >
+                      <MdNotificationsNone />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-trigger user-profile"
+                      data-target="dropdown-menu"
+                    >
+                      <img
+                        className="user-image responsive-img circle"
+                      />
+                    </a>
+                    <Dropdown
+                      handleLogout={[Function]}
+                    />
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>
+        </div>,
+        <ul
+          className="sidenav hide-on-med-and-up"
+          id="mobile-topbar"
+        >
+          <MobileSideNav
+            data={
+              Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              }
+            }
+            logout={[Function]}
+          />
+        </ul>,
+      ],
+      "className": "navbar-wrapper",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <a
+                      className="notification-icon"
+                    >
+                      <MdNotificationsNone />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      className="dropdown-trigger user-profile"
+                      data-target="dropdown-menu"
+                    >
+                      <img
+                        className="user-image responsive-img circle"
+                      />
+                    </a>
+                    <Dropdown
+                      handleLogout={[Function]}
+                    />
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>,
+          "className": "",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>,
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>,
+            ],
+            "className": "topbar nav-extended",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>,
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>,
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>,
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>
+                  </ul>,
+                ],
+                "className": "nav-wrapper",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdMenu />,
+                    "className": "sidenav-trigger hide-on-med-and-up",
+                    "data-target": "mobile-topbar",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>,
+                    "className": "brand-logo center",
+                    "replace": false,
+                    "to": "/",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "ReactPress",
+                      "className": "blog-title",
+                    },
+                    "ref": null,
+                    "rendered": "ReactPress",
+                    "type": "span",
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdNotificationsNone />,
+                    "className": "notification-icon-on-small right hide-on-med-and-up",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>,
+                    "className": "right hide-on-small-only",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>,
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <MdNotificationsNone />,
+                            "className": "notification-icon",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {},
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                          "type": "a",
+                        },
+                        "type": "li",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": Array [
+                            <a
+                              className="dropdown-trigger user-profile"
+                              data-target="dropdown-menu"
+                            >
+                              <img
+                                className="user-image responsive-img circle"
+                              />
+                            </a>,
+                            <Dropdown
+                              handleLogout={[Function]}
+                            />,
+                          ],
+                        },
+                        "ref": null,
+                        "rendered": Array [
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <img
+                                className="user-image responsive-img circle"
+                              />,
+                              "className": "dropdown-trigger user-profile",
+                              "data-target": "dropdown-menu",
+                            },
+                            "ref": Object {
+                              "current": null,
+                            },
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "className": "user-image responsive-img circle",
+                                "src": undefined,
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": "img",
+                            },
+                            "type": "a",
+                          },
+                          Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "function",
+                            "props": Object {
+                              "handleLogout": [Function],
+                            },
+                            "ref": null,
+                            "rendered": null,
+                            "type": [Function],
+                          },
+                        ],
+                        "type": "li",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": "ul",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <NavMenu />,
+                "className": "nav-content",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "nav",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <MobileSideNav
+            data={
+              Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              }
+            }
+            logout={[Function]}
+          />,
+          "className": "sidenav hide-on-med-and-up",
+          "id": "mobile-topbar",
+        },
+        "ref": Object {
+          "current": null,
+        },
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "data": Object {
+              "image": undefined,
+              "imageClass": "",
+              "isLoggedIn": true,
+              "username": undefined,
+            },
+            "logout": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "ul",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className=""
+          >
+            <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>
+          </div>,
+          <ul
+            className="sidenav hide-on-med-and-up"
+            id="mobile-topbar"
+          >
+            <MobileSideNav
+              data={
+                Object {
+                  "image": undefined,
+                  "imageClass": "",
+                  "isLoggedIn": true,
+                  "username": undefined,
+                }
+              }
+              logout={[Function]}
+            />
+          </ul>,
+        ],
+        "className": "navbar-wrapper",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <a
+                        className="notification-icon"
+                      >
+                        <MdNotificationsNone />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        className="dropdown-trigger user-profile"
+                        data-target="dropdown-menu"
+                      >
+                        <img
+                          className="user-image responsive-img circle"
+                        />
+                      </a>
+                      <Dropdown
+                        handleLogout={[Function]}
+                      />
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>,
+            "className": "",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="nav-wrapper"
+                >
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <a
+                          className="notification-icon"
+                        >
+                          <MdNotificationsNone />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          className="dropdown-trigger user-profile"
+                          data-target="dropdown-menu"
+                        >
+                          <img
+                            className="user-image responsive-img circle"
+                          />
+                        </a>
+                        <Dropdown
+                          handleLogout={[Function]}
+                        />
+                      </li>
+                    </div>
+                  </ul>
+                </div>,
+                <div
+                  className="nav-content"
+                >
+                  <NavMenu />
+                </div>,
+              ],
+              "className": "topbar nav-extended",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      className="sidenav-trigger hide-on-med-and-up"
+                      data-target="mobile-topbar"
+                      href="#"
+                    >
+                      <MdMenu />
+                    </a>,
+                    <Link
+                      className="brand-logo center"
+                      replace={false}
+                      to="/"
+                    >
+                      <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>
+                    </Link>,
+                    <a
+                      className="notification-icon-on-small right hide-on-med-and-up"
+                    >
+                      <MdNotificationsNone />
+                    </a>,
+                    <ul
+                      className="right hide-on-small-only"
+                    >
+                      <div>
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>
+                      </div>
+                    </ul>,
+                  ],
+                  "className": "nav-wrapper",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdMenu />,
+                      "className": "sidenav-trigger hide-on-med-and-up",
+                      "data-target": "mobile-topbar",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>,
+                      "className": "brand-logo center",
+                      "replace": false,
+                      "to": "/",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "ReactPress",
+                        "className": "blog-title",
+                      },
+                      "ref": null,
+                      "rendered": "ReactPress",
+                      "type": "span",
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdNotificationsNone />,
+                      "className": "notification-icon-on-small right hide-on-med-and-up",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div>
+                        <li>
+                          <a
+                            className="notification-icon"
+                          >
+                            <MdNotificationsNone />
+                          </a>
+                        </li>
+                        <li>
+                          <a
+                            className="dropdown-trigger user-profile"
+                            data-target="dropdown-menu"
+                          >
+                            <img
+                              className="user-image responsive-img circle"
+                            />
+                          </a>
+                          <Dropdown
+                            handleLogout={[Function]}
+                          />
+                        </li>
+                      </div>,
+                      "className": "right hide-on-small-only",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <li>
+                            <a
+                              className="notification-icon"
+                            >
+                              <MdNotificationsNone />
+                            </a>
+                          </li>,
+                          <li>
+                            <a
+                              className="dropdown-trigger user-profile"
+                              data-target="dropdown-menu"
+                            >
+                              <img
+                                className="user-image responsive-img circle"
+                              />
+                            </a>
+                            <Dropdown
+                              handleLogout={[Function]}
+                            />
+                          </li>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <a
+                              className="notification-icon"
+                            >
+                              <MdNotificationsNone />
+                            </a>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <MdNotificationsNone />,
+                              "className": "notification-icon",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {},
+                              "ref": null,
+                              "rendered": null,
+                              "type": [Function],
+                            },
+                            "type": "a",
+                          },
+                          "type": "li",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": Array [
+                              <a
+                                className="dropdown-trigger user-profile"
+                                data-target="dropdown-menu"
+                              >
+                                <img
+                                  className="user-image responsive-img circle"
+                                />
+                              </a>,
+                              <Dropdown
+                                handleLogout={[Function]}
+                              />,
+                            ],
+                          },
+                          "ref": null,
+                          "rendered": Array [
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": <img
+                                  className="user-image responsive-img circle"
+                                />,
+                                "className": "dropdown-trigger user-profile",
+                                "data-target": "dropdown-menu",
+                              },
+                              "ref": Object {
+                                "current": null,
+                              },
+                              "rendered": Object {
+                                "instance": null,
+                                "key": undefined,
+                                "nodeType": "host",
+                                "props": Object {
+                                  "className": "user-image responsive-img circle",
+                                  "src": undefined,
+                                },
+                                "ref": null,
+                                "rendered": null,
+                                "type": "img",
+                              },
+                              "type": "a",
+                            },
+                            Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "function",
+                              "props": Object {
+                                "handleLogout": [Function],
+                              },
+                              "ref": null,
+                              "rendered": null,
+                              "type": [Function],
+                            },
+                          ],
+                          "type": "li",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    "type": "ul",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavMenu />,
+                  "className": "nav-content",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": "nav",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <MobileSideNav
+              data={
+                Object {
+                  "image": undefined,
+                  "imageClass": "",
+                  "isLoggedIn": true,
+                  "username": undefined,
+                }
+              }
+              logout={[Function]}
+            />,
+            "className": "sidenav hide-on-med-and-up",
+            "id": "mobile-topbar",
+          },
+          "ref": Object {
+            "current": null,
+          },
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "data": Object {
+                "image": undefined,
+                "imageClass": "",
+                "isLoggedIn": true,
+                "username": undefined,
+              },
+              "logout": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "ul",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`topbar tests renders correctly when logged out 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <TopBar
+    logout={[MockFunction]}
+    user_data={null}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": Array [
+        <div
+          className=""
+        >
+          <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <Link
+                      className="sign-in"
+                      replace={false}
+                      to="/auth/login"
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="sign-up btn"
+                      replace={false}
+                      to="/auth/signup"
+                    >
+                      Get started
+                    </Link>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>
+        </div>,
+        <ul
+          className="sidenav hide-on-med-and-up"
+          id="mobile-topbar"
+        >
+          <MobileSideNav
+            data={
+              Object {
+                "image": "test-file-stub",
+                "imageClass": " defImg",
+                "isLoggedIn": false,
+                "username": null,
+              }
+            }
+            logout={[Function]}
+          />
+        </ul>,
+      ],
+      "className": "navbar-wrapper",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <nav
+            className="topbar nav-extended"
+          >
+            <div
+              className="nav-wrapper"
+            >
+              <a
+                className="sidenav-trigger hide-on-med-and-up"
+                data-target="mobile-topbar"
+                href="#"
+              >
+                <MdMenu />
+              </a>
+              <Link
+                className="brand-logo center"
+                replace={false}
+                to="/"
+              >
+                <span
+                  className="blog-title"
+                >
+                  ReactPress
+                </span>
+              </Link>
+              <a
+                className="notification-icon-on-small right hide-on-med-and-up"
+              >
+                <MdNotificationsNone />
+              </a>
+              <ul
+                className="right hide-on-small-only"
+              >
+                <div>
+                  <li>
+                    <Link
+                      className="sign-in"
+                      replace={false}
+                      to="/auth/login"
+                    >
+                      Sign in
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="sign-up btn"
+                      replace={false}
+                      to="/auth/signup"
+                    >
+                      Get started
+                    </Link>
+                  </li>
+                </div>
+              </ul>
+            </div>
+            <div
+              className="nav-content"
+            >
+              <NavMenu />
+            </div>
+          </nav>,
+          "className": "",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <Link
+                        className="sign-in"
+                        replace={false}
+                        to="/auth/login"
+                      >
+                        Sign in
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="sign-up btn"
+                        replace={false}
+                        to="/auth/signup"
+                      >
+                        Get started
+                      </Link>
+                    </li>
+                  </div>
+                </ul>
+              </div>,
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>,
+            ],
+            "className": "topbar nav-extended",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>,
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>,
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>,
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <Link
+                          className="sign-in"
+                          replace={false}
+                          to="/auth/login"
+                        >
+                          Sign in
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="sign-up btn"
+                          replace={false}
+                          to="/auth/signup"
+                        >
+                          Get started
+                        </Link>
+                      </li>
+                    </div>
+                  </ul>,
+                ],
+                "className": "nav-wrapper",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdMenu />,
+                    "className": "sidenav-trigger hide-on-med-and-up",
+                    "data-target": "mobile-topbar",
+                    "href": "#",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>,
+                    "className": "brand-logo center",
+                    "replace": false,
+                    "to": "/",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": "ReactPress",
+                      "className": "blog-title",
+                    },
+                    "ref": null,
+                    "rendered": "ReactPress",
+                    "type": "span",
+                  },
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <MdNotificationsNone />,
+                    "className": "notification-icon-on-small right hide-on-med-and-up",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "function",
+                    "props": Object {},
+                    "ref": null,
+                    "rendered": null,
+                    "type": [Function],
+                  },
+                  "type": "a",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <div>
+                      <li>
+                        <Link
+                          className="sign-in"
+                          replace={false}
+                          to="/auth/login"
+                        >
+                          Sign in
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="sign-up btn"
+                          replace={false}
+                          to="/auth/signup"
+                        >
+                          Get started
+                        </Link>
+                      </li>
+                    </div>,
+                    "className": "right hide-on-small-only",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <li>
+                          <Link
+                            className="sign-in"
+                            replace={false}
+                            to="/auth/login"
+                          >
+                            Sign in
+                          </Link>
+                        </li>,
+                        <li>
+                          <Link
+                            className="sign-up btn"
+                            replace={false}
+                            to="/auth/signup"
+                          >
+                            Get started
+                          </Link>
+                        </li>,
+                      ],
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <Link
+                            className="sign-in"
+                            replace={false}
+                            to="/auth/login"
+                          >
+                            Sign in
+                          </Link>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "children": "Sign in",
+                            "className": "sign-in",
+                            "replace": false,
+                            "to": "/auth/login",
+                          },
+                          "ref": null,
+                          "rendered": "Sign in",
+                          "type": [Function],
+                        },
+                        "type": "li",
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": <Link
+                            className="sign-up btn"
+                            replace={false}
+                            to="/auth/signup"
+                          >
+                            Get started
+                          </Link>,
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "children": "Get started",
+                            "className": "sign-up btn",
+                            "replace": false,
+                            "to": "/auth/signup",
+                          },
+                          "ref": null,
+                          "rendered": "Get started",
+                          "type": [Function],
+                        },
+                        "type": "li",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                  "type": "ul",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <NavMenu />,
+                "className": "nav-content",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "function",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": "div",
+            },
+          ],
+          "type": "nav",
+        },
+        "type": "div",
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": <MobileSideNav
+            data={
+              Object {
+                "image": "test-file-stub",
+                "imageClass": " defImg",
+                "isLoggedIn": false,
+                "username": null,
+              }
+            }
+            logout={[Function]}
+          />,
+          "className": "sidenav hide-on-med-and-up",
+          "id": "mobile-topbar",
+        },
+        "ref": Object {
+          "current": null,
+        },
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "data": Object {
+              "image": "test-file-stub",
+              "imageClass": " defImg",
+              "isLoggedIn": false,
+              "username": null,
+            },
+            "logout": [Function],
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        "type": "ul",
+      },
+    ],
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          <div
+            className=""
+          >
+            <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <Link
+                        className="sign-in"
+                        replace={false}
+                        to="/auth/login"
+                      >
+                        Sign in
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="sign-up btn"
+                        replace={false}
+                        to="/auth/signup"
+                      >
+                        Get started
+                      </Link>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>
+          </div>,
+          <ul
+            className="sidenav hide-on-med-and-up"
+            id="mobile-topbar"
+          >
+            <MobileSideNav
+              data={
+                Object {
+                  "image": "test-file-stub",
+                  "imageClass": " defImg",
+                  "isLoggedIn": false,
+                  "username": null,
+                }
+              }
+              logout={[Function]}
+            />
+          </ul>,
+        ],
+        "className": "navbar-wrapper",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <nav
+              className="topbar nav-extended"
+            >
+              <div
+                className="nav-wrapper"
+              >
+                <a
+                  className="sidenav-trigger hide-on-med-and-up"
+                  data-target="mobile-topbar"
+                  href="#"
+                >
+                  <MdMenu />
+                </a>
+                <Link
+                  className="brand-logo center"
+                  replace={false}
+                  to="/"
+                >
+                  <span
+                    className="blog-title"
+                  >
+                    ReactPress
+                  </span>
+                </Link>
+                <a
+                  className="notification-icon-on-small right hide-on-med-and-up"
+                >
+                  <MdNotificationsNone />
+                </a>
+                <ul
+                  className="right hide-on-small-only"
+                >
+                  <div>
+                    <li>
+                      <Link
+                        className="sign-in"
+                        replace={false}
+                        to="/auth/login"
+                      >
+                        Sign in
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        className="sign-up btn"
+                        replace={false}
+                        to="/auth/signup"
+                      >
+                        Get started
+                      </Link>
+                    </li>
+                  </div>
+                </ul>
+              </div>
+              <div
+                className="nav-content"
+              >
+                <NavMenu />
+              </div>
+            </nav>,
+            "className": "",
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="nav-wrapper"
+                >
+                  <a
+                    className="sidenav-trigger hide-on-med-and-up"
+                    data-target="mobile-topbar"
+                    href="#"
+                  >
+                    <MdMenu />
+                  </a>
+                  <Link
+                    className="brand-logo center"
+                    replace={false}
+                    to="/"
+                  >
+                    <span
+                      className="blog-title"
+                    >
+                      ReactPress
+                    </span>
+                  </Link>
+                  <a
+                    className="notification-icon-on-small right hide-on-med-and-up"
+                  >
+                    <MdNotificationsNone />
+                  </a>
+                  <ul
+                    className="right hide-on-small-only"
+                  >
+                    <div>
+                      <li>
+                        <Link
+                          className="sign-in"
+                          replace={false}
+                          to="/auth/login"
+                        >
+                          Sign in
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          className="sign-up btn"
+                          replace={false}
+                          to="/auth/signup"
+                        >
+                          Get started
+                        </Link>
+                      </li>
+                    </div>
+                  </ul>
+                </div>,
+                <div
+                  className="nav-content"
+                >
+                  <NavMenu />
+                </div>,
+              ],
+              "className": "topbar nav-extended",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <a
+                      className="sidenav-trigger hide-on-med-and-up"
+                      data-target="mobile-topbar"
+                      href="#"
+                    >
+                      <MdMenu />
+                    </a>,
+                    <Link
+                      className="brand-logo center"
+                      replace={false}
+                      to="/"
+                    >
+                      <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>
+                    </Link>,
+                    <a
+                      className="notification-icon-on-small right hide-on-med-and-up"
+                    >
+                      <MdNotificationsNone />
+                    </a>,
+                    <ul
+                      className="right hide-on-small-only"
+                    >
+                      <div>
+                        <li>
+                          <Link
+                            className="sign-in"
+                            replace={false}
+                            to="/auth/login"
+                          >
+                            Sign in
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="sign-up btn"
+                            replace={false}
+                            to="/auth/signup"
+                          >
+                            Get started
+                          </Link>
+                        </li>
+                      </div>
+                    </ul>,
+                  ],
+                  "className": "nav-wrapper",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdMenu />,
+                      "className": "sidenav-trigger hide-on-med-and-up",
+                      "data-target": "mobile-topbar",
+                      "href": "#",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <span
+                        className="blog-title"
+                      >
+                        ReactPress
+                      </span>,
+                      "className": "brand-logo center",
+                      "replace": false,
+                      "to": "/",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "ReactPress",
+                        "className": "blog-title",
+                      },
+                      "ref": null,
+                      "rendered": "ReactPress",
+                      "type": "span",
+                    },
+                    "type": [Function],
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <MdNotificationsNone />,
+                      "className": "notification-icon-on-small right hide-on-med-and-up",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "function",
+                      "props": Object {},
+                      "ref": null,
+                      "rendered": null,
+                      "type": [Function],
+                    },
+                    "type": "a",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <div>
+                        <li>
+                          <Link
+                            className="sign-in"
+                            replace={false}
+                            to="/auth/login"
+                          >
+                            Sign in
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            className="sign-up btn"
+                            replace={false}
+                            to="/auth/signup"
+                          >
+                            Get started
+                          </Link>
+                        </li>
+                      </div>,
+                      "className": "right hide-on-small-only",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <li>
+                            <Link
+                              className="sign-in"
+                              replace={false}
+                              to="/auth/login"
+                            >
+                              Sign in
+                            </Link>
+                          </li>,
+                          <li>
+                            <Link
+                              className="sign-up btn"
+                              replace={false}
+                              to="/auth/signup"
+                            >
+                              Get started
+                            </Link>
+                          </li>,
+                        ],
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <Link
+                              className="sign-in"
+                              replace={false}
+                              to="/auth/login"
+                            >
+                              Sign in
+                            </Link>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "children": "Sign in",
+                              "className": "sign-in",
+                              "replace": false,
+                              "to": "/auth/login",
+                            },
+                            "ref": null,
+                            "rendered": "Sign in",
+                            "type": [Function],
+                          },
+                          "type": "li",
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <Link
+                              className="sign-up btn"
+                              replace={false}
+                              to="/auth/signup"
+                            >
+                              Get started
+                            </Link>,
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "class",
+                            "props": Object {
+                              "children": "Get started",
+                              "className": "sign-up btn",
+                              "replace": false,
+                              "to": "/auth/signup",
+                            },
+                            "ref": null,
+                            "rendered": "Get started",
+                            "type": [Function],
+                          },
+                          "type": "li",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                    "type": "ul",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <NavMenu />,
+                  "className": "nav-content",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "function",
+                  "props": Object {},
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": "div",
+              },
+            ],
+            "type": "nav",
+          },
+          "type": "div",
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": <MobileSideNav
+              data={
+                Object {
+                  "image": "test-file-stub",
+                  "imageClass": " defImg",
+                  "isLoggedIn": false,
+                  "username": null,
+                }
+              }
+              logout={[Function]}
+            />,
+            "className": "sidenav hide-on-med-and-up",
+            "id": "mobile-topbar",
+          },
+          "ref": Object {
+            "current": null,
+          },
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "data": Object {
+                "image": "test-file-stub",
+                "imageClass": " defImg",
+                "isLoggedIn": false,
+                "username": null,
+              },
+              "logout": [Function],
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          "type": "ul",
+        },
+      ],
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

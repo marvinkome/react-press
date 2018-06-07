@@ -4,6 +4,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { MdThumbUp } from 'react-icons/lib/md';
 
 class FAB extends Component {
     constructor(props) {
@@ -28,7 +29,7 @@ class FAB extends Component {
         return (
             <div ref={this.fabRef} className="fixed-action-btn">
                 <a onClick={this.props.handleClap} className="pulse btn-floating btn-large">
-                    <i className="material-icons">thumb_up</i>
+                    <MdThumbUp />
                 </a>
                 <ul>
                     <li>

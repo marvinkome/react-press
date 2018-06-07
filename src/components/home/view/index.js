@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
     user_data: state.user_data
 });
 
-class View extends Component {
+export class View extends Component {
     render() {
         const { user_data } = this.props;
         return (

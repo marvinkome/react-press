@@ -101,3 +101,19 @@ export const get_profile_link = (fullName, id) => {
 
     return '/profile/' + link_list.join('_');
 };
+
+export const sort_posts = (posts) => {
+    if (posts !== undefined) {
+        posts.sort((a, b) => {
+            if (a.node.timestamp > b.node.timestamp) {
+                return -1;
+            }
+            if (a.node.timestamp < b.node.timestamp) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+
+    return posts;
+};

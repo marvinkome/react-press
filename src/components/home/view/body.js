@@ -10,6 +10,7 @@ import { fetch_more_data } from '../../../js/redux/actions';
 
 import PostCard from './post-card';
 import Preloader from '../../helpers/preloader';
+import { sort_posts } from '../../../js/helpers';
 
 const mapStateToProps = (state) => ({
     fetching: state.isFetching,
@@ -22,7 +23,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetch_more: (cursor) => dispatch(fetch_more_data(cursor))
 });
 
-class Body extends Component {
+export class Body extends Component {
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll, false);
     }
@@ -37,26 +38,24 @@ class Body extends Component {
             this.props.fetch_more(this.props.cursor);
         }
     };
-    fetch_more = (e) => {
-        e.preventDefault();
-        if (this.props.hasMore) {
-            this.props.fetch_more(this.props.cursor);
+    render_post_cards = (posts) => {
+        if (posts.length > 0) {
+            return posts.map((obj) => (
+                <div key={obj.node.id} className="col l6 m10 s12">
+                    <PostCard post={obj.node} />
+                </div>
+            ));
         } else {
-            alert('No more posts to fetch');
+            return (
+                <div className="col s12">
+                    <h5 className="center">No posts</h5>
+                </div>
+            );
         }
     };
     render() {
-        if (this.props.posts != undefined) {
-            this.props.posts.sort((a, b) => {
-                if (a.node.timestamp > b.node.timestamp) {
-                    return -1;
-                }
-                if (a.node.timestamp < b.node.timestamp) {
-                    return 1;
-                }
-                return 0;
-            });
-        }
+        const posts = sort_posts(this.props.posts);
+
         return (
             <div className="body section container">
                 <div className="row">
@@ -64,18 +63,8 @@ class Body extends Component {
                         <div className="col s12">
                             <Preloader />
                         </div>
-                    ) : this.props.posts.length > 0 ? (
-                        <div>
-                            {this.props.posts.map((obj) => (
-                                <div key={obj.node.id} className="col l6 m10 s12">
-                                    <PostCard post={obj.node} />
-                                </div>
-                            ))}
-                        </div>
                     ) : (
-                        <div className="col s12">
-                            <h5 className="center">No posts</h5>
-                        </div>
+                        this.render_post_cards(posts)
                     )}
                 </div>
             </div>

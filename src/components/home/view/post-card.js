@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { format_date, get_profile_link } from '../../../js/helpers';
 import defImg from '../../../img/default-pic.png';
 
-const PostCard = ({ post }) => {
+export const PostCard = ({ post }) => {
     const imgStyle =
         post.author.gravatarUrl != null && post.author.gravatarUrl != ''
             ? {
@@ -22,16 +22,18 @@ const PostCard = ({ post }) => {
             : defImg;
 
     const cardImgStyle = {
-        backgroundImage: 'url(\'' + post.postPicUrl + '\')'
+        backgroundImage: 'url(\'' + post.postPicUrl + '\')',
+        backgroundColor: '#454545'
     };
 
     return (
         <div>
             <div className="post-card card horizontal">
-                {post.postPicUrl != undefined &&
+                {/* {post.postPicUrl != undefined &&
                     post.postPicUrl != '' && (
                     <div className="post-card__image card-image" style={cardImgStyle} />
-                )}
+                )} */}
+                <div className="post-card__image card-image" style={cardImgStyle} />
                 <div className="card-stacked">
                     <div className="card-content">
                         <h1 className="post-card__title">

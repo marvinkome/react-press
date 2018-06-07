@@ -18,10 +18,20 @@
     },
     "jest": {
         "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": 
-                "<rootDir>/__mocks__/fileMock.js",
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/__mocks__/fileMock.js",
             "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-        }
+        },
+        "setupFiles": [
+            "<rootDir>/config/test-shim.js",
+            "<rootDir>/config/test-setup.js"
+        ],
+        "moduleFileExtensions": [
+            "jsx",
+            "js"
+        ],
+        "testMatch": [
+            "**/__tests__/*.(jsx|js)"
+        ]
     },
     "dependencies": {
         "dotenv": "^5.0.1",
@@ -55,6 +65,8 @@
         "clean-webpack-plugin": "^0.1.19",
         "compression-webpack-plugin": "^1.1.11",
         "css-loader": "^0.28.10",
+        "enzyme": "^3.3.0",
+        "enzyme-adapter-react-16": "^1.1.1",
         "eslint": "^4.19.1",
         "eslint-plugin-react": "^7.7.0",
         "file-loader": "^1.1.11",

@@ -34,7 +34,7 @@ const AuthorInfo = ({ data }) => {
             <div className="author-details col s9">
                 <Link
                     to={get_profile_link(data.author.fullName, data.author.id)}
-                    title={'View Profile'}
+                    title="View Profile"
                 >
                     <p className="author-name">{data.author.fullName}</p>
                 </Link>

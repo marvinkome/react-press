@@ -1,6 +1,7 @@
 /******* TopBar Component ******/
 @primary_color: #1679ca;
 @menu_color: #292929;
+@nav_bar_color: hsl(0, 0%, 99.1%);
 
 .nav-icon {
     font-size: 1.7em;
@@ -13,8 +14,8 @@
 
 .navbar-wrapper {
     .topbar {
-        background: hsl(0, 0%, 99.1%);
-        box-shadow: 0px 0px 0px 0px hsl(0, 0%, 99.1%);
+        background: @nav_bar_color;
+        box-shadow: 0px 0px 0px 0px @nav_bar_color;
 
         .nav-wrapper {
             margin-left: 10%;
@@ -28,7 +29,6 @@
                     font-size: 25px;
                     margin: 1px 0px 1px 2px;
                     color: #4d4d4d !important;
-
                 }
             }
 
@@ -96,7 +96,7 @@
                     }
 
                     &.notification-icon {
-                        .nav-icon
+                        .nav-icon;
                     }
 
                     &.user-profile {
@@ -119,23 +119,44 @@
 
                 .dropdown-container .dropdown-content {
                     border-radius: 3px;
+                    height: inherit !important;
+                    padding: 14px 0px;
 
-                    li a {
-                        color: #595959;
-                        margin-top: 5px;
-                        font-weight: 500;
+                    li {
+                        min-height: 0px;
+
+                        a {
+                            color: #848484;
+                            font-weight: 500;
+                            padding: 7px 25px;
+                            margin: 0;
+
+                            &:hover {
+                                color: #595959;
+                            }
+                        }
+
+                        .divider {
+                            margin: 10px 0px;
+                        }
+
+                        &:hover {
+                            background-color: transparent;
+                        }
                     }
 
                     @media screen and (min-width: 993px) {
                         top: 60px !important;
                         left: 1007px !important;
                         width: 170px !important;
+                        max-height: 230px;
                     }
 
                     @media screen and (max-width: 992px) and (min-width: 601px) {
-                        top: 82px !important;
-                        left: 507px !important;
+                        top: 57px !important;
+                        left: 520px !important;
                         width: 167px !important;
+                        max-height: 230px;
                     }
                 }
             }
@@ -143,10 +164,26 @@
 
         .nav-content {
             padding: 0 10% 3% 10%;
+            background-color: @nav_bar_color;
+
+            &.sticky {
+                position: fixed;
+                padding: 2% 10%;
+                top: 0px;
+                z-index: 1007;
+                width: 100%;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+                @media screen and (max-width: 600px) {
+                    padding: 4% 10%;
+                }
+            }
 
             div {
+                width: 100%;
                 overflow-x: scroll;
-                
+
                 &::-webkit-scrollbar {
                     display: none;
                 }
@@ -155,16 +192,13 @@
                     color: #868686 !important;
                     font-size: 15px;
                     text-transform: uppercase;
-                    letter-spacing: -0.5px;
+                    letter-spacing: 0.4px;
                     padding-right: 14px;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: transparent;
-                        color: @menu_color;
-                    }
-
-                    @media screen and (min-width: 993px) {
-                        font-size: 16px;
+                        color: #595959 !important;
                     }
                 }
             }
