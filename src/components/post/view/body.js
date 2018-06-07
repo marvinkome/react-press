@@ -17,48 +17,44 @@ import FAB from './fab';
 import Preloader from '../../helpers/preloader';
 
 import { DEFAULT_TITLE } from '../../helpers/constants';
+import Img from '../../../img/404.png';
 
-const mapStateToProps = (state) => ({
-    posts: state.post_data.posts,
-    user: state.user_data,
-    fetching: state.isFetching
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    clap: (data) => dispatch(clap(data)),
-    comment: (data) => dispatch(add_comment(data)),
-    reply_comment: (data) => dispatch(reply_comment(data)),
-    page_viewed: (data) => dispatch(view_page(data))
-});
-
-class Body extends Component {
+export class Body extends Component {
     constructor(props) {
         super(props);
         this.fabRef = React.createRef();
     }
     componentDidMount() {
-        if (this.props.posts.length != 0) {
-            const post = this.props.posts.find((obj) => obj.node.id == this.props.post_id);
+        const post = this.findPost();
+
+        if (post !== undefined) {
             document.title = post.node.title + ' - ' + DEFAULT_TITLE;
             this.props.page_viewed(post.node.uuid);
         }
     }
-    onClap = () => {
+    findPost = () => {
         const { posts, post_id } = this.props;
-
         let post = undefined;
 
-        if (posts.length != 0) {
-            post = posts.find((obj) => obj.node.id == post_id);
+        if (posts.length > 0) {
+            post = posts.find((obj) => obj.node.id === post_id);
         }
 
-        if (this.props.user.data != undefined && post != undefined) {
+        return post;
+    };
+    onClap = async () => {
+        const post = this.findPost();
+        const { user } = this.props;
+
+        if (user.data !== undefined && post !== undefined) {
             const data = {
                 post_id: post.node.uuid,
-                user_id: this.props.user.data.user.uuid
+                user_id: user.data.user.uuid
             };
 
-            this.props.clap(data).then(null, () => {
+            try {
+                await this.props.clap(data);
+            } catch (e) {
                 const toastHTML = ReactDOMServer.renderToStaticMarkup(
                     <div ref={this.toast}>
                         <span>Oopps there{'\''}s an error </span>
@@ -68,7 +64,7 @@ class Body extends Component {
                     html: toastHTML,
                     displayLength: 4000
                 });
-            });
+            }
         } else {
             const toastHTML = `
                 <div>
@@ -82,22 +78,20 @@ class Body extends Component {
             history.push('/auth/login');
         }
     };
-    onCommitPublish = (comment) => {
-        const { posts, post_id } = this.props;
+    onCommitPublish = async (comment) => {
+        const { user } = this.props;
+        const post = this.findPost();
 
-        let post = undefined;
-
-        if (posts.length != 0) {
-            post = posts.find((obj) => obj.node.id == post_id);
-        }
-
-        if (this.props.user.data != undefined && post != undefined) {
+        if (user.data !== undefined && post !== undefined) {
             const data = {
                 body: comment,
                 post_id: post.node.uuid,
-                user_id: this.props.user.data.user.uuid
+                user_id: user.data.user.uuid
             };
-            this.props.comment(data).then(null, () => {
+
+            try {
+                await this.props.comment(data);
+            } catch (e) {
                 const toastHTML = ReactDOMServer.renderToStaticMarkup(
                     <div ref={this.toast}>
                         <span>Oopps there{'\''}s an error </span>
@@ -107,7 +101,7 @@ class Body extends Component {
                     html: toastHTML,
                     displayLength: 4000
                 });
-            });
+            }
         } else {
             const toastHTML = `
                 <div>
@@ -121,23 +115,21 @@ class Body extends Component {
             history.push('/auth/login');
         }
     };
-    onCommentReply = (comment, parent_id) => {
-        const { posts, post_id } = this.props;
+    onCommentReply = async (comment, parent_id) => {
+        const { user } = this.props;
+        const post = this.findPost();
 
-        let post = undefined;
-
-        if (posts.length != 0) {
-            post = posts.find((obj) => obj.node.id == post_id);
-        }
-
-        if (this.props.user.data != undefined && post != undefined) {
+        if (user.data != undefined && post != undefined) {
             const data = {
                 body: comment,
                 parent_id,
-                user_id: this.props.user.data.user.uuid,
+                user_id: user.data.user.uuid,
                 post_id: post.node.uuid
             };
-            this.props.reply_comment(data).then(null, () => {
+
+            try {
+                await this.props.reply_comment(data);
+            } catch (e) {
                 const toastHTML = ReactDOMServer.renderToStaticMarkup(
                     <div ref={this.toast}>
                         <span>Oopps there{'\''}s an error </span>
@@ -147,7 +139,7 @@ class Body extends Component {
                     html: toastHTML,
                     displayLength: 4000
                 });
-            });
+            }
         } else {
             const toastHTML = `
                 <div>
@@ -161,55 +153,53 @@ class Body extends Component {
             history.push('/auth/login');
         }
     };
+    renderLoader = () => (
+        <div className="col s12">
+            <Preloader />
+        </div>
+    );
+    renderPost = (post) => (
+        <div className="section">
+            <div className="col m11">
+                <AuthorInfo data={post.node} />
+
+                <PostCard data={post.node} />
+
+                <Comment
+                    handleComment={this.onCommitPublish}
+                    handleReply={this.onCommentReply}
+                    data={post.node.comments}
+                />
+            </div>
+            <div className="col m1">
+                <FAB handleClap={this.onClap} claps_count={post.node.claps.totalCount} />
+            </div>
+        </div>
+    );
+    render404Err = () => (
+        <div className="container">
+            <div className="center-align">
+                <img className="responsive-img" src={Img} />
+            </div>
+            <h5 className="center">
+                I suggest you{' '}
+                <a onClick={() => history.goBack()} style={{ cursor: 'pointer' }}>
+                    go back
+                </a>
+            </h5>
+        </div>
+    );
     render() {
-        const { posts, post_id } = this.props;
-
-        let post = undefined;
-
-        if (posts.length != 0) {
-            post = posts.find((obj) => obj.node.id == post_id);
-        }
+        const post = this.findPost();
 
         return (
             <div className="post-body section container">
                 <div className="row">
-                    {this.props.fetching ? (
-                        <div className="col s12">
-                            <Preloader />
-                        </div>
-                    ) : post != undefined ? (
-                        <div className="section">
-                            <div className="col m11">
-                                <AuthorInfo data={post.node} />
-
-                                <PostCard data={post.node} />
-
-                                <Comment
-                                    handleComment={this.onCommitPublish}
-                                    handleReply={this.onCommentReply}
-                                    data={post.node.comments}
-                                />
-                            </div>
-                            <div className="col m1">
-                                <FAB
-                                    handleClap={this.onClap}
-                                    claps_count={post.node.claps.totalCount}
-                                />
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="container">
-                            <div className="center-align">
-                                <img className="responsive-img" src="./src/img/404-Error.png" />
-                            </div>
-                            <h5 className="center">
-                                I suggest you{' '}
-                                <a onClick={() => history.goBack()} style={{ cursor: 'pointer' }}>
-                                    go back
-                                </a>
-                            </h5>
-                        </div>
-                    )}
+                    {this.props.fetching
+                        ? this.renderLoader()
+                        : post != undefined
+                            ? this.renderPost(post)
+                            : this.render404Err()}
                 </div>
             </div>
         );
@@ -226,5 +216,18 @@ Body.propTypes = {
     reply_comment: types.func.isRequired,
     page_viewed: types.func.isRequired
 };
+
+const mapStateToProps = (state) => ({
+    posts: state.post_data.posts,
+    user: state.user_data,
+    fetching: state.isFetching
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    clap: (data) => dispatch(clap(data)),
+    comment: (data) => dispatch(add_comment(data)),
+    reply_comment: (data) => dispatch(reply_comment(data)),
+    page_viewed: (data) => dispatch(view_page(data))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
