@@ -57,7 +57,7 @@ class Body extends Component {
         const profile = props.profiles.find((obj) => obj.id == this.state.user_id);
 
         // Then add it to store
-        if( profile !== undefined ) {
+        if (profile !== undefined) {
             this.setState({
                 profile
             });
@@ -77,7 +77,7 @@ class Body extends Component {
     }
 
     objectIsEmpty = (obj) => {
-        if (obj === undefined ) return true;
+        if (obj === undefined) return true;
 
         for (let prop in obj) {
             if (obj.hasOwnProperty(prop)) return false;
@@ -109,9 +109,11 @@ class Body extends Component {
                         {this.props.fetching ? (
                             <AppLoading />
                         ) : this.objectIsEmpty(this.state.profile) === false &&
-                                this.state.profile !== undefined ? 
-                            this.renderPage() : 
-                            this.renderNoUserErr()}
+                        this.state.profile !== undefined ? (
+                                this.renderPage()
+                            ) : (
+                                this.renderNoUserErr()
+                            )}
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ class View extends Component {
         const { user_data, user } = this.props;
         return (
             <div>
-                <TopBar user_data={user_data.data}/>
+                <TopBar user_data={user_data.data} />
                 <Body user={user} />
             </div>
         );

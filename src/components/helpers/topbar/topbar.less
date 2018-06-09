@@ -132,47 +132,114 @@
                     }
                 }
 
-                .dropdown-container .dropdown-content {
-                    border-radius: 3px;
-                    height: inherit !important;
-                    padding: 14px 0px;
+                .dropdown-container {
+                    .dropdown-content {
+                        border-radius: 3px;
+                        height: inherit !important;
+                        padding: 14px 0px;
+                        max-height: 230px;
 
-                    li {
-                        min-height: 0px;
+                        &#notifications-menu {
+                            max-height: 300px;
 
-                        a {
-                            color: #848484;
-                            font-weight: 500;
-                            padding: 7px 25px;
-                            margin: 0;
-                            transition: all 0.3s ease-in-out;
+                            @media screen and (min-width: 993px) {
+                                top: 55px !important;
+                                width: 350px !important;
+                                left: 847px !important;
+                            }
 
-                            &:hover {
-                                color: #595959;
+                            @media screen and (max-width: 992px) and (min-width: 601px) {
+                                top: 53px !important;
+                                left: 412px !important;
+                                width: 267px !important;
+                            }
+
+                            :last-child {
+                                border: none;
+                            }
+
+                            li {
+                                border-bottom: 1px solid #e6e6e6;
+                                padding: 10px 5px;
+
+                                &.unread {
+                                    .author-image img {
+                                            border: 2px solid @primary_color;
+                                    }
+                                    p {
+                                        font-weight: 600;
+                                    }
+                                }
+
+                                .row {
+                                    margin-bottom: 0;
+
+                                    .author-image {
+                                        max-width: 80%;
+                                        margin: auto;
+
+                                        img {
+                                            background-color: hsl(0, 0%, 90%);
+                                        }
+                                    }
+
+                                    .notification-info {
+                                        p {
+                                            margin: 0;
+                                            font-size: 15px;
+
+                                            &.meta,
+                                            span {
+                                                color: hsl(0, 0%, 40%);
+                                                font-size: 14px;
+                                            }
+
+                                            &.post-title, &.user-action {
+                                                white-space: nowrap;
+                                                overflow: hidden;
+                                                text-overflow: ellipsis;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
 
-                        .divider {
-                            margin: 10px 0px;
+                        @media screen and (min-width: 993px) {
+                            top: 60px !important;
+                            left: 1007px !important;
+                            width: 170px !important;
                         }
 
-                        &:hover {
-                            background-color: transparent;
+                        @media screen and (max-width: 992px) and (min-width: 601px) {
+                            top: 57px !important;
+                            left: 520px !important;
+                            width: 167px !important;
                         }
-                    }
 
-                    @media screen and (min-width: 993px) {
-                        top: 60px !important;
-                        left: 1007px !important;
-                        width: 170px !important;
-                        max-height: 230px;
-                    }
+                        li {
+                            min-height: 0px;
 
-                    @media screen and (max-width: 992px) and (min-width: 601px) {
-                        top: 57px !important;
-                        left: 520px !important;
-                        width: 167px !important;
-                        max-height: 230px;
+                            a {
+                                color: #848484;
+                                font-weight: 500;
+                                padding: 7px 25px;
+                                margin: 0;
+                                transition: all 0.3s ease-in-out;
+
+                                &:hover {
+                                    color: #595959;
+                                }
+                            }
+
+                            .divider {
+                                margin: 10px 0px;
+                            }
+
+                            &:hover {
+                                background-color: transparent;
+                            }
+                        }
                     }
                 }
             }
@@ -198,10 +265,15 @@
 
             div {
                 width: 100%;
-                overflow-x: scroll;
+                overflow-x: auto;
+                overflow: hidden;
 
                 &::-webkit-scrollbar {
                     display: none;
+                }
+
+                section {
+                    overflow-x: auto;
                 }
 
                 span a {

@@ -9,12 +9,16 @@ const state = {
     isLoggingIn: false,
     lastFetch: 0,
     cursor: '',
-    post_data: {
-        posts: []
-    },
     user_data: {},
     public_users: {
         users: []
+    },
+    post_data: {
+        posts: []
+    },
+    notifications_data: {
+        notifications: [],
+        unread_count: 0
     }
 };
 

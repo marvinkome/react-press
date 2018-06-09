@@ -23,11 +23,6 @@ import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 // React redux
 import { Provider, connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => ({
-    fetch_data: () => dispatch(fetch_all_data()),
-    fetch_user: () => dispatch(fetch_user_data())
-});
-
 import { Err404 } from './helpers/errors';
 import { AppLoading } from './helpers/preloader';
 
@@ -73,24 +68,6 @@ const AsyncEditPost = Loadable({
     delay: 300
 });
 
-const SwitchRoutes = () => (
-    <Switch>
-        {/* Front end */}
-        <Route path="/" component={AsyncHome} exact />
-        <Route path="/post/:id" component={AsyncPost} exact />
-        <Route path="/profile/:username" component={AsyncProfilePage} exact />
-
-        {/* authentication */}
-        <Route path="/auth/:section" component={AsyncLogin} exact />
-
-        {/* Backend */}
-        <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
-        <PrivateRoute path="/admin/edit-post/:id" component={AsyncEditPost} exact />
-
-        <Route component={Err404} />
-    </Switch>
-);
-
 class App extends Component {
     constructor(props) {
         super(props);
@@ -98,18 +75,19 @@ class App extends Component {
             render: true
         };
     }
-    componentDidMount() {
+    async componentDidMount() {
         const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
         const localLogin = sessionLogin != undefined && sessionLogin == true;
 
         if (localLogin) {
-            this.props.fetch_user().then((res) => {
+            const res = await this.props.fetch_user();
+            if (res && res.payload) {
                 if (res.payload.msg == 'Not enough segments') {
                     const toastHTML = `
-                            <div>
-                                <span>Session expired please login</span>
-                            </div>
-                        `;
+                        <div>
+                            <span>Session expired please login</span>
+                        </div>
+                    `;
                     window.M.toast({
                         html: toastHTML,
                         displayLength: 4000
@@ -118,21 +96,50 @@ class App extends Component {
                     localStorage.removeItem('med-blog-ref');
                     history.push('/auth/login');
                 }
-            });
+            }
         }
 
-        this.props.fetch_data().then(null, () =>
+        try {
+            await this.props.fetch_data();
+        } catch (e) {
             this.setState({
                 render: false
-            })
-        );
+            });
+        }
     }
+    render_routes = () => (
+        <Switch>
+            {/* Front end */}
+            <Route path="/" component={AsyncHome} exact />
+            <Route path="/post/:id" component={AsyncPost} exact />
+            <Route path="/profile/:username" component={AsyncProfilePage} exact />
+
+            {/* authentication */}
+            <Route path="/auth/:section" component={AsyncLogin} exact />
+
+            {/* Backend */}
+            <PrivateRoute path="/admin/:path" component={AsyncAdmin} exact />
+            <PrivateRoute path="/admin/edit-post/:id" component={AsyncEditPost} exact />
+
+            <Route component={Err404} />
+        </Switch>
+    );
     render() {
-        return this.state.render ? <SwitchRoutes /> : <h5>Oops something went wrong</h5>;
+        return this.state.render ? this.render_routes() : <h5>Oops something went wrong</h5>;
     }
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    fetch_data: () => dispatch(fetch_all_data()),
+    fetch_user: () => dispatch(fetch_user_data())
+});
+
 const ConnectApp = withRouter(connect(null, mapDispatchToProps)(App));
+
+App.propTypes = {
+    fetch_data: type.func.isRequired,
+    fetch_user: type.func.isRequired
+};
 
 const Main = () => (
     <Provider store={store}>
@@ -141,10 +148,5 @@ const Main = () => (
         </Router>
     </Provider>
 );
-
-App.propTypes = {
-    fetch_data: type.func.isRequired,
-    fetch_user: type.func.isRequired
-};
 
 export default Main;

@@ -21,6 +21,7 @@ const refresh_token = (token) => {
         }
     });
 };
+
 /**
  * Redux sync actions for reducers
  */
@@ -42,7 +43,7 @@ export const sendClap = () => ({
     type: constants.SEND_CLAP
 });
 
-// After request sync actions for admin
+// After request sync actions - admin
 export const requestCreateTagsFinished = (tag, data) => ({
     type: constants.REQUEST_TAG_FINISHED,
     post_id: data.post_id,
@@ -69,7 +70,7 @@ export const requestUpdateUserFinished = () => ({
     type: constants.REQUEST_USER_EDIT_FINISHED
 });
 
-// After request sync actions for post
+// After request sync actions - post
 export const requestCommentFinished = (res, data) => ({
     type: constants.REQUEST_COMMENT_FINISHED,
     post: res,
@@ -130,6 +131,16 @@ export const loginUser = (payload) => ({
 export const logoutUser = () => ({
     type: constants.LOGOUT_USER,
     logout: true
+});
+
+// Socket action
+export const onNotification = (message) => ({
+    type: constants.ON_NOTIFICATION,
+    message
+});
+
+export const readAllNotifications = () => ({
+    type: constants.READ_ALL_NOTIFICATIONS
 });
 
 /**

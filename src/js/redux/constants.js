@@ -37,3 +37,9 @@ export const RECIEVE_USER_PROFILE = 'RECIEVE_USER_PROFILE';
 export const LOGIN_USER = 'LOGIN_USER';
 export const RECIEVE_USER_DATA = 'RECIEVE_USER_DATA';
 export const LOGOUT_USER = 'LOGOUT_USER';
+
+/* 
+ * Sockets connection
+ */
+export const ON_NOTIFICATION = 'ON_NOTIFICATION';
+export const READ_ALL_NOTIFICATIONS = 'READ_ALL_NOTIFICATIONS';

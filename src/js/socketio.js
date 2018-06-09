@@ -1,20 +1,23 @@
 import openSocket from 'socket.io-client';
 
-export const Socket = (token) => {
-    const socket = openSocket('http://localhost:5000', {
-        transportOptions: {
-            polling: {
-                extraHeaders: {
-                    Authorization: 'Bearer ' + token
-                }
-            }
-        }
-    });
-
-    window.socket = socket;
-
+const Socket = () => {
+    let socket;
     return {
-        checkForAllNotifications: (cb) => socket.on('notifications', (msg) => cb(msg)),
-        onNewNotification: (cb) => socket.on('new notification', (msg) => cb(msg))
+        connect: (token) => {
+            socket = openSocket('http://localhost:5000', {
+                transportOptions: {
+                    polling: {
+                        extraHeaders: {
+                            Authorization: 'Bearer ' + token
+                        }
+                    }
+                }
+            });
+        },
+        recieve_notification: (cb) => socket.on('notifications', (msg) => cb(msg)),
+        read_all_notifications: () => socket.emit('read notifications'), 
+        disconnect: () => socket.disconnect()
     };
 };
+
+export default Socket;

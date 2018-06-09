@@ -12,17 +12,6 @@ import PostCard from './post-card';
 import Preloader from '../../helpers/preloader';
 import { sort_posts } from '../../../js/helpers';
 
-const mapStateToProps = (state) => ({
-    fetching: state.isFetching,
-    posts: state.post_data.posts,
-    cursor: state.cursor,
-    hasMore: state.hasNextPage
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    fetch_more: (cursor) => dispatch(fetch_more_data(cursor))
-});
-
 export class Body extends Component {
     componentDidMount() {
         window.addEventListener('scroll', this.onScroll, false);
@@ -79,5 +68,16 @@ Body.propTypes = {
     hasMore: type.bool,
     fetch_more: type.func
 };
+
+const mapStateToProps = (state) => ({
+    fetching: state.isFetching,
+    posts: state.post_data.posts,
+    cursor: state.cursor,
+    hasMore: state.hasNextPage
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    fetch_more: (cursor) => dispatch(fetch_more_data(cursor))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Body);
