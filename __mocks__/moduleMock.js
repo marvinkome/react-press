@@ -1,7 +1,7 @@
 class LocalStorageMock {
     constructor() {
         this.store = {
-            'med-blog-logged-in': true
+            
         };
     }
     clear() {

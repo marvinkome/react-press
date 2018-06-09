@@ -11,7 +11,7 @@ describe('Integration tests', () => {
         fetch.resetMocks();
     });
 
-    it('renders homepage - without mock', () => {
+    it('renders homepage', () => {
         fetch.mockResponse(JSON.stringify(fetch_data_mock));
         expect(container).toMatchSnapshot();
     });

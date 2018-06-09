@@ -8,17 +8,7 @@ ShallowWrapper {
     fetch_data={[MockFunction]}
     history={
       Object {
-        "goBack": [MockFunction] {
-          "calls": Array [
-            Array [],
-          ],
-          "results": Array [
-            Object {
-              "isThrow": false,
-              "value": undefined,
-            },
-          ],
-        },
+        "goBack": [MockFunction],
       }
     }
     isLoggingIn={false}
@@ -849,17 +839,7 @@ ShallowWrapper {
     fetch_data={[MockFunction]}
     history={
       Object {
-        "goBack": [MockFunction] {
-          "calls": Array [
-            Array [],
-          ],
-          "results": Array [
-            Object {
-              "isThrow": false,
-              "value": undefined,
-            },
-          ],
-        },
+        "goBack": [MockFunction],
       }
     }
     isLoggingIn={false}
