@@ -104,24 +104,27 @@ export class NavBar extends React.Component {
                     </ul>
     
                     {/* show notification - menu for small and large screen*/}
-                    <ul className="right">
-                        <li>
-                            <a
-                                className="notification-icon"
-                                ref={this.notificationDropdownTrigger}
-                                data-target="notifications-menu"
-                            >
-                                {this.props.notifications_data.unread_count > 0 ? (
-                                    <MdNotificationsActive />
-                                ) : (
-                                    <MdNotificationsNone />
-                                )}
-                            </a>
-    
-                            <Notifications 
-                                notifications={this.props.notifications_data.notifications}/>
-                        </li>
-                    </ul>
+                    {/* show only when loggedIn */}
+                    {this.props.isLoggedIn && (
+                        <ul className="right">
+                            <li>
+                                <a
+                                    className="notification-icon"
+                                    ref={this.notificationDropdownTrigger}
+                                    data-target="notifications-menu"
+                                >
+                                    {this.props.notifications_data.unread_count > 0 ? (
+                                        <MdNotificationsActive />
+                                    ) : (
+                                        <MdNotificationsNone />
+                                    )}
+                                </a>
+        
+                                <Notifications 
+                                    notifications={this.props.notifications_data.notifications}/>
+                            </li>
+                        </ul>
+                    )}
                 </div>
     
                 {/* Don't show menu on post page */}

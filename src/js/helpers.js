@@ -117,3 +117,10 @@ export const sort_posts = (posts) => {
 
     return posts;
 };
+
+export const isLoggedIn = () => {
+    const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
+    const localLogin = sessionLogin != undefined && sessionLogin == true;
+
+    return localLogin;
+};

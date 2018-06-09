@@ -14,3 +14,4 @@ Enzyme.configure({ adapter: new Adapter() });
 global.shallow = shallow;
 global.render = render;
 global.mount = mount;
+global.fetch = require('jest-fetch-mock')

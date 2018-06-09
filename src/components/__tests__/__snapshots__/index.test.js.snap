@@ -1,0 +1,204 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Integration tests renders homepage - without mock 1`] = `
+<div>
+  <div>
+    <div
+      class="navbar-wrapper"
+    >
+      <nav
+        class="topbar nav-extended"
+      >
+        <div
+          class="nav-wrapper"
+        >
+          <a
+            class="sidenav-trigger hide-on-med-and-up"
+            data-target="mobile-topbar"
+            href="#"
+          >
+            <svg
+              fill="currentColor"
+              height="1em"
+              preserveAspectRatio="xMidYMid meet"
+              style="vertical-align: middle;"
+              viewBox="0 0 40 40"
+              width="1em"
+            >
+              <g>
+                <path
+                  d="m5 10h30v3.4h-30v-3.4z m0 11.6v-3.2h30v3.2h-30z m0 8.4v-3.4h30v3.4h-30z"
+                />
+              </g>
+            </svg>
+          </a>
+          <a
+            class="brand-logo center"
+            href="/"
+          >
+            <span
+              class="blog-title"
+            >
+              ReactPress
+            </span>
+          </a>
+          <ul
+            class="right hide-on-small-only"
+          >
+            <li>
+              <a
+                class="sign-in"
+                href="/auth/login"
+              >
+                Sign in
+              </a>
+            </li>
+            <li>
+              <a
+                class="sign-up btn"
+                href="/auth/signup"
+              >
+                Get started
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="nav-content"
+        >
+          <div>
+            <section>
+              <span>
+                <a>
+                  home
+                </a>
+              </span>
+              <span>
+                <a>
+                  trust
+                </a>
+              </span>
+              <span>
+                <a>
+                  culture
+                </a>
+              </span>
+              <span>
+                <a>
+                  tech
+                </a>
+              </span>
+              <span>
+                <a>
+                  entreprenuership
+                </a>
+              </span>
+              <span>
+                <a>
+                  self
+                </a>
+              </span>
+              <span>
+                <a>
+                  politics
+                </a>
+              </span>
+              <span>
+                <a>
+                  media
+                </a>
+              </span>
+              <span>
+                <a>
+                  design
+                </a>
+              </span>
+              <span>
+                <a>
+                  programming
+                </a>
+              </span>
+              <span>
+                <a>
+                  art
+                </a>
+              </span>
+              <span>
+                <a>
+                  science
+                </a>
+              </span>
+              <span>
+                <a>
+                  popular
+                </a>
+              </span>
+            </section>
+          </div>
+        </div>
+      </nav>
+      <ul
+        class="sidenav hide-on-med-and-up"
+        id="mobile-topbar"
+      >
+        <li>
+          <div
+            class="user-view"
+          >
+            <a>
+              <img
+                class="circle defImg"
+                src="test-file-stub"
+              />
+            </a>
+            <span
+              class="email"
+            >
+              Hello, 
+              Guest
+            </span>
+          </div>
+        </li>
+        <li>
+          <a
+            class="hide-on-med-and-up"
+            href="/auth/login"
+          >
+            Sign In
+          </a>
+        </li>
+        <div
+          class="divider"
+        />
+        <li>
+          <a
+            class="hide-on-med-and-up"
+            href="/auth/signup"
+          >
+            Get Started
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div
+      class="body section container"
+    >
+      <div
+        class="row"
+      >
+        <div
+          class="col s12"
+        >
+          <div
+            class="center"
+          >
+            <h5>
+              Getting posts...
+            </h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

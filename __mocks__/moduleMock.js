@@ -1,6 +1,8 @@
 class LocalStorageMock {
     constructor() {
-        this.store = {};
+        this.store = {
+            'med-blog-logged-in': true
+        };
     }
     clear() {
         this.store = {};
@@ -16,4 +18,12 @@ class LocalStorageMock {
     }
 }
 
-global.localStorage = new LocalStorageMock;
+global.localStorage = new LocalStorageMock();
+
+global.window.M = {
+    toast: jest.fn(),
+    Sidenav: jest.fn(),
+    Dropdown: {
+        init: jest.fn()
+    }
+};

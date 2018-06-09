@@ -521,7 +521,7 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-atob@^2.0.0:
+atob@^2.0.0, atob@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.1.tgz#ae2d5a729477f289d60dd7f96a6314a22dd6c22a"
 
@@ -752,6 +752,12 @@ babel-plugin-check-es2015-constants@^6.22.0:
   resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
   dependencies:
     babel-runtime "^6.22.0"
+
+babel-plugin-dynamic-import-node@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-dynamic-import-node/-/babel-plugin-dynamic-import-node-1.2.0.tgz#f91631e703e0595e47d4beafbb088576c87fbeee"
+  dependencies:
+    babel-plugin-syntax-dynamic-import "^6.18.0"
 
 babel-plugin-istanbul@^4.1.6:
   version "4.1.6"
@@ -2246,6 +2252,15 @@ css-what@2.1:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/css-what/-/css-what-2.1.0.tgz#9467d032c38cfaefb9f2d79501253062f87fa1bd"
 
+css@^2.2.3:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/css/-/css-2.2.3.tgz#f861f4ba61e79bedc962aa548e5780fd95cbc6be"
+  dependencies:
+    inherits "^2.0.1"
+    source-map "^0.1.38"
+    source-map-resolve "^0.5.1"
+    urix "^0.1.0"
+
 cssesc@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-0.1.0.tgz#c814903e45623371a0477b40109aaafbeeaddbb4"
@@ -2566,6 +2581,15 @@ dom-serializer@0, dom-serializer@~0.1.0:
 dom-storage@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/dom-storage/-/dom-storage-2.1.0.tgz#00fb868bc9201357ea243c7bcfd3304c1e34ea39"
+
+dom-testing-library@^2.3.1:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/dom-testing-library/-/dom-testing-library-2.5.0.tgz#68153181da258c9dd7df9d55cb5c3c71b6f4c8c9"
+  dependencies:
+    jest-dom "^1.0.0"
+    mutationobserver-shim "^0.3.2"
+    pretty-format "^22.4.3"
+    wait-for-expect "^0.4.0"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -4541,7 +4565,7 @@ isobject@^3.0.0, isobject@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
 
-isomorphic-fetch@2.2.1, isomorphic-fetch@^2.1.1:
+isomorphic-fetch@2.2.1, isomorphic-fetch@^2.1.1, isomorphic-fetch@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz#611ae1acf14f5e81f729507472819fe9733558a9"
   dependencies:
@@ -4734,6 +4758,17 @@ jest-docblock@^22.4.0:
   dependencies:
     detect-newline "^2.1.0"
 
+jest-dom@^1.0.0, jest-dom@^1.3.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/jest-dom/-/jest-dom-1.3.1.tgz#4eba15d54059182ee0d3682a9fff0d957ad874c7"
+  dependencies:
+    chalk "^2.4.1"
+    css "^2.2.3"
+    jest-diff "^22.4.3"
+    jest-matcher-utils "^22.4.3"
+    pretty-format "^23.0.1"
+    redent "^2.0.0"
+
 jest-environment-jsdom@^22.4.3:
   version "22.4.3"
   resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-22.4.3.tgz#d67daa4155e33516aecdd35afd82d4abf0fa8a1e"
@@ -4763,6 +4798,13 @@ jest-environment-node@^23.0.0:
   dependencies:
     jest-mock "^23.0.0"
     jest-util "^23.0.0"
+
+jest-fetch-mock@^1.6.3:
+  version "1.6.3"
+  resolved "https://registry.yarnpkg.com/jest-fetch-mock/-/jest-fetch-mock-1.6.3.tgz#bb168a80ae1e70efd47096523a53f62e3967261e"
+  dependencies:
+    isomorphic-fetch "^2.2.1"
+    promise-polyfill "^7.1.1"
 
 jest-get-type@^22.1.0, jest-get-type@^22.4.3:
   version "22.4.3"
@@ -5833,6 +5875,10 @@ multimatch@^2.0.0:
     array-union "^1.0.1"
     arrify "^1.0.0"
     minimatch "^3.0.0"
+
+mutationobserver-shim@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/mutationobserver-shim/-/mutationobserver-shim-0.3.2.tgz#f4d5dae7a4971a2207914fb5a90ebd514b65acca"
 
 mute-stream@0.0.7:
   version "0.0.7"
@@ -6935,6 +6981,13 @@ pretty-format@^23.0.0:
     ansi-regex "^3.0.0"
     ansi-styles "^3.2.0"
 
+pretty-format@^23.0.1:
+  version "23.0.1"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-23.0.1.tgz#d61d065268e4c759083bccbca27a01ad7c7601f4"
+  dependencies:
+    ansi-regex "^3.0.0"
+    ansi-styles "^3.2.0"
+
 private@^0.1.6, private@^0.1.8, private@~0.1.5:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
@@ -6955,7 +7008,7 @@ promise-inflight@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
 
-promise-polyfill@7.1.2:
+promise-polyfill@7.1.2, promise-polyfill@^7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-7.1.2.tgz#ab05301d8c28536301622d69227632269a70ca3b"
 
@@ -7221,6 +7274,13 @@ react-test-renderer@^16.0.0-0, react-test-renderer@^16.4.0:
     prop-types "^15.6.0"
     react-is "^16.4.0"
 
+react-testing-library@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/react-testing-library/-/react-testing-library-3.1.4.tgz#b32518a8e8d81cccb76a45c6ce62546777d94145"
+  dependencies:
+    dom-testing-library "^2.3.1"
+    wait-for-expect "^0.5.0"
+
 react@^16.3.0:
   version "16.3.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.3.2.tgz#fdc8420398533a1e58872f59091b272ce2f91ea9"
@@ -7334,6 +7394,13 @@ redent@^1.0.0:
   dependencies:
     indent-string "^2.1.0"
     strip-indent "^1.0.1"
+
+redent@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/redent/-/redent-2.0.0.tgz#c1b2007b42d57eb1389079b3c8333639d5e1ccaa"
+  dependencies:
+    indent-string "^3.0.0"
+    strip-indent "^2.0.0"
 
 reduce-css-calc@^1.2.6:
   version "1.3.0"
@@ -7997,6 +8064,16 @@ source-map-resolve@^0.5.0:
     source-map-url "^0.4.0"
     urix "^0.1.0"
 
+source-map-resolve@^0.5.1:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
+  dependencies:
+    atob "^2.1.1"
+    decode-uri-component "^0.2.0"
+    resolve-url "^0.2.1"
+    source-map-url "^0.4.0"
+    urix "^0.1.0"
+
 source-map-support@^0.4.15:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.18.tgz#0286a6de8be42641338594e97ccea75f0a2c585f"
@@ -8024,6 +8101,12 @@ source-map-url@^0.4.0:
 source-map@0.5.x, source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@^0.5.7, source-map@~0.5.1:
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
+
+source-map@^0.1.38:
+  version "0.1.43"
+  resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.1.43.tgz#c24bc146ca517c1471f5dacbe2571b2b7f9e3346"
+  dependencies:
+    amdefine ">=0.0.4"
 
 source-map@^0.4.4:
   version "0.4.4"
@@ -8839,6 +8922,14 @@ w3c-hr-time@^1.0.1:
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
   dependencies:
     browser-process-hrtime "^0.1.2"
+
+wait-for-expect@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-0.4.0.tgz#341c96ab89d6102a0169a9be6cd0de354de92c17"
+
+wait-for-expect@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-0.5.0.tgz#cc935a94c6039967bd7760c9e9cc557f4674887a"
 
 walker@~1.0.5:
   version "1.0.7"

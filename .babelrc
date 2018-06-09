@@ -6,5 +6,12 @@
         "transform-class-properties",
         "transform-object-rest-spread",
         "syntax-dynamic-import"
-    ]
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "babel-plugin-dynamic-import-node"
+            ]
+        }
+    }
 }

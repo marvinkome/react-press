@@ -23,6 +23,8 @@ import { fetch_all_data, fetch_user_data } from '../js/redux/actions';
 // React redux
 import { Provider, connect } from 'react-redux';
 
+// Helpers
+import { isLoggedIn } from '../js/helpers';
 import { Err404 } from './helpers/errors';
 import { AppLoading } from './helpers/preloader';
 
@@ -76,10 +78,7 @@ class App extends Component {
         };
     }
     async componentDidMount() {
-        const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
-        const localLogin = sessionLogin != undefined && sessionLogin == true;
-
-        if (localLogin) {
+        if (isLoggedIn()) {
             const res = await this.props.fetch_user();
             if (res && res.payload) {
                 if (res.payload.msg == 'Not enough segments') {
@@ -134,7 +133,7 @@ const mapDispatchToProps = (dispatch) => ({
     fetch_user: () => dispatch(fetch_user_data())
 });
 
-const ConnectApp = withRouter(connect(null, mapDispatchToProps)(App));
+export const ConnectApp = withRouter(connect(null, mapDispatchToProps)(App));
 
 App.propTypes = {
     fetch_data: type.func.isRequired,
