@@ -146,3 +146,5 @@ export const sanitize_html = (html) => {
 };
 
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];
+
+export const setPageTitle = (page) => (document.title = `${page} - React Press`);

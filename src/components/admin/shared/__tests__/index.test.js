@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import {Body} from '../editorComponent/body';
+import { Body } from '../editorComponent/body';
 
 describe('editor tests', () => {
     it('renders correctly on new post page', () => {
@@ -11,7 +11,7 @@ describe('editor tests', () => {
             create_post,
             create_tag
         };
-        const wrapper = shallow(<Body {...props}/>);
+        const wrapper = shallow(<Body {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });

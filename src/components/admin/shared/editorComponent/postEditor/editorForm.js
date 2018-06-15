@@ -88,7 +88,6 @@ export class EditorForm extends React.Component {
         if (post_title.length <= 0) {
             return alert('Title is required before you publish');
         }
-        
 
         if (this.props.data.title !== '') {
             const { post_data, new_tags } = this.sortOutNewData(tags);

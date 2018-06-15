@@ -35,7 +35,6 @@ export class Body extends Component {
             }
         } else {
             try {
-                
                 const post_data = await this.props.create_post(data);
 
                 tags.map((tagObj) =>

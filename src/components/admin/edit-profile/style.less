@@ -1,0 +1,63 @@
+@import '../../../style/variables';
+
+.edit-profile {
+    padding: 2rem;
+
+    .edit-picture {
+        .img-preview {
+            width: 30%;
+            margin: auto;
+            margin-bottom: 3%;
+
+            img {
+                background-color: hsl(0, 0%, 95%);
+            }
+        }
+
+        .file-uploader {
+            .file-field {
+                width: 60%;
+                margin: auto;
+
+                .btn {
+                    width: 100%;
+                    padding: 0px 1px;
+                    text-transform: capitalize;
+                    background-color: @color-scheme-1;
+                    border-radius: 4px;
+
+                    &:hover {
+                        background-color: @color-scheme-2;
+                    }
+                }
+
+                .file-path-wrapper {
+                    display: block;
+                    width: 100%;
+
+                    input {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn {
+        background: @color-scheme-1;
+        border-radius: 4px;
+        text-transform: capitalize;
+
+        &:hover {
+            background: @color-scheme-2;
+        }
+    }
+
+    .btn-flat {
+        border: 1px solid @color-scheme-1;
+        color: @color-scheme-1;
+        border-radius: 4px;
+        text-transform: capitalize;
+        margin-left: 4px;
+    }
+}

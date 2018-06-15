@@ -58,7 +58,7 @@ describe('nav bar unit tests', () => {
     it('shows nav menu only on homepage', () => {
         const props = {
             ...Props,
-            isHomePage: true,
+            isHomePage: true
         };
         const wrapper = shallow(<NavBar {...props} />);
         expect(wrapper.find('.nav-content')).toHaveLength(1);

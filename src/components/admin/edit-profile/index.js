@@ -4,12 +4,12 @@
 
 import React, { Component } from 'react';
 import View from './view';
-import { DEFAULT_TITLE } from '../../helpers/constants';
-import './style/edit-profile.css';
+import { setPageTitle } from '../../../js/helpers';
+import './style.less';
 
 class EditProfile extends Component {
     componentDidMount() {
-        document.title = 'Edit Profile - ' + DEFAULT_TITLE;
+        setPageTitle('Edit Profile');
     }
     render() {
         return <View />;

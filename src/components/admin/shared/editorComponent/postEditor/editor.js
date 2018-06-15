@@ -57,9 +57,9 @@ export default class ContentEditor extends Component {
                 editorState
             };
         }
-    }
-    componentDidUpdate(old_props){
-        if( old_props.init_body !== this.props.init_body ) {
+    };
+    componentDidUpdate(old_props) {
+        if (old_props.init_body !== this.props.init_body) {
             this.setState({
                 editorState: this.updateEditorState(this.props).editorState
             });
