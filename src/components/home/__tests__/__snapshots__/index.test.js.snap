@@ -368,7 +368,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Connect(TopBar) />,
+        <Connect(TopBar)
+          isHomePage={true}
+        />,
         <Connect(Body) />,
       ],
     },
@@ -379,6 +381,7 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
+          "isHomePage": true,
           "user_data": undefined,
         },
         "ref": null,
@@ -404,7 +407,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Connect(TopBar) />,
+          <Connect(TopBar)
+            isHomePage={true}
+          />,
           <Connect(Body) />,
         ],
       },
@@ -415,6 +420,7 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
+            "isHomePage": true,
             "user_data": undefined,
           },
           "ref": null,

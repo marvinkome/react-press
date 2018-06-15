@@ -627,9 +627,7 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Connect(TopBar)
-          isPostPage={true}
-        />,
+        <Connect(TopBar) />,
         <Connect(Body)
           post_id=""
         />,
@@ -642,7 +640,6 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "isPostPage": true,
           "user_data": undefined,
         },
         "ref": null,
@@ -670,9 +667,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Connect(TopBar)
-            isPostPage={true}
-          />,
+          <Connect(TopBar) />,
           <Connect(Body)
             post_id=""
           />,
@@ -685,7 +680,6 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "isPostPage": true,
             "user_data": undefined,
           },
           "ref": null,

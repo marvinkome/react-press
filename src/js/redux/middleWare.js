@@ -26,7 +26,7 @@ export const createSocketMiddleWare = (socket) => (state) => {
         }
 
         // Check if its a read all notificions action
-        if( action.type == READ_ALL_NOTIFICATIONS ) {
+        if (action.type == READ_ALL_NOTIFICATIONS) {
             // Emit read notifications event to server
             // This will trigger another notification action
             socket.read_all_notifications();

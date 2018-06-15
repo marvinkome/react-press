@@ -18,7 +18,7 @@ export class View extends Component {
         const { user_data, id } = this.props;
         return (
             <div>
-                <TopBar user_data={user_data.data} isPostPage />
+                <TopBar user_data={user_data.data} />
                 <Body post_id={id} />
             </div>
         );

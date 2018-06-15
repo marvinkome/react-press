@@ -9,12 +9,12 @@ describe('topbar tests', () => {
     const readNotifications = jest.fn();
     const topbarProps = {
         isPostPage: false,
-        user_data:{
+        user_data: {
             user: {}
         },
         notifications: {},
         logout,
-        readNotifications,
+        readNotifications
     };
 
     it('renders correctly when logged out', () => {
@@ -33,13 +33,13 @@ describe('nav bar unit tests', () => {
     const readNotifications = jest.fn();
     const Props = {
         isLoggedIn: false,
-        isPostPage: false,
+        isHomePage: false,
         stick: false,
         imageData: {
             image: '',
             imageClass: ''
         },
-        user_data:{
+        user_data: {
             user: {}
         },
         notifications_data: {
@@ -47,31 +47,20 @@ describe('nav bar unit tests', () => {
             unread_count: 0
         },
         logout,
-        readNotifications,
+        readNotifications
     };
 
     it('renders', () => {
-        const wrapper = shallow(<NavBar {...Props}/>);
+        const wrapper = shallow(<NavBar {...Props} />);
         expect(wrapper).toMatchSnapshot();
     });
 
-    it('shows user navbar when loggedin', () => {
+    it('shows nav menu only on homepage', () => {
         const props = {
             ...Props,
-            isLoggedIn: true
+            isHomePage: true,
         };
-        const wrapper = shallow(<NavBar {...props}/>);
-        expect(wrapper.find('[data-target="dropdown-menu"]')).toHaveLength(1);
-        expect(wrapper.find('[data-target="notifications-menu"]')).toHaveLength(1);
-        expect(wrapper.find('.sign-up')).toHaveLength(0);
-        expect(wrapper.find('.sign-in')).toHaveLength(0);
-    });
-
-    it('shows user navbar when loggedin', () => {
-        const wrapper = shallow(<NavBar {...Props}/>);
-        expect(wrapper.find('[data-target="dropdown-menu"]')).toHaveLength(0);
-        expect(wrapper.find('[data-target="notifications-menu"]')).toHaveLength(0);
-        expect(wrapper.find('.sign-up')).toHaveLength(1);
-        expect(wrapper.find('.sign-in')).toHaveLength(1);
+        const wrapper = shallow(<NavBar {...props} />);
+        expect(wrapper.find('.nav-content')).toHaveLength(1);
     });
 });

@@ -6,7 +6,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loadable from 'react-loadable';
 
-import Sidenav from './helpers/sidenav';
 import { Err404 } from '../helpers/errors';
 import { AppLoading } from '../helpers/preloader';
 
@@ -14,13 +13,6 @@ import _EditPost from './edit-post';
 export const EditPost = _EditPost;
 
 const Loader = (props) => <AppLoading {...props} admin />;
-
-const AsyncDashboard = Loadable({
-    loader: () => import('./dashboard'),
-    loading: Loader,
-    timeout: 10000,
-    delay: 300
-});
 
 const AsyncPosts = Loadable({
     loader: () => import('./posts'),
@@ -46,8 +38,6 @@ const AsyncEditProfile = Loadable({
 export default class Admin extends Component {
     handlePath = (path) => {
         switch (path) {
-        case 'dashboard':
-            return <AsyncDashboard />;
         case 'posts':
             return <AsyncPosts />;
         case 'new-post':
@@ -61,12 +51,7 @@ export default class Admin extends Component {
     render() {
         const path = this.props.match.params.path;
 
-        return (
-            <div>
-                <Sidenav />
-                {this.handlePath(path)}
-            </div>
-        );
+        return <div>{this.handlePath(path)}</div>;
     }
 }
 

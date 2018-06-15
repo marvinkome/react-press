@@ -22,7 +22,7 @@ export class TopBar extends React.Component {
         window.removeEventListener('scroll', this.onScroll, false);
     }
     onScroll = () => {
-        if (this.props.isPostPage === undefined || this.props.isPostPage === false) {
+        if (this.props.isHomePage === true) {
             if (window.pageYOffset >= 72) {
                 this.setState({
                     sticky: true
@@ -40,9 +40,9 @@ export class TopBar extends React.Component {
     readNotifications = () => {
         this.props.readNotifications();
     };
-    render(){
+    render() {
         const isLoggedIn = this.props.user_data != undefined && this.props.user_data !== null;
-        const isPostPage = this.props.isPostPage === undefined || this.props.isPostPage === false;
+        const isHomePage = this.props.isHomePage || false;
         const stick = this.state.sticky;
         const username = this.props.user_data ? this.props.user_data.user.fullName : null;
         const notifications_data = this.props.notifications;
@@ -55,10 +55,10 @@ export class TopBar extends React.Component {
                 imageClass = '';
             }
         }
-  
+
         const navbarProps = {
             isLoggedIn,
-            isPostPage,
+            isHomePage,
             stick,
             notifications_data,
             imageData: {
@@ -81,15 +81,15 @@ export class TopBar extends React.Component {
 
         return (
             <div className="navbar-wrapper">
-                <NavBar {...navbarProps}/>
-                <SideNav {...sidenavProps}/>
+                <NavBar {...navbarProps} />
+                <SideNav {...sidenavProps} />
             </div>
         );
     }
 }
 
 TopBar.propTypes = {
-    isPostPage: types.bool,
+    isHomePage: types.bool,
     user_data: types.object,
     notifications: types.object,
     logout: types.func.isRequired,

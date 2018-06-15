@@ -3,13 +3,13 @@ import types from 'prop-types';
 import { Link } from 'react-router-dom';
 
 export class SideNav extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.sidenav = React.createRef();
         this.sidenavIns;
     }
-    componentDidMount(){
+    componentDidMount() {
         const sidenav = this.sidenav.current;
         if (window.M) {
             this.sidenavIns = window.M.Sidenav.init(sidenav);
@@ -21,15 +21,15 @@ export class SideNav extends React.Component {
             this.sidenavIns.destroy();
         }
     }
-    render(){
+    render() {
         return (
             <ul ref={this.sidenav} className="sidenav hide-on-med-and-up" id="mobile-topbar">
                 <li>
                     <div className="user-view">
                         <a>
-                            <img 
-                                className={'circle' + this.props.data.imageClass} 
-                                src={this.props.data.image} 
+                            <img
+                                className={'circle' + this.props.data.imageClass}
+                                src={this.props.data.image}
                             />
                         </a>
                         <span className="email">
@@ -37,7 +37,7 @@ export class SideNav extends React.Component {
                         </span>
                     </div>
                 </li>
-        
+
                 {this.props.data.isLoggedIn ? (
                     <React.Fragment>
                         <li>

@@ -5,7 +5,7 @@ import { fetch_data_mock } from '../../../__mocks__/apiMocks.js';
 import 'materialize-css/dist/js/materialize.js';
 
 describe('Integration tests', () => {
-    const { container } = renderRoot(<ConnectApp/>);
+    const { container } = renderRoot(<ConnectApp />);
 
     beforeEach(() => {
         fetch.resetMocks();
@@ -15,8 +15,4 @@ describe('Integration tests', () => {
         fetch.mockResponse(JSON.stringify(fetch_data_mock));
         expect(container).toMatchSnapshot();
     });
-
-    // it('is routes to login on click', () => {
-
-    // });
 });

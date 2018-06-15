@@ -6,10 +6,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { MdMenu, MdArrowDropDown } from 'react-icons/lib/md';
 import img from '../../../img/default-pic.png';
 import { logoutUser } from '../../../js/redux/actions';
 import history from '../../../js/history';
-import './style/sidenav.css';
+// import './style.less';
 
 const mapStateToProps = (state) => ({
     data: state.user_data
@@ -51,10 +52,7 @@ class SideNav extends Component {
     };
     render() {
         let display_name;
-        let style = {
-            borderRadius: '50%',
-            backgroundColor: '#fafafa'
-        };
+        let style = 'guest';
         let pic_url = img;
 
         if (this.props.data.data != undefined) {
@@ -68,13 +66,14 @@ class SideNav extends Component {
         } else {
             display_name = '';
         }
+
         return (
             <div>
                 <nav className="admin-nav">
                     <div className="nav-wrapper">
-                        <a className="brand-logo">ReactPress</a>
+                        <a className="brand-logo center">ReactPress</a>
                         <a data-target="mobile-demo" className="sidenav-trigger">
-                            <i className="material-icons">menu</i>
+                            <MdMenu />
                         </a>
                     </div>
                 </nav>
@@ -83,7 +82,7 @@ class SideNav extends Component {
                         <div className="user-view">
                             <div className="background" />
                             <a>
-                                <img className="circle" src={pic_url} style={style} />
+                                <img className={'circle ' + style} src={pic_url} />
                             </a>
                             <a>
                                 <span className="name">{display_name}</span>
@@ -98,7 +97,9 @@ class SideNav extends Component {
                     <li>
                         <ul ref={this.collapsible} className="collapsible collapsible-accordion">
                             <li>
-                                <a className="collapsible-header">Posts</a>
+                                <a className="collapsible-header">
+                                    Posts <MdArrowDropDown />
+                                </a>
                                 <div className="collapsible-body">
                                     <ul>
                                         <li onClick={this.onClickRoute}>
@@ -121,11 +122,8 @@ class SideNav extends Component {
                             <span>Edit Profile</span>
                         </Link>
                     </li>
-                    <li>
-                        <div className="divider" />
-                    </li>
                     <li onClick={this.onClickRoute}>
-                        <a onClick={this.handleLogout}>
+                        <a className="logout" onClick={this.handleLogout}>
                             <span>Logout</span>
                         </a>
                     </li>

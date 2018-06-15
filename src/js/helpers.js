@@ -3,6 +3,7 @@
  */
 
 import moment from 'moment';
+import sanitize from 'sanitize-html';
 
 export const truncate = (word, length) => {
     const new_word =
@@ -63,20 +64,19 @@ export const strip_filename = (name) => {
     return name.split('/').pop();
 };
 
-export const upload_file = (file) => {
-    const url =
-        process.env.NODE_ENV == 'production'
-            ? 'https://reactpress-api.herokuapp.com'
-            : 'http://0.0.0.0:5000';
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const headers = {
-        method: 'POST',
-        body: formData
-    };
-
-    return fetch(url, headers).then((res) => res.json());
+export const upload_file = async (file, onUpload, onFail, onSuccess) => {
+    try {
+        const firebase = await import('firebase');
+        const ref = firebase
+            .storage()
+            .ref()
+            .child('images/' + file.name);
+        const task = ref.put(file);
+        task.on(firebase.storage.TaskEvent.STATE_CHANGED, onUpload, onFail, onSuccess);
+        return task;
+    } catch (e) {
+        return 'firebase is not defined', null;
+    }
 };
 
 export const gcd = (a, b) => {
@@ -124,3 +124,25 @@ export const isLoggedIn = () => {
 
     return localLogin;
 };
+
+export const createToast = (text) => {
+    const toastHTML = `
+        <div>
+            <span>
+                ${text}
+            </span>
+        </div>
+    `;
+    window.M.toast({
+        html: toastHTML,
+        displayLength: 4000
+    });
+};
+
+export const sanitize_html = (html) => {
+    return sanitize(html, {
+        allowedTags: ['b', 'i', 'h2', 'h3', 'pre', 'blockquote', 'ul', 'li']
+    });
+};
+
+export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];

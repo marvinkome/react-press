@@ -37,13 +37,23 @@ module.exports = {
             },
             {
                 test: /\.less$/,
-                loader: ['style-loader','css-loader', 'less-loader']
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: 'css-loader'
+                }, {
+                    loader: 'less-loader', options: {
+                        paths: [
+                            path.resolve(__dirname, 'node_modules')
+                        ]
+                    }
+                }]
             },
             {
                 test: /\.(ttf|eot|woff|woff2|svg|jpg|png)$/,
                 loader: 'file-loader',
                 options: {
-                    name: 'fonts/[name].[ext]',
+                    name: 'static/[name].[ext]',
                 },
             }
         ]

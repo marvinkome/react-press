@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import View from './view';
 import { DEFAULT_TITLE } from '../../helpers/constants';
-import './style/posts.css';
+import './style.less';
 
 class Post extends Component {
     componentDidMount() {

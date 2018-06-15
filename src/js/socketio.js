@@ -15,7 +15,7 @@ const Socket = () => {
             });
         },
         recieve_notification: (cb) => socket.on('notifications', (msg) => cb(msg)),
-        read_all_notifications: () => socket.emit('read notifications'), 
+        read_all_notifications: () => socket.emit('read notifications'),
         disconnect: () => socket.disconnect()
     };
 };

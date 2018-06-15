@@ -2,7 +2,7 @@ import React from 'react';
 import types from 'prop-types';
 import { Link } from 'react-router-dom';
 
-export const UserDropDownMenu = ({ handleLogout }) => {
+const UserDropDownMenu = ({ handleLogout }) => {
     return (
         <div id="navbar-user-profile" className="dropdown-container">
             <ul className="dropdown-content" id="dropdown-menu">
@@ -31,3 +31,5 @@ export const UserDropDownMenu = ({ handleLogout }) => {
 UserDropDownMenu.propTypes = {
     handleLogout: types.func.isRequired
 };
+
+export default UserDropDownMenu;

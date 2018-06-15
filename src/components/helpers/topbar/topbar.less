@@ -145,12 +145,12 @@
                             @media screen and (min-width: 993px) {
                                 top: 55px !important;
                                 width: 350px !important;
-                                left: 847px !important;
+                                left: calc(~'106% - 350px') !important;
                             }
 
                             @media screen and (max-width: 992px) and (min-width: 601px) {
                                 top: 53px !important;
-                                left: 412px !important;
+                                left: calc(106% - 267px) !important;
                                 width: 267px !important;
                             }
 
@@ -164,7 +164,7 @@
 
                                 &.unread {
                                     .author-image img {
-                                            border: 2px solid @primary_color;
+                                        border: 2px solid @primary_color;
                                     }
                                     p {
                                         font-weight: 600;
@@ -194,7 +194,8 @@
                                                 font-size: 14px;
                                             }
 
-                                            &.post-title, &.user-action {
+                                            &.post-title,
+                                            &.user-action {
                                                 white-space: nowrap;
                                                 overflow: hidden;
                                                 text-overflow: ellipsis;
@@ -207,13 +208,13 @@
 
                         @media screen and (min-width: 993px) {
                             top: 60px !important;
-                            left: 1007px !important;
+                            left: calc(~'106% - 170px') !important;
                             width: 170px !important;
                         }
 
                         @media screen and (max-width: 992px) and (min-width: 601px) {
                             top: 57px !important;
-                            left: 520px !important;
+                            left: calc(~'106% - 167px') !important;
                             width: 167px !important;
                         }
 
@@ -265,7 +266,6 @@
 
             div {
                 width: 100%;
-                overflow-x: auto;
                 overflow: hidden;
 
                 &::-webkit-scrollbar {
@@ -273,7 +273,7 @@
                 }
 
                 section {
-                    overflow-x: auto;
+                    text-align: center;
                 }
 
                 span a {

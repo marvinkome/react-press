@@ -7,7 +7,7 @@ import default_store from '../../js/redux/store';
 
 export function renderWithRouter(
     ui,
-    {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {}
+    { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}
 ) {
     return {
         ...render(<Router>{ui}</Router>),
@@ -15,10 +15,10 @@ export function renderWithRouter(
     };
 }
 
-export function renderRoot (
+export function renderRoot(
     ui,
-    {store=default_store} = {},
-    {route = '/', history = createMemoryHistory({initialEntries: [route]})} = {}
+    { store = default_store } = {},
+    { route = '/', history = createMemoryHistory({ initialEntries: [route] }) } = {}
 ) {
     return {
         ...render(

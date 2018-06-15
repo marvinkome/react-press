@@ -10,7 +10,7 @@ import TopBar from '../../helpers/topbar';
 import Body from './body';
 
 const mapStateToProps = (state) => ({
-    user_data: state.user_data,
+    user_data: state.user_data
 });
 
 export class View extends Component {
@@ -18,7 +18,7 @@ export class View extends Component {
         const { user_data } = this.props;
         return (
             <div>
-                <TopBar user_data={user_data.data} />
+                <TopBar user_data={user_data.data} isHomePage />
                 <Body />
             </div>
         );

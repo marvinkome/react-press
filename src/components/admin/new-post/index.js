@@ -3,9 +3,8 @@
  */
 
 import React, { Component } from 'react';
-import View from './view';
+import View from '../shared/editorComponent';
 import { DEFAULT_TITLE } from '../../helpers/constants';
-import './style/new-post.css';
 
 class NewPost extends Component {
     componentDidMount() {
