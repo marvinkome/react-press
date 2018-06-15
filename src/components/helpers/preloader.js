@@ -4,6 +4,7 @@
 
 import React from 'react';
 import t from 'prop-types';
+import './preloader.less';
 
 const Preloader = () => (
     <div className="center">
@@ -11,15 +12,9 @@ const Preloader = () => (
     </div>
 );
 
-export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
-    <div className="section container valign-wrapper" style={{ height: '100vh' }}>
-        <div
-            style={{
-                margin: 'auto',
-                width: '50%',
-                marginLeft: admin ? '40%' : 'inherit'
-            }}
-        >
+export const AppLoading = ({ error, pastDelay, timedOut }) => (
+    <div className="section container valign-wrapper apploading">
+        <div className="center-loader">
             <div className="center-align app-loader">
                 {error ? (
                     <div className="error">
@@ -28,18 +23,8 @@ export const AppLoading = ({ error, pastDelay, timedOut, admin }) => (
                 ) : (
                     pastDelay && (
                         <div>
-                            <div
-                                className="progress"
-                                style={{
-                                    backgroundColor: '#90caf94f'
-                                }}
-                            >
-                                <div
-                                    className="indeterminate"
-                                    style={{
-                                        backgroundColor: '#0e66af'
-                                    }}
-                                />
+                            <div className="progress">
+                                <div className="indeterminate"/>
                             </div>
                             <h5>{timedOut ? 'Sorry for taking long...' : 'Loading...'}</h5>
                         </div>

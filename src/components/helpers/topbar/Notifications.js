@@ -26,7 +26,6 @@ const Notifications = ({ notifications }) => (
                                             ? 'commented on'
                                             : 'clapped for'}
                                     </span>{' '}
-                                    {notification.post.title}
                                 </p>
                                 <p className="post-title">{notification.post.title}</p>
                                 <p className="meta">{format_date(notification.timestamp)}</p>

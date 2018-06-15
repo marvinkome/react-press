@@ -1,3 +1,5 @@
+@import '../../../style/variables';
+
 .admin-posts {
     padding: 5rem 10rem;
 
@@ -18,21 +20,21 @@
             font-size: 2.7em;
             font-weight: 700;
             flex: 1;
-            color: #333;
+            color: @black-scheme-1;
             margin-top: 1rem;
         }
 
         a {
-            border: 1px solid #0e66af;
+            border: 1px solid @color-scheme-2;
             margin-top: 20px;
             border-radius: 3px;
             text-transform: capitalize;
-            color: #0e66af;
+            color: @color-scheme-1;
 
             &:hover {
                 background-color: transparent;
-                border-color: #0c5692;
-                color: #0c5692;
+                border-color: @color-scheme-2;
+                color: @color-scheme-2;
             }
         }
     }
@@ -52,12 +54,12 @@
             h5 {
                 font-weight: 700;
                 letter-spacing: -0.5px;
-                color: hsl(0, 0%, 15%);
+                color: @black-scheme-2;
                 margin-bottom: 2px;
             }
 
             .body {
-                color: hsl(0, 0%, 25%);
+                color: @black-scheme-3;
                 font-size: 17px;
 
                 p {
@@ -80,7 +82,7 @@
                 }
 
                 .edit {
-                    color: #0e66af;
+                    color: @color-scheme-2;
                 }
 
                 .delete {

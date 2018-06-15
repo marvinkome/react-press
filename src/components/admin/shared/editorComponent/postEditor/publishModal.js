@@ -25,8 +25,13 @@ export default class PublishModal extends React.Component {
     }
     componentDidMount() {
         const modal = this.modal.current;
-
         this.modalIns = window.M.Modal.init(modal);
+    }
+    componentWillUnmount(){
+        if ( this.modalIns !== undefined ) {
+            this.modalIns.close();
+            this.modalIns.destroy();
+        }
     }
     closeTag = (item, item_index) => {
         const tag = this.state.chips.find((obj, index) => obj.tag === item && index === item_index);
@@ -72,12 +77,12 @@ export default class PublishModal extends React.Component {
     handleFileUpload = async (file) => {
         const task = await upload_file(
             file,
-            createToast('Uploading...'),
-            createToast('Can\'t upload image try again'),
-            createToast('Upload successful')
+            () => createToast('Uploading...'),
+            () => createToast('Can\'t upload image try again'),
+            () => createToast('Upload successful')
         );
 
-        this.props.afterUpload(task.snapshot.downloadURL);
+        this.props.afterUpload(task.downloadURL);
     };
     handlePublish = (e) => {
         e.preventDefault();
@@ -125,6 +130,7 @@ export default class PublishModal extends React.Component {
                             <p>
                                 Add (up to 3) tags to let your readers know what the post is about
                             </p>
+                            <span>Accepted tags are: Tech, Science, Culture, Art, Media</span>
                         </div>
 
                         <div className="chips input-field">

@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import { TopBar } from '../topbar';
-import { NavBar } from '../topbar/navBar';
+// import { NavBar } from '../topbar/navBar';
 
 describe('topbar tests', () => {
     const logout = jest.fn();
@@ -28,39 +28,41 @@ describe('topbar tests', () => {
     });
 });
 
-describe('nav bar unit tests', () => {
-    const logout = jest.fn();
-    const readNotifications = jest.fn();
-    const Props = {
-        isLoggedIn: false,
-        isHomePage: false,
-        stick: false,
-        imageData: {
-            image: '',
-            imageClass: ''
-        },
-        user_data: {
-            user: {}
-        },
-        notifications_data: {
-            notifications: [],
-            unread_count: 0
-        },
-        logout,
-        readNotifications
-    };
+// Hidden till feature is fully implemented
 
-    it('renders', () => {
-        const wrapper = shallow(<NavBar {...Props} />);
-        expect(wrapper).toMatchSnapshot();
-    });
+// describe('nav bar unit tests', () => {
+//     const logout = jest.fn();
+//     const readNotifications = jest.fn();
+//     const Props = {
+//         isLoggedIn: false,
+//         isHomePage: false,
+//         stick: false,
+//         imageData: {
+//             image: '',
+//             imageClass: ''
+//         },
+//         user_data: {
+//             user: {}
+//         },
+//         notifications_data: {
+//             notifications: [],
+//             unread_count: 0
+//         },
+//         logout,
+//         readNotifications
+//     };
 
-    it('shows nav menu only on homepage', () => {
-        const props = {
-            ...Props,
-            isHomePage: true
-        };
-        const wrapper = shallow(<NavBar {...props} />);
-        expect(wrapper.find('.nav-content')).toHaveLength(1);
-    });
-});
+//     it('renders', () => {
+//         const wrapper = shallow(<NavBar {...Props} />);
+//         expect(wrapper).toMatchSnapshot();
+//     });
+
+//     // it('shows nav menu only on homepage', () => {
+//     //     const props = {
+//     //         ...Props,
+//     //         isHomePage: true
+//     //     };
+//     //     const wrapper = shallow(<NavBar {...props} />);
+//     //     expect(wrapper.find('.nav-content')).toHaveLength(1);
+//     // });
+// });

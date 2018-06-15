@@ -2,6 +2,8 @@
  * ./src/style/post.css
  */
 
+@import '../../style/variables';
+
 /************** Body **************/
 .post-body {
     padding: 5%;
@@ -29,7 +31,7 @@
                 margin: 0;
                 font-size: 15.11px;
                 font-weight: 500;
-                color: #292929;
+                color: @black-scheme-2;
 
                 @media screen and (max-width: 992px) and (min-width: 601px) {
                     margin-top: 4px;
@@ -47,7 +49,7 @@
             .author-desc {
                 margin: 5px 0;
                 font-size: 15.11px;
-                color: #696969;
+                color: @black-scheme-2;
                 display: none;
 
                 @media screen and (min-width: 993px) {
@@ -58,7 +60,7 @@
             .post-meta {
                 margin-top: 0px;
                 font-size: 13.432px;
-                color: #696969;
+                color: @black-scheme-3;
 
                 @media screen and (min-width: 993px) {
                     margin: 0;
@@ -81,7 +83,7 @@
 
         .post-content {
             .post-title {
-                color: hsl(0, 0%, 25%);
+                color: @black-scheme-1;
                 font-weight: 700;
                 font-size: 3rem;
 
@@ -100,7 +102,7 @@
             }
 
             .content {
-                color: hsl(0, 0%, 30%);
+                color: @black-scheme-2;
                 font-weight: 500;
                 font-size: 17px;
                 word-spacing: 0.5px;
@@ -122,21 +124,22 @@
 
     .fixed-action-btn {
         a.btn-large {
-            background: #93c1e6;
-            color: #000000a3;
+            background: @color-scheme-1;
+            color: @black-scheme-4;
             font-size: 27px;
             line-height: 48px;
 
             @media screen and (min-width: 993px) {
-                border: 1px solid #93c1e6;
-                background-color: #fff;
+                border: 1px solid @color-scheme-1;
+                background-color: @black-scheme-4;
+                color: @black-scheme-2;
             }
         }
 
         .btn-num {
-            border: 1px solid #93c1e6;
-            background-color: #fff;
-            color: #2d3033d4;
+            border: 1px solid @color-scheme-1;
+            background-color: @black-scheme-4;
+            color: @black-scheme-2;
         }
 
         @media screen and (min-width: 993px) {
@@ -151,16 +154,16 @@
         h5 {
             font-weight: 600;
             font-size: 21.516px;
-            color: #000000de;
+            color: @black-scheme-2;
         }
 
         .btn {
-            background-color: #fff;
-            color: #404040;
-            border: 1px solid #404040;
+            background-color: @color-scheme-1;
+            color: @black-scheme-4;
+            border: 1px solid @color-scheme-1;
 
             &.btn-flat {
-                color: #404040;
+                color: @black-scheme-4;
             }
         }
 
@@ -186,7 +189,7 @@
                     font-weight: 500;
                     font-size: 20px;
                     margin: 5px 0 0 0;
-                    color: #212121e8;
+                    color: @black-scheme-2;
                 }
 
                 .post-meta a {
@@ -198,7 +201,7 @@
                 margin-top: -17px;
                 font-size: 16px;
                 word-spacing: 1px;
-                color: hsl(0, 0%, 30%);
+                color: @black-scheme-3;
 
                 @media screen and (min-width: 993px) {
                     margin-right: 15%;

@@ -2,6 +2,8 @@
  * ./src/style/home.css
  */
 
+@import '../../style/variables';
+
 /***************** Body Block*******************/
 .body {
     padding-top: 5rem;
@@ -47,15 +49,15 @@
             overflow: hidden;
 
             .post-card__title--link {
-                color: hsl(0, 0%, 16%);
+                color: @black-scheme-2;
 
                 &:hover {
-                    color: hsl(0, 0%, 6%);
+                    color: @black-scheme-2;
                 }
             }
         }
         .post-card__text {
-            color: hsl(0, 0%, 40%);
+            color: @black-scheme-3;
             font-size: 16px;
             font-weight: 500;
             letter-spacing: -0.5px;
@@ -70,7 +72,7 @@
             padding: 9px 24px;
             background: hsl(0, 0%, 99%);
             border-top: none;
-            border-bottom: 4px solid #0e66af;
+            border-bottom: 4px solid @color-scheme-2;
 
             .post-card__meta__author {
                 display: flex;
@@ -93,13 +95,13 @@
                         font-weight: 700;
                         font-size: 15.11px;
                         text-transform: capitalize;
-                        color: #000000e0;
+                        color: @black-scheme-3;
                     }
 
                     .post-card__meta__date {
                         font-weight: 500;
                         font-size: 13.432px;
-                        color: #000000bf;
+                        color: @black-scheme-3;
                     }
                 }
             }

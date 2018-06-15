@@ -16,7 +16,7 @@ const UserDropDownMenu = ({ handleLogout }) => {
                     <div className="divider" />
                 </li>
                 <li>
-                    <Link to="/admin/dashboard">Dashboard</Link>
+                    <Link to="/admin/edit-profile">Edit Profile</Link>
                 </li>
                 <li>
                     <a className="logout" onClick={handleLogout}>

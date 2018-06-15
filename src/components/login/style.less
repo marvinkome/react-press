@@ -1,6 +1,8 @@
 /* authentication */
+@import '../../style/variables';
+
 .auth {
-    background-color: #263238;
+    background-color: @black-scheme-2;
     padding: 40px 0;
 
     @media screen and (max-width: 992px) and (min-width: 601px) {
@@ -48,7 +50,7 @@
             margin: 0;
             margin-bottom: 10px;
             padding: 1rem 10%;
-            background-color: #1679ca;
+            background-color: @color-scheme-2;
             color: #fff;
 
             h5 {
@@ -64,14 +66,14 @@
                 display: block;
                 width: 40%;
                 margin: auto;
-                background-color: #1679ca;
+                background-color: @color-scheme-2;
                 color: #fff;
 
                 .progress {
                     background-color: transparent;
 
                     .indeterminate {
-                        background-color: #00437a;
+                        background-color: @color-scheme-1;
                     }
                 }
             }

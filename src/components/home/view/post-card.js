@@ -29,11 +29,10 @@ export const PostCard = ({ post }) => {
     return (
         <div>
             <div className="post-card card horizontal">
-                {/* {post.postPicUrl != undefined &&
+                {post.postPicUrl != undefined &&
                     post.postPicUrl != '' && (
                     <div className="post-card__image card-image" style={cardImgStyle} />
-                )} */}
-                <div className="post-card__image card-image" style={cardImgStyle} />
+                )}
                 <div className="card-stacked">
                     <div className="card-content">
                         <h1 className="post-card__title">

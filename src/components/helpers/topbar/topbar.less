@@ -1,4 +1,5 @@
 /******* TopBar Component ******/
+@import '../../../style/variables';
 @primary_color: #437298;
 @menu_color: #292929;
 @nav_bar_color: hsl(0, 0%, 99.1%);
@@ -14,8 +15,8 @@
 
 .navbar-wrapper {
     .topbar {
-        background: @nav_bar_color;
-        box-shadow: 0px 0px 0px 0px @nav_bar_color;
+        background: @black-scheme-4;
+        box-shadow: 0px 0px 0px 0px @black-scheme-4;
 
         .nav-wrapper {
             margin-left: 10%;
@@ -28,7 +29,7 @@
                 .sidenav-trigger {
                     font-size: 25px;
                     margin: 1px 0px 1px 2px;
-                    color: #4d4d4d !important;
+                    color: @black-scheme-2 !important;
                 }
             }
 
@@ -56,7 +57,7 @@
                 .blog-title {
                     font-size: 30.516px;
                     font-weight: 700;
-                    color: @menu_color;
+                    color: @black-scheme-1;
                     letter-spacing: -2.1px;
 
                     @media screen and (max-width: 600px) {
@@ -73,7 +74,7 @@
                 font-size: 1.6em;
                 margin-top: 1px;
                 padding-right: 10px;
-                color: #4d4d4d;
+                color: @black-scheme-3;
             }
 
             ul {
@@ -84,30 +85,31 @@
                 }
 
                 li a {
-                    color: @menu_color + hsl(0, 0%, 44%);
+                    color: @black-scheme-2;
                     font-size: 15.11px;
                     margin-top: 3px;
                     transition: all 0.3s ease-in-out;
 
                     &:hover {
-                        color: @menu_color;
+                        color: @black-scheme-2;
                         background-color: inherit;
                     }
 
                     &.btn {
                         background-color: transparent;
                         border-radius: 3px;
-                        color: #535353;
-                        border: 1px solid @primary_color;
+                        color: @color-scheme-1;
+                        border: 1px solid @color-scheme-1;
                         margin-top: 0;
-                        box-shadow: 0px 0px @nav_bar_color;
+                        box-shadow: 0px 0px @color-scheme-1;
                         font-size: 14px;
                         line-height: 36px;
+                        text-transform: capitalize;
                     }
 
                     &.sign-up,
                     &.sign-in {
-                        color: @primary_color;
+                        color: @color-scheme-1;
                     }
 
                     &.notification-icon {
@@ -190,7 +192,7 @@
 
                                             &.meta,
                                             span {
-                                                color: hsl(0, 0%, 40%);
+                                                color: @black-scheme-3;
                                                 font-size: 14px;
                                             }
 
@@ -222,14 +224,14 @@
                             min-height: 0px;
 
                             a {
-                                color: #848484;
+                                color: @black-scheme-2;
                                 font-weight: 500;
                                 padding: 7px 25px;
                                 margin: 0;
                                 transition: all 0.3s ease-in-out;
 
                                 &:hover {
-                                    color: #595959;
+                                    color: @black-scheme-3;
                                 }
                             }
 
@@ -248,7 +250,7 @@
 
         .nav-content {
             padding: 0 10% 3% 10%;
-            background-color: @nav_bar_color;
+            background-color: @black-scheme-4;
 
             &.sticky {
                 position: fixed;
@@ -277,7 +279,7 @@
                 }
 
                 span a {
-                    color: #868686 !important;
+                    color: @black-scheme-3 !important;
                     font-size: 15px;
                     text-transform: uppercase;
                     letter-spacing: 0.4px;
@@ -287,7 +289,7 @@
 
                     &:hover {
                         background-color: transparent;
-                        color: #595959 !important;
+                        color: @black-scheme-2 !important;
                     }
                 }
             }
@@ -297,7 +299,7 @@
     ul.sidenav {
         li {
             .user-view {
-                background-color: #0e66af;
+                background-color: @color-scheme-2;
 
                 img.defImg {
                     background-color: hsl(0, 0%, 90%);
@@ -315,7 +317,7 @@
                 }
             }
             a {
-                color: #333333;
+                color: @black-scheme-2;
             }
         }
     }

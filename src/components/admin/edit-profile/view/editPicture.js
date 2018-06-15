@@ -29,11 +29,11 @@ export class EditPicture extends React.Component {
         const task = await upload_file(
             file,
             null,
-            createToast('Your image couldn\'t be uploaded'),
+            () => createToast('Your image couldn\'t be uploaded'),
             null
         );
 
-        this.props.afterUpload(task.snapshot.downloadURL);
+        this.props.afterUpload(task.downloadURL);
     };
     render() {
         let user_image = this.props.init_image;

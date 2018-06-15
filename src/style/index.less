@@ -2,35 +2,16 @@
  * ./src/style/index.css
  */
 
-@import url('./admin/index.css');
+@import './variables';
 
 a {
-    color: #548ab6;
+    color: @color-scheme-2;
 }
 
 body {
-    background-color: hsl(0, 0%, 99.1%);
+    background-color: @black-scheme-4;
 }
 
-.spinner-layer {
-    border-color: hsl(0, 0%, 30%);
-}
-.icon-bg {
-    padding: 9px;
-    border-radius: 50%;
-    background: #90caf94f;
-}
-.material-icons {
-    vertical-align: top;
-    display: inline-flex;
-    font-size: 23px;
-}
-.icon-bg .material-icons {
-    vertical-align: top;
-    display: inline-flex;
-    font-size: 19px;
-    line-height: 24px;
-}
 @media screen and (min-width: 993px) {
     .preloader-wrapper.small {
         width: 50px;

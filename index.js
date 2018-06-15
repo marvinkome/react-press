@@ -8,7 +8,7 @@ import Loadable from 'react-loadable';
 import { AppLoading } from './src/components/helpers/preloader';
 import 'materialize-css/dist/css/materialize.min.css';
 import firebase from 'firebase';
-import './src/style/index.css';
+import './src/style/index.less';
 
 import('materialize-css/dist/js/materialize.js');
 

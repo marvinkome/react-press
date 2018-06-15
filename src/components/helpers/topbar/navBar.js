@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { MdMenu } from 'react-icons/lib/md';
 
 import NotificationsMenu from './notificationMenu';
-import NavMenu from './navMenu';
+// import NavMenu from './navMenu'; Hidden till implemented
 import UserMenu from './userMenu';
 
 export class NavBar extends React.Component {
@@ -19,7 +19,7 @@ export class NavBar extends React.Component {
         </Link>
     );
     render() {
-        const menu_class = this.props.stick ? ' sticky' : '';
+        // const menu_class = this.props.stick ? ' sticky' : ''; Hidden till implemented
         const isLoggedIn = this.props.isLoggedIn;
 
         const user_menu_props = {
@@ -51,11 +51,12 @@ export class NavBar extends React.Component {
                 </div>
 
                 {/* Don't show menu on post page */}
-                {this.props.isHomePage && (
+                {/* Menu hidden until feature is implemented */}
+                {/* {this.props.isHomePage && (
                     <div className={'nav-content' + menu_class}>
                         <NavMenu />
                     </div>
-                )}
+                )} */}
             </nav>
         );
     }
