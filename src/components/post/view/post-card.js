@@ -7,13 +7,15 @@ import PropTypes from 'prop-types';
 
 class PostCard extends Component {
     render() {
-        const {title, postPicUrl, body, tags} = this.props.data;
+        const { title, postPicUrl, body, tags } = this.props.data;
 
         return (
             <div className="post">
                 <div className="post-content">
                     <h2 className="post-title">{title}</h2>
-                    {(postPicUrl !== undefined && postPicUrl !== '' && postPicUrl !== null) && (
+                    {postPicUrl !== undefined &&
+                        postPicUrl !== '' &&
+                        postPicUrl !== null && (
                         <div className="post-image center">
                             <img src={postPicUrl} className="responsive-img" />
                         </div>

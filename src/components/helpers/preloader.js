@@ -24,7 +24,7 @@ export const AppLoading = ({ error, pastDelay, timedOut }) => (
                     pastDelay && (
                         <div>
                             <div className="progress">
-                                <div className="indeterminate"/>
+                                <div className="indeterminate" />
                             </div>
                             <h5>{timedOut ? 'Sorry for taking long...' : 'Loading...'}</h5>
                         </div>

@@ -27,8 +27,8 @@ export default class PublishModal extends React.Component {
         const modal = this.modal.current;
         this.modalIns = window.M.Modal.init(modal);
     }
-    componentWillUnmount(){
-        if ( this.modalIns !== undefined ) {
+    componentWillUnmount() {
+        if (this.modalIns !== undefined) {
             this.modalIns.close();
             this.modalIns.destroy();
         }
