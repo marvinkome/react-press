@@ -2,6 +2,7 @@
  * ./src/js/redux/actions.js
  */
 
+import fetch from 'isomorphic-fetch';
 import * as constants from './constants';
 import * as query from './queries';
 import * as mutations from './mutations';

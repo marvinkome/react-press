@@ -1,7 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
 import { format_date } from '../../../js/helpers';
-import img from '../../../img/default-pic.png';
 
 const Notifications = ({ notifications }) => (
     <div id="notifications" className="dropdown-container">
@@ -15,7 +14,9 @@ const Notifications = ({ notifications }) => (
                         <div className="row">
                             <div className="col s3">
                                 <div className="author-image">
-                                    <img src={img} className="responsive-img circle" />
+                                    <img 
+                                        src="/static/default-pic.png" 
+                                        className="responsive-img circle" />
                                 </div>
                             </div>
                             <div className="notification-info col s9">

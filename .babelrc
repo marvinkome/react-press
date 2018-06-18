@@ -1,11 +1,9 @@
 {
     "presets":[
-        "es2015", "react"
+        "next/babel"
     ],
     "plugins": [
-        "transform-class-properties",
-        "transform-object-rest-spread",
-        "syntax-dynamic-import"
+        "transform-class-properties"
     ],
     "env": {
         "test": {

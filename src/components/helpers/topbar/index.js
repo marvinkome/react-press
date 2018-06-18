@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { logoutUser, readAllNotifications } from '../../../js/redux/actions';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
-import img from '../../../img/default-pic.png';
 import './topbar.less';
 
 export class TopBar extends React.Component {
@@ -47,7 +46,7 @@ export class TopBar extends React.Component {
         const username = this.props.user_data ? this.props.user_data.user.fullName : null;
         const notifications_data = this.props.notifications;
         let imageClass = ' defImg';
-        let image = img;
+        let image = '/static/default-pic.png';
 
         if (isLoggedIn) {
             if (this.props.user_data.user.gravatarUrl !== null) {

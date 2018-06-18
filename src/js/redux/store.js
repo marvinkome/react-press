@@ -11,12 +11,17 @@ import Socket from '../socketio';
 // Initialize socket
 let socket = Socket();
 
+const logger = store => next => action => {
+    console.log('dispatching', action); // eslint-disable-line
+    let result = next(action);
+    console.log('next state', store.getState()); // eslint-disable-line
+    return result;
+};
+
 // Create middleware
 const socketMiddleware = createSocketMiddleWare(socket);
-const store = createStore(
+export default (state) => createStore(
     rootReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunkMiddleware, socketMiddleware)
+    state,
+    applyMiddleware(thunkMiddleware, socketMiddleware, logger)
 );
-
-export default store;

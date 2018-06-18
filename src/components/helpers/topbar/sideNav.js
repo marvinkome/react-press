@@ -1,6 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 export class SideNav extends React.Component {
     constructor(props) {
@@ -41,38 +41,51 @@ export class SideNav extends React.Component {
                 {this.props.data.isLoggedIn ? (
                     <React.Fragment>
                         <li>
-                            <Link to="/admin/new-post">
-                                <span>New Post</span>
+                            <Link href="/admin/new-post">
+                                <a>
+                                    <span>New Post</span>
+                                </a>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/admin/posts">
-                                <span>All Posts</span>
+                            <Link href="/admin/posts">
+                                <a>
+                                    <span>All Posts</span>
+                                </a>
                             </Link>
                         </li>
                         <div className="divider" />
                         <li>
-                            <Link to="/admin/posts">
-                                <span>Dashboard</span>
+                            <Link href="/admin/posts">
+                                <a>
+                                    <span>Dashboard</span>
+                                </a>
                             </Link>
                         </li>
                         <li>
                             <a title="Logout" onClick={this.props.logout}>
-                                <span>Logout</span>
+                                <a>
+                                    <span>Logout</span>
+                                </a>
+                                
                             </a>
                         </li>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
                         <li>
-                            <Link className="hide-on-med-and-up" to="/auth/login">
-                                Sign In
+                            <Link href="/auth/login">
+                                <a className="hide-on-med-and-up">
+                                    Sign In
+                                </a>
                             </Link>
                         </li>
                         <div className="divider" />
                         <li>
-                            <Link className="hide-on-med-and-up" to="/auth/signup">
-                                Get Started
+                            <Link href="/auth/signup">
+                                <a className="hide-on-med-and-up">
+                                    Get Started
+                                </a>
                             </Link>
                         </li>
                     </React.Fragment>

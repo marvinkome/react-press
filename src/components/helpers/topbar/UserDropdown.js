@@ -1,22 +1,28 @@
 import React from 'react';
 import types from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 const UserDropDownMenu = ({ handleLogout }) => {
     return (
         <div id="navbar-user-profile" className="dropdown-container">
             <ul className="dropdown-content" id="dropdown-menu">
                 <li>
-                    <Link to="/admin/new-post">New Post</Link>
+                    <Link href="/admin/new-post">
+                        <a>New Post</a>
+                    </Link>
                 </li>
                 <li>
-                    <Link to="/admin/posts">All Posts</Link>
+                    <Link href="/admin/posts">
+                        <a>All Posts</a>
+                    </Link>
                 </li>
                 <li>
                     <div className="divider" />
                 </li>
                 <li>
-                    <Link to="/admin/edit-profile">Edit Profile</Link>
+                    <Link href="/admin/edit-profile">
+                        <a>Edit Profile</a>
+                    </Link>
                 </li>
                 <li>
                     <a className="logout" onClick={handleLogout}>

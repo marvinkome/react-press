@@ -1,5 +1,5 @@
 {
-    "name": "medium",
+    "name": "react-press",
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
@@ -9,11 +9,10 @@
     "scripts": {
         "start": "webpack-dev-server --config webpack.dev.js",
         "start-server": "node server.js --require dotenv/config",
-        "build": "webpack --config webpack.prod.js",
+        "ssr": "node src/server.js",
         "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",
-        "postinstall": "yarn build",
         "test": "jest"
     },
     "jest": {
@@ -35,6 +34,11 @@
         ]
     },
     "dependencies": {
+        "@zeit/next-css": "^0.2.0",
+        "@zeit/next-less": "^0.3.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-next": "^1.1.4",
+        "babel-preset-stage-0": "^6.24.1",
         "dotenv": "^5.0.1",
         "draft-js": "^0.10.5",
         "draft-js-markdown-plugin": "^2.1.0",
@@ -42,8 +46,11 @@
         "draftjs-to-html": "^0.8.3",
         "express": "^4.16.3",
         "firebase": "^4.13.1",
+        "isomorphic-fetch": "^2.2.1",
         "materialize-css": "1.0.0-beta",
         "moment": "^2.22.0",
+        "next": "^6.0.3",
+        "next-redux-wrapper": "^2.0.0-beta.6",
         "prop-types": "^15.6.1",
         "react": "^16.3.0",
         "react-custom-scrollbars": "^4.2.1",
@@ -58,16 +65,12 @@
         "socket.io-client": "^2.1.1"
     },
     "devDependencies": {
-        "babel-core": "^6.26.0",
         "babel-eslint": "^8.2.3",
         "babel-jest": "^23.0.0",
-        "babel-loader": "^7.1.4",
         "babel-plugin-dynamic-import-node": "^1.2.0",
         "babel-plugin-syntax-dynamic-import": "^6.18.0",
         "babel-plugin-transform-class-properties": "^6.24.1",
         "babel-plugin-transform-object-rest-spread": "^6.26.0",
-        "babel-preset-env": "^1.6.1",
-        "babel-preset-react": "^6.24.1",
         "clean-webpack-plugin": "^0.1.19",
         "compression-webpack-plugin": "^1.1.11",
         "css-loader": "^0.28.10",
@@ -93,7 +96,6 @@
         "react-testing-library": "^3.1.4",
         "redux-mock-store": "^1.5.1",
         "style-loader": "^0.20.3",
-        "webpack": "^4.1.1",
         "webpack-bundle-analyzer": "^2.11.1",
         "webpack-cli": "^2.0.11",
         "webpack-dev-server": "^3.1.1",

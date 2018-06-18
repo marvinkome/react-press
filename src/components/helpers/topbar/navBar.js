@@ -1,6 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { MdMenu } from 'react-icons/lib/md';
 
 import NotificationsMenu from './notificationMenu';
@@ -9,13 +9,15 @@ import UserMenu from './userMenu';
 
 export class NavBar extends React.Component {
     render_menu_icon = () => (
-        <a href="#" data-target="mobile-topbar" className="sidenav-trigger hide-on-med-and-up">
+        <a data-target="mobile-topbar" className="sidenav-trigger hide-on-med-and-up">
             <MdMenu />
         </a>
     );
     render_site_title = () => (
-        <Link to="/" className="brand-logo center">
-            <span className="blog-title">ReactPress</span>
+        <Link href="/">
+            <a className="brand-logo center">
+                <span className="blog-title">ReactPress</span>
+            </a>
         </Link>
     );
     render() {

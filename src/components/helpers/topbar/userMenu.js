@@ -1,6 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import UserDropDownMenu from './UserDropdown';
 
 export default class UserMenu extends React.Component {
@@ -67,13 +67,13 @@ export default class UserMenu extends React.Component {
                 ) : (
                     <React.Fragment>
                         <li>
-                            <Link to="/auth/login" className="sign-in">
-                                Sign in
+                            <Link href="/auth/login">
+                                <a className="sign-in">Sign in</a>
                             </Link>
                         </li>
                         <li>
-                            <Link to="/auth/signup" className="sign-up btn">
-                                Get started
+                            <Link href="/auth/signup">
+                                <a className="sign-up btn">Get started</a>
                             </Link>
                         </li>
                     </React.Fragment>
