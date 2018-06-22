@@ -1,7 +1,7 @@
 import React from 'react';
 import types from 'prop-types';
 import { connect } from 'react-redux';
-import { logoutUser, readAllNotifications } from '../../../js/redux/actions';
+import { logoutUser, readAllNotifications } from '../../store/actions';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
 import './topbar.less';

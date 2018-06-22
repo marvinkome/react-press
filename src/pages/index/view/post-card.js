@@ -5,7 +5,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { format_date, get_profile_link } from '../../../js/helpers';
+import { format_date, get_profile_link, get_page_link } from '../../../lib/helpers';
 
 export const PostCard = ({ post }) => {
     const imgStyle =
@@ -24,6 +24,7 @@ export const PostCard = ({ post }) => {
         backgroundImage: 'url(\'' + post.postPicUrl + '\')',
         backgroundColor: '#454545'
     };
+    const page_link = get_page_link(post.title, post.id);
 
     return (
         <div>
@@ -35,7 +36,10 @@ export const PostCard = ({ post }) => {
                 <div className="card-stacked">
                     <div className="card-content">
                         <h1 className="post-card__title">
-                            <Link href={'/post/' + post.id}>
+                            <Link 
+                                as={`/p/${page_link}`}
+                                href={`/post?id=${page_link}`}
+                            >
                                 <a className="post-card__title--link">
                                     {post.title}
                                 </a>

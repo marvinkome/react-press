@@ -1,15 +1,15 @@
 export const saveToStore = (store, key) => {
-    if (localStorage) {
+    if (window.localStorage) {
         store = JSON.stringify(store);
-        localStorage.setItem(key, store);
+        window.localStorage.setItem(key, store);
     }
 
     return true;
 };
 
 export const removeFromStore = (key) => {
-    if (localStorage) {
-        localStorage.removeItem(key);
+    if (window.localStorage) {
+        window.localStorage.removeItem(key);
     }
 
     return true;

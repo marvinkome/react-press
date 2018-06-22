@@ -79,6 +79,7 @@ export const upload_file = async (file, onUpload, onFail, onSuccess) => {
     }
 };
 
+// greatest common divisor
 export const gcd = (a, b) => {
     if (b == 0) {
         return a;
@@ -143,6 +144,10 @@ export const sanitize_html = (html) => {
     return sanitize(html, {
         allowedTags: ['b', 'i', 'h2', 'h3', 'pre', 'blockquote', 'ul', 'li']
     });
+};
+
+export const get_page_link = (title, id) => {
+    return `${title.split(' ').join('-').toLowerCase()}-${id}`;
 };
 
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];

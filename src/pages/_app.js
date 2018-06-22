@@ -3,9 +3,9 @@ import React from 'react';
 import App, {Container} from 'next/app';
 
 import { Provider } from 'react-redux';
-import createStore from '../js/redux/store';
+import createStore from '../store';
 import withRedux from 'next-redux-wrapper';
-import { fetch_all_data } from '../js/redux/actions';
+import { fetch_all_data } from '../store/actions';
 
 
 

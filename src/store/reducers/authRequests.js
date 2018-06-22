@@ -1,5 +1,5 @@
 import { updateObject } from './utils';
-import { removeFromStore, saveToStore } from '../../storage';
+import { removeFromStore, saveToStore } from '../../lib/storage';
 
 // auth requests
 export const loginUser = (state, res) => {

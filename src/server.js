@@ -14,6 +14,12 @@ app.prepare().then(function(){
         app.render(req, res, actualPage, queryParams);
     });
 
+    server.get('/p/:id', (req, res) => {
+        const actualPage = '/post';
+        const queryParams = { id: req.params.id };
+        app.render(req, res, actualPage, queryParams);
+    });
+
     server.get('*', function(req, res){
         return handle(req, res);
     });

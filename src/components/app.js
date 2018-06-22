@@ -1,10 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Topbar from './helpers/topbar';
-import store from '../js/redux/store';
+import Topbar from './topbar';
+import store from '../store';
+
 import 'materialize-css/dist/css/materialize.min.css';
-if (typeof window !== 'undefined') { require('materialize-css/dist/js/materialize.js'); }
 import '../style/index.less';
+if (typeof window !== 'undefined') { require('materialize-css/dist/js/materialize.js'); }
 
 export const withProvider = (Page) => {
     return (
@@ -27,7 +28,7 @@ export const withTopbar = (Page) => {
                 return (
                     <div>
                         <Topbar />
-                        <Page />
+                        <Page {...this.props} />
                     </div>
                 );
             }

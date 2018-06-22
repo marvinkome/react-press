@@ -1,7 +1,7 @@
 import React from 'react';
 import types from 'prop-types';
 import PostCard from './post-card';
-import { sort_posts } from '../../../js/helpers';
+import { sort_posts } from '../../../lib/helpers';
 
 export default class Body extends React.Component {
     render_post_cards = (posts) => {

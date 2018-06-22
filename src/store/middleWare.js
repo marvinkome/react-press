@@ -1,6 +1,6 @@
 import { onNotification } from './actions';
-import { LOGOUT_USER, RECIEVE_USER_DATA, READ_ALL_NOTIFICATIONS } from './constants';
-import { getFromStore } from '../storage';
+import { LOGOUT_USER, RECIEVE_USER_DATA, READ_ALL_NOTIFICATIONS } from './actionTypes';
+import { getFromStore } from '../lib/storage';
 
 export const createSocketMiddleWare = (socket) => (state) => {
     return (next) => (action) => {

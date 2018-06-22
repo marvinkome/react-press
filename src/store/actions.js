@@ -3,9 +3,11 @@
  */
 
 import fetch from 'isomorphic-fetch';
-import * as constants from './constants';
-import * as query from './queries';
-import * as mutations from './mutations';
+import queryRequest from '../api/queryRequest';
+import * as creators from './actions-creators';
+import * as types from './actionTypes';
+import * as query from './graphql/queries';
+import * as mutations from './graphql/mutations';
 
 const url =
     process.env.NODE_ENV == 'production'
@@ -23,125 +25,104 @@ const refresh_token = (token) => {
     });
 };
 
-/**
- * Redux sync actions for reducers
- */
-
-// Request sync actions
-export const sendRequest = () => ({
-    type: constants.SEND_REQUEST
-});
-
-export const sendLoginRequest = () => ({
-    type: constants.SEND_LOGIN_REQUEST
-});
-
-export const sendComment = () => ({
-    type: constants.SEND_COMMENT
-});
-
-export const sendClap = () => ({
-    type: constants.SEND_CLAP
-});
-
 // After request sync actions - admin
 export const requestCreateTagsFinished = (tag, data) => ({
-    type: constants.REQUEST_TAG_FINISHED,
+    type: types.REQUEST_TAG_FINISHED,
     post_id: data.post_id,
     tag: tag
 });
 
 export const requestCreatePostsFinished = (post) => ({
-    type: constants.REQUEST_POST_FINISHED,
+    type: types.REQUEST_POST_FINISHED,
     post: post
 });
 
 export const requestEditPostFinished = (post, data) => ({
-    type: constants.REQUEST_EDIT_POST_FINISHED,
+    type: types.REQUEST_EDIT_POST_FINISHED,
     post: post,
     post_id: data.postId
 });
 
 export const requestDeletePostFinished = (data) => ({
-    type: constants.REQUEST_DELETE_POST_FINISHED,
+    type: types.REQUEST_DELETE_POST_FINISHED,
     post_id: data
 });
 
 export const requestUpdateUserFinished = () => ({
-    type: constants.REQUEST_USER_EDIT_FINISHED
+    type: types.REQUEST_USER_EDIT_FINISHED
 });
 
 // After request sync actions - post
 export const requestCommentFinished = (res, data) => ({
-    type: constants.REQUEST_COMMENT_FINISHED,
+    type: types.REQUEST_COMMENT_FINISHED,
     post: res,
     comment: res.data.createComment.comment,
     data
 });
 
 export const requestCommentReplyFinished = (res, data) => ({
-    type: constants.REQUEST_COMMENT_REPLY_FINISHED,
+    type: types.REQUEST_COMMENT_REPLY_FINISHED,
     post: res,
     commentReply: res.data.createCommentReply.commentReply,
     data
 });
 
 export const requestClapFinished = (res, data) => ({
-    type: constants.REQUEST_CLAP_FINISHED,
+    type: types.REQUEST_CLAP_FINISHED,
     post: res,
     data
 });
 
 export const requestViewPageFinished = (res, pageId) => ({
-    type: constants.VIEW_PAGE,
+    type: types.VIEW_PAGE,
     post: res,
     pageId
 });
 
 // After request sync actions - general
 export const recieveArticles = (res) => ({
-    type: constants.RECIEVE_ARTICLES,
+    type: types.RECIEVE_ARTICLES,
     payload: res.data.allPost.edges,
     cursor: res.data.allPost.pageInfo.endCursor,
     hasNextPage: res.data.allPost.pageInfo.hasNextPage
 });
 
 export const recieveMoreArticles = (res) => ({
-    type: constants.RECIEVE_MORE_ARTICLES,
+    type: types.RECIEVE_MORE_ARTICLES,
     payload: res.data.allPost.edges,
     cursor: res.data.allPost.pageInfo.endCursor,
     hasNextPage: res.data.allPost.pageInfo.hasNextPage
 });
 
 export const recieveUserProfile = (res) => ({
-    type: constants.RECIEVE_USER_PROFILE,
+    type: types.RECIEVE_USER_PROFILE,
     payload: res.data.publicUser
 });
 
 // After auth request
 export const recieveUserData = (payload) => ({
-    type: constants.RECIEVE_USER_DATA,
+    type: types.RECIEVE_USER_DATA,
     payload
 });
 
 export const loginUser = (payload) => ({
-    type: constants.LOGIN_USER,
+    type: types.LOGIN_USER,
     payload
 });
 
 export const logoutUser = () => ({
-    type: constants.LOGOUT_USER,
+    type: types.LOGOUT_USER,
     logout: true
 });
 
 // Socket action
 export const onNotification = (message) => ({
-    type: constants.ON_NOTIFICATION,
+    type: types.ON_NOTIFICATION,
     message
 });
 
 export const readAllNotifications = () => ({
-    type: constants.READ_ALL_NOTIFICATIONS
+    type: types.READ_ALL_NOTIFICATIONS
 });
 
 /**
@@ -151,41 +132,23 @@ export const readAllNotifications = () => ({
 // Query Actions
 export const fetch_all_data = () => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
-        const headers = {
-            method: 'POST',
-            body: JSON.stringify({ query: query.fetch_query }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        return fetch(url + '/graphql', headers)
-            .then((resp) => resp.json())
-            .then((res) => dispatch(recieveArticles(res)));
+        return queryRequest(query.fetch_query)
+            .then(res => dispatch(recieveArticles(res)));
     };
 };
 
 export const fetch_more_data = (cursor) => {
     return (dispatch) => {
-        const headers = {
-            method: 'POST',
-            body: JSON.stringify({ query: query.fetch_more(cursor) }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        return fetch(url + '/graphql', headers)
-            .then((resp) => resp.json())
-            .then((res) => dispatch(recieveMoreArticles(res)));
+        return queryRequest(query.fetch_more(cursor))
+            .then(res => dispatch(recieveMoreArticles(res)));
     };
 };
 
 export const fetch_user_data = () => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -210,26 +173,17 @@ export const fetch_user_data = () => {
 
 export const fetch_profile_data = (username) => {
     return (dispatch) => {
-        dispatch(sendRequest);
-
-        const headers = {
-            method: 'POST',
-            body: JSON.stringify({ query: query.fetch_profile_query(username) }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
-
-        return fetch(url + '/graphql', headers)
-            .then((res) => res.json())
-            .then((res) => dispatch(recieveUserProfile(res)));
+        dispatch(creators.sendRequest());
+        
+        return queryRequest(query.fetch_profile_query(username))
+            .then(res => dispatch(recieveUserProfile(res)));
     };
 };
 
 // Auth Actions
 export const login_user = (data) => {
     return (dispatch) => {
-        dispatch(sendLoginRequest());
+        dispatch(creators.sendLoginRequest());
 
         const headers = {
             method: 'POST',
@@ -247,7 +201,7 @@ export const login_user = (data) => {
 
 export const register_user = (data) => {
     return (dispatch) => {
-        dispatch(sendLoginRequest());
+        dispatch(creators.sendLoginRequest());
 
         const headers = {
             method: 'POST',
@@ -266,7 +220,7 @@ export const register_user = (data) => {
 // Mutatons Actions
 export const create_tags = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -291,7 +245,7 @@ export const create_tags = (data) => {
 
 export const create_posts = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const new_data = {
             ...data,
@@ -321,7 +275,7 @@ export const create_posts = (data) => {
 
 export const edit_post = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -346,7 +300,7 @@ export const edit_post = (data) => {
 
 export const delete_post = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -371,7 +325,7 @@ export const delete_post = (data) => {
 
 export const update_profile_pic = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -396,7 +350,7 @@ export const update_profile_pic = (data) => {
 
 export const update_user_info = (data) => {
     return (dispatch) => {
-        dispatch(sendRequest());
+        dispatch(creators.sendRequest());
 
         const headers = (token) => ({
             method: 'POST',
@@ -421,7 +375,7 @@ export const update_user_info = (data) => {
 
 export const add_comment = (data) => {
     return (dispatch) => {
-        dispatch(sendComment());
+        dispatch(creators.sendComment());
 
         const headers = (token) => ({
             method: 'POST',
@@ -446,7 +400,7 @@ export const add_comment = (data) => {
 
 export const reply_comment = (data) => {
     return (dispatch) => {
-        dispatch(sendComment());
+        dispatch(creators.sendComment());
 
         const headers = (token) => ({
             method: 'POST',
@@ -471,7 +425,7 @@ export const reply_comment = (data) => {
 
 export const clap = (data) => {
     return (dispatch) => {
-        dispatch(sendClap());
+        dispatch(creators.sendClap());
 
         const headers = (token) => ({
             method: 'POST',

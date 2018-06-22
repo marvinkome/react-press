@@ -1,6 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import { format_date } from '../../../js/helpers';
+import { format_date } from '../../lib/helpers';
 
 const Notifications = ({ notifications }) => (
     <div id="notifications" className="dropdown-container">

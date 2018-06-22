@@ -1,5 +1,5 @@
 import React from 'react';
-import wrapper from '../../components/app';
+import withTopbar from '../../components/app';
 import { connect } from 'react-redux';
 import Body from './view/index';
 import './home.less';
@@ -14,4 +14,4 @@ const mapStateToProps = (state) => ({
     hasMore: state.hasNextPage
 });
 
-export default wrapper(connect(mapStateToProps)(Index));
+export default withTopbar(connect(mapStateToProps)(Index));
