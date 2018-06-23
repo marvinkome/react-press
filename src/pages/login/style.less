@@ -1,0 +1,22 @@
+/* authentication */
+@import '../../style/variables';
+@import '../../style/auth';
+
+.auth-login {
+    @media screen and (max-width: 992px) and (min-width: 601px) {
+        background-size: contain;
+        height: 100vh;
+    }
+
+    .section {
+        &.login-section {
+            padding-top: 0;
+            margin: 50px 0;
+            background-color: #fff;
+
+            @media screen and (max-width: 600px) {
+                margin: 30px 0;
+            }
+        }
+    }
+}

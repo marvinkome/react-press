@@ -8,6 +8,10 @@ import createStore from '../store';
 import withRedux from 'next-redux-wrapper';
 import { fetch_all_data } from '../store/actions';
 
+import 'materialize-css/dist/css/materialize.min.css';
+import '../style/index.less';
+if (typeof window !== 'undefined') { require('materialize-css/dist/js/materialize.js'); }
+
 class InitApp extends App {
     static async getInitialProps({ Component, ctx }) {
         let pageProps = {};

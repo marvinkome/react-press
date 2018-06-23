@@ -1,14 +1,6 @@
-/* authentication */
-@import '../../style/variables';
-
 .auth {
     background-color: @black-scheme-2;
     padding: 2% 0;
-
-    @media screen and (max-width: 992px) and (min-width: 601px) {
-        background-size: contain;
-        height: 100vh;
-    }
 
     @media screen and (max-width: 600px) {
         padding: 10px 0;
@@ -16,16 +8,9 @@
 
     .section {
         @media screen and (max-width: 992px) and (min-width: 601px) {
-            .heading,
             .login-form {
-                margin: 0 20%;
+                margin: 0 20% !important;
             }
-        }
-
-        &.signup-section {
-            padding-top: 0;
-            margin: 20px 0;
-            background-color: #fff;
         }
 
         .login-form {
