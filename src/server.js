@@ -8,9 +8,9 @@ const handle = app.getRequestHandler();
 app.prepare().then(function(){
     const server = express();
 
-    server.get('/about/:who', (req, res) => {
-        const actualPage = '/about';
-        const queryParams = { who: req.params.who };
+    server.get('/profile/:user', (req, res) => {
+        const actualPage = '/profile';
+        const queryParams = { user: req.params.user };
         app.render(req, res, actualPage, queryParams);
     });
 

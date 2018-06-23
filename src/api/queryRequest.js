@@ -10,5 +10,10 @@ export default async (query) => {
         }
     };
 
-    return await ( await fetch(`${url}/graphql`, headers) ).json();
+    try {
+        const json = await (await fetch(`${url}/graphql`, headers)).json();
+        return json;
+    } catch (e) {
+        return e;
+    }
 };
