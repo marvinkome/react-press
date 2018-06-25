@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import PageBody from './view';
 import './style.less';
 
-class Post extends Component {
+export class Post extends Component {
     constructor(props) {
         super(props);
     }
@@ -42,8 +42,7 @@ Post.propTypes = {
 
 const mapStateToProps = (state) => ({
     posts: state.post_data.posts,
-    user: state.user_data,
-    fetching: state.isFetching
+    user: state.user_data
 });
 
 export default connect(mapStateToProps)(Post);

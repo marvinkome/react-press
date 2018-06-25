@@ -1,11 +1,11 @@
-import { onNotification } from './actions';
+import { onNotification } from './actions-creators';
 import { LOGOUT_USER, RECIEVE_USER_DATA, READ_ALL_NOTIFICATIONS } from './actionTypes';
 import { getFromStore } from '../lib/storage';
 
 export const createSocketMiddleWare = (socket) => (state) => {
     return (next) => (action) => {
         // when dispatching a redux action
-        // check if its a login action then disconnect the user
+        // check if its a logout action then disconnect the user
         if (action.type == LOGOUT_USER) {
             if (socket !== null && socket !== undefined) socket.disconnect();
         }

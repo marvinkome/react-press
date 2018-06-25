@@ -3,7 +3,7 @@ import types from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 
-import { SignupForm } from '../../../components/loginForm';
+import { SignupForm } from '../../../components/forms';
 import { register_user, fetch_user_data } from '../../../store/actions';
 import { validate_password } from '../../../lib/helpers';
 

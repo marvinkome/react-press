@@ -1,38 +1,12 @@
 import React from 'react';
 import types from 'prop-types';
 import { connect } from 'react-redux';
-import { logoutUser, readAllNotifications } from '../../store/actions';
+import { logoutUser, readAllNotifications } from '../../store/actions-creators';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
 import './topbar.less';
 
 export class TopBar extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            sticky: false
-        };
-    }
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScroll, false);
-    }
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll, false);
-    }
-    onScroll = () => {
-        if (this.props.isHomePage === true) {
-            if (window.pageYOffset >= 72) {
-                this.setState({
-                    sticky: true
-                });
-            } else {
-                this.setState({
-                    sticky: false
-                });
-            }
-        }
-    };
     handleLogout = () => {
         this.props.logout();
     };
@@ -41,8 +15,6 @@ export class TopBar extends React.Component {
     };
     render() {
         const isLoggedIn = this.props.user_data != undefined && this.props.user_data !== null;
-        const isHomePage = this.props.isHomePage || false;
-        const stick = this.state.sticky;
         const username = this.props.user_data ? this.props.user_data.user.fullName : null;
         const notifications_data = this.props.notifications;
         let imageClass = ' defImg';
@@ -57,8 +29,6 @@ export class TopBar extends React.Component {
 
         const navbarProps = {
             isLoggedIn,
-            isHomePage,
-            stick,
             notifications_data,
             imageData: {
                 imageClass,
@@ -88,7 +58,6 @@ export class TopBar extends React.Component {
 }
 
 TopBar.propTypes = {
-    isHomePage: types.bool,
     user_data: types.object,
     notifications: types.object,
     logout: types.func.isRequired,

@@ -3,9 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "sideEffects": [
-        "*.css"
-    ],
+    "sideEffects": ["*.css"],
     "scripts": {
         "start": "webpack-dev-server --config webpack.dev.js",
         "start-server": "node server.js --require dotenv/config",
@@ -17,21 +15,13 @@
     },
     "jest": {
         "moduleNameMapper": {
-            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/__mocks__/fileMock.js",
-            "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
+            "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/mocks/fileMock.js",
+            "\\.(css|less)$": "<rootDir>/mocks/styleMock.js"
         },
-        "setupFiles": [
-            "<rootDir>/config/test-shim.js",
-            "<rootDir>/config/test-setup.js"
-        ],
-        "setupTestFrameworkScriptFile": "<rootDir>/__mocks__/moduleMock.js",
-        "moduleFileExtensions": [
-            "jsx",
-            "js"
-        ],
-        "testMatch": [
-            "**/__tests__/*.test.(jsx|js)"
-        ]
+        "setupFiles": ["<rootDir>/config/test-shim.js", "<rootDir>/config/test-setup.js"],
+        "setupTestFrameworkScriptFile": "<rootDir>/mocks/moduleMock.js",
+        "moduleFileExtensions": ["jsx", "js"],
+        "testMatch": ["**/tests/*.test.(jsx|js)"]
     },
     "dependencies": {
         "@zeit/next-css": "^0.2.0",
@@ -65,6 +55,7 @@
         "socket.io-client": "^2.1.1"
     },
     "devDependencies": {
+        "babel-core": "^7.0.0-bridge.0",
         "babel-eslint": "^8.2.3",
         "babel-jest": "^23.0.0",
         "babel-plugin-dynamic-import-node": "^1.2.0",

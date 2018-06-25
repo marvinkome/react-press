@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { MdMenu } from 'react-icons/lib/md';
 
 import NotificationsMenu from './notificationMenu';
-// import NavMenu from './navMenu'; Hidden till implemented
 import UserMenu from './userMenu';
 
 export class NavBar extends React.Component {
@@ -21,7 +20,6 @@ export class NavBar extends React.Component {
         </Link>
     );
     render() {
-        // const menu_class = this.props.stick ? ' sticky' : ''; Hidden till implemented
         const isLoggedIn = this.props.isLoggedIn;
 
         const user_menu_props = {
@@ -51,14 +49,6 @@ export class NavBar extends React.Component {
                     {/* show notification - menu for small and large screen*/}
                     <NotificationsMenu {...notifications_props} />
                 </div>
-
-                {/* Don't show menu on post page */}
-                {/* Menu hidden until feature is implemented */}
-                {/* {this.props.isHomePage && (
-                    <div className={'nav-content' + menu_class}>
-                        <NavMenu />
-                    </div>
-                )} */}
             </nav>
         );
     }
@@ -66,8 +56,6 @@ export class NavBar extends React.Component {
 
 NavBar.propTypes = {
     isLoggedIn: types.bool.isRequired,
-    isHomePage: types.bool.isRequired,
-    stick: types.bool.isRequired,
     imageData: types.object,
     notifications_data: types.object.isRequired,
     logout: types.func.isRequired,

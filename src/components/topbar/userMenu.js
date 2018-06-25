@@ -67,12 +67,12 @@ export default class UserMenu extends React.Component {
                 ) : (
                     <React.Fragment>
                         <li>
-                            <Link href="/auth/login">
+                            <Link href="/login">
                                 <a className="sign-in">Sign in</a>
                             </Link>
                         </li>
                         <li>
-                            <Link href="/auth/signup">
+                            <Link href="/signup">
                                 <a className="sign-up btn">Get started</a>
                             </Link>
                         </li>

@@ -1,15 +1,10 @@
 {
-    "presets":[
-        "next/babel"
-    ],
-    "plugins": [
-        "transform-class-properties"
-    ],
+    "presets": ["next/babel"],
+    "plugins": ["transform-class-properties"],
     "env": {
         "test": {
-            "plugins": [
-                "babel-plugin-dynamic-import-node"
-            ]
+            "presets": [["next/babel", { "preset-env": { "modules": "commonjs" } }]],
+            "plugins": ["babel-plugin-dynamic-import-node"]
         }
     }
 }

@@ -3,7 +3,7 @@ import types from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 
-import { LoginForm } from '../../../components/loginForm';
+import { LoginForm } from '../../../components/forms';
 import { login_user, fetch_user_data } from '../../../store/actions';
 
 export class PageView extends React.Component {
