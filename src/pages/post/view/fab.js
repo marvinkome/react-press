@@ -3,23 +3,14 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import types from 'prop-types';
 import { MdThumbUp } from 'react-icons/lib/md';
 
 class FAB extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            claps: this.props.claps_count
-        };
+    constructor(){
+        super();
+
         this.fabRef = React.createRef();
-    }
-    componentWillReceiveProps(np) {
-        if (this.state.claps != np.claps_count) {
-            this.setState({
-                claps: np.claps_count
-            });
-        }
     }
     componentDidMount() {
         const fab = this.fabRef.current;
@@ -28,12 +19,12 @@ class FAB extends Component {
     render() {
         return (
             <div ref={this.fabRef} className="fixed-action-btn">
-                <a onClick={this.props.handleClap} className="pulse btn-floating btn-large">
+                <a onClick={this.props.onClap} className="pulse btn-floating btn-large">
                     <MdThumbUp />
                 </a>
                 <ul>
                     <li>
-                        <a className="btn-floating btn-num">{this.state.claps}</a>
+                        <a className="btn-floating btn-num">{this.props.claps_count}</a>
                     </li>
                 </ul>
             </div>
@@ -42,8 +33,8 @@ class FAB extends Component {
 }
 
 FAB.propTypes = {
-    claps_count: PropTypes.number.isRequired,
-    handleClap: PropTypes.func
+    claps_count: types.number.isRequired,
+    onClap: types.func.isRequired
 };
 
 export default FAB;

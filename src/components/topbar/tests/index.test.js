@@ -10,6 +10,7 @@ describe('topbar tests', () => {
     const logout = jest.fn();
     const readNotifications = jest.fn();
     const topbarProps = {
+        isLoggedIn: false,
         isHomePage: false,
         user_data: {
             user: {}

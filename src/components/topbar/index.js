@@ -14,21 +14,22 @@ export class TopBar extends React.Component {
         this.props.readNotifications();
     };
     render() {
-        const isLoggedIn = this.props.user_data != undefined && this.props.user_data !== null;
-        const username = this.props.user_data ? this.props.user_data.user.fullName : null;
+        const loggedIn = this.props.isLoggedIn;
+        const user_data = this.props.user_data.data;
+        const username = user_data ? user_data.user.fullName : null;
         const notifications_data = this.props.notifications;
         let imageClass = ' defImg';
         let image = '/static/default-pic.png';
 
-        if (isLoggedIn) {
-            if (this.props.user_data.user.gravatarUrl !== null) {
-                image = this.props.user_data.user.gravatarUrl;
+        if (loggedIn) {
+            if (user_data.user.gravatarUrl !== null) {
+                image = user_data.user.gravatarUrl;
                 imageClass = '';
             }
         }
 
         const navbarProps = {
-            isLoggedIn,
+            isLoggedIn: loggedIn,
             notifications_data,
             imageData: {
                 imageClass,
@@ -42,7 +43,7 @@ export class TopBar extends React.Component {
             data: {
                 image,
                 imageClass,
-                isLoggedIn,
+                isLoggedIn: loggedIn,
                 username
             },
             logout: this.handleLogout
@@ -58,6 +59,7 @@ export class TopBar extends React.Component {
 }
 
 TopBar.propTypes = {
+    isLoggedIn: types.bool,
     user_data: types.object,
     notifications: types.object,
     logout: types.func.isRequired,
@@ -65,7 +67,8 @@ TopBar.propTypes = {
 };
 
 const mapStateToProp = (state) => ({
-    notifications: state.notifications_data
+    notifications: state.notifications_data,
+    user_data: state.user_data
 });
 
 const mapDispatchToProp = (dispatch) => ({

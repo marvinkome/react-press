@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "sideEffects": ["*.css"],
+    "sideEffects": [
+        "*.css"
+    ],
     "scripts": {
         "start": "webpack-dev-server --config webpack.dev.js",
         "start-server": "node server.js --require dotenv/config",
@@ -18,10 +20,18 @@
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/mocks/fileMock.js",
             "\\.(css|less)$": "<rootDir>/mocks/styleMock.js"
         },
-        "setupFiles": ["<rootDir>/config/test-shim.js", "<rootDir>/config/test-setup.js"],
+        "setupFiles": [
+            "<rootDir>/config/test-shim.js",
+            "<rootDir>/config/test-setup.js"
+        ],
         "setupTestFrameworkScriptFile": "<rootDir>/mocks/moduleMock.js",
-        "moduleFileExtensions": ["jsx", "js"],
-        "testMatch": ["**/tests/*.test.(jsx|js)"]
+        "moduleFileExtensions": [
+            "jsx",
+            "js"
+        ],
+        "testMatch": [
+            "**/tests/*.test.(jsx|js)"
+        ]
     },
     "dependencies": {
         "@zeit/next-css": "^0.2.0",
@@ -29,6 +39,7 @@
         "babel-preset-env": "^1.7.0",
         "babel-preset-next": "^1.1.4",
         "babel-preset-stage-0": "^6.24.1",
+        "cookie": "^0.3.1",
         "dotenv": "^5.0.1",
         "draft-js": "^0.10.5",
         "draft-js-markdown-plugin": "^2.1.0",
@@ -37,6 +48,7 @@
         "express": "^4.16.3",
         "firebase": "^4.13.1",
         "isomorphic-fetch": "^2.2.1",
+        "js-cookie": "^2.2.0",
         "materialize-css": "1.0.0-beta",
         "moment": "^2.22.0",
         "next": "^6.0.3",

@@ -3,9 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import type from 'prop-types';
+import types from 'prop-types';
 import { connect } from 'react-redux';
 
+import { MainPage } from '../../components/app';
 import PageBody from './view';
 import './style.less';
 
@@ -31,13 +32,17 @@ export class Post extends Component {
     };
     render() {
         const post = this.findPost();
-        return <PageBody post={post} />;
+        return <MainPage 
+            loggedIn={this.props.loggedIn} 
+            render={() => <PageBody post={post} loggedIn={this.props.loggedIn} />}
+        />;
     }
 }
 
 Post.propTypes = {
-    posts: type.array,
-    post_id: type.string
+    loggedIn: types.bool,
+    posts: types.array,
+    post_id: types.string
 };
 
 const mapStateToProps = (state) => ({

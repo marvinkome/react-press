@@ -2,6 +2,8 @@
  * ./src/js/redux/actions.js
  */
 
+import { getFromStore } from '../lib/storage';
+import { tokenKey } from '../keys/storage';
 import queryRequest from '../api/queryRequest';
 import userRequest from '../api/userRequest';
 import authRequest from '../api/authRequests';
@@ -30,11 +32,11 @@ export const fetch_more_data = (cursor) => {
     };
 };
 
-export const fetch_user_data = () => {
+export const fetch_user_data = (refresh_token) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        const data = await userRequest(query.fetch_user_data_query);
+        const data = await userRequest(query.fetch_user_data_query, refresh_token);
         return await dispatch(creators.recieveUserData(data));
     };
 };
@@ -122,7 +124,7 @@ export const update_user_info = (data) => {
     };
 };
 
-export const add_comment = (data) => {
+export const addComment = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendComment());
 
@@ -131,7 +133,7 @@ export const add_comment = (data) => {
     };
 };
 
-export const reply_comment = (data) => {
+export const replyComment = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendComment());
 
@@ -143,13 +145,14 @@ export const reply_comment = (data) => {
 export const clap = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendClap());
-
-        const res = await userRequest( mutations.clap(data) );
+        
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest( mutations.clap(data), r_token );
         return await dispatch( creators.requestClapFinished(res, data) );
     };
 };
 
-export const view_page = (pageId) => {
+export const viewPage = (pageId) => {
     return async (dispatch) => {
 
         const res = await queryRequest( mutations.viewPage(pageId) );

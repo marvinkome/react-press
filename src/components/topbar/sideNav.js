@@ -64,10 +64,7 @@ export class SideNav extends React.Component {
                         </li>
                         <li>
                             <a title="Logout" onClick={this.props.logout}>
-                                <a>
-                                    <span>Logout</span>
-                                </a>
-                                
+                                <span>Logout</span>
                             </a>
                         </li>
                     </React.Fragment>

@@ -3,6 +3,8 @@ import types from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
 
+import { getFromStore } from '../../../lib/storage';
+import { tokenKey } from '../../../keys/storage';
 import { LoginForm } from '../../../components/forms';
 import { login_user, fetch_user_data } from '../../../store/actions';
 
@@ -28,7 +30,8 @@ export class PageView extends React.Component {
         try {
             const res = await this.props.login_user(this.state);
             if (res.payload.msg == 'Authentication successfull') {
-                await this.props.fetch_data();
+                const token = getFromStore(tokenKey);
+                await this.props.fetch_data(token);
             } else {
                 this.setState({
                     auth_message: res.payload.msg
@@ -37,7 +40,7 @@ export class PageView extends React.Component {
         } catch (e) {
             this.setState({
                 auth_message:
-                    String(e) == 'TypeError: Failed to fetch' && 'Can\'t login server error'
+                    String(e) == 'TypeError: Failed to fetch' ? 'Can\'t login server error' : ''
             });
         }
     };
@@ -95,7 +98,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login_user: (data) => dispatch(login_user(data)),
-        fetch_data: () => dispatch(fetch_user_data())
+        fetch_data: (token) => dispatch(fetch_user_data(token))
     };
 };
 

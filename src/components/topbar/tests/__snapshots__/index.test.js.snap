@@ -6,6 +6,7 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <TopBar
     isHomePage={false}
+    isLoggedIn={false}
     logout={[MockFunction]}
     notifications={Object {}}
     readNotifications={[MockFunction]}
@@ -31,11 +32,11 @@ ShallowWrapper {
         <NavBar
           imageData={
             Object {
-              "image": undefined,
-              "imageClass": "",
+              "image": "/static/default-pic.png",
+              "imageClass": " defImg",
             }
           }
-          isLoggedIn={true}
+          isLoggedIn={false}
           logout={[Function]}
           notifications_data={Object {}}
           readNotifications={[Function]}
@@ -43,10 +44,10 @@ ShallowWrapper {
         <SideNav
           data={
             Object {
-              "image": undefined,
-              "imageClass": "",
-              "isLoggedIn": true,
-              "username": undefined,
+              "image": "/static/default-pic.png",
+              "imageClass": " defImg",
+              "isLoggedIn": false,
+              "username": null,
             }
           }
           logout={[Function]}
@@ -62,10 +63,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "imageData": Object {
-            "image": undefined,
-            "imageClass": "",
+            "image": "/static/default-pic.png",
+            "imageClass": " defImg",
           },
-          "isLoggedIn": true,
+          "isLoggedIn": false,
           "logout": [Function],
           "notifications_data": Object {},
           "readNotifications": [Function],
@@ -80,10 +81,10 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "data": Object {
-            "image": undefined,
-            "imageClass": "",
-            "isLoggedIn": true,
-            "username": undefined,
+            "image": "/static/default-pic.png",
+            "imageClass": " defImg",
+            "isLoggedIn": false,
+            "username": null,
           },
           "logout": [Function],
         },
@@ -104,11 +105,11 @@ ShallowWrapper {
           <NavBar
             imageData={
               Object {
-                "image": undefined,
-                "imageClass": "",
+                "image": "/static/default-pic.png",
+                "imageClass": " defImg",
               }
             }
-            isLoggedIn={true}
+            isLoggedIn={false}
             logout={[Function]}
             notifications_data={Object {}}
             readNotifications={[Function]}
@@ -116,10 +117,10 @@ ShallowWrapper {
           <SideNav
             data={
               Object {
-                "image": undefined,
-                "imageClass": "",
-                "isLoggedIn": true,
-                "username": undefined,
+                "image": "/static/default-pic.png",
+                "imageClass": " defImg",
+                "isLoggedIn": false,
+                "username": null,
               }
             }
             logout={[Function]}
@@ -135,10 +136,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "imageData": Object {
-              "image": undefined,
-              "imageClass": "",
+              "image": "/static/default-pic.png",
+              "imageClass": " defImg",
             },
-            "isLoggedIn": true,
+            "isLoggedIn": false,
             "logout": [Function],
             "notifications_data": Object {},
             "readNotifications": [Function],
@@ -153,10 +154,10 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "data": Object {
-              "image": undefined,
-              "imageClass": "",
-              "isLoggedIn": true,
-              "username": undefined,
+              "image": "/static/default-pic.png",
+              "imageClass": " defImg",
+              "isLoggedIn": false,
+              "username": null,
             },
             "logout": [Function],
           },
@@ -752,9 +753,9 @@ ShallowWrapper {
     "simulateEvent": [Function],
     "unmount": [Function],
   },
-  Symbol(enzyme.__node__): false,
+  Symbol(enzyme.__node__): null,
   Symbol(enzyme.__nodes__): Array [
-    false,
+    null,
   ],
   Symbol(enzyme.__options__): Object {
     "adapter": ReactSixteenAdapter {

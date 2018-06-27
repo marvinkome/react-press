@@ -5,6 +5,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <Post
+    loggedIn={false}
     post_id="UG9zdDox"
     posts={
       Array [
@@ -122,105 +123,8 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "post": Object {
-        "node": Object {
-          "author": Object {
-            "description": null,
-            "fullName": "Marvin Kome",
-            "gravatarUrl": null,
-            "id": "VXNlcjoy",
-          },
-          "body": "<div><p>Hey there im new</p>
-</div>",
-          "claps": Object {
-            "totalCount": 0,
-          },
-          "comments": Object {
-            "edges": Array [
-              Object {
-                "node": Object {
-                  "author": Object {
-                    "fullName": "Fake User",
-                    "gravatarUrl": null,
-                    "id": "VXNlcjox",
-                  },
-                  "body": "Hello World",
-                  "id": "Q29tbWVudDox",
-                  "replies": Object {
-                    "edges": Array [],
-                  },
-                  "timestamp": "2018-06-05T01:30:59.729280",
-                  "uuid": "1",
-                },
-              },
-              Object {
-                "node": Object {
-                  "author": Object {
-                    "fullName": "Fake User",
-                    "gravatarUrl": null,
-                    "id": "VXNlcjox",
-                  },
-                  "body": "Notify Marvin Correctly",
-                  "id": "Q29tbWVudDoy",
-                  "replies": Object {
-                    "edges": Array [],
-                  },
-                  "timestamp": "2018-06-05T02:09:39.718090",
-                  "uuid": "2",
-                },
-              },
-              Object {
-                "node": Object {
-                  "author": Object {
-                    "fullName": "Fake User",
-                    "gravatarUrl": null,
-                    "id": "VXNlcjox",
-                  },
-                  "body": "Hello Marvin",
-                  "id": "Q29tbWVudDoz",
-                  "replies": Object {
-                    "edges": Array [],
-                  },
-                  "timestamp": "2018-06-05T11:58:49.746609",
-                  "uuid": "3",
-                },
-              },
-              Object {
-                "node": Object {
-                  "author": Object {
-                    "fullName": "Fake User",
-                    "gravatarUrl": null,
-                    "id": "VXNlcjox",
-                  },
-                  "body": "Hello Marvin",
-                  "id": "Q29tbWVudDo0",
-                  "replies": Object {
-                    "edges": Array [],
-                  },
-                  "timestamp": "2018-06-09T01:46:10.115571",
-                  "uuid": "4",
-                },
-              },
-            ],
-          },
-          "id": "UG9zdDox",
-          "postPicUrl": "",
-          "tags": Object {
-            "edges": Array [
-              Object {
-                "node": Object {
-                  "id": "VGFnczox",
-                  "name": "hello",
-                },
-              },
-            ],
-          },
-          "timestamp": "2018-06-05T01:28:35.802157",
-          "title": "Hello World",
-          "uuid": "1",
-          "views": 16,
-        },
-      },
+      "loggedIn": false,
+      "render": [Function],
     },
     "ref": null,
     "rendered": null,
@@ -232,105 +136,8 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "post": Object {
-          "node": Object {
-            "author": Object {
-              "description": null,
-              "fullName": "Marvin Kome",
-              "gravatarUrl": null,
-              "id": "VXNlcjoy",
-            },
-            "body": "<div><p>Hey there im new</p>
-</div>",
-            "claps": Object {
-              "totalCount": 0,
-            },
-            "comments": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "author": Object {
-                      "fullName": "Fake User",
-                      "gravatarUrl": null,
-                      "id": "VXNlcjox",
-                    },
-                    "body": "Hello World",
-                    "id": "Q29tbWVudDox",
-                    "replies": Object {
-                      "edges": Array [],
-                    },
-                    "timestamp": "2018-06-05T01:30:59.729280",
-                    "uuid": "1",
-                  },
-                },
-                Object {
-                  "node": Object {
-                    "author": Object {
-                      "fullName": "Fake User",
-                      "gravatarUrl": null,
-                      "id": "VXNlcjox",
-                    },
-                    "body": "Notify Marvin Correctly",
-                    "id": "Q29tbWVudDoy",
-                    "replies": Object {
-                      "edges": Array [],
-                    },
-                    "timestamp": "2018-06-05T02:09:39.718090",
-                    "uuid": "2",
-                  },
-                },
-                Object {
-                  "node": Object {
-                    "author": Object {
-                      "fullName": "Fake User",
-                      "gravatarUrl": null,
-                      "id": "VXNlcjox",
-                    },
-                    "body": "Hello Marvin",
-                    "id": "Q29tbWVudDoz",
-                    "replies": Object {
-                      "edges": Array [],
-                    },
-                    "timestamp": "2018-06-05T11:58:49.746609",
-                    "uuid": "3",
-                  },
-                },
-                Object {
-                  "node": Object {
-                    "author": Object {
-                      "fullName": "Fake User",
-                      "gravatarUrl": null,
-                      "id": "VXNlcjox",
-                    },
-                    "body": "Hello Marvin",
-                    "id": "Q29tbWVudDo0",
-                    "replies": Object {
-                      "edges": Array [],
-                    },
-                    "timestamp": "2018-06-09T01:46:10.115571",
-                    "uuid": "4",
-                  },
-                },
-              ],
-            },
-            "id": "UG9zdDox",
-            "postPicUrl": "",
-            "tags": Object {
-              "edges": Array [
-                Object {
-                  "node": Object {
-                    "id": "VGFnczox",
-                    "name": "hello",
-                  },
-                },
-              ],
-            },
-            "timestamp": "2018-06-05T01:28:35.802157",
-            "title": "Hello World",
-            "uuid": "1",
-            "views": 16,
-          },
-        },
+        "loggedIn": false,
+        "render": [Function],
       },
       "ref": null,
       "rendered": null,
@@ -497,7 +304,7 @@ ShallowWrapper {
           <p
             className="post-meta"
           >
-            20 days ago
+            23 days ago
           </p>
         </div>,
       ],
@@ -560,7 +367,7 @@ ShallowWrapper {
             <p
               className="post-meta"
             >
-              20 days ago
+              23 days ago
             </p>,
           ],
           "className": "author-details col s9",
@@ -630,11 +437,11 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "20 days ago",
+              "children": "23 days ago",
               "className": "post-meta",
             },
             "ref": null,
-            "rendered": "20 days ago",
+            "rendered": "23 days ago",
             "type": "p",
           },
         ],
@@ -682,7 +489,7 @@ ShallowWrapper {
             <p
               className="post-meta"
             >
-              20 days ago
+              23 days ago
             </p>
           </div>,
         ],
@@ -745,7 +552,7 @@ ShallowWrapper {
               <p
                 className="post-meta"
               >
-                20 days ago
+                23 days ago
               </p>,
             ],
             "className": "author-details col s9",
@@ -815,11 +622,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "20 days ago",
+                "children": "23 days ago",
                 "className": "post-meta",
               },
               "ref": null,
-              "rendered": "20 days ago",
+              "rendered": "23 days ago",
               "type": "p",
             },
           ],
@@ -844,6 +651,7 @@ ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <PostBody
+    onClap={[MockFunction]}
     post={
       Object {
         "node": Object {
@@ -1247,6 +1055,7 @@ ShallowWrapper {
           >
             <FAB
               claps_count={0}
+              onClap={[MockFunction]}
             />
           </div>
         </div>
@@ -1545,6 +1354,7 @@ ShallowWrapper {
           >
             <FAB
               claps_count={0}
+              onClap={[MockFunction]}
             />
           </div>
         </div>,
@@ -1840,6 +1650,7 @@ ShallowWrapper {
             >
               <FAB
                 claps_count={0}
+                onClap={[MockFunction]}
               />
             </div>,
           ],
@@ -2434,6 +2245,7 @@ ShallowWrapper {
             "props": Object {
               "children": <FAB
                 claps_count={0}
+                onClap={[MockFunction]}
               />,
               "className": "col m1",
             },
@@ -2444,6 +2256,7 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "claps_count": 0,
+                "onClap": [MockFunction],
               },
               "ref": null,
               "rendered": null,
@@ -2753,6 +2566,7 @@ ShallowWrapper {
             >
               <FAB
                 claps_count={0}
+                onClap={[MockFunction]}
               />
             </div>
           </div>
@@ -3051,6 +2865,7 @@ ShallowWrapper {
             >
               <FAB
                 claps_count={0}
+                onClap={[MockFunction]}
               />
             </div>
           </div>,
@@ -3346,6 +3161,7 @@ ShallowWrapper {
               >
                 <FAB
                   claps_count={0}
+                  onClap={[MockFunction]}
                 />
               </div>,
             ],
@@ -3940,6 +3756,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <FAB
                   claps_count={0}
+                  onClap={[MockFunction]}
                 />,
                 "className": "col m1",
               },
@@ -3950,6 +3767,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "claps_count": 0,
+                  "onClap": [MockFunction],
                 },
                 "ref": null,
                 "rendered": null,
@@ -4451,7 +4269,9 @@ exports[`body tests renders view 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <Wrapper
+  Symbol(enzyme.__unrendered__): <PageBody
+    clap={[MockFunction]}
+    loggedIn={false}
     post={
       Object {
         "node": Object {
@@ -4553,6 +4373,7 @@ ShallowWrapper {
         },
       }
     }
+    user_data={Object {}}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -4564,473 +4385,223 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "host",
+    "nodeType": "function",
     "props": Object {
-      "children": Array [
-        <Connect(TopBar) />,
-        <PageBody
-          post={
-            Object {
-              "node": Object {
-                "author": Object {
-                  "description": null,
-                  "fullName": "Marvin Kome",
-                  "gravatarUrl": null,
-                  "id": "VXNlcjoy",
-                },
-                "body": "<div><p>Hey there im new</p>
+      "onClap": [Function],
+      "post": Object {
+        "node": Object {
+          "author": Object {
+            "description": null,
+            "fullName": "Marvin Kome",
+            "gravatarUrl": null,
+            "id": "VXNlcjoy",
+          },
+          "body": "<div><p>Hey there im new</p>
 </div>",
-                "claps": Object {
-                  "totalCount": 0,
+          "claps": Object {
+            "totalCount": 0,
+          },
+          "comments": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "author": Object {
+                    "fullName": "Fake User",
+                    "gravatarUrl": null,
+                    "id": "VXNlcjox",
+                  },
+                  "body": "Hello World",
+                  "id": "Q29tbWVudDox",
+                  "replies": Object {
+                    "edges": Array [],
+                  },
+                  "timestamp": "2018-06-05T01:30:59.729280",
+                  "uuid": "1",
                 },
-                "comments": Object {
-                  "edges": Array [
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello World",
-                        "id": "Q29tbWVudDox",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T01:30:59.729280",
-                        "uuid": "1",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Notify Marvin Correctly",
-                        "id": "Q29tbWVudDoy",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T02:09:39.718090",
-                        "uuid": "2",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello Marvin",
-                        "id": "Q29tbWVudDoz",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T11:58:49.746609",
-                        "uuid": "3",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello Marvin",
-                        "id": "Q29tbWVudDo0",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-09T01:46:10.115571",
-                        "uuid": "4",
-                      },
-                    },
-                  ],
-                },
-                "id": "UG9zdDox",
-                "postPicUrl": "",
-                "tags": Object {
-                  "edges": Array [
-                    Object {
-                      "node": Object {
-                        "id": "VGFnczox",
-                        "name": "hello",
-                      },
-                    },
-                  ],
-                },
-                "timestamp": "2018-06-05T01:28:35.802157",
-                "title": "Hello World",
-                "uuid": "1",
-                "views": 16,
               },
-            }
-          }
-        />,
-      ],
+              Object {
+                "node": Object {
+                  "author": Object {
+                    "fullName": "Fake User",
+                    "gravatarUrl": null,
+                    "id": "VXNlcjox",
+                  },
+                  "body": "Notify Marvin Correctly",
+                  "id": "Q29tbWVudDoy",
+                  "replies": Object {
+                    "edges": Array [],
+                  },
+                  "timestamp": "2018-06-05T02:09:39.718090",
+                  "uuid": "2",
+                },
+              },
+              Object {
+                "node": Object {
+                  "author": Object {
+                    "fullName": "Fake User",
+                    "gravatarUrl": null,
+                    "id": "VXNlcjox",
+                  },
+                  "body": "Hello Marvin",
+                  "id": "Q29tbWVudDoz",
+                  "replies": Object {
+                    "edges": Array [],
+                  },
+                  "timestamp": "2018-06-05T11:58:49.746609",
+                  "uuid": "3",
+                },
+              },
+              Object {
+                "node": Object {
+                  "author": Object {
+                    "fullName": "Fake User",
+                    "gravatarUrl": null,
+                    "id": "VXNlcjox",
+                  },
+                  "body": "Hello Marvin",
+                  "id": "Q29tbWVudDo0",
+                  "replies": Object {
+                    "edges": Array [],
+                  },
+                  "timestamp": "2018-06-09T01:46:10.115571",
+                  "uuid": "4",
+                },
+              },
+            ],
+          },
+          "id": "UG9zdDox",
+          "postPicUrl": "",
+          "tags": Object {
+            "edges": Array [
+              Object {
+                "node": Object {
+                  "id": "VGFnczox",
+                  "name": "hello",
+                },
+              },
+            ],
+          },
+          "timestamp": "2018-06-05T01:28:35.802157",
+          "title": "Hello World",
+          "uuid": "1",
+          "views": 16,
+        },
+      },
     },
     "ref": null,
-    "rendered": Array [
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {},
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-      Object {
-        "instance": null,
-        "key": undefined,
-        "nodeType": "class",
-        "props": Object {
-          "post": Object {
-            "node": Object {
-              "author": Object {
-                "description": null,
-                "fullName": "Marvin Kome",
-                "gravatarUrl": null,
-                "id": "VXNlcjoy",
-              },
-              "body": "<div><p>Hey there im new</p>
-</div>",
-              "claps": Object {
-                "totalCount": 0,
-              },
-              "comments": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "author": Object {
-                        "fullName": "Fake User",
-                        "gravatarUrl": null,
-                        "id": "VXNlcjox",
-                      },
-                      "body": "Hello World",
-                      "id": "Q29tbWVudDox",
-                      "replies": Object {
-                        "edges": Array [],
-                      },
-                      "timestamp": "2018-06-05T01:30:59.729280",
-                      "uuid": "1",
-                    },
-                  },
-                  Object {
-                    "node": Object {
-                      "author": Object {
-                        "fullName": "Fake User",
-                        "gravatarUrl": null,
-                        "id": "VXNlcjox",
-                      },
-                      "body": "Notify Marvin Correctly",
-                      "id": "Q29tbWVudDoy",
-                      "replies": Object {
-                        "edges": Array [],
-                      },
-                      "timestamp": "2018-06-05T02:09:39.718090",
-                      "uuid": "2",
-                    },
-                  },
-                  Object {
-                    "node": Object {
-                      "author": Object {
-                        "fullName": "Fake User",
-                        "gravatarUrl": null,
-                        "id": "VXNlcjox",
-                      },
-                      "body": "Hello Marvin",
-                      "id": "Q29tbWVudDoz",
-                      "replies": Object {
-                        "edges": Array [],
-                      },
-                      "timestamp": "2018-06-05T11:58:49.746609",
-                      "uuid": "3",
-                    },
-                  },
-                  Object {
-                    "node": Object {
-                      "author": Object {
-                        "fullName": "Fake User",
-                        "gravatarUrl": null,
-                        "id": "VXNlcjox",
-                      },
-                      "body": "Hello Marvin",
-                      "id": "Q29tbWVudDo0",
-                      "replies": Object {
-                        "edges": Array [],
-                      },
-                      "timestamp": "2018-06-09T01:46:10.115571",
-                      "uuid": "4",
-                    },
-                  },
-                ],
-              },
-              "id": "UG9zdDox",
-              "postPicUrl": "",
-              "tags": Object {
-                "edges": Array [
-                  Object {
-                    "node": Object {
-                      "id": "VGFnczox",
-                      "name": "hello",
-                    },
-                  },
-                ],
-              },
-              "timestamp": "2018-06-05T01:28:35.802157",
-              "title": "Hello World",
-              "uuid": "1",
-              "views": 16,
-            },
-          },
-        },
-        "ref": null,
-        "rendered": null,
-        "type": [Function],
-      },
-    ],
-    "type": "div",
+    "rendered": null,
+    "type": [Function],
   },
   Symbol(enzyme.__nodes__): Array [
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "host",
+      "nodeType": "function",
       "props": Object {
-        "children": Array [
-          <Connect(TopBar) />,
-          <PageBody
-            post={
-              Object {
-                "node": Object {
-                  "author": Object {
-                    "description": null,
-                    "fullName": "Marvin Kome",
-                    "gravatarUrl": null,
-                    "id": "VXNlcjoy",
-                  },
-                  "body": "<div><p>Hey there im new</p>
+        "onClap": [Function],
+        "post": Object {
+          "node": Object {
+            "author": Object {
+              "description": null,
+              "fullName": "Marvin Kome",
+              "gravatarUrl": null,
+              "id": "VXNlcjoy",
+            },
+            "body": "<div><p>Hey there im new</p>
 </div>",
-                  "claps": Object {
-                    "totalCount": 0,
+            "claps": Object {
+              "totalCount": 0,
+            },
+            "comments": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "author": Object {
+                      "fullName": "Fake User",
+                      "gravatarUrl": null,
+                      "id": "VXNlcjox",
+                    },
+                    "body": "Hello World",
+                    "id": "Q29tbWVudDox",
+                    "replies": Object {
+                      "edges": Array [],
+                    },
+                    "timestamp": "2018-06-05T01:30:59.729280",
+                    "uuid": "1",
                   },
-                  "comments": Object {
-                    "edges": Array [
-                      Object {
-                        "node": Object {
-                          "author": Object {
-                            "fullName": "Fake User",
-                            "gravatarUrl": null,
-                            "id": "VXNlcjox",
-                          },
-                          "body": "Hello World",
-                          "id": "Q29tbWVudDox",
-                          "replies": Object {
-                            "edges": Array [],
-                          },
-                          "timestamp": "2018-06-05T01:30:59.729280",
-                          "uuid": "1",
-                        },
-                      },
-                      Object {
-                        "node": Object {
-                          "author": Object {
-                            "fullName": "Fake User",
-                            "gravatarUrl": null,
-                            "id": "VXNlcjox",
-                          },
-                          "body": "Notify Marvin Correctly",
-                          "id": "Q29tbWVudDoy",
-                          "replies": Object {
-                            "edges": Array [],
-                          },
-                          "timestamp": "2018-06-05T02:09:39.718090",
-                          "uuid": "2",
-                        },
-                      },
-                      Object {
-                        "node": Object {
-                          "author": Object {
-                            "fullName": "Fake User",
-                            "gravatarUrl": null,
-                            "id": "VXNlcjox",
-                          },
-                          "body": "Hello Marvin",
-                          "id": "Q29tbWVudDoz",
-                          "replies": Object {
-                            "edges": Array [],
-                          },
-                          "timestamp": "2018-06-05T11:58:49.746609",
-                          "uuid": "3",
-                        },
-                      },
-                      Object {
-                        "node": Object {
-                          "author": Object {
-                            "fullName": "Fake User",
-                            "gravatarUrl": null,
-                            "id": "VXNlcjox",
-                          },
-                          "body": "Hello Marvin",
-                          "id": "Q29tbWVudDo0",
-                          "replies": Object {
-                            "edges": Array [],
-                          },
-                          "timestamp": "2018-06-09T01:46:10.115571",
-                          "uuid": "4",
-                        },
-                      },
-                    ],
-                  },
-                  "id": "UG9zdDox",
-                  "postPicUrl": "",
-                  "tags": Object {
-                    "edges": Array [
-                      Object {
-                        "node": Object {
-                          "id": "VGFnczox",
-                          "name": "hello",
-                        },
-                      },
-                    ],
-                  },
-                  "timestamp": "2018-06-05T01:28:35.802157",
-                  "title": "Hello World",
-                  "uuid": "1",
-                  "views": 16,
                 },
-              }
-            }
-          />,
-        ],
+                Object {
+                  "node": Object {
+                    "author": Object {
+                      "fullName": "Fake User",
+                      "gravatarUrl": null,
+                      "id": "VXNlcjox",
+                    },
+                    "body": "Notify Marvin Correctly",
+                    "id": "Q29tbWVudDoy",
+                    "replies": Object {
+                      "edges": Array [],
+                    },
+                    "timestamp": "2018-06-05T02:09:39.718090",
+                    "uuid": "2",
+                  },
+                },
+                Object {
+                  "node": Object {
+                    "author": Object {
+                      "fullName": "Fake User",
+                      "gravatarUrl": null,
+                      "id": "VXNlcjox",
+                    },
+                    "body": "Hello Marvin",
+                    "id": "Q29tbWVudDoz",
+                    "replies": Object {
+                      "edges": Array [],
+                    },
+                    "timestamp": "2018-06-05T11:58:49.746609",
+                    "uuid": "3",
+                  },
+                },
+                Object {
+                  "node": Object {
+                    "author": Object {
+                      "fullName": "Fake User",
+                      "gravatarUrl": null,
+                      "id": "VXNlcjox",
+                    },
+                    "body": "Hello Marvin",
+                    "id": "Q29tbWVudDo0",
+                    "replies": Object {
+                      "edges": Array [],
+                    },
+                    "timestamp": "2018-06-09T01:46:10.115571",
+                    "uuid": "4",
+                  },
+                },
+              ],
+            },
+            "id": "UG9zdDox",
+            "postPicUrl": "",
+            "tags": Object {
+              "edges": Array [
+                Object {
+                  "node": Object {
+                    "id": "VGFnczox",
+                    "name": "hello",
+                  },
+                },
+              ],
+            },
+            "timestamp": "2018-06-05T01:28:35.802157",
+            "title": "Hello World",
+            "uuid": "1",
+            "views": 16,
+          },
+        },
       },
       "ref": null,
-      "rendered": Array [
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {},
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-        Object {
-          "instance": null,
-          "key": undefined,
-          "nodeType": "class",
-          "props": Object {
-            "post": Object {
-              "node": Object {
-                "author": Object {
-                  "description": null,
-                  "fullName": "Marvin Kome",
-                  "gravatarUrl": null,
-                  "id": "VXNlcjoy",
-                },
-                "body": "<div><p>Hey there im new</p>
-</div>",
-                "claps": Object {
-                  "totalCount": 0,
-                },
-                "comments": Object {
-                  "edges": Array [
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello World",
-                        "id": "Q29tbWVudDox",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T01:30:59.729280",
-                        "uuid": "1",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Notify Marvin Correctly",
-                        "id": "Q29tbWVudDoy",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T02:09:39.718090",
-                        "uuid": "2",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello Marvin",
-                        "id": "Q29tbWVudDoz",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-05T11:58:49.746609",
-                        "uuid": "3",
-                      },
-                    },
-                    Object {
-                      "node": Object {
-                        "author": Object {
-                          "fullName": "Fake User",
-                          "gravatarUrl": null,
-                          "id": "VXNlcjox",
-                        },
-                        "body": "Hello Marvin",
-                        "id": "Q29tbWVudDo0",
-                        "replies": Object {
-                          "edges": Array [],
-                        },
-                        "timestamp": "2018-06-09T01:46:10.115571",
-                        "uuid": "4",
-                      },
-                    },
-                  ],
-                },
-                "id": "UG9zdDox",
-                "postPicUrl": "",
-                "tags": Object {
-                  "edges": Array [
-                    Object {
-                      "node": Object {
-                        "id": "VGFnczox",
-                        "name": "hello",
-                      },
-                    },
-                  ],
-                },
-                "timestamp": "2018-06-05T01:28:35.802157",
-                "title": "Hello World",
-                "uuid": "1",
-                "views": 16,
-              },
-            },
-          },
-          "ref": null,
-          "rendered": null,
-          "type": [Function],
-        },
-      ],
-      "type": "div",
+      "rendered": null,
+      "type": [Function],
     },
   ],
   Symbol(enzyme.__options__): Object {

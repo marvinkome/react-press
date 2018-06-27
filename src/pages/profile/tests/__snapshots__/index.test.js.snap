@@ -18,7 +18,7 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "user": Object {},
     },
@@ -30,7 +30,7 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "user": Object {},
       },
@@ -67,7 +67,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <Connect(TopBar) />,
+        <Connect(TopBar)
+          isLoggedIn={false}
+        />,
         <PageView />,
       ],
     },
@@ -77,7 +79,9 @@ ShallowWrapper {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
-        "props": Object {},
+        "props": Object {
+          "isLoggedIn": false,
+        },
         "ref": null,
         "rendered": null,
         "type": [Function],
@@ -103,7 +107,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <Connect(TopBar) />,
+          <Connect(TopBar)
+            isLoggedIn={false}
+          />,
           <PageView />,
         ],
       },
@@ -113,7 +119,9 @@ ShallowWrapper {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
-          "props": Object {},
+          "props": Object {
+            "isLoggedIn": false,
+          },
           "ref": null,
           "rendered": null,
           "type": [Function],

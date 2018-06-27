@@ -6,7 +6,7 @@ import AuthorInfo from './author-info';
 import Comment from './comment';
 import FAB from './fab';
 
-export const PostBody = ({ post }) => {
+export const PostBody = ({ post, onClap }) => {
     return (
         <div className="post-body section container">
             <div className="row">
@@ -19,7 +19,10 @@ export const PostBody = ({ post }) => {
                         <Comment data={post.node.comments} />
                     </div>
                     <div className="col m1">
-                        <FAB claps_count={post.node.claps.totalCount} />
+                        <FAB 
+                            claps_count={post.node.claps.totalCount} 
+                            onClap={onClap} 
+                        />
                     </div>
                 </div>
             </div>
@@ -28,7 +31,8 @@ export const PostBody = ({ post }) => {
 };
 
 PostBody.propTypes = {
-    post: types.object
+    post: types.object,
+    onClap: types.func.isRequired
 };
 
 export default PostBody;

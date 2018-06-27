@@ -11,18 +11,13 @@ export default class UserMenu extends React.Component {
         this.userDropDownIns;
     }
     componentDidMount() {
-        this.register_dropdown(
-            this.userDropDownTrigger.current,
-            'DIV#navbar-user-profile',
-            'userDropDownIns'
-        );
-    }
-    componentDidUpdate() {
-        this.register_dropdown(
-            this.userDropDownTrigger.current,
-            'DIV#navbar-user-profile',
-            'userDropDownIns'
-        );
+        if (this.userDropDownTrigger.current !== null) {
+            this.register_dropdown(
+                this.userDropDownTrigger.current,
+                'DIV#navbar-user-profile',
+                'userDropDownIns'
+            );
+        }
     }
     componentWillUnmount() {
         this.deactivate_dropdown('userDropDownIns');

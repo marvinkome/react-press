@@ -1,6 +1,4 @@
 import fetch from 'isomorphic-fetch';
-import { getFromStore } from '../lib/storage';
-import { tokenKey } from '../keys/storage';
 import { url } from '../keys/api';
 
 const getAccessToken = (token) => {
@@ -13,21 +11,19 @@ const getAccessToken = (token) => {
     });
 };
 
-export default async (query) => {
-
-    const headers = (token) => ({
+export default async (query, r_token) => {
+    const headers = ({ access_token }) => ({
         method: 'POST',
         body: JSON.stringify({ query }),
         headers: {
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token
+            Authorization: 'Bearer ' + access_token
         }
     });
 
     try {
-        const refreshToken = getFromStore(tokenKey);
-        const accessToken = await ( await getAccessToken(refreshToken) ).json();
-        const data = await ( await fetch(`${url}/graphql`, headers(accessToken) ) ).json();
+        const accessToken = await (await getAccessToken(r_token)).json();
+        const data = await (await fetch(`${url}/graphql`, headers(accessToken))).json();
 
         return data;
     } catch (e) {

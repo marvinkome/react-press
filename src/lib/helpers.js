@@ -4,6 +4,9 @@
 
 import moment from 'moment';
 import sanitize from 'sanitize-html';
+import jsHttpCookie from 'cookie';
+import { getFromStore } from './storage';
+import { loggedInKey } from '../keys/storage';
 
 export const truncate = (word, length) => {
     const new_word =
@@ -119,11 +122,25 @@ export const sort_posts = (posts) => {
     return posts;
 };
 
-export const isLoggedIn = () => {
-    const sessionLogin = JSON.parse(localStorage.getItem('med-blog-logged-in'));
-    const localLogin = sessionLogin != undefined && sessionLogin == true;
+export const isLoggedIn = (req) => {
+    if (req && req.headers) {
+        // checks if it's server
+        const httpCookies = req.headers.cookie;
+        if (typeof httpCookies === 'string') {
+            const cookies = jsHttpCookie.parse(httpCookies);
+            return cookies[loggedInKey] === 'true';
+        }
+    } else {
+        if (typeof window !== 'undefined') {
+            if (window.localStorage) {
+                const sessionLogin = getFromStore(loggedInKey);
 
-    return localLogin;
+                return sessionLogin !== undefined && sessionLogin === true;
+            }
+        }
+    }
+
+    return false;
 };
 
 export const createToast = (text) => {
@@ -147,7 +164,10 @@ export const sanitize_html = (html) => {
 };
 
 export const get_page_link = (title, id) => {
-    return `${title.split(' ').join('-').toLowerCase()}-${id}`;
+    return `${title
+        .split(' ')
+        .join('-')
+        .toLowerCase()}-${id}`;
 };
 
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];

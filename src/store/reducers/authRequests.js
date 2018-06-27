@@ -1,14 +1,21 @@
 import { updateObject } from './utils';
 import { removeFromStore, saveToStore } from '../../lib/storage';
+import { tokenKey, loggedInKey } from '../../keys/storage';
+import jsCookie from 'js-cookie';
 
 // auth requests
 export const loginUser = (state, res) => {
     const isLoggingIn = false;
 
     if (res.login != undefined && res.login == true) {
-        saveToStore(true, 'med-blog-logged-in');
+        // set token in localstorage
+        saveToStore(true, loggedInKey);
         const refresh_token = res.refresh_token;
-        saveToStore(refresh_token, 'med-blog-ref');
+        saveToStore(refresh_token, tokenKey);
+
+        // set token in cookie for server side
+        jsCookie.set(tokenKey, res.refresh_token);
+        jsCookie.set(loggedInKey, true);
     }
 
     return updateObject(state, {
@@ -18,8 +25,8 @@ export const loginUser = (state, res) => {
 
 export const logoutUser = (state, logout) => {
     if (logout == true) {
-        saveToStore(false, 'med-blog-logged-in');
-        removeFromStore('med-blog-ref');
+        saveToStore(false, loggedInKey);
+        removeFromStore(tokenKey);
     }
 
     return updateObject(state, {

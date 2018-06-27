@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from '../index';
+import { Index } from '../index';
 import View from '../view';
 import PostCard from '../view/post-card';
 import { shallow } from 'enzyme';
@@ -7,7 +7,8 @@ import { fetch_data_mock } from '../../../../mocks/apiMocks';
 
 describe('home tests', () => {
     it('renders', () => {
-        const wrapper = shallow(<Index />);
+        const posts = fetch_data_mock.data.allPost.edges;
+        const wrapper = shallow(<Index posts={posts} loggedIn={false}/>);
         expect(wrapper).toMatchSnapshot();
     });
 
