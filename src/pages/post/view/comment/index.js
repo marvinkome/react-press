@@ -68,6 +68,7 @@ class MainComment extends Component {
                         replying={this.state['replying' + obj.node.id]}
                         reply_value={this.state['comment_reply_' + obj.node.id]}
                         handleReplyChange={this.handleChange}
+                        handleSubmitReply={this.onCommentReply}
                     />
                 ))}
             </div>

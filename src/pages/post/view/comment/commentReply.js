@@ -10,14 +10,14 @@ export const CommentReply = ({ reply }) => {
     return (
         <li className="collection-item">
             <div className="comment-author row">
-                <div className="comment-author-image col s4 m1">
+                <div className="comment-author-image col s4 m3 l1">
                     <img
                         src={showImage ? reply.node.author.gravatarUrl : '/static/default-pic.png'}
                         alt={reply.node.author.fullName}
                         className="responsive-img circle"
                     />
                 </div>
-                <div className="comment-author-info col s8 m11">
+                <div className="comment-author-info col s8 m9 l11">
                     <Link href={profileLink}>
                         <a title="View Profile">
                             <p className="title">{reply.node.author.fullName}</p>

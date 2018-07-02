@@ -177,6 +177,10 @@
             .comment-author .comment-author-image {
                 max-width: 8%;
 
+                @media screen and (max-width: 992px) and (min-width: 601px) {
+                    max-width: 20%;
+                }
+
                 @media screen and (max-width: 600px) {
                     max-width: 22%;
                 }
@@ -209,11 +213,6 @@
             }
 
             .reply-form {
-                display: none;
-
-                &.show {
-                    display: block !important;
-                }
                 @media screen and (min-width: 993px) {
                     width: 60%;
                 }

@@ -119,7 +119,7 @@ export const update_user_info = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        await userRequest( mutations.update_info(data));
+        await userRequest(mutations.update_info(data));
         return await dispatch(creators.requestUpdateUserFinished());
     };
 };
@@ -129,8 +129,8 @@ export const addComment = (data) => {
         dispatch(creators.sendComment());
 
         const r_token = getFromStore(tokenKey);
-        const res = await userRequest( mutations.create_comment(data), r_token );
-        return await dispatch( creators.requestCommentFinished(res, data) );
+        const res = await userRequest(mutations.create_comment(data), r_token);
+        return await dispatch(creators.requestCommentFinished(res, data));
     };
 };
 
@@ -138,25 +138,25 @@ export const replyComment = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendComment());
 
-        const res = await userRequest( mutations.create_comment_reply(data) );
-        return await dispatch( creators.requestCommentReplyFinished(res, data) );
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest(mutations.create_comment_reply(data), r_token);
+        return await dispatch(creators.requestCommentReplyFinished(res, data));
     };
 };
 
 export const clap = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendClap());
-        
+
         const r_token = getFromStore(tokenKey);
-        const res = await userRequest( mutations.clap(data), r_token );
-        return await dispatch( creators.requestClapFinished(res, data) );
+        const res = await userRequest(mutations.clap(data), r_token);
+        return await dispatch(creators.requestClapFinished(res, data));
     };
 };
 
 export const viewPage = (pageId) => {
     return async (dispatch) => {
-
-        const res = await queryRequest( mutations.viewPage(pageId) );
-        return await dispatch( creators.requestViewPageFinished(res, pageId) );
+        const res = await queryRequest(mutations.viewPage(pageId));
+        return await dispatch(creators.requestViewPageFinished(res, pageId));
     };
 };
