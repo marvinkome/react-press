@@ -4,12 +4,14 @@ import App, { Container } from 'next/app';
 import Error from '../components/error';
 
 import { isLoggedIn, createToast } from '../lib/helpers';
-import { getCookie, removeCookie } from '../lib/storage';
+import { getCookie, removeCookie, getFromStore } from '../lib/storage';
+import Socket from '../lib/socketio';
 import { tokenKey, loggedInKey } from '../keys/storage';
 
 import { Provider } from 'react-redux';
 import createStore from '../store';
 import withRedux from 'next-redux-wrapper';
+import { setupNotification } from '../store/actions-creators';
 import { fetch_all_data, fetch_user_data } from '../store/actions';
 
 import 'materialize-css/dist/css/materialize.min.css';
@@ -70,6 +72,13 @@ class InitApp extends App {
         };
     }
 
+    componentDidMount() {
+        if (isLoggedIn()) {
+            const token = getFromStore('med-blog-ref');
+            this.props.store.dispatch(setupNotification(token))
+        }
+    }
+
     render() {
         const { Component, pageProps, store, error } = this.props;
         return (
@@ -80,8 +89,8 @@ class InitApp extends App {
                             render={
                                 <div className="valign-wrapper center">
                                     <h5>
-                                        It{'\''}s not you it{'\''}s us. Please reload this page. 
-                                        If it persists try again later. We{'\''}re really sorry.
+                                        It{'\''}s not you it{'\''}s us. Please reload this page. If it
+                                        persists try again later. We{'\''}re really sorry.
                                     </h5>
                                 </div>
                             }

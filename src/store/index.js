@@ -3,13 +3,15 @@
  */
 
 import { createStore, applyMiddleware } from 'redux';
-// import { createSocketMiddleWare } from './middleWare';
+import { createSocketMiddleWare } from './middleWare';
 import thunkMiddleware from 'redux-thunk';
 import rootReducer from './reducers';
-// import Socket from '../lib/socketio';
+import Socket from '../lib/socketio';
 
 // Initialize socket
-// let socket = Socket();
+let socket = Socket();
+// Create middleware
+const socketMiddleware = createSocketMiddleWare(socket);
 
 // const logger = (store) => (next) => (action) => {
 //     console.log('dispatching', action); // eslint-disable-line
@@ -18,6 +20,5 @@ import rootReducer from './reducers';
 //     return result;
 // };
 
-// Create middleware
-// const socketMiddleware = createSocketMiddleWare(socket);
-export default (state) => createStore(rootReducer, state, applyMiddleware(thunkMiddleware));
+export default (state) =>
+    createStore(rootReducer, state, applyMiddleware(thunkMiddleware, socketMiddleware));

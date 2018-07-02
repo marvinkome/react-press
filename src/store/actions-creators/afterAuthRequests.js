@@ -1,7 +1,8 @@
 import * as types from '../actionTypes';
 
-export const recieveUserData = (payload) => ({
+export const recieveUserData = (payload, token) => ({
     type: types.RECIEVE_USER_DATA,
+    token,
     payload
 });
 

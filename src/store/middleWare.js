@@ -1,6 +1,5 @@
 import { onNotification } from './actions-creators';
-import { LOGOUT_USER, RECIEVE_USER_DATA, READ_ALL_NOTIFICATIONS } from './actionTypes';
-import { getFromStore } from '../lib/storage';
+import { LOGOUT_USER, READ_ALL_NOTIFICATIONS, SETUP_NOTIFICATION } from './actionTypes';
 
 export const createSocketMiddleWare = (socket) => (state) => {
     return (next) => (action) => {
@@ -12,14 +11,14 @@ export const createSocketMiddleWare = (socket) => (state) => {
 
         // Check if its getting user profile then connect socket.
         // This partly guarantees that token is defined
-        if (action.type == RECIEVE_USER_DATA) {
+        if (action.type == SETUP_NOTIFICATION) {
             // Get token from store. User should already be loggedIn
-            const token = getFromStore('med-blog-ref');
+            const token = action.token;
 
             // Connect the socket
             socket.connect(token);
 
-            // Dispatch notification when it recieves and action from the server
+            // Dispatch notification when it recieves an action from the server
             socket.recieve_notification((message) => {
                 state.dispatch(onNotification(message));
             });

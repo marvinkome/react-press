@@ -1,10 +1,11 @@
 import openSocket from 'socket.io-client';
+import { url } from '../keys/api';
 
 const Socket = () => {
     let socket;
     return {
         connect: (token) => {
-            socket = openSocket('http://localhost:5000', {
+            socket = openSocket(url, {
                 transportOptions: {
                     polling: {
                         extraHeaders: {

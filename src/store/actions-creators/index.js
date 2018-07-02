@@ -31,3 +31,4 @@ export const logoutUser = AfterAuthRequests.logoutUser;
 
 export const onNotification = Sockets.onNotification;
 export const readAllNotifications = Sockets.readAllNotifications;
+export const setupNotification = Sockets.setupNotification;

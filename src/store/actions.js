@@ -37,7 +37,7 @@ export const fetch_user_data = (refresh_token) => {
         dispatch(creators.sendRequest());
 
         const data = await userRequest(query.fetch_user_data_query, refresh_token);
-        return await dispatch(creators.recieveUserData(data));
+        return await dispatch(creators.recieveUserData(data, refresh_token));
     };
 };
 
