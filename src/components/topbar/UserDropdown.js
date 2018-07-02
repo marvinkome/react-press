@@ -7,12 +7,12 @@ const UserDropDownMenu = ({ handleLogout }) => {
         <div id="navbar-user-profile" className="dropdown-container">
             <ul className="dropdown-content" id="dropdown-menu">
                 <li>
-                    <Link href="/admin/new-post">
+                    <Link href="/me/new-post">
                         <a>New Post</a>
                     </Link>
                 </li>
                 <li>
-                    <Link href="/admin/posts">
+                    <Link href="/me/posts">
                         <a>All Posts</a>
                     </Link>
                 </li>
@@ -20,7 +20,7 @@ const UserDropDownMenu = ({ handleLogout }) => {
                     <div className="divider" />
                 </li>
                 <li>
-                    <Link href="/admin/edit-profile">
+                    <Link href="/me/edit-profile">
                         <a>Edit Profile</a>
                     </Link>
                 </li>

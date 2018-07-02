@@ -1,0 +1,98 @@
+@import '../../../style/variables';
+
+.admin-posts {
+    padding: 5rem 10rem;
+
+    @media screen and (max-width: 992px) and (min-width: 601px) {
+        padding: 2rem 3rem;
+    }
+
+    @media screen and (max-width: 600px) {
+        padding: 1rem;
+    }
+
+    .posts-info {
+        padding-left: 2.8%;
+        padding-right: 4%;
+        display: flex;
+
+        h1 {
+            font-size: 2.7em;
+            font-weight: 700;
+            flex: 1;
+            color: @black-scheme-1;
+            margin-top: 1rem;
+        }
+
+        a {
+            border: 1px solid @color-scheme-2;
+            margin-top: 20px;
+            border-radius: 3px;
+            text-transform: capitalize;
+            color: @color-scheme-1;
+
+            &:hover {
+                background-color: transparent;
+                border-color: @color-scheme-2;
+                color: @color-scheme-2;
+            }
+        }
+    }
+
+    .posts-list {
+        padding: 3% 3.2%;
+
+        .post:first-child {
+            border-top: 1px solid hsl(0, 0%, 90%);
+        }
+
+        .post {
+            padding: 10px 0px;
+            border-bottom: 1px solid hsl(0, 0%, 90%);
+
+            h5 {
+                font-weight: 700;
+                letter-spacing: -0.5px;
+                color: @black-scheme-2;
+                margin-bottom: 2px;
+            }
+
+            .body {
+                color: @black-scheme-3;
+                font-size: 17px;
+
+                p {
+                    margin: 0;
+                }
+            }
+
+            .meta {
+                font-size: 14px;
+                color: hsl(0, 0%, 40%);
+                margin-top: 7px;
+
+                .divider-dot {
+                    font-size: 16px;
+                    padding: 0 3px;
+
+                    &::after {
+                        content: '\00B7';
+                    }
+                }
+
+                .edit {
+                    color: @color-scheme-2;
+                }
+
+                .delete {
+                    color: hsl(1, 77%, 47%);
+                    cursor: pointer;
+                }
+            }
+        }
+
+        @media screen and (max-width: 600px) {
+            border-left: none;
+        }
+    }
+}

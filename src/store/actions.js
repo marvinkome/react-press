@@ -101,7 +101,8 @@ export const delete_post = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        await userRequest(mutations.delete_post(data));
+        const r_token = getFromStore(tokenKey);
+        await userRequest(mutations.delete_post(data), r_token);
         return await dispatch(creators.requestDeletePostFinished(data));
     };
 };
