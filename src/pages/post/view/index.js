@@ -8,40 +8,54 @@ import { createToast } from '../../../lib/helpers';
 export class PageBody extends React.Component {
     handleClap = async () => {
         if (this.props.loggedIn === true) {
-            const { data } = this.props.user_data;
-            if (data !== undefined && data !== null) {
-                const post_id = this.props.post.node.uuid;
-                const user_id = data.user.uuid;
-                const clap_data = {
-                    post_id,
-                    user_id
-                };
+            const post_id = this.props.post.node.uuid;
+            const clap_data = {
+                post_id
+            };
 
-                try {
-                    await this.props.clap(clap_data);
-                } catch (e) {
-                    createToast('There was an error, please try again');
-                }
+            try {
+                await this.props.clap(clap_data);
+            } catch (e) {
+                createToast('There was an error, please try again');
             }
         } else {
             createToast('Sign up or Login to appreciate this post');
         }
     };
+    handleComment = async (body) => {
+        if (this.props.loggedIn === true) {
+            const post_id = this.props.post.node.uuid;
+            const comment_data = {
+                body,
+                post_id
+            };
+
+            try {
+                await this.props.comment(comment_data);
+            } catch (e) {
+                createToast('There was an error, please try again');
+            }
+        } else {
+            createToast('Sign up or Login to comment on this post');
+        }
+    };
     render() {
-        return <PostBody post={this.props.post} onClap={this.handleClap} />;
+        return (
+            <PostBody
+                post={this.props.post}
+                onClap={this.handleClap}
+                onComment={this.handleComment}
+            />
+        );
     }
 }
 
 PageBody.propTypes = {
     post: types.object.isRequired,
     loggedIn: types.bool.isRequired,
-    user_data: types.object.isRequired,
-    clap: types.func.isRequired
+    clap: types.func.isRequired,
+    comment: types.func.isRequired
 };
-
-const mapStateToProps = (state) => ({
-    user_data: state.user_data
-});
 
 const mapDispatchToProps = (dispatch) => ({
     clap: (data) => dispatch(clap(data)),
@@ -50,4 +64,4 @@ const mapDispatchToProps = (dispatch) => ({
     page_viewed: (data) => dispatch(viewPage(data))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PageBody);
+export default connect(null, mapDispatchToProps)(PageBody);

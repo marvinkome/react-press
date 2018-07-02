@@ -6,7 +6,7 @@ import AuthorInfo from './author-info';
 import Comment from './comment';
 import FAB from './fab';
 
-export const PostBody = ({ post, onClap }) => {
+export const PostBody = ({ post, onClap, onComment }) => {
     return (
         <div className="post-body section container">
             <div className="row">
@@ -16,7 +16,7 @@ export const PostBody = ({ post, onClap }) => {
 
                         <PostCard data={post.node} />
 
-                        <Comment data={post.node.comments} />
+                        <Comment data={post.node.comments} handleComment={onComment} />
                     </div>
                     <div className="col m1">
                         <FAB 
@@ -32,7 +32,8 @@ export const PostBody = ({ post, onClap }) => {
 
 PostBody.propTypes = {
     post: types.object,
-    onClap: types.func.isRequired
+    onClap: types.func.isRequired,
+    onComment: types.func.isRequired
 };
 
 export default PostBody;

@@ -128,7 +128,8 @@ export const addComment = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendComment());
 
-        const res = await userRequest( mutations.create_comment(data) );
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest( mutations.create_comment(data), r_token );
         return await dispatch( creators.requestCommentFinished(res, data) );
     };
 };

@@ -170,6 +170,11 @@ export const get_page_link = (title, id) => {
         .toLowerCase()}-${id}`;
 };
 
+export const isNotUndefined = (value) => {
+    if ( value !== null && value !== undefined) return true;
+    return false;
+};
+
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];
 
 export const setPageTitle = (page) => (document.title = `${page} - React Press`);

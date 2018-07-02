@@ -12,18 +12,9 @@ class MainComment extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            comment: '',
-            data: this.props.data
+            comment: ''
         };
     }
-    componentWillReceiveProps = (np) => {
-        if (this.state.data != np.data) {
-            this.setState({
-                data: np.data
-            });
-        }
-    };
-
     handleChange = (e) => {
         e.preventDefault();
         this.setState({
@@ -69,7 +60,7 @@ class MainComment extends Component {
                     />
                 </div>
 
-                {this.state.data.edges.map((obj) => (
+                {this.props.data.edges.map((obj) => (
                     <Comment
                         key={obj.node.id}
                         comment={obj}
