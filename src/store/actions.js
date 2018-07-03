@@ -74,7 +74,8 @@ export const create_tags = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        const res = await userRequest(mutations.create_tag(data.tag_name, data.post_id));
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest(mutations.create_tag(data.tag_name, data.post_id), r_token);
         return await dispatch(creators.requestCreateTagsFinished(res, data));
     };
 };
@@ -83,7 +84,8 @@ export const create_posts = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        const res = await userRequest(mutations.create_post(data));
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest(mutations.create_post(data), r_token);
         return await dispatch(creators.requestCreatePostsFinished(res));
     };
 };
@@ -92,7 +94,8 @@ export const edit_post = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        const res = await userRequest(mutations.edit_post(data));
+        const r_token = getFromStore(tokenKey);
+        const res = await userRequest(mutations.edit_post(data), r_token);
         return await dispatch(creators.requestEditPostFinished(res, data));
     };
 };
@@ -111,7 +114,8 @@ export const update_profile_pic = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        await userRequest(mutations.update_profile_picture(data.pic_url, data.user_id));
+        const r_token = getFromStore(tokenKey);
+        await userRequest(mutations.update_profile_picture(data.pic_url, data.user_id), r_token);
         return await dispatch(creators.requestUpdateUserFinished());
     };
 };
@@ -120,7 +124,8 @@ export const update_user_info = (data) => {
     return async (dispatch) => {
         dispatch(creators.sendRequest());
 
-        await userRequest(mutations.update_info(data));
+        const r_token = getFromStore(tokenKey);
+        await userRequest(mutations.update_info(data), r_token);
         return await dispatch(creators.requestUpdateUserFinished());
     };
 };

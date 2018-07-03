@@ -22,6 +22,12 @@ app
             app.render(req, res, actualPage, queryParams);
         });
 
+        server.get('/me/edit-post/:id', (req, res) => {
+            const actualPage = '/me/edit-post';
+            const queryParams = { id: req.params.id };
+            app.render(req, res, actualPage, queryParams);
+        });
+
         server.get('*', function(req, res) {
             return handle(req, res);
         });
