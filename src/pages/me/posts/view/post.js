@@ -30,7 +30,7 @@ export const Post = ({ post, handleDelete }) => {
 
                 <span className="divider-dot" />
 
-                <Link href={'/admin/edit-post/' + post.node.id}>
+                <Link href={'/me/edit-post/' + post.node.id}>
                     <a>
                         <span className="edit">Edit Post</span>
                     </a>

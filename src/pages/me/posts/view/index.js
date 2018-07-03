@@ -15,7 +15,7 @@ export default class PageView extends React.Component {
         return (
             <div className="posts-info">
                 <h1>Your posts</h1>
-                <Link href={'/admin/new-post'}>
+                <Link href={'/me/new-post'}>
                     <a className="btn btn-flat">New Post</a>
                 </Link>
             </div>
