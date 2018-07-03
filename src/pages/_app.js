@@ -5,7 +5,6 @@ import Error from '../components/error';
 
 import { isLoggedIn, createToast } from '../lib/helpers';
 import { getCookie, removeCookie, getFromStore } from '../lib/storage';
-import Socket from '../lib/socketio';
 import { tokenKey, loggedInKey } from '../keys/storage';
 
 import { Provider } from 'react-redux';
@@ -74,8 +73,8 @@ class InitApp extends App {
 
     componentDidMount() {
         if (isLoggedIn()) {
-            const token = getFromStore('med-blog-ref');
-            this.props.store.dispatch(setupNotification(token))
+            const token = getFromStore(tokenKey);
+            this.props.store.dispatch(setupNotification(token));
         }
     }
 
@@ -89,8 +88,9 @@ class InitApp extends App {
                             render={
                                 <div className="valign-wrapper center">
                                     <h5>
-                                        It{'\''}s not you it{'\''}s us. Please reload this page. If it
-                                        persists try again later. We{'\''}re really sorry.
+                                        It{'\''}s not you it{'\''}s us. 
+                                        Please reload this page. If it persists try again later. 
+                                        We{'\''}re really sorry.
                                     </h5>
                                 </div>
                             }
