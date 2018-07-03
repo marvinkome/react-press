@@ -2,6 +2,7 @@ import React from 'react';
 import types from 'prop-types';
 import { fetch_profile_data } from '../../store/actions';
 import Error from '../../components/error';
+import { MainPage } from '../../components/app';
 import PageView from './view';
 import './style.less';
 
@@ -32,7 +33,7 @@ class Profile extends React.Component {
         }
     }
     render() {
-        const { profile, error } = this.props;
+        const { profile, error, loggedIn } = this.props;
         if (error) {
             return (
                 <Error
@@ -48,12 +49,13 @@ class Profile extends React.Component {
                 />
             );
         } else {
-            return <PageView user={profile} />;
+            return <MainPage loggedIn={loggedIn} render={() => <PageView user={profile} />} />;
         }
     }
 }
 
 Profile.propTypes = {
+    loggedIn: types.bool.isRequired,
     profile: types.object,
     error: types.bool
 };

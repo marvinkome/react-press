@@ -4,6 +4,18 @@ import PostCard from './post-card';
 import { sort_posts } from '../../../lib/helpers';
 
 export class Body extends React.Component {
+    componentDidMount() {
+        window.addEventListener('scroll', this.onScroll, false);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.onScroll, false);
+    }
+    onScroll = () => {
+        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+            this.props.fetch_more();
+        }
+    };
+
     render_post_cards = (posts) => {
         if (posts.length > 0) {
             return posts.map((obj) => (
@@ -14,7 +26,7 @@ export class Body extends React.Component {
         } else {
             return (
                 <div className="col s12">
-                    <h5 className="center">No posts</h5>
+                    <h5 className="center">They{'\''}re currently no post available.</h5>
                 </div>
             );
         }
@@ -31,7 +43,8 @@ export class Body extends React.Component {
 }
 
 Body.propTypes = {
-    posts: types.array.isRequired
+    posts: types.array.isRequired,
+    fetch_more: types.func.isRequired
 };
 
 export default Body;

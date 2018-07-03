@@ -20,7 +20,9 @@ class UserPosts extends Component {
                     )}
 
                     <Link as={`/p/${pageLink}`} href={`/post?id=${pageLink}`}>
-                        <span className="card-title">{obj.node.title}</span>
+                        <a>
+                            <span className="card-title">{obj.node.title}</span>
+                        </a>
                     </Link>
                     <p
                         dangerouslySetInnerHTML={{

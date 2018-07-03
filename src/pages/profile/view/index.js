@@ -1,19 +1,20 @@
 import React from 'react';
 import types from 'prop-types';
-import withTopbar from '../../../components/app';
+import Router from 'next/router';
 import Error from '../../../components/error';
 
 import AuthorInfo from './author-info';
 import UserPosts from './user-posts';
 
-export class PageView extends React.Component {
+export default class PageView extends React.Component {
     render() {
         if (this.props.user === undefined) {
             return (
                 <Error
                     render={
-                        <div>
-                            <h5 className="center">User not found</h5>
+                        <div className="center">
+                            <h5>This user doesn{'\''}t currently exist</h5>
+                            <a onClick={() => Router.back()}>Go back to the previous page</a>
                         </div>
                     }
                 />
@@ -38,5 +39,3 @@ export class PageView extends React.Component {
 PageView.propTypes = {
     user: types.object
 };
-
-export default withTopbar(PageView);
