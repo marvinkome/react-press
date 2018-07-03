@@ -164,10 +164,10 @@ export const sanitize_html = (html) => {
 };
 
 export const get_page_link = (title, id) => {
-    return `${title
+    return encodeURIComponent(`${title
         .split(' ')
         .join('-')
-        .toLowerCase()}-${id}`;
+        .toLowerCase()}-${id}`);
 };
 
 export const isNotUndefined = (value) => {
