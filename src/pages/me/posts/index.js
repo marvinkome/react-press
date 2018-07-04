@@ -1,32 +1,37 @@
 import React from 'react';
 import types from 'prop-types';
+import Router from 'next/router';
 import { MainPage } from '../../../components/app';
 import PageBody from './view';
-import { connect } from 'react-redux';
-import { delete_post } from '../../../store/actions';
+import { createToast, isLoggedIn } from '../../../lib/helpers';
 import './style.less';
 
-const AdminPosts = ({ data, loggedIn, delete_post }) => {
-    return (
-        <MainPage
-            loggedIn={loggedIn}
-            render={() => <PageBody data={data} deletePost={delete_post} />}
-        />
-    );
+const AdminPosts = ({ loggedIn }) => {
+    return <MainPage loggedIn={loggedIn} render={() => <PageBody />} />;
+};
+
+AdminPosts.getInitialProps = async ({ res, isServer, req }) => {
+    if (isServer) {
+        if (isLoggedIn(req) === false) {
+            const backURL = '/login';
+            res.writeHead(302, {
+                Location: backURL
+            });
+            res.end();
+            res.finished = true;
+        }
+    } else {
+        if (isLoggedIn() === false) {
+            Router.back();
+            createToast('You\'re already logged in');
+        }
+    }
+
+    return {};
 };
 
 AdminPosts.propTypes = {
-    data: types.object.isRequired,
-    loggedIn: types.bool.isRequired,
-    delete_post: types.func.isRequired
+    loggedIn: types.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    data: state.user_data
-});
-
-const mapDispatchToProp = (dispatch) => ({
-    delete_post: (id) => dispatch(delete_post(id))
-});
-
-export default connect(mapStateToProps, mapDispatchToProp)(AdminPosts);
+export default AdminPosts;

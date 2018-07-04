@@ -2,8 +2,12 @@ import React from 'react';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
+import Router from 'next/router';
 
+import { getFromStore } from '../../../lib/storage';
+import { tokenKey } from '../../../keys/storage';
 import { SignupForm } from '../../../components/forms';
+import { setupNotification } from '../../../store/actions-creators';
 import { register_user, fetch_user_data } from '../../../store/actions';
 import { validate_password } from '../../../lib/helpers';
 
@@ -30,7 +34,10 @@ export class PageView extends React.Component {
         try {
             const res = await this.props.register_user(this.state);
             if (res.payload.msg == 'Authentication successfull') {
+                const token = getFromStore(tokenKey);
                 await this.props.fetch_data();
+                await this.props.setupNotification(token);
+                await Router.back();
             } else {
                 this.setState({
                     auth_message: res.payload.msg
@@ -101,7 +108,8 @@ export class PageView extends React.Component {
 PageView.propTypes = {
     isLoggingIn: types.bool,
     register_user: types.func,
-    fetch_data: types.func
+    fetch_data: types.func,
+    setupNotification: types.func
 };
 
 const mapStateToProps = (state) => {
@@ -113,7 +121,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         register_user: (data) => dispatch(register_user(data)),
-        fetch_data: () => dispatch(fetch_user_data())
+        fetch_data: () => dispatch(fetch_user_data()),
+        setupNotification: (token) => dispatch(setupNotification(token))
     };
 };
 

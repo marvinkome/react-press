@@ -2,10 +2,12 @@ import React from 'react';
 import types from 'prop-types';
 import { connect } from 'react-redux';
 import Link from 'next/link';
+import Router from 'next/router';
 
 import { getFromStore } from '../../../lib/storage';
 import { tokenKey } from '../../../keys/storage';
 import { LoginForm } from '../../../components/forms';
+import { setupNotification } from '../../../store/actions-creators';
 import { login_user, fetch_user_data } from '../../../store/actions';
 
 export class PageView extends React.Component {
@@ -32,6 +34,8 @@ export class PageView extends React.Component {
             if (res.payload.msg == 'Authentication successfull') {
                 const token = getFromStore(tokenKey);
                 await this.props.fetch_data(token);
+                await this.props.setupNotification(token);
+                await Router.back();
             } else {
                 this.setState({
                     auth_message: res.payload.msg
@@ -70,7 +74,7 @@ export class PageView extends React.Component {
 
                         <div className="extra-info">
                             <p>
-                                Don{'\''}t an account?
+                                Don{'\''}t have an account?
                                 <Link href="/signup">
                                     <a> Signup</a>
                                 </Link>
@@ -86,7 +90,8 @@ export class PageView extends React.Component {
 PageView.propTypes = {
     isLoggingIn: types.bool,
     login_user: types.func,
-    fetch_data: types.func
+    fetch_data: types.func,
+    setupNotification: types.func
 };
 
 const mapStateToProps = (state) => {
@@ -98,7 +103,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         login_user: (data) => dispatch(login_user(data)),
-        fetch_data: (token) => dispatch(fetch_user_data(token))
+        fetch_data: (token) => dispatch(fetch_user_data(token)),
+        setupNotification: (token) => dispatch(setupNotification(token))
     };
 };
 

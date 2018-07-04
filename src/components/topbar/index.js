@@ -1,14 +1,17 @@
 import React from 'react';
 import types from 'prop-types';
+import Router from 'next/router';
 import { connect } from 'react-redux';
+import { isLoggedIn } from '../../lib/helpers';
 import { logoutUser, readAllNotifications } from '../../store/actions-creators';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
 import './topbar.less';
 
 export class TopBar extends React.Component {
-    handleLogout = () => {
-        this.props.logout();
+    handleLogout = async () => {
+        await this.props.logout();
+        await Router.push(window.location.href);
     };
     readNotifications = () => {
         this.props.readNotifications();
@@ -21,7 +24,7 @@ export class TopBar extends React.Component {
         let imageClass = ' defImg';
         let image = '/static/default-pic.png';
 
-        if (loggedIn) {
+        if (loggedIn && isLoggedIn()) {
             if (user_data.user.gravatarUrl !== null) {
                 image = user_data.user.gravatarUrl;
                 imageClass = '';

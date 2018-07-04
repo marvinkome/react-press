@@ -1,45 +1,37 @@
 import React from 'react';
 import types from 'prop-types';
+import Router from 'next/router';
 import { MainPage } from '../../../components/app';
-import { connect } from 'react-redux';
-import {
-    fetch_all_data,
-    fetch_user_data,
-    update_profile_pic,
-    update_user_info
-} from '../../../store/actions';
+import { createToast, isLoggedIn } from '../../../lib/helpers';
 import PageBody from './view';
 import './style.less';
 
-const EditProfile = ({ loggedIn, data, ...props }) => {
-    const pageProps = {
-        data,
-        fetch_user_data: props.fetch_user_data,
-        fetch_data: props.fetch_data,
-        update_profile_pic: props.update_profile_pic,
-        update_user_info: props.update_user_info
-    };
-    return <MainPage loggedIn={loggedIn} render={() => <PageBody {...pageProps} />} />;
+const EditProfile = ({ loggedIn }) => {
+    return <MainPage loggedIn={loggedIn} render={() => <PageBody />} />;
+};
+
+EditProfile.getInitialProps = async ({ res, isServer, req }) => {
+    if (isServer) {
+        if (isLoggedIn(req) === false) {
+            const backURL = '/login';
+            res.writeHead(302, {
+                Location: backURL
+            });
+            res.end();
+            res.finished = true;
+        }
+    } else {
+        if (isLoggedIn() === false) {
+            Router.back();
+            createToast('You\'re already logged in');
+        }
+    }
+
+    return {};
 };
 
 EditProfile.propTypes = {
-    loggedIn: types.bool.isRequired,
-    data: types.object.isRequired,
-    fetch_user_data: types.func.isRequired,
-    fetch_data: types.func.isRequired,
-    update_profile_pic: types.func.isRequired,
-    update_user_info: types.func.isRequired
+    loggedIn: types.bool.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    data: state.user_data
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    fetch_user_data: (token) => dispatch(fetch_user_data(token)),
-    fetch_data: () => dispatch(fetch_all_data()),
-    update_profile_pic: (data) => dispatch(update_profile_pic(data)),
-    update_user_info: (data) => dispatch(update_user_info(data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);
+export default EditProfile;

@@ -1,10 +1,12 @@
 import React from 'react';
 import types from 'prop-types';
 import Link from 'next/link';
+import { connect } from 'react-redux';
+import { delete_post } from '../../../../store/actions';
 import { sort_posts } from '../../../../lib/helpers';
 import { Post } from './post';
 
-export default class PageView extends React.Component {
+class PageView extends React.Component {
     handleDelete = (id) => {
         const confirmDelete = confirm('This post will be permanently deleted');
         if (confirmDelete == true) {
@@ -58,3 +60,13 @@ PageView.propTypes = {
     data: types.object.isRequired,
     deletePost: types.func.isRequired
 };
+
+const mapStateToProps = (state) => ({
+    data: state.user_data
+});
+
+const mapDispatchToProp = (dispatch) => ({
+    delete_post: (id) => dispatch(delete_post(id))
+});
+
+export default connect(mapStateToProps, mapDispatchToProp)(PageView);

@@ -25,13 +25,20 @@ export const loginUser = (state, res) => {
 
 export const logoutUser = (state, logout) => {
     if (logout == true) {
+        // remove token in local storage
         saveToStore(false, loggedInKey);
-        removeFromStore(tokenKey);
+        saveToStore('', tokenKey);
+
+        // set token in cookie for server side
+        jsCookie.set(tokenKey, '');
+        jsCookie.set(loggedInKey, false);
+
+        return updateObject(state, {
+            user_data: {}
+        });
     }
 
-    return updateObject(state, {
-        user_data: {}
-    });
+    return {};
 };
 
 export const recieveUserData = (state, user_data) => {
