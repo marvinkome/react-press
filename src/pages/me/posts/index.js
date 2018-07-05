@@ -3,7 +3,7 @@ import types from 'prop-types';
 import Router from 'next/router';
 import { MainPage } from '../../../components/app';
 import PageBody from './view';
-import { createToast, isLoggedIn } from '../../../lib/helpers';
+import { isLoggedIn } from '../../../lib/helpers';
 import './style.less';
 
 const AdminPosts = ({ loggedIn }) => {
@@ -22,8 +22,7 @@ AdminPosts.getInitialProps = async ({ res, isServer, req }) => {
         }
     } else {
         if (isLoggedIn() === false) {
-            Router.back();
-            createToast('You\'re already logged in');
+            Router.push('/login');
         }
     }
 

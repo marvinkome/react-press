@@ -21,7 +21,7 @@ export default class PageView extends React.Component {
             );
         } else {
             return (
-                <div className="page-body section container">
+                <div className="profile-body section container">
                     <div className="row">
                         <div className="col s12">
                             <div>

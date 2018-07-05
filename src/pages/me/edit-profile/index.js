@@ -2,7 +2,7 @@ import React from 'react';
 import types from 'prop-types';
 import Router from 'next/router';
 import { MainPage } from '../../../components/app';
-import { createToast, isLoggedIn } from '../../../lib/helpers';
+import { isLoggedIn } from '../../../lib/helpers';
 import PageBody from './view';
 import './style.less';
 
@@ -22,8 +22,7 @@ EditProfile.getInitialProps = async ({ res, isServer, req }) => {
         }
     } else {
         if (isLoggedIn() === false) {
-            Router.back();
-            createToast('You\'re already logged in');
+            Router.push('/');
         }
     }
 

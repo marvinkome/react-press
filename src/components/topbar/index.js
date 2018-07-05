@@ -10,8 +10,18 @@ import './topbar.less';
 
 export class TopBar extends React.Component {
     handleLogout = async () => {
-        await this.props.logout();
-        await Router.push(window.location.href);
+        const index = window.location.href.indexOf('/me/');
+        if (index === -1) {
+            // is not admin
+            window.location.href = window.location.href;
+        } else {
+            // is admin
+            // first move to a safe area
+            Router.push('/');
+            // then reload to send new props to the page  
+            window.location.href = '/';
+        }
+        this.props.logout();
     };
     readNotifications = () => {
         this.props.readNotifications();

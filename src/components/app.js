@@ -6,7 +6,7 @@ export class MainPage extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <Topbar isLoggedIn={this.props.loggedIn}/>
+                <Topbar isLoggedIn={this.props.loggedIn} />
                 {this.props.render()}
             </React.Fragment>
         );

@@ -10,9 +10,10 @@ class PageView extends React.Component {
     handleDelete = (id) => {
         const confirmDelete = confirm('This post will be permanently deleted');
         if (confirmDelete == true) {
-            this.props.deletePost(id);
+            this.props.delete_post(id);
         }
     };
+
     render_page_header = () => {
         return (
             <div className="posts-info">
@@ -40,7 +41,11 @@ class PageView extends React.Component {
     };
 
     render() {
-        const { edges } = this.props.data.data.user.posts;
+        let edges = [];
+        if (this.props.data.data) {
+            edges = this.props.data.data.user.posts.edges;
+        }
+
         return (
             <div className="main admin-posts">
                 {edges && (
@@ -58,7 +63,7 @@ class PageView extends React.Component {
 
 PageView.propTypes = {
     data: types.object.isRequired,
-    deletePost: types.func.isRequired
+    delete_post: types.func.isRequired
 };
 
 const mapStateToProps = (state) => ({

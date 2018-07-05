@@ -35,7 +35,7 @@ export class Body extends React.Component {
         const posts = sort_posts(this.props.posts);
 
         return (
-            <div className="body section container">
+            <div className="home-body section container">
                 <div className="row">{this.render_post_cards(posts)}</div>
             </div>
         );

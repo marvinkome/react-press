@@ -81,7 +81,7 @@ export class Body extends Component {
     onSaveClick = async (e) => {
         e.preventDefault();
 
-        if (this.props.data.data != undefined) {
+        if (this.props.data.data !== undefined) {
             const user_data = this.sortNewData(this.props.data.data.user);
             const token = getFromStore(tokenKey);
             try {
