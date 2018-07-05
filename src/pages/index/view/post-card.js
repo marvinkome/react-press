@@ -32,13 +32,8 @@ export const PostCard = ({ post }) => {
                 <div className="card-stacked">
                     <div className="card-content">
                         <h1 className="post-card__title">
-                            <Link 
-                                as={`/p/${page_link}`}
-                                href={`/post?id=${page_link}`}
-                            >
-                                <a className="post-card__title--link">
-                                    {post.title}
-                                </a>
+                            <Link as={`/p/${page_link}`} href={`/post?id=${page_link}`}>
+                                <a className="post-card__title--link">{post.title}</a>
                             </Link>
                         </h1>
                         <p

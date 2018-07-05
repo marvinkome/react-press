@@ -16,14 +16,14 @@ export const PostBody = ({ post, onClap, onComment, onCommentReply }) => {
 
                         <PostCard data={post.node} />
 
-                        <Comment data={post.node.comments} 
-                            handleComment={onComment} handleReply={onCommentReply} />
+                        <Comment
+                            data={post.node.comments}
+                            handleComment={onComment}
+                            handleReply={onCommentReply}
+                        />
                     </div>
                     <div className="col m1">
-                        <FAB 
-                            claps_count={post.node.claps.totalCount} 
-                            onClap={onClap} 
-                        />
+                        <FAB claps_count={post.node.claps.totalCount} onClap={onClap} />
                     </div>
                 </div>
             </div>

@@ -18,7 +18,7 @@ export class TopBar extends React.Component {
             // is admin
             // first move to a safe area
             Router.push('/');
-            // then reload to send new props to the page  
+            // then reload to send new props to the page
             window.location.href = '/';
         }
         this.props.logout();

@@ -28,8 +28,12 @@ export class Post extends Component {
 
         if (posts.length > 0) {
             post = posts.find(
-                (obj) => obj.node.id === post_id && 
-                (obj.node.title.toLowerCase().split(' ').join('-') === post_name)
+                (obj) =>
+                    obj.node.id === post_id &&
+                    obj.node.title
+                        .toLowerCase()
+                        .split(' ')
+                        .join('-') === post_name
             );
         }
 

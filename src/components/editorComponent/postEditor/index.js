@@ -39,7 +39,6 @@ export default class PostEditor extends React.Component {
         }
     };
     render() {
-
         const { user_data } = this.props;
         let fullName = null;
         let description = null;

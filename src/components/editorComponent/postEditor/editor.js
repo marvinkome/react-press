@@ -33,7 +33,7 @@ export default class ContentEditor extends Component {
             editorState: updated_editor.editorState
         };
     }
-    componentDidMount(){
+    componentDidMount() {
         this.setState({
             editor: true
         });
@@ -100,7 +100,7 @@ export default class ContentEditor extends Component {
         return (
             <div className="editor-input" onClick={this.editorFocus}>
                 <Controls editorState={this.state.editorState} onToggle={this.toggleCommand} />
-                { this.state.editor && (
+                {this.state.editor && (
                     <Editor
                         editorState={this.state.editorState}
                         handleKeyCommand={this.handleKeyCommand}
@@ -109,7 +109,8 @@ export default class ContentEditor extends Component {
                         plugins={this.state.plugins}
                         placeholder="Tell your amazing story..."
                         spellCheck
-                    />)}
+                    />
+                )}
             </div>
         );
     }

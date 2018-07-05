@@ -8,7 +8,7 @@ import { fetch_data_mock } from '../../../../mocks/apiMocks';
 describe('home tests', () => {
     it('renders', () => {
         const posts = fetch_data_mock.data.allPost.edges;
-        const wrapper = shallow(<Index posts={posts} loggedIn={false}/>);
+        const wrapper = shallow(<Index posts={posts} loggedIn={false} />);
         expect(wrapper).toMatchSnapshot();
     });
 

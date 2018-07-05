@@ -164,14 +164,16 @@ export const sanitize_html = (html) => {
 };
 
 export const get_page_link = (title, id) => {
-    return encodeURIComponent(`${title
-        .split(' ')
-        .join('-')
-        .toLowerCase()}-${id}`);
+    return encodeURIComponent(
+        `${title
+            .split(' ')
+            .join('-')
+            .toLowerCase()}-${id}`
+    );
 };
 
 export const isNotUndefined = (value) => {
-    if ( value !== null && value !== undefined) return true;
+    if (value !== null && value !== undefined) return true;
     return false;
 };
 

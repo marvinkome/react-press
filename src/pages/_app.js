@@ -89,8 +89,8 @@ class InitApp extends App {
                                 <div className="valign-wrapper center">
                                     <h5>
                                         It{'\''}s not you it{'\''}s us. 
-                                        Please reload this page. If it persists try again later. 
-                                        We{'\''}re really sorry.
+                                        Please reload this page. If it
+                                        persists try again later. We{'\''}re really sorry.
                                     </h5>
                                 </div>
                             }

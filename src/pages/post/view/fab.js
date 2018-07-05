@@ -7,7 +7,7 @@ import types from 'prop-types';
 import { MdThumbUp } from 'react-icons/lib/md';
 
 class FAB extends Component {
-    constructor(){
+    constructor() {
         super();
 
         this.fabRef = React.createRef();

@@ -1,5 +1,5 @@
 import { updateObject } from './utils';
-import { removeFromStore, saveToStore } from '../../lib/storage';
+import { saveToStore } from '../../lib/storage';
 import { tokenKey, loggedInKey } from '../../keys/storage';
 import jsCookie from 'js-cookie';
 
