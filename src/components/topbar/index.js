@@ -34,7 +34,7 @@ export class TopBar extends React.Component {
         let imageClass = ' defImg';
         let image = '/static/default-pic.png';
 
-        if (loggedIn && isLoggedIn()) {
+        if (loggedIn && isLoggedIn() && user_data !== undefined) {
             if (user_data.user.gravatarUrl !== null) {
                 image = user_data.user.gravatarUrl;
                 imageClass = '';

@@ -5,7 +5,7 @@
     "license": "MIT",
     "sideEffects": ["*.css"],
     "scripts": {
-        "start-server": "node src/server.js --require dotenv/config",
+        "start": "node src/server.js --require dotenv/config",
         "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",

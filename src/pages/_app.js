@@ -38,13 +38,26 @@ class InitApp extends App {
         // is server?
         if (server === true) {
             // since initial rendering only occurs in the server side
-            // data should be fetched only in the server side
+            // user data should be fetched only in the server side
 
             if (loggedIn) {
                 // fetch user data if user is loggedIn
                 const token = getCookie(ctx.req, tokenKey);
 
                 const res = await ctx.store.dispatch(fetch_user_data(token));
+
+                // check for fetch error
+                if (res && res.payload) {
+                    if (res.payload.name === 'FetchError') {
+                        pageProps = {
+                            ...pageProps,
+                            loggedIn: false,
+                            error: true
+                        };
+                    }
+                }
+
+                // check for token error
                 if (res && res.payload) {
                     if (res.payload.msg === 'Not enough segments') {
                         createToast('Session expired please login');
@@ -58,7 +71,6 @@ class InitApp extends App {
             try {
                 await ctx.store.dispatch(fetch_all_data());
             } catch (e) {
-                console.error(e); // eslint-disable-line
                 pageProps = {
                     ...pageProps,
                     error: true
@@ -72,32 +84,32 @@ class InitApp extends App {
     }
 
     componentDidMount() {
-        if (isLoggedIn()) {
+        if (this.props.pageProps.error !== true && isLoggedIn()) {
             const token = getFromStore(tokenKey);
             this.props.store.dispatch(setupNotification(token));
         }
     }
 
     render() {
-        const { Component, pageProps, store, error } = this.props;
+        const { Component, pageProps, store } = this.props;
         return (
             <Container>
                 <Provider store={store}>
-                    {error ? (
+                    {pageProps.error ? (
                         <Error
                             render={
                                 <div className="valign-wrapper center">
                                     <h5>
-                                        It{'\''}s not you it{'\''}s us. 
-                                        Please reload this page. If it
-                                        persists try again later. We{'\''}re really sorry.
+                                        It{'\''}s not you it{'\''}s us. Please reload this page.
+                                        <br />
+                                        If it persists try again later. We{'\''}re really sorry.
                                     </h5>
                                 </div>
                             }
                             fullScreen
                         />
                     ) : (
-                        <Component {...pageProps} error={error} />
+                        <Component {...pageProps} error={pageProps.error} />
                     )}
                 </Provider>
             </Container>
