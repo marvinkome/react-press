@@ -7,7 +7,7 @@ import PageBody from './view';
 import './style.less';
 
 const EditProfile = ({ loggedIn }) => {
-    return <MainPage loggedIn={loggedIn} render={() => <PageBody />} />;
+    return <MainPage loggedIn={loggedIn} pageTitle="Edit Profile" render={() => <PageBody />} />;
 };
 
 EditProfile.getInitialProps = async ({ res, isServer, req }) => {

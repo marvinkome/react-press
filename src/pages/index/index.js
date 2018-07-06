@@ -15,6 +15,7 @@ export const Index = (props) => {
     return (
         <MainPage
             loggedIn={props.loggedIn}
+            pageTitle="Homepage"
             render={() => <Body posts={props.posts} fetch_more={fetch_more} />}
         />
     );

@@ -31,6 +31,7 @@ export default class AdminEditPost extends React.Component {
         return (
             <MainPage
                 loggedIn={this.props.loggedIn}
+                pageTitle="Edit Post"
                 render={() => <PageView post_id={this.props.post_id} />}
             />
         );

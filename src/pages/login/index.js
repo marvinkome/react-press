@@ -1,4 +1,5 @@
 import React from 'react';
+import Head from 'next/head';
 import Router from 'next/router';
 import View from './view';
 import { createToast, isLoggedIn } from '../../lib/helpers';
@@ -25,7 +26,14 @@ export class Login extends React.Component {
         return {};
     }
     render() {
-        return <View />;
+        return (
+            <React.Fragment>
+                <Head>
+                    <title>Login - Reactpress</title>
+                </Head>
+                <View />
+            </React.Fragment>
+        );
     }
 }
 

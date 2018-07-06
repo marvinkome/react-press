@@ -7,7 +7,7 @@ import { isLoggedIn } from '../../../lib/helpers';
 import './style.less';
 
 const AdminPosts = ({ loggedIn }) => {
-    return <MainPage loggedIn={loggedIn} render={() => <PageBody />} />;
+    return <MainPage loggedIn={loggedIn} pageTitle="Your posts" render={() => <PageBody />} />;
 };
 
 AdminPosts.getInitialProps = async ({ res, isServer, req }) => {

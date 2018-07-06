@@ -49,7 +49,13 @@ class Profile extends React.Component {
                 />
             );
         } else {
-            return <MainPage loggedIn={loggedIn} render={() => <PageView user={profile} />} />;
+            return (
+                <MainPage
+                    loggedIn={loggedIn}
+                    pageTitle={profile ? profile.fullName : 'User not found'}
+                    render={() => <PageView user={profile} />}
+                />
+            );
         }
     }
 }

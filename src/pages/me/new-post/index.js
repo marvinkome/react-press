@@ -6,7 +6,7 @@ import PageView from '../../../components/editorComponent';
 import { isLoggedIn } from '../../../lib/helpers';
 
 export const NewPost = ({ loggedIn }) => {
-    return <MainPage loggedIn={loggedIn} render={() => <PageView />} />;
+    return <MainPage loggedIn={loggedIn} pageTitle="Create new post" render={() => <PageView />} />;
 };
 
 NewPost.getInitialProps = async ({ res, isServer, req }) => {

@@ -61,6 +61,7 @@ export class Post extends Component {
         return (
             <MainPage
                 loggedIn={this.props.loggedIn}
+                pageTitle={post !== undefined ? post.node.title : 'Post not found'}
                 render={() =>
                     post !== undefined ? (
                         <PageBody post={post} loggedIn={this.props.loggedIn} />
