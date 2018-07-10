@@ -1,17 +1,53 @@
 import React from 'react';
 import types from 'prop-types';
+import Router from 'next/router';
+import { Query } from 'react-apollo';
 
 import MainPage from '../../components/app';
+import Error from '../../components/error';
+
 import PageBody from './view';
+import query from './query';
 import './style.less';
 
-export const Post = (props) => {
+export const Post = ({ loggedIn, post_name}) => {
+    const renderError = () => {
+        return (
+            <Error
+                render={
+                    <div className="center">
+                        <div className="center-align">
+                            <img className="responsive-img" src="/static/404.png" />
+                        </div>
+                        <h5 className="center">
+                            The content you{'\''}re looking for is currently not available
+                        </h5>
+                        <a onClick={() => Router.back()}>Go back to the previous page</a>
+                    </div>
+                }
+            />
+        );
+    };
+
     return (
-        <MainPage
-            loggedIn={props.loggedIn}
-            pageTitle={'Post Page'}
-            render={() => <PageBody {...props} />}
-        />
+        <Query query={query} variables={{ post_name }}>
+            {({ error, data }) => {
+                // if there's an error
+                if (error) return <Error render={<p>Error fetching post</p>} />;
+
+
+
+                return data.post !== null ? (
+                    <MainPage
+                        loggedIn={loggedIn}
+                        pageTitle={data.post ? data.post.title : 'Post not found'}
+                        render={() => <PageBody loggedIn={loggedIn} post={data.post} />}
+                    />
+                ) : (
+                    renderError()
+                );
+            }}
+        </Query>
     );
 };
 

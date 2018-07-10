@@ -1,10 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import Router from 'next/router';
-import { Query } from 'react-apollo';
 
-import Error from '../../../components/error';
-import query from './query';
 import PostBody from './body';
 // import { createToast } from '../../../lib/helpers';
 
@@ -63,46 +59,21 @@ export class PageBody extends React.Component {
         // }
     };
 
-    // render method
-    renderError = () => {
-        return (
-            <Error
-                render={
-                    <div className="center">
-                        <div className="center-align">
-                            <img className="responsive-img" src="/static/404.png" />
-                        </div>
-                        <h5 className="center">
-                            The content you{'\''}re looking for is currently not available
-                        </h5>
-                        <a onClick={() => Router.back()}>Go back to the previous page</a>
-                    </div>
-                }
-            />
-        );
-    };
     render() {
-        const { post_name } = this.props;
+        const { post } = this.props;
         return (
-            <Query query={query} variables={{ post_name }}>
-                {({ error, data}) => {
-                    // if there's an error
-                    if (error) return <Error render={<p>Error fetching post</p>} />;
-                    
-                    return data.post !== null ? <PostBody
-                        post={data.post}
-                        onClap={this.handleClap}
-                        onComment={this.handleComment}
-                        onCommentReply={this.hadleCommentReply}
-                    />: this.renderError();
-                }}
-            </Query>
+            <PostBody
+                post={post}
+                onClap={this.handleClap}
+                onComment={this.handleComment}
+                onCommentReply={this.hadleCommentReply}
+            />
         );
     }
 }
 
 PageBody.propTypes = {
-    post_name: types.string.isRequired,
+    post: types.object.isRequired,
     loggedIn: types.bool.isRequired
 };
 
