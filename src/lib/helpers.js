@@ -134,13 +134,8 @@ export const sanitize_html = (html) => {
     });
 };
 
-export const get_page_link = (title, id) => {
-    return encodeURIComponent(
-        `${title
-            .split(' ')
-            .join('-')
-            .toLowerCase()}-${id}`
-    );
+export const get_page_link = (title) => {
+    return encodeURIComponent(title.toLowerCase());
 };
 
 export const isNotUndefined = (value) => {

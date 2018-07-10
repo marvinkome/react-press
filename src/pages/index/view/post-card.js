@@ -20,7 +20,7 @@ export const PostCard = ({ post }) => {
         backgroundImage: 'url(\'' + post.postPicUrl + '\')',
         backgroundColor: '#454545'
     };
-    const page_link = get_page_link(post.title, post.id);
+    const page_link = get_page_link(post.title);
 
     return (
         <div>

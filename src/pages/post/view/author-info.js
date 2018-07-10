@@ -4,17 +4,15 @@ import Link from 'next/link';
 import { format_date, get_profile_link } from '../../../lib/helpers';
 
 const AuthorInfo = ({ data }) => {
-    const imgStyle =
-        data.author.gravatarUrl != null && data.author.gravatarUrl != ''
-            ? {
-                borderRadius: '50%',
-                backgroundColor: '#fafafa'
-            }
-            : {};
-    const img =
-        data.author.gravatarUrl != undefined && data.author.gravatarUrl != ''
-            ? data.author.gravatarUrl
-            : '/static/default-pic.png';
+    const userHasImage = data.author.gravatarUrl !== null && data.author.gravatarUrl !== '';
+
+    const imgStyle = userHasImage ? {
+        borderRadius: '50%',
+        backgroundColor: '#fafafa'
+    } : {};
+
+    const img = userHasImage ? data.author.gravatarUrl : '/static/default-pic.png';
+    
     const authProfileLink = get_profile_link(data.author.fullName, data.author.id);
 
     return (
