@@ -8,7 +8,7 @@ import UserPosts from './user-posts';
 
 export default class PageView extends React.Component {
     render() {
-        if (this.props.user === undefined) {
+        if (this.props.user === null) {
             return (
                 <Error
                     render={

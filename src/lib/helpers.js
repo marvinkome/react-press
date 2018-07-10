@@ -27,8 +27,8 @@ export const format_date = (server_date) => {
         return moment(stillUtc)
             .local()
             .format('MMM DD');
-    } 
-    
+    }
+
     return moment(stillUtc)
         .local()
         .format('MMM DD YYYY');
@@ -69,25 +69,21 @@ export const gcd = (a, b) => {
     return gcd(b, a % b);
 };
 
-export const get_profile_link = (fullName, id) => {
-    fullName = fullName.toLowerCase();
-    let link_list = fullName.split(' ');
-    link_list = link_list.concat(id);
-
-    return '/profile/' + link_list.join('_');
+export const get_profile_link = (fullName) => {
+    return '/profile/' + encodeURIComponent(fullName.toLowerCase());
 };
 
 export const sort_posts = (posts) => {
     if (posts !== undefined) {
-        posts.sort((a, b) => {
-            if (a.node.timestamp > b.node.timestamp) {
-                return -1;
-            }
-            if (a.node.timestamp < b.node.timestamp) {
-                return 1;
-            }
-            return 0;
-        });
+        // posts.sort((a, b) => {
+        //     if (a.timestamp > b.timestamp) {
+        //         return -1;
+        //     }
+        //     if (a.timestamp < b.timestamp) {
+        //         return 1;
+        //     }
+        //     return 0;
+        // });
     }
 
     return posts;

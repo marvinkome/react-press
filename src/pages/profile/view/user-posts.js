@@ -46,14 +46,13 @@ class UserPosts extends Component {
     };
     render() {
         const posts = sort_posts(this.props.data.posts.edges);
-        const noPosts = posts.length <= 0;
         return (
             <div className="section user-posts">
                 <div className="row">
                     <div className="col s12 m12">
                         <h5>Latest Posts by {this.props.data.fullName}</h5>
 
-                        {noPosts ? (
+                        {!posts.length ? (
                             <Error
                                 render={
                                     <div>

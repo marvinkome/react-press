@@ -88,13 +88,13 @@ export class PageBody extends React.Component {
                 {({ error, data}) => {
                     // if there's an error
                     if (error) return <Error render={<p>Error fetching post</p>} />;
-
-                    return <PostBody
+                    
+                    return data.post !== null ? <PostBody
                         post={data.post}
                         onClap={this.handleClap}
                         onComment={this.handleComment}
                         onCommentReply={this.hadleCommentReply}
-                    />;
+                    />: this.renderError();
                 }}
             </Query>
         );
