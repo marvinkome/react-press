@@ -1,25 +1,106 @@
 import React from 'react';
-import types from 'prop-types';
+import { Query } from 'react-apollo';
+import Error from '../../../components/error';
+import query from './query';
 import PostCard from './post-card';
-import { sort_posts } from '../../../lib/helpers';
 
 export class Body extends React.Component {
-    componentDidMount() {
-        window.addEventListener('scroll', this.onScroll, false);
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            postPerPage: 6,
+            pageCursor: 1
+        };
     }
-    componentWillUnmount() {
-        window.removeEventListener('scroll', this.onScroll, false);
-    }
-    onScroll = () => {
-        if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-            this.props.fetch_more();
+
+    goToPrevPage = (e, fetchMore, startCursor) => {
+        e && e.preventDefault();
+
+        if (this.hasPrev()) {
+            const pageCursor = this.state.pageCursor - 1;
+            fetchMore({
+                variables: {
+                    first: null,
+                    after: null,
+                    last: this.state.postPerPage,
+                    before: startCursor
+                },
+                updateQuery: (prev, newData) => {
+                    const newEdges = newData.fetchMoreResult.allPost.edges;
+                    return newEdges.length ? newData.fetchMoreResult : prev;
+                }
+            });
+            this.setState({ pageCursor });
         }
     };
 
+    goToNextPage = (e, totalCount, fetchMore, endCursor) => {
+        e && e.preventDefault();
+
+        if (this.hasNext(totalCount)) {
+            const pageCursor = this.state.pageCursor + 1;
+            fetchMore({
+                variables: {
+                    last: null,
+                    before: null,
+                    first: this.state.postPerPage,
+                    after: endCursor
+                },
+                updateQuery: (prev, newData) => {
+                    const newEdges = newData.fetchMoreResult.allPost.edges;
+                    return newEdges.length ? newData.fetchMoreResult : prev;
+                }
+            });
+            this.setState({ pageCursor });
+        }
+    };
+
+    hasNext = (totalCount) => {
+        return (this.state.postPerPage * this.state.pageCursor) < totalCount;
+    };
+
+    hasPrev = () => {
+        return this.state.pageCursor === 1;
+    };
+
+    render_pagination = (pageInfo, totalCount, fetchMore) => {
+        const hasNext = this.hasNext(totalCount);
+        const hasPrevious = this.hasPrev();
+
+        return (
+            <div className="row pagination">
+                {!hasPrevious && (
+                    <div className="col s4 z-depth-1">
+                        <p>
+                            <a
+                                onClick={(e) =>
+                                    this.goToPrevPage(e, fetchMore, pageInfo.startCursor)
+                                }
+                            >
+                                Previous Page
+                            </a>
+                        </p>
+                    </div>
+                )}
+                {hasNext && (
+                    <div className="col s4 next z-depth-1">
+                        <p>
+                            <a onClick={(e) => 
+                                this.goToNextPage(e, totalCount, fetchMore, pageInfo.endCursor)}>
+                                Next Page
+                            </a>
+                        </p>
+                    </div>
+                )}
+            </div>
+        );
+    };
+
     render_post_cards = (posts) => {
-        if (posts.length > 0) {
+        if (posts.length) {
             return posts.map((obj) => (
-                <div key={obj.node.id} className="col l6 m10 s12">
+                <div key={obj.node.id} className="col l6 s12">
                     <PostCard post={obj.node} />
                 </div>
             ));
@@ -31,20 +112,32 @@ export class Body extends React.Component {
             );
         }
     };
+
     render() {
-        const posts = sort_posts(this.props.posts);
+        let variables = { first: this.state.postPerPage };
 
         return (
-            <div className="home-body section container">
-                <div className="row">{this.render_post_cards(posts)}</div>
-            </div>
+            <Query query={query} variables={variables}>
+                {(props) => {
+                    // if there's an error
+                    if (props.error) return <Error render={<p>Error fetching posts</p>} />;
+                    const posts = props.data.allPost.edges;
+
+                    return (
+                        <div className="home-body section container">
+                            <div className="row">{this.render_post_cards(posts)}</div>
+                            {posts.length &&
+                                this.render_pagination(
+                                    props.data.allPost.pageInfo,
+                                    props.data.allPost.totalCount,
+                                    props.fetchMore
+                                )}
+                        </div>
+                    );
+                }}
+            </Query>
         );
     }
 }
-
-Body.propTypes = {
-    posts: types.array.isRequired,
-    fetch_more: types.func.isRequired
-};
 
 export default Body;

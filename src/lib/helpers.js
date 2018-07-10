@@ -7,6 +7,7 @@ import sanitize from 'sanitize-html';
 import jsHttpCookie from 'cookie';
 import { getFromStore } from './storage';
 import { loggedInKey } from '../keys/storage';
+import { isSameISOYear } from 'date-fns';
 
 export const truncate = (word, length) => {
     const new_word =
@@ -20,35 +21,17 @@ export const truncate = (word, length) => {
 export const format_date = (server_date) => {
     let date = moment.utc(server_date).format('YYYY-MM-DD HH:mm:ss');
     let stillUtc = moment.utc(date).toDate();
+    const isSameYear = isSameISOYear(new Date(date).getFullYear(), new Date().getFullYear());
 
-    if (
-        new Date(date).getFullYear() == new Date().getFullYear() &&
-        moment(stillUtc)
-            .local()
-            .week() !==
-            moment(stillUtc)
-                .local()
-                .week()
-    ) {
+    if (isSameYear) {
         return moment(stillUtc)
             .local()
             .format('MMM DD');
-    } else if (
-        moment(stillUtc)
-            .local()
-            .week() ==
-        moment(stillUtc)
-            .local()
-            .week()
-    ) {
-        return moment(stillUtc)
-            .local()
-            .fromNow();
-    }
-
+    } 
+    
     return moment(stillUtc)
         .local()
-        .format('MMM DD [\']YY');
+        .format('MMM DD YYYY');
 };
 
 export const validate_password = (password) => {
@@ -61,10 +44,6 @@ export const validate_password = (password) => {
 export const validate_html = (html) => {
     const regExp = /<[a-z][\s\S]*>/i;
     return regExp.test(html);
-};
-
-export const strip_filename = (name) => {
-    return name.split('/').pop();
 };
 
 export const upload_file = async (file, onUpload, onFail, onSuccess) => {
@@ -88,14 +67,6 @@ export const gcd = (a, b) => {
         return a;
     }
     return gcd(b, a % b);
-};
-
-export const count_words_in_html = (string) => {
-    string = string.replace(/<(?:.|\n)*?>/gm, '');
-    string = string.replace(/(^\s*)|(\s*$)/gi, '');
-    string = string.replace(/[ ]{2,}/gi, ' ');
-    string = string.replace(/\n /, '\n');
-    return string.split(' ').length;
 };
 
 export const get_profile_link = (fullName, id) => {
@@ -178,5 +149,3 @@ export const isNotUndefined = (value) => {
 };
 
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];
-
-export const setPageTitle = (page) => (document.title = `${page} - React Press`);

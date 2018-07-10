@@ -52,7 +52,7 @@ export const PostCard = ({ post }) => {
                                 <Link href={get_profile_link(post.author.fullName, post.author.id)}>
                                     <a title={post.author.fullName}>
                                         <span className="post-card__meta__name">
-                                            {post.author != null ? post.author.fullName : undefined}
+                                            {post.author.fullName}
                                         </span>
                                     </a>
                                 </Link>

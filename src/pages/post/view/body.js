@@ -5,6 +5,7 @@ import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
 import FAB from './fab';
+import Pagination from './pagination';
 
 export const PostBody = ({ post, onClap, onComment, onCommentReply }) => {
     return (
@@ -15,6 +16,8 @@ export const PostBody = ({ post, onClap, onComment, onCommentReply }) => {
                         <AuthorInfo data={post.node} />
 
                         <PostCard data={post.node} />
+
+                        <Pagination />
 
                         <Comment
                             data={post.node.comments}

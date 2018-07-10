@@ -3,7 +3,7 @@ import Head from 'next/head';
 import types from 'prop-types';
 import Topbar from './topbar';
 
-export class MainPage extends React.Component {
+export default class MainPage extends React.Component {
     render() {
         const defaultDescription = `
             React press is a basic blogging platform for readers and publishers. 
@@ -36,22 +36,3 @@ MainPage.propTypes = {
     pageTitle: types.string.isRequired,
     pageDescription: types.string
 };
-
-export const withTopbar = (Page) => {
-    const Wrapper = (props) => {
-        return (
-            <div>
-                <Topbar isLoggedIn={false} />
-                <Page {...props} />
-            </div>
-        );
-    };
-
-    Wrapper.propTypes = {
-        loggedIn: types.bool
-    };
-
-    return Wrapper;
-};
-
-export default withTopbar;

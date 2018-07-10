@@ -3,7 +3,9 @@
     "version": "1.0.0",
     "main": "index.js",
     "license": "MIT",
-    "sideEffects": ["*.css"],
+    "sideEffects": [
+        "*.css"
+    ],
     "scripts": {
         "start": "node src/server.js --require dotenv/config",
         "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
@@ -16,14 +18,23 @@
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/mocks/fileMock.js",
             "\\.(css|less)$": "<rootDir>/mocks/styleMock.js"
         },
-        "setupFiles": ["<rootDir>/config/test-shim.js", "<rootDir>/config/test-setup.js"],
+        "setupFiles": [
+            "<rootDir>/config/test-shim.js",
+            "<rootDir>/config/test-setup.js"
+        ],
         "setupTestFrameworkScriptFile": "<rootDir>/mocks/moduleMock.js",
-        "moduleFileExtensions": ["jsx", "js"],
-        "testMatch": ["**/tests/*.test.(jsx|js)"]
+        "moduleFileExtensions": [
+            "jsx",
+            "js"
+        ],
+        "testMatch": [
+            "**/tests/*.test.(jsx|js)"
+        ]
     },
     "dependencies": {
         "@zeit/next-css": "^0.2.0",
         "@zeit/next-less": "^0.3.0",
+        "apollo-boost": "^0.1.10",
         "babel-preset-env": "^1.7.0",
         "babel-preset-next": "^1.1.4",
         "babel-preset-stage-0": "^6.24.1",
@@ -35,6 +46,8 @@
         "draftjs-to-html": "^0.8.3",
         "express": "^4.16.3",
         "firebase": "^4.13.1",
+        "graphql": "^0.13.2",
+        "graphql-tag": "^2.9.2",
         "isomorphic-fetch": "^2.2.1",
         "js-cookie": "^2.2.0",
         "materialize-css": "1.0.0-beta",
@@ -43,6 +56,7 @@
         "next-redux-wrapper": "^2.0.0-beta.6",
         "prop-types": "^15.6.1",
         "react": "^16.3.0",
+        "react-apollo": "^2.1.9",
         "react-custom-scrollbars": "^4.2.1",
         "react-dom": "^16.3.0",
         "react-icons": "^2.2.7",

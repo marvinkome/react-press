@@ -108,6 +108,35 @@
         }
     }
 
+    /* pagination */
+    .pagination {
+        div {
+            border: 1px solid @color-scheme-2;
+            border-radius: 2px;
+            margin-bottom: 12px;
+            cursor: pointer;
+
+            &.next {
+                float: right;
+            }
+
+            &:hover {
+                background: @color-scheme-2;
+
+                a {
+                    color: #fff !important;
+                }
+            }
+
+            p {
+                color: @color-scheme-2;
+                font-weight: 500;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+    }
+
     @media screen and (max-width: 600px) {
         padding-top: 3rem;
     }

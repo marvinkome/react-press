@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import types from 'prop-types';
-import { connect } from 'react-redux';
 import Router from 'next/router';
 
-import { MainPage } from '../../components/app';
+import MainPage from '../../components/app';
 import Error from '../../components/error';
-import PageBody from './view';
+// import PageBody from './view';
 import './style.less';
 
 export class Post extends Component {
-    constructor(props) {
-        super(props);
-    }
     static async getInitialProps({ query }) {
         query = decodeURIComponent(query.id);
         const post_data = query.split('-');
@@ -22,23 +18,6 @@ export class Post extends Component {
             post_name
         };
     }
-    findPost = () => {
-        const { posts, post_id, post_name } = this.props;
-        let post = undefined;
-
-        if (posts.length > 0) {
-            post = posts.find(
-                (obj) =>
-                    obj.node.id === post_id &&
-                    obj.node.title
-                        .toLowerCase()
-                        .split(' ')
-                        .join('-') === post_name
-            );
-        }
-
-        return post;
-    };
     renderError = () => {
         return (
             <Error
@@ -57,18 +36,23 @@ export class Post extends Component {
         );
     };
     render() {
-        const post = this.findPost();
         return (
+            // <MainPage
+            //     loggedIn={this.props.loggedIn}
+            //     pageTitle={post !== undefined ? post.node.title : 'Post not found'}
+            //     render={() =>
+            //         post !== undefined ? (
+            //             <PageBody post={post} loggedIn={this.props.loggedIn} />
+            //         ) : (
+            //             this.renderError()
+            //         )
+            //     }
+            // />
+
             <MainPage
                 loggedIn={this.props.loggedIn}
-                pageTitle={post !== undefined ? post.node.title : 'Post not found'}
-                render={() =>
-                    post !== undefined ? (
-                        <PageBody post={post} loggedIn={this.props.loggedIn} />
-                    ) : (
-                        this.renderError()
-                    )
-                }
+                pageTitle={'Post Page'}
+                render={() => <p>Hello World</p>}
             />
         );
     }
@@ -76,14 +60,8 @@ export class Post extends Component {
 
 Post.propTypes = {
     loggedIn: types.bool.isRequired,
-    posts: types.array.isRequired,
     post_id: types.string.isRequired,
     post_name: types.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    posts: state.post_data.posts,
-    user: state.user_data
-});
-
-export default connect(mapStateToProps)(Post);
+export default Post;
