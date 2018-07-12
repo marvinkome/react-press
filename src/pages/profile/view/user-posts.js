@@ -19,7 +19,7 @@ class UserPosts extends Component {
                         </div>
                     )}
 
-                    <Link as={`/p/${pageLink}`} href={`/post?id=${pageLink}`}>
+                    <Link href={`/p/${pageLink}`}>
                         <a>
                             <span className="card-title">{obj.node.title}</span>
                         </a>

@@ -9,7 +9,7 @@ export const Post = ({ post, handleDelete }) => {
     return (
         <div className="post">
             <div className="post-title">
-                <Link as={`/p/${pageLink}`} href={`/post?id=${pageLink}`}>
+                <Link href={`/p/${pageLink}`}>
                     <a>
                         <h5>{post.node.title}</h5>
                     </a>
@@ -30,7 +30,7 @@ export const Post = ({ post, handleDelete }) => {
 
                 <span className="divider-dot" />
 
-                <Link as={`/me/edit-post/${pageLink}`} href={`/me/edit-post?id=${pageLink}`}>
+                <Link href={`/me/edit-post/${pageLink}`}>
                     <a>
                         <span className="edit">Edit Post</span>
                     </a>

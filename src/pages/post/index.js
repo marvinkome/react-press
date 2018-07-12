@@ -10,7 +10,7 @@ import PageBody from './view';
 import query from './query';
 import './style.less';
 
-export const Post = ({ loggedIn, post_name}) => {
+export const Post = ({ loggedIn, post_name }) => {
     const renderError = () => {
         return (
             <Error
@@ -31,17 +31,15 @@ export const Post = ({ loggedIn, post_name}) => {
 
     return (
         <Query query={query} variables={{ post_name }}>
-            {({ error, data }) => {
+            {(prop) => {
                 // if there's an error
-                if (error) return <Error render={<p>Error fetching post</p>} />;
+                if (prop.error) return <Error render={<p>Error fetching post</p>} />;
 
-
-
-                return data.post !== null ? (
+                return prop.data.post !== null ? (
                     <MainPage
                         loggedIn={loggedIn}
-                        pageTitle={data.post ? data.post.title : 'Post not found'}
-                        render={() => <PageBody loggedIn={loggedIn} post={data.post} />}
+                        pageTitle={prop.data.post ? prop.data.post.title : 'Post not found'}
+                        render={() => <PageBody loggedIn={loggedIn} post={prop.data.post} />}
                     />
                 ) : (
                     renderError()

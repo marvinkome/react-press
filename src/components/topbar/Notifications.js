@@ -35,7 +35,7 @@ const Notifications = ({ notifications }) => (
                                         </span>{' '}
                                     </p>
                                     <p className="post-title">
-                                        <Link as={`/p/${page_link}`} href={`/post?id=${page_link}`}>
+                                        <Link href={`/p/${page_link}`}>
                                             <a>{notification.post.title}</a>
                                         </Link>
                                     </p>

@@ -6,7 +6,7 @@ import { ApolloClient } from 'apollo-boost';
 import { HttpLink } from 'apollo-boost';
 import { InMemoryCache } from 'apollo-boost';
 import fetch from 'isomorphic-fetch';
-import { url as uri } from '../keys/api';
+import { url } from '../keys/api';
 
 let apolloClient = null;
 
@@ -19,7 +19,7 @@ function create(initialState) {
         connectToDevTools: process.browser,
         ssrMode: !process.browser,
         link: new HttpLink({
-            uri: uri + '/graphql'
+            uri: url + '/graphql'
         }),
         cache: new InMemoryCache().restore(initialState || {})
     });
