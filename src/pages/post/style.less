@@ -123,6 +123,7 @@
     }
 
     .fixed-action-btn {
+        bottom: 60px;
         a.btn-large {
             background: @color-scheme-1;
             color: @black-scheme-4;
@@ -219,6 +220,46 @@
                 @media screen and (max-width: 992px) and (min-width: 601px) {
                     width: 80%;
                 }
+            }
+        }
+    }
+
+    .pagination {
+        display: flex;
+        overflow: hidden;
+        position: fixed;
+        bottom: 0;
+        left: 0%;
+        height: 10%;
+        width: 100%;
+        padding: 10px 20px;
+        background-color: @black-scheme-4;
+        box-shadow: 0px -1px 2px 0px #e6e6e6;
+
+        .pager {
+            width: 40%;
+
+            &.next {
+                margin-left: auto;
+            }
+
+            @media screen and (min-width: 993px) {
+                width: 20%;
+            }
+
+            div {
+                font-size: 13px;
+                color: @black-scheme-3;
+                text-transform: capitalize;
+            }
+            h5 {
+                margin: 0;
+                font-size: 17px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                text-transform: capitalize;
+                font-weight: 600;
             }
         }
     }

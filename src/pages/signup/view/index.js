@@ -1,25 +1,19 @@
 import React from 'react';
 import types from 'prop-types';
-import { connect } from 'react-redux';
 import Link from 'next/link';
-import Router from 'next/router';
 
-import { getFromStore } from '../../../lib/storage';
-import { tokenKey } from '../../../keys/storage';
 import { SignupForm } from '../../../components/forms';
-import { setupNotification } from '../../../store/actions-creators';
-import { register_user, fetch_user_data } from '../../../store/actions';
 import { validate_password } from '../../../lib/helpers';
+import authRequests from '../../../api/authRequests';
 
 export class PageView extends React.Component {
     constructor() {
         super();
 
         this.state = {
-            email: '',
-            full_name: '',
-            password: '',
-            auth_message: ''
+            loggingIn: false,
+            auth_message: '',
+            invalid_password: false
         };
     }
     handleChange = (e) => {
@@ -30,34 +24,43 @@ export class PageView extends React.Component {
     };
     handleSubmit = async (e) => {
         e.preventDefault();
+        const email = e.target['email'].value;
+        const full_name = e.target['full_name'].value;
+        const password = e.target['password'].value;
+
+        if (!validate_password(password)) {
+            this.setState({
+                auth_message: 'please provide a valid password',
+                invalid_password: true
+            });
+        }
+
+        this.setState({
+            loggingIn: true
+        });
 
         try {
-            const res = await this.props.register_user(this.state);
-            if (res.payload.msg == 'Authentication successfull') {
-                const token = getFromStore(tokenKey);
-                await this.props.fetch_data();
-                await this.props.setupNotification(token);
-                await Router.back();
-            } else {
-                this.setState({
-                    auth_message: res.payload.msg
-                });
-            }
-        } catch (error) {
+            await authRequests({
+                email,
+                full_name,
+                password
+            }).register();
+
+            await this.setState({
+                loggingIn: false
+            });
+        } catch (err) {
             this.setState({
-                auth_message:
-                    String(error) == 'TypeError: Failed to fetch' && 'Can\'t login server error'
+                auth_message: 'Error creating your profile. Please try again',
+                loggingIn: false
             });
         }
     };
     render() {
-        const password = this.state.password;
-        let button_class = 'btn';
         let input_class = '';
 
-        if (!validate_password(password)) {
-            button_class = button_class + ' disabled';
-            input_class = input_class + ' invalid';
+        if (this.state.invalid_password) {
+            input_class = input_class + 'invalid';
         }
 
         return (
@@ -78,14 +81,9 @@ export class PageView extends React.Component {
 
                         <div className="login-form">
                             <SignupForm
-                                emailValue={this.state.email}
-                                nameValue={this.state.full_name}
-                                passwordValue={this.state.password}
-                                onChange={this.handleChange}
-                                loggingIn={this.props.isLoggingIn}
+                                loggingIn={this.state.loggingIn}
                                 auth_message={this.state.auth_message}
                                 onSubmit={this.handleSubmit}
-                                button_class={button_class}
                                 input_class={input_class}
                             />
                         </div>
@@ -106,24 +104,7 @@ export class PageView extends React.Component {
 }
 
 PageView.propTypes = {
-    isLoggingIn: types.bool,
-    register_user: types.func,
-    fetch_data: types.func,
-    setupNotification: types.func
+    isLoggingIn: types.bool
 };
 
-const mapStateToProps = (state) => {
-    return {
-        isLoggingIn: state.isLoggingIn
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        register_user: (data) => dispatch(register_user(data)),
-        fetch_data: () => dispatch(fetch_user_data()),
-        setupNotification: (token) => dispatch(setupNotification(token))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PageView);
+export default PageView;

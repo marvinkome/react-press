@@ -1,11 +1,41 @@
 import React from 'react';
+import types from 'prop-types';
+import Link from 'next/link';
+import { get_page_link } from '../../../lib/helpers';
 
-const Pagination = () => {
+const Pagination = ({ nextTitle, prevTitle }) => {
+    const prevLink = get_page_link(prevTitle);
+    const nextLink = get_page_link(nextTitle);
+
     return (
         <div className="pagination">
-            <p>Pagination</p>
+            {prevTitle && (
+                <div className="pager prev">
+                    <div>previous post</div>
+                    <h5>
+                        <Link href={`/p/${prevLink}`}>
+                            <a>{prevTitle}</a>
+                        </Link>
+                    </h5>
+                </div>
+            )}
+            {nextTitle && (
+                <div className="pager next">
+                    <div>next post</div>
+                    <h5>
+                        <Link href={`/p/${nextLink}`}>
+                            <a>{nextTitle}</a>
+                        </Link>
+                    </h5>
+                </div>
+            )}
         </div>
     );
+};
+
+Pagination.propTypes = {
+    nextTitle: types.string,
+    prevTitle: types.string
 };
 
 export default Pagination;

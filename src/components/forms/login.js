@@ -1,27 +1,14 @@
 import React from 'react';
 import types from 'prop-types';
-// import Link from 'next/link';
 
-export const LoginForm = ({ onSubmit, onChange, loggingIn, auth_message, ...props }) => {
+export const LoginForm = ({ onSubmit, loggingIn, auth_message }) => {
     return (
         <form className="row" onSubmit={onSubmit}>
             <div className="input-field col s12">
-                <input
-                    value={props.emailValue}
-                    type="text"
-                    id="email"
-                    placeholder="Your email"
-                    onChange={onChange}
-                />
+                <input type="text" id="email" placeholder="Your email" required />
             </div>
             <div className="input-field col s12">
-                <input
-                    value={props.passwordValue}
-                    type="password"
-                    id="password"
-                    placeholder="Your password"
-                    onChange={onChange}
-                />
+                <input type="password" id="password" placeholder="Your password" required />
             </div>
             <div className="input-field col s12">
                 <button type="submit" className="btn">
@@ -41,11 +28,8 @@ export const LoginForm = ({ onSubmit, onChange, loggingIn, auth_message, ...prop
 
 LoginForm.propTypes = {
     onSubmit: types.func,
-    onChange: types.func,
     loggingIn: types.bool,
-    auth_message: types.string,
-    emailValue: types.string,
-    passwordValue: types.string
+    auth_message: types.string
 };
 
 export default LoginForm;

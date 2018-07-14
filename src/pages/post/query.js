@@ -52,6 +52,8 @@ export default gql`
                     }
                 }
             }
+            nextTitle
+            prevTitle
         }
     }
 `;

@@ -15,7 +15,7 @@ export default (data) => {
     };
 
     return {
-        login: makeRequest(data, 'login'),
-        register: makeRequest(data, 'register')
+        login: () => makeRequest(data, 'login'),
+        register: () => makeRequest(data, 'register')
     };
 };

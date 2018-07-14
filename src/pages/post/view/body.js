@@ -5,6 +5,7 @@ import PostCard from './post-card';
 import AuthorInfo from './author-info';
 import Comment from './comment';
 import FAB from './fab';
+import Pagination from './pagination';
 
 export const PostBody = ({ post, onClap, onComment, onCommentReply }) => {
     return (
@@ -21,6 +22,8 @@ export const PostBody = ({ post, onClap, onComment, onCommentReply }) => {
                             handleComment={onComment}
                             handleReply={onCommentReply}
                         />
+
+                        <Pagination nextTitle={post.nextTitle} prevTitle={post.prevTitle}/>
                     </div>
                     <div className="col m1">
                         <FAB claps_count={post.claps.totalCount} onClap={onClap} />

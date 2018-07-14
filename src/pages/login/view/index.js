@@ -1,111 +1,88 @@
 import React from 'react';
 import types from 'prop-types';
-import { connect } from 'react-redux';
+import cookie from 'cookie';
 import Link from 'next/link';
-import Router from 'next/router';
-
-import { getFromStore } from '../../../lib/storage';
-import { tokenKey } from '../../../keys/storage';
+import { Mutation, withApollo } from 'react-apollo';
 import { LoginForm } from '../../../components/forms';
-import { setupNotification } from '../../../store/actions-creators';
-import { login_user, fetch_user_data } from '../../../store/actions';
+import { tokenKey } from '../../../keys';
+import redirect from '../../../lib/redirect';
+import mutation from './query';
 
-export class PageView extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            email: '',
-            password: '',
-            auth_message: ''
-        };
-    }
-    handleChange = (e) => {
-        e.preventDefault();
-        this.setState({
-            [e.target.id]: e.target.value
+export const PageView = ({ client }) => {
+    const onCompleted = async (data) => {
+        document.cookie = cookie.serialize(tokenKey, data.loginUser.token, {
+            maxAge: 30 * 24 * 60 * 60 // 30 days
         });
+
+        await client.cache.reset();
+        await redirect({}, '/');
     };
-    handleSubmit = async (e) => {
+
+    const handleSubmit = (e, loginUser) => {
         e.preventDefault();
+        e.stopPropagation();
+        let email = e.target['email'];
+        let password = e.target['password'];
 
-        try {
-            const res = await this.props.login_user(this.state);
-            if (res.payload.msg == 'Authentication successfull') {
-                const token = getFromStore(tokenKey);
-                await this.props.fetch_data(token);
-                await this.props.setupNotification(token);
-                await Router.back();
-            } else {
-                this.setState({
-                    auth_message: res.payload.msg
-                });
+        loginUser({
+            variables: {
+                email: email.value,
+                password: password.value
             }
-        } catch (e) {
-            this.setState({
-                auth_message:
-                    String(e) == 'TypeError: Failed to fetch' ? 'Can\'t login server error' : ''
-            });
-        }
+        });
+
+        email.value = password.value = '';
     };
-    render() {
-        return (
-            <div className="auth auth-login">
-                <div className="container">
-                    <div className="login-section section center z-depth-1">
-                        <div className="heading">
-                            <h5>Welcome Back</h5>
-                            <p>
-                                Sign in to share your story with the world, appreciate stories you
-                                love, and more.
-                            </p>
-                        </div>
 
-                        <div className="login-form">
-                            <LoginForm
-                                emailValue={this.state.email}
-                                passwordValue={this.state.password}
-                                onChange={this.handleChange}
-                                loggingIn={this.props.isLoggingIn}
-                                auth_message={this.state.auth_message}
-                                onSubmit={this.handleSubmit}
-                            />
-                        </div>
+    return (
+        <Mutation mutation={mutation} onCompleted={onCompleted}>
+            {(loginUser, { loading, error }) => {
+                const err =
+                    error &&
+                    error
+                        .toString()
+                        .split(':')
+                        .pop();
 
-                        <div className="extra-info">
-                            <p>
-                                Don{'\''}t have an account?
-                                <Link href="/signup">
-                                    <a> Signup</a>
-                                </Link>
-                            </p>
+                return (
+                    <div className="auth auth-login">
+                        <div className="container">
+                            <div className="login-section section center z-depth-1">
+                                <div className="heading">
+                                    <h5>Welcome Back</h5>
+                                    <p>
+                                        Sign in to share your story with the world, appreciate
+                                        stories you love, and more.
+                                    </p>
+                                </div>
+
+                                <div className="login-form">
+                                    <LoginForm
+                                        loggingIn={loading}
+                                        auth_message={err}
+                                        onSubmit={(e) => handleSubmit(e, loginUser)}
+                                    />
+                                </div>
+
+                                <div className="extra-info">
+                                    <p>
+                                        Don{'\''}t have an account?
+                                        <Link href="/signup">
+                                            <a> Signup</a>
+                                        </Link>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        );
-    }
-}
+                );
+            }}
+        </Mutation>
+    );
+};
 
 PageView.propTypes = {
-    isLoggingIn: types.bool,
-    login_user: types.func,
-    fetch_data: types.func,
-    setupNotification: types.func
+    client: types.object
 };
 
-const mapStateToProps = (state) => {
-    return {
-        isLoggingIn: state.isLoggingIn
-    };
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        login_user: (data) => dispatch(login_user(data)),
-        fetch_data: (token) => dispatch(fetch_user_data(token)),
-        setupNotification: (token) => dispatch(setupNotification(token))
-    };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PageView);
+export default withApollo(PageView);

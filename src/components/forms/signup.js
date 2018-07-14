@@ -2,39 +2,26 @@ import React from 'react';
 import types from 'prop-types';
 // import Link from 'next/link';
 
-export const SignupForm = ({ onSubmit, onChange, loggingIn, auth_message, ...props }) => {
+export const SignupForm = ({ onSubmit, loggingIn, auth_message, input_class }) => {
     return (
         <form onSubmit={onSubmit} className="row">
             <div className="input-field col s12">
-                <input
-                    value={props.emailValue}
-                    type="email"
-                    id="email"
-                    placeholder="Your email"
-                    onChange={onChange}
-                />
+                <input type="email" id="email" placeholder="Your email" required />
+            </div>
+            <div className="input-field col s12">
+                <input type="text" id="full_name" placeholder="Your full name" required />
             </div>
             <div className="input-field col s12">
                 <input
-                    value={props.nameValue}
-                    type="text"
-                    id="full_name"
-                    placeholder="Your full name"
-                    onChange={onChange}
-                />
-            </div>
-            <div className="input-field col s12">
-                <input
-                    value={props.passwordValue}
-                    className={props.input_class}
                     type="password"
                     id="password"
                     placeholder="Your password"
-                    onChange={onChange}
+                    className={input_class}
+                    required
                 />
             </div>
             <div className="input-field col s12">
-                <button type="submit" className={props.button_class}>
+                <button type="submit" className="btn">
                     {!loggingIn ? (
                         'Submit'
                     ) : (
@@ -51,13 +38,8 @@ export const SignupForm = ({ onSubmit, onChange, loggingIn, auth_message, ...pro
 
 SignupForm.propTypes = {
     onSubmit: types.func,
-    onChange: types.func,
     loggingIn: types.bool,
     auth_message: types.string,
-    emailValue: types.string,
-    passwordValue: types.string,
-    nameValue: types.string,
-    button_class: types.string,
     input_class: types.string
 };
 
