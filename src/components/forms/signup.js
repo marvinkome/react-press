@@ -1,22 +1,23 @@
 import React from 'react';
 import types from 'prop-types';
-// import Link from 'next/link';
 
-export const SignupForm = ({ onSubmit, loggingIn, auth_message, input_class }) => {
+export const SignupForm = ({ onSubmit, loggingIn, auth_message }) => {
     return (
         <form onSubmit={onSubmit} className="row">
             <div className="input-field col s12">
-                <input type="email" id="email" placeholder="Your email" required />
+                <input type="email" id="email" placeholder="Email" required />
             </div>
             <div className="input-field col s12">
-                <input type="text" id="full_name" placeholder="Your full name" required />
+                <input type="text" id="username" placeholder="Username" required />
+            </div>
+            <div className="input-field col s12">
+                <input type="text" id="full_name" placeholder="Full Name" required />
             </div>
             <div className="input-field col s12">
                 <input
                     type="password"
                     id="password"
-                    placeholder="Your password"
-                    className={input_class}
+                    placeholder="Password"
                     required
                 />
             </div>
@@ -39,8 +40,7 @@ export const SignupForm = ({ onSubmit, loggingIn, auth_message, input_class }) =
 SignupForm.propTypes = {
     onSubmit: types.func,
     loggingIn: types.bool,
-    auth_message: types.string,
-    input_class: types.string
+    auth_message: types.string
 };
 
 export default SignupForm;

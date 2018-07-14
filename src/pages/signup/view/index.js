@@ -1,110 +1,95 @@
 import React from 'react';
+import cookie from 'cookie';
 import types from 'prop-types';
 import Link from 'next/link';
+import { Mutation, withApollo } from 'react-apollo';
 
 import { SignupForm } from '../../../components/forms';
-import { validate_password } from '../../../lib/helpers';
-import authRequests from '../../../api/authRequests';
+import { tokenKey } from '../../../keys';
+import redirect from '../../../lib/redirect';
+import mutation from './query';
 
-export class PageView extends React.Component {
-    constructor() {
-        super();
-
-        this.state = {
-            loggingIn: false,
-            auth_message: '',
-            invalid_password: false
-        };
-    }
-    handleChange = (e) => {
-        e.preventDefault();
-        this.setState({
-            [e.target.id]: e.target.value
-        });
-    };
-    handleSubmit = async (e) => {
-        e.preventDefault();
-        const email = e.target['email'].value;
-        const full_name = e.target['full_name'].value;
-        const password = e.target['password'].value;
-
-        if (!validate_password(password)) {
-            this.setState({
-                auth_message: 'please provide a valid password',
-                invalid_password: true
-            });
-        }
-
-        this.setState({
-            loggingIn: true
+export const PageView = ({ client }) => {
+    const onCompleted = (data) => {
+        document.cookie = cookie.serialize(tokenKey, data.createUser.token, {
+            maxAge: 30 * 24 * 60 * 60 // 30 days
         });
 
-        try {
-            await authRequests({
-                email,
-                full_name,
-                password
-            }).register();
-
-            await this.setState({
-                loggingIn: false
-            });
-        } catch (err) {
-            this.setState({
-                auth_message: 'Error creating your profile. Please try again',
-                loggingIn: false
-            });
-        }
+        client.resetStore().then(() => redirect({}, '/'));
     };
-    render() {
-        let input_class = '';
 
-        if (this.state.invalid_password) {
-            input_class = input_class + 'invalid';
-        }
+    const handleSubmit = (e, func) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let email = e.target['email'];
+        let password = e.target['password'];
+        let username = e.target['username'];
+        let fullName = e.target['full_name'];
 
-        return (
-            <div className="auth auth-signup">
-                <div className="container">
-                    <div className="signup-section section center z-depth-1">
-                        <div className="heading">
-                            <h5>Join ReactPress</h5>
-                            <p>
-                                Sign up to share your story with the world, appreciate stories you
-                                love, and more.
-                            </p>
-                            <p>
-                                * Password must contain atleast one uppercase letter or one number.
-                                And must be atleast 6 characters long
-                            </p>
-                        </div>
+        func({
+            variables: {
+                email: email.value,
+                password: password.value,
+                username: username.value,
+                fullName: fullName.value
+            }
+        });
 
-                        <div className="login-form">
-                            <SignupForm
-                                loggingIn={this.state.loggingIn}
-                                auth_message={this.state.auth_message}
-                                onSubmit={this.handleSubmit}
-                                input_class={input_class}
-                            />
-                        </div>
+        // email.value = password.value = username.value = fullName.value = '';
+    };
+    return (
+        <Mutation mutation={mutation} onCompleted={onCompleted}>
+            {(createUser, { loading, error }) => {
+                const err =
+                    error &&
+                    error
+                        .toString()
+                        .split(':')
+                        .pop();
 
-                        <div className="extra-info">
-                            <p>
-                                Have an account?
-                                <Link href="/login">
-                                    <a> Login</a>
-                                </Link>
-                            </p>
+                return (
+                    <div className="auth auth-signup">
+                        <div className="container">
+                            <div className="signup-section section center z-depth-1">
+                                <div className="heading">
+                                    <h5>Join ReactPress</h5>
+                                    <p>
+                                        Sign up to share your story with the world, appreciate
+                                        stories you love, and more.
+                                    </p>
+                                    <p>
+                                        * Password must contain atleast one uppercase letter or one
+                                        number. And must be atleast 6 characters long
+                                    </p>
+                                </div>
+
+                                <div className="login-form">
+                                    <SignupForm
+                                        loggingIn={loading}
+                                        auth_message={err}
+                                        onSubmit={(e) => handleSubmit(e, createUser)}
+                                    />
+                                </div>
+
+                                <div className="extra-info">
+                                    <p>
+                                        Have an account?
+                                        <Link href="/login">
+                                            <a> Login</a>
+                                        </Link>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        );
-    }
-}
-
-PageView.propTypes = {
-    isLoggingIn: types.bool
+                );
+            }}
+        </Mutation>
+    );
 };
 
-export default PageView;
+PageView.propTypes = {
+    client: types.object
+};
+
+export default withApollo(PageView);
