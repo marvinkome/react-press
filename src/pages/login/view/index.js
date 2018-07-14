@@ -9,13 +9,12 @@ import redirect from '../../../lib/redirect';
 import mutation from './query';
 
 export const PageView = ({ client }) => {
-    const onCompleted = async (data) => {
+    const onCompleted = (data) => {
         document.cookie = cookie.serialize(tokenKey, data.loginUser.token, {
             maxAge: 30 * 24 * 60 * 60 // 30 days
         });
-
-        await client.cache.reset();
-        await redirect({}, '/');
+        
+        client.resetStore().then(() => redirect({}, '/'));
     };
 
     const handleSubmit = (e, loginUser) => {

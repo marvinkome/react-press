@@ -57,7 +57,7 @@ export class Body extends React.Component {
     };
 
     hasNext = (totalCount) => {
-        return (this.state.postPerPage * this.state.pageCursor) < totalCount;
+        return this.state.postPerPage * this.state.pageCursor < totalCount;
     };
 
     hasPrev = () => {
@@ -86,8 +86,11 @@ export class Body extends React.Component {
                 {hasNext && (
                     <div className="col s4 next z-depth-1">
                         <p>
-                            <a onClick={(e) => 
-                                this.goToNextPage(e, totalCount, fetchMore, pageInfo.endCursor)}>
+                            <a
+                                onClick={(e) =>
+                                    this.goToNextPage(e, totalCount, fetchMore, pageInfo.endCursor)
+                                }
+                            >
                                 Next Page
                             </a>
                         </p>
@@ -121,19 +124,20 @@ export class Body extends React.Component {
                 {(props) => {
                     // if there's an error
                     if (props.error) return <Error render={<p>Error fetching posts</p>} />;
-                    const posts = props.data.allPost.edges;
+                    
+                    const posts = props.data.allPost;
 
-                    return (
+                    return posts ? (
                         <div className="home-body section container">
-                            <div className="row">{this.render_post_cards(posts)}</div>
-                            {posts.length &&
+                            <div className="row">{this.render_post_cards(posts.edges)}</div>
+                            {posts.edges.length &&
                                 this.render_pagination(
                                     props.data.allPost.pageInfo,
                                     props.data.allPost.totalCount,
                                     props.fetchMore
                                 )}
                         </div>
-                    );
+                    ) : null;
                 }}
             </Query>
         );
