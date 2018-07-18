@@ -130,12 +130,12 @@ export class Body extends React.Component {
                     return posts ? (
                         <div className="home-body section container">
                             <div className="row">{this.render_post_cards(posts.edges)}</div>
-                            {posts.edges.length &&
+                            {posts.edges.length ?
                                 this.render_pagination(
                                     props.data.allPost.pageInfo,
                                     props.data.allPost.totalCount,
                                     props.fetchMore
-                                )}
+                                ) : null }
                         </div>
                     ) : null;
                 }}

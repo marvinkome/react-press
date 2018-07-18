@@ -1,15 +1,51 @@
 import React, { Component } from 'react';
 import types from 'prop-types';
-import { connect } from 'react-redux';
+import { Query, Mutation, withApollo } from 'react-apollo';
 
-import PostEditor from './postEditor';
-import { create_posts, create_tags, edit_post } from '../../store/actions';
+import redirect from '../../lib/redirect';
 import { createToast } from '../../lib/helpers';
+import PostEditor from './postEditor';
+import query, { createPost } from './query';
 import './style.less';
 
 export const { Provider, Consumer } = React.createContext();
 
-export class Body extends Component {
+export const Body = ({ post_id, client }) => {
+    const onCompleted = async () => {
+        await client.resetStore();
+        await redirect({}, '/me/posts');
+    };
+
+    const onError = () => createToast('Error creating post, try again');
+
+    const publishPost = (post_data, create_post) => {
+        let { title, body, postPicUrl, topic: tag } = post_data;
+
+        if ( postPicUrl === '' ) postPicUrl = null;
+        if ( tag === '' ) tag = null;
+
+        create_post({ variables: { title, body, postPicUrl, tag } });
+    };
+
+    return (
+        <Query query={query}>
+            {({ data }) => {
+                return (
+                    <Mutation mutation={createPost} onCompleted={onCompleted} onError={onError}>
+                        {(create_post) => {
+                            return (
+                                <Provider value={(data) => publishPost(data, create_post )}>
+                                    <PostEditor user_data={data} post_id={post_id} />
+                                </Provider>
+                            );
+                        }}
+                    </Mutation>
+                );
+            }}
+        </Query>
+    );
+};
+export class Bodyq extends Component {
     publishPost = async (data, tags, editPage = false) => {
         if (editPage) {
             try {
@@ -47,32 +83,12 @@ export class Body extends Component {
             }
         }
     };
-    render() {
-        const data = this.props.data.data;
-        return (
-            <Provider value={this.publishPost}>
-                <PostEditor user_data={data} post_id={this.props.post_id} />
-            </Provider>
-        );
-    }
 }
 
 Body.propTypes = {
+    client: types.object.isRequired,
     post_id: types.string,
-    data: types.object.isRequired,
-    create_post: types.func.isRequired,
-    create_tag: types.func.isRequired,
     edit_post: types.func
 };
 
-const mapDispatchToProp = (dispatch) => ({
-    edit_post: (data) => dispatch(edit_post(data)),
-    create_post: (data) => dispatch(create_posts(data)),
-    create_tag: (data) => dispatch(create_tags(data))
-});
-
-const mapStateToProps = (state) => ({
-    data: state.user_data
-});
-
-export default connect(mapStateToProps, mapDispatchToProp)(Body);
+export default withApollo(Body);

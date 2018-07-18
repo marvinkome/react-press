@@ -14,13 +14,8 @@ export default gql`
                 fullName
                 description
             }
-            tags {
-                edges {
-                    node {
-                        id
-                        name
-                    }
-                }
+            tag {
+                name
             }
             claps {
                 totalCount

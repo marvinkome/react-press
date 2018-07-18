@@ -15,6 +15,7 @@ export class EditorForm extends React.Component {
             postPicUrl: ''
         };
     }
+
     static getDerivedStateFromProps(props) {
         if (props.data !== undefined) {
             const { title } = props.data;
@@ -23,24 +24,31 @@ export class EditorForm extends React.Component {
             };
         }
     }
+
     onInputChange = (e) => {
+        // handle title change
         e.preventDefault();
         this.setState({
             [e.target.id]: e.target.value
         });
     };
-    onContentChange = (content) => {
-        const data = `<div>${content}</div>`;
+
+    onContentChange = (post_content) => {
+        // handle content change
         this.setState({
-            post_content: data
+            post_content
         });
     };
+
     afterUpload = (postPicUrl) => {
+        // handle postPicUrl
         this.setState({
             postPicUrl
         });
     };
+
     sortOutNewData = (current_tags) => {
+        // sort out new data during post edit
         let post_data = {};
         let new_tags = [];
 
@@ -83,23 +91,32 @@ export class EditorForm extends React.Component {
             post_data
         };
     };
-    onPublishClick = (tags) => {
+
+    onPublishClick = (topic) => {
+
+        // get post data from state
         const { post_title, post_content, postPicUrl } = this.state;
-        if (post_title.length <= 0) {
+
+        // post title is required so alert if it isn't giving
+        if (!post_title.length) {
             return alert('Title is required before you publish');
         }
 
+        // check if its edit post page
         if (this.props.data.title !== '') {
-            const { post_data, new_tags } = this.sortOutNewData(tags);
+            // then sort out the new data
+            const { post_data, new_tags } = this.sortOutNewData(topic);
 
             this.props.publishPost(post_data, new_tags, true);
         } else {
+            // it's new post page
             const postData = {
                 title: post_title,
                 body: sanitize_html(post_content),
-                postPicUrl
+                postPicUrl,
+                topic
             };
-            this.props.publishPost(postData, tags);
+            this.props.publishPost(postData);
         }
     };
     render() {

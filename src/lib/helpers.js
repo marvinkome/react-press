@@ -145,9 +145,7 @@ export const createToast = (text) => {
 };
 
 export const sanitize_html = (html) => {
-    return sanitize(html, {
-        allowedTags: ['b', 'i', 'h2', 'h3', 'pre', 'blockquote', 'ul', 'li']
-    });
+    return sanitize(html);
 };
 
 export const get_page_link = (title) => {

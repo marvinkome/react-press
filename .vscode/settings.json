@@ -1,33 +1,5 @@
 {
-    "editor.rulers": [
-        100
-    ],
+    "editor.rulers": [100],
     "material-icon-theme.folders.color": "#ff00ff",
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#333",
-        "activityBar.dropBackground": "#666",
-        "activityBar.foreground": "#ffffff",
-        "activityBar.border": "#333",
-        "activityBarBadge.background": "#838108",
-        "activityBarBadge.foreground": "#efefef",
-        "sideBar.background": "#222",
-        "sideBar.foreground": "#dedede",
-        "sideBar.border": "#333",
-        "sideBar.dropBackground": "#0000",
-        "sideBarTitle.foreground": "#fff",
-        "sideBarSectionHeader.background": "#313131",
-        "sideBarSectionHeader.foreground": "#bfbfbf",
-        "editorGroupHeader.tabsBackground": "#333",
-        "tab.activeBackground": "#222",
-        "tab.inactiveBackground": "#333",
-        "editor.background": "#222",
-        "editorLineNumber.foreground": "#6d6d6d",
-        "editorGutter.modifiedBackground": "#838108",
-        "editorGutter.addedBackground": "#0f5708",
-        "input.background": "#333",
-        "inputOption.activeBorder": "#333",
-        "input.border": "#222",
-        "focusBorder": "#333",
-        "statusBar.background": "#333"
-    }
+    "python.pythonPath": "/usr/bin/python3"
 }

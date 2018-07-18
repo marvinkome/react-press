@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 class PostCard extends Component {
     render() {
-        const { title, postPicUrl, body, tags } = this.props.data;
+        const { title, postPicUrl, body, tag } = this.props.data;
 
         return (
             <div className="post">
@@ -31,11 +31,7 @@ class PostCard extends Component {
                 </div>
 
                 <div className="post-footer">
-                    {tags.edges.map((obj) => (
-                        <div key={obj.node.id} className="post-tag">
-                            <span title={obj.node.name}>{obj.node.name}</span>
-                        </div>
-                    ))}
+                    {tag && `Posted In: ${tag.name}`}
                 </div>
             </div>
         );

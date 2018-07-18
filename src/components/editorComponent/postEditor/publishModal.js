@@ -1,6 +1,5 @@
 import React from 'react';
 import types from 'prop-types';
-import { MdClose } from 'react-icons/lib/md';
 import { all_tags, upload_file, createToast } from '../../../lib/helpers';
 
 export default class PublishModal extends React.Component {
@@ -8,68 +7,40 @@ export default class PublishModal extends React.Component {
         super(props);
 
         this.state = {
-            chips: [...props.init_tags],
-            tagName: '',
-            err_text: ''
+            selectedTopic: ''
         };
 
         this.modal = React.createRef();
-        this.modalIns;
+        this.select = React.createRef();
     }
-    // componentWillReceiveProps(props) {
-    //     if (props.init_tags.length > 0) {
-    //         this.setState({
-    //             chips: props.init_tags
-    //         });
-    //     }
-    // }
+
     componentDidMount() {
         const modal = this.modal.current;
+        const select = this.select.current;
+
+        this.selectIns = window.M.FormSelect.init(select);
         this.modalIns = window.M.Modal.init(modal);
     }
+
     componentWillUnmount() {
         if (this.modalIns !== undefined) {
             this.modalIns.close();
             this.modalIns.destroy();
         }
-    }
-    closeTag = (item, item_index) => {
-        const tag = this.state.chips.find((obj, index) => obj.tag === item && index === item_index);
-        this.setState({
-            chips: this.state.chips.filter((obj) => obj !== tag)
-        });
-    };
-    onChange = (e) => {
-        this.setState({
-            tagName: e.target.value
-        });
-        this.setState({
-            err_text: ''
-        });
-    };
-    onChipAdd = (e) => {
-        if (e.which === 13) {
-            if (all_tags.indexOf(this.state.tagName.toLowerCase()) === -1) {
-                this.setState({
-                    err_text: 'Invalid tag'
-                });
 
-                return;
-            }
-
-            if (this.state.chips.length !== 3) {
-                this.setState({
-                    chips: [
-                        ...this.state.chips,
-                        {
-                            tag: this.state.tagName
-                        }
-                    ],
-                    tagName: ''
-                });
-            }
+        if (this.selectIns !== undefined) {
+            this.selectIns.destroy();
         }
-    };
+    }
+
+    onChange = (e) => {
+        e.preventDefault();
+
+        this.setState({
+            selectedTopic: e.target.value
+        });
+    }
+
     handleSelectFile = (e) => {
         e.preventDefault();
         this.handleFileUpload(e.target.files[0]);
@@ -84,18 +55,12 @@ export default class PublishModal extends React.Component {
 
         this.props.afterUpload(task.downloadURL);
     };
+
     handlePublish = (e) => {
         e.preventDefault();
-        this.props.onPublish(this.state.chips);
+        this.props.onPublish(this.state.selectedTopic);
     };
-    render_tag = (item, index) => (
-        <div className="chip" key={index}>
-            {item.tag}
-            <a onClick={() => this.closeTag(item.tag, index)}>
-                <MdClose />
-            </a>
-        </div>
-    );
+
     render() {
         return (
             <div className="modal modal-fixed-footer" id="publish" ref={this.modal}>
@@ -103,9 +68,7 @@ export default class PublishModal extends React.Component {
                     <h4>Ready to publish?</h4>
 
                     <div className="add-featured-image">
-                        <p>
-                            Add a high resolution image to your story to capture people’s interest
-                        </p>
+                        <p>Add a high resolution image to your post to capture people’s interest</p>
                         <div>
                             <form>
                                 <div className="file-field input-field">
@@ -127,24 +90,21 @@ export default class PublishModal extends React.Component {
 
                     <div className="tag">
                         <div>
-                            <p>
-                                Add (up to 3) tags to let your readers know what the post is about
-                            </p>
-                            <span>Accepted tags are: Tech, Science, Culture, Art, Media</span>
+                            <p>Select a topic that fits your post</p>
                         </div>
 
-                        <div className="chips input-field">
-                            {this.state.chips.map((item, index) => this.render_tag(item, index))}
-                            <input
-                                placeholder="Add tag"
-                                className="input"
-                                onKeyPress={this.onChipAdd}
-                                onChange={this.onChange}
-                                value={this.state.tagName}
-                            />
+                        <div className="select input-field">
+                            <select 
+                                value={this.state.selectedTopic} 
+                                onChange={this.onChange} ref={this.select}>
+                                <option value="" disabled>Choose Topic</option>
+                                {all_tags.map((item, index) => (
+                                    <option key={index} value={item}>
+                                        {item}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
-
-                        <span className="red-text">{this.state.err_text}</span>
                     </div>
                 </div>
 

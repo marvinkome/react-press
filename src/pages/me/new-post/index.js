@@ -1,28 +1,21 @@
 import React from 'react';
 import types from 'prop-types';
-import Router from 'next/router';
-import { MainPage } from '../../../components/app';
+
+import MainPage from '../../../components/app';
 import PageView from '../../../components/editorComponent';
-import { isLoggedIn } from '../../../lib/helpers';
+
+import redirect from '../../../lib/redirect';
+import { checkLoggedIn } from '../../../lib/helpers';
 
 export const NewPost = ({ loggedIn }) => {
     return <MainPage loggedIn={loggedIn} pageTitle="Create new post" render={() => <PageView />} />;
 };
 
-NewPost.getInitialProps = async ({ res, isServer, req }) => {
-    if (isServer) {
-        if (isLoggedIn(req) === false) {
-            const backURL = '/login';
-            res.writeHead(302, {
-                Location: backURL
-            });
-            res.end();
-            res.finished = true;
-        }
-    } else {
-        if (isLoggedIn() === false) {
-            Router.push('/');
-        }
+NewPost.getInitialProps = async (ctx) => {
+    const { loggedInUser } = await checkLoggedIn(ctx.apolloClient);
+
+    if (!loggedInUser.user) {
+        redirect(ctx, '/');
     }
 
     return {};

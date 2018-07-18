@@ -1,7 +1,7 @@
 import React from 'react';
 import types from 'prop-types';
 import { MdTextFields, MdFormatBold } from 'react-icons/lib/md';
-import { FaHeader, FaListUl, FaItalic, FaUnderline } from 'react-icons/lib/fa';
+import { FaHeader, FaListUl, FaItalic } from 'react-icons/lib/fa';
 
 const BLOCK_TYPES = [
     {
@@ -29,12 +29,6 @@ const INLINE_STYLES = [
         label: 'italic',
         style: 'ITALIC',
         element: <FaItalic />,
-        extraStyle: ''
-    },
-    {
-        label: 'underline',
-        style: 'UNDERLINE',
-        element: <FaUnderline />,
         extraStyle: ''
     },
     {

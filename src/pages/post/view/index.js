@@ -10,7 +10,7 @@ export const PageBody = ({ client, post, loggedIn }) => {
     const error = () => createToast('There was an error, please try again');
 
     // event handlers
-    const handleClap = async (clap) => {
+    const handleClap = (clap) => {
         if (loggedIn) {
             const postId = post.uuid;
             clap({ variables: { postId } });
