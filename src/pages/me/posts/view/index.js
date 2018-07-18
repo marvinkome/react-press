@@ -1,20 +1,16 @@
 import React from 'react';
 import types from 'prop-types';
 import Link from 'next/link';
-import { connect } from 'react-redux';
-import { delete_post } from '../../../../store/actions';
-import { sort_posts } from '../../../../lib/helpers';
+import { Query, Mutation, withApollo } from 'react-apollo';
+
+import Error from '../../../../components/error';
+import { sort_posts, createToast } from '../../../../lib/helpers';
+
+import query, { deleteMutation } from './query';
 import { Post } from './post';
 
-class PageView extends React.Component {
-    handleDelete = (id) => {
-        const confirmDelete = confirm('This post will be permanently deleted');
-        if (confirmDelete == true) {
-            this.props.delete_post(id);
-        }
-    };
-
-    render_page_header = () => {
+const PageView = ({ client }) => {
+    const render_page_header = () => {
         return (
             <div className="posts-info">
                 <h1>Your posts</h1>
@@ -25,7 +21,7 @@ class PageView extends React.Component {
         );
     };
 
-    render_no_post = () => {
+    const render_no_post = () => {
         return (
             <div className="container">
                 <h5 className="center">No Posts</h5>
@@ -33,45 +29,106 @@ class PageView extends React.Component {
         );
     };
 
-    render_posts = (posts) => {
+    const render_posts = (posts, delete_post) => {
         posts = sort_posts(posts);
         return posts.map((post) => (
-            <Post key={post.node.id} post={post} handleDelete={this.handleDelete} />
+            <Post
+                key={post.node.id}
+                post={post}
+                handleDelete={(id) => handleDelete(id, delete_post)}
+            />
         ));
     };
 
-    render() {
-        let edges = [];
-        if (this.props.data.data) {
-            edges = this.props.data.data.user.posts.edges;
-        }
-
+    const render_pagination = (fetchMore, cursor) => {
         return (
-            <div className="main admin-posts">
-                {edges && (
-                    <div>
-                        {this.render_page_header()}
-                        <div className="posts-list">
-                            {edges.length > 0 ? this.render_posts(edges) : this.render_no_post()}
-                        </div>
-                    </div>
-                )}
+            <div className="col s12 center pagination">
+                <a className="btn btn-large" onClick={() => handleMore(fetchMore, cursor)}>
+                    Show more
+                </a>
             </div>
         );
-    }
-}
+    };
 
-PageView.propTypes = {
-    data: types.object.isRequired,
-    delete_post: types.func.isRequired
+    const handleDelete = (postId, delete_post) => {
+        const confirmDelete = confirm('This post will be permanently deleted');
+        if (confirmDelete == true) {
+            delete_post({
+                variables: {
+                    postId
+                }
+            });
+        }
+    };
+
+    const handleMore = (fetchMore, cursor) => {
+        return fetchMore({
+            variables: {
+                after: cursor
+            },
+            updateQuery: (previousResult, { fetchMoreResult }) => {
+                const newEdges = fetchMoreResult.user.posts.edges;
+                const pageInfo = fetchMoreResult.user.posts.pageInfo;
+
+                return newEdges.length
+                    ? {
+                        user: {
+                            id: fetchMoreResult.user.id,
+                            posts: {
+                                __typename: previousResult.user.posts.__typename,
+                                edges: [...previousResult.user.posts.edges, ...newEdges],
+                                pageInfo
+                            },
+                            __typename: previousResult.user.__typename
+                        }
+                    }
+                    : previousResult;
+            }
+        });
+    };
+
+    const deleteError = () => createToast('Error deleting post');
+
+    let edges = [];
+
+    return (
+        <Query query={query} variables={{ first: 2 }}>
+            {({ data, error, fetchMore }) => {
+                if (error) return <Error render={<p>There was an error fetching post</p>} />;
+
+                edges = data.user.posts.edges;
+                const hasMore = data.user.posts.pageInfo.hasNextPage;
+                const endCursor = data.user.posts.pageInfo.endCursor;
+
+                return (
+                    <Mutation mutation={deleteMutation} onError={deleteError} 
+                        onCompleted={() => client.resetStore()}>
+                        {(delete_post) => {
+                            return (
+                                <div className="main admin-posts">
+                                    {edges && (
+                                        <div>
+                                            {render_page_header()}
+                                            <div className="posts-list">
+                                                {edges.length > 0
+                                                    ? render_posts(edges, delete_post)
+                                                    : render_no_post()}
+                                            </div>
+                                            {hasMore && render_pagination(fetchMore, endCursor)}
+                                        </div>
+                                    )}
+                                </div>
+                            );
+                        }}
+                    </Mutation>
+                );
+            }}
+        </Query>
+    );
 };
 
-const mapStateToProps = (state) => ({
-    data: state.user_data
-});
+PageView.propTypes = {
+    client: types.object.isRequired
+};
 
-const mapDispatchToProp = (dispatch) => ({
-    delete_post: (id) => dispatch(delete_post(id))
-});
-
-export default connect(mapStateToProps, mapDispatchToProp)(PageView);
+export default withApollo(PageView);
