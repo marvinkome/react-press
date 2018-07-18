@@ -81,5 +81,5 @@ export default class UserMenu extends React.Component {
 UserMenu.propTypes = {
     isLoggedIn: types.bool.isRequired,
     imageData: types.object.isRequired,
-    logout: types.func.isRequired
+    logout: types.func
 };

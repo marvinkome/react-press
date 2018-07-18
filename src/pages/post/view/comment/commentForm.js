@@ -14,7 +14,7 @@ const CommentForm = ({ value, id, placeholder, onChange, onPublish }) => {
                 />
             </div>
             <div className="col 12 input-field">
-                <button onClick={(e) => onPublish(e)} type="submit" className="btn">
+                <button onClick={onPublish} type="submit" className="btn">
                     Publish
                 </button>
             </div>

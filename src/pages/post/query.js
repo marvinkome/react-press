@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 export default gql`
     query Post($post_name: String) {
         post(title: $post_name) {
+            uuid
             title
             postPicUrl
             body
@@ -27,6 +28,7 @@ export default gql`
             comments {
                 edges {
                     node {
+                        uuid
                         id
                         body
                         timestamp

@@ -5,6 +5,8 @@
 import moment from 'moment';
 import sanitize from 'sanitize-html';
 import jsHttpCookie from 'cookie';
+import gql from 'graphql-tag';
+import firebase from 'firebase';
 import { getFromStore } from './storage';
 import { loggedInKey } from '../keys/storage';
 import { isSameISOYear } from 'date-fns';
@@ -48,7 +50,6 @@ export const validate_html = (html) => {
 
 export const upload_file = async (file, onUpload, onFail, onSuccess) => {
     try {
-        const firebase = await import('firebase');
         const ref = firebase
             .storage()
             .ref()
@@ -61,8 +62,8 @@ export const upload_file = async (file, onUpload, onFail, onSuccess) => {
     }
 };
 
-// greatest common divisor
 export const gcd = (a, b) => {
+    // greatest common divisor
     if (b == 0) {
         return a;
     }
@@ -108,6 +109,25 @@ export const isLoggedIn = (req) => {
     }
 
     return false;
+};
+
+export const checkLoggedIn = async (client) => {
+    try {
+        const res = await client.query({
+            query: gql`
+                query getUser {
+                    user {
+                        id
+                        username
+                    }
+                }
+            `
+        });
+
+        return await { loggedInUser: res.data };
+    } catch (e) {
+        return { loggedInUser: {} };
+    }
 };
 
 export const createToast = (text) => {

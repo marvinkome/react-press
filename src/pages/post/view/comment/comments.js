@@ -53,11 +53,7 @@ const Comment = ({ comment, onClickReply, replying, reply_value, ...props }) => 
                             placeholder="Write a reply"
                             id={'comment_reply_' + comment.node.id}
                             onPublish={(e) =>
-                                props.handleSubmitReply(
-                                    e,
-                                    'comment_reply_' + comment.node.id,
-                                    comment.node.uuid
-                                )
+                                props.handleSubmitReply(e, comment.node.id, comment.node.uuid)
                             }
                         />
                     )}

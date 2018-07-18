@@ -9,6 +9,7 @@ export default class MainPage extends React.Component {
             React press is a basic blogging platform for readers and publishers. 
             Read, Create posts, comment and like your favourite posts.
         `;
+
         return (
             <React.Fragment>
                 <Head>

@@ -22,7 +22,7 @@ class MainComment extends Component {
         });
     };
     onClickReply = (e, id) => {
-        e.preventDefault();
+        e && e.preventDefault();
         this.setState({
             ['replying' + id]: !this.state['replying' + id]
         });
@@ -36,13 +36,13 @@ class MainComment extends Component {
     };
     onCommentReply = (e, id, uuid) => {
         e.preventDefault();
-        const comment = this.state[id];
+        const comment = this.state['comment_reply_' + id];
         this.props.handleReply(comment, uuid);
         this.setState(
             {
                 [id]: ''
             },
-            () => this.onClickReply
+            () => this.onClickReply(null, id)
         );
     };
     render() {

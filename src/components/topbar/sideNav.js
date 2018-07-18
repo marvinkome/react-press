@@ -28,12 +28,12 @@ export class SideNav extends React.Component {
                     <div className="user-view">
                         <a>
                             <img
-                                className={'circle' + this.props.data.imageClass}
+                                className={'circle ' + this.props.data.imageClass}
                                 src={this.props.data.image}
                             />
                         </a>
                         <span className="email">
-                            Hello, {this.props.data.isLoggedIn ? this.props.data.username : 'Guest'}
+                            Hello, {this.props.data.username}
                         </span>
                     </div>
                 </li>

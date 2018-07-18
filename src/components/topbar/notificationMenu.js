@@ -71,6 +71,6 @@ export default class NotificationMenu extends React.Component {
 
 NotificationMenu.propTypes = {
     isLoggedIn: types.bool.isRequired,
-    notifications_data: types.object.isRequired,
-    readNotifications: types.func.isRequired
+    notifications_data: types.object,
+    readNotifications: types.func
 };

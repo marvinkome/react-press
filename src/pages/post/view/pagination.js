@@ -4,8 +4,8 @@ import Link from 'next/link';
 import { get_page_link } from '../../../lib/helpers';
 
 const Pagination = ({ nextTitle, prevTitle }) => {
-    const prevLink = get_page_link(prevTitle);
-    const nextLink = get_page_link(nextTitle);
+    const prevLink = prevTitle ? get_page_link(prevTitle) : '';
+    const nextLink = nextTitle ? get_page_link(nextTitle) : '';
 
     return (
         <div className="pagination">

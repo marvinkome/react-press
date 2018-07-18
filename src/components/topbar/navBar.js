@@ -57,7 +57,7 @@ export class NavBar extends React.Component {
 NavBar.propTypes = {
     isLoggedIn: types.bool.isRequired,
     imageData: types.object,
-    notifications_data: types.object.isRequired,
-    logout: types.func.isRequired,
-    readNotifications: types.func.isRequired
+    notifications_data: types.object,
+    logout: types.func,
+    readNotifications: types.func
 };
