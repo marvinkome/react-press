@@ -3,17 +3,10 @@
  */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { createToast } from '../../../../lib/helpers';
-import { getFromStore } from '../../../../lib/storage';
-import { tokenKey } from '../../../../keys/storage';
-import {
-    fetch_all_data,
-    fetch_user_data,
-    update_profile_pic,
-    update_user_info
-} from '../../../../store/actions';
+import types from 'prop-types';
+
+// import { createToast } from '../../../../lib/helpers';
+
 import { EditPicture } from './editPicture';
 import { EditDetails } from './editDetails';
 
@@ -21,15 +14,15 @@ export class Body extends Component {
     constructor(props) {
         super(props);
 
-        this.state = this.getInitStateFromProps(this.props) || {
+        this.state = this.getInitStateFromProps(props) || {
             display_name: '',
             description: '',
             pic_url: ''
         };
     }
     getInitStateFromProps = (props) => {
-        if (props.data.data !== undefined) {
-            const { fullName, description, gravatarUrl } = props.data.data.user;
+        if (props.data) {
+            const { fullName, description, gravatarUrl } = props.data;
 
             return {
                 display_name: fullName,
@@ -38,6 +31,7 @@ export class Body extends Component {
             };
         }
     };
+
     onChange = (e) => {
         e.preventDefault();
         this.setState({
@@ -49,52 +43,41 @@ export class Body extends Component {
             pic_url
         });
     };
+
     sortNewData = (data) => {
         let user_data = {};
 
         if (data !== undefined) {
-            const { fullName, old_description } = data;
-            const { display_name, description } = this.state;
+            const { fullName, description } = data;
+            const { display_name: newName, description: newDesc } = this.state;
 
-            if (display_name !== fullName) {
+            if (newName !== fullName) {
                 user_data = {
                     ...user_data,
-                    full_name: display_name
+                    newName
                 };
             }
 
-            if (description !== old_description) {
+            if (newDesc !== description) {
                 user_data = {
                     ...user_data,
-                    description: description
+                    newDesc
                 };
             }
-
-            user_data = {
-                ...user_data,
-                user_id: data.uuid
-            };
         }
 
         return user_data;
     };
-    onSaveClick = async (e) => {
+
+    onSaveClick = (e) => {
         e.preventDefault();
 
-        if (this.props.data.data !== undefined) {
-            const user_data = this.sortNewData(this.props.data.data.user);
-            const token = getFromStore(tokenKey);
-            try {
-                await this.props.update_user_info(user_data);
-                await this.props.fetch_user_data(token);
-                await this.props.fetch_data();
-                createToast('Changes saved');
-            } catch (e) {
-                createToast('Error updating info');
-                return false;
-            }
+        if (this.props.data) {
+            const user_data = this.sortNewData(this.props.data);
+            this.props.handleNewProfile(user_data);
         }
     };
+
     render() {
         const { display_name, description, pic_url } = this.state;
         return (
@@ -121,22 +104,8 @@ export class Body extends Component {
 }
 
 Body.propTypes = {
-    data: PropTypes.object.isRequired,
-    fetch_user_data: PropTypes.func.isRequired,
-    fetch_data: PropTypes.func.isRequired,
-    update_profile_pic: PropTypes.func.isRequired,
-    update_user_info: PropTypes.func.isRequired
+    data: types.object.isRequired,
+    handleNewProfile: types.func.isRequired
 };
 
-const mapStateToProps = (state) => ({
-    data: state.user_data
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    fetch_user_data: (token) => dispatch(fetch_user_data(token)),
-    fetch_data: () => dispatch(fetch_all_data()),
-    update_profile_pic: (data) => dispatch(update_profile_pic(data)),
-    update_user_info: (data) => dispatch(update_user_info(data))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Body);
+export default Body;
