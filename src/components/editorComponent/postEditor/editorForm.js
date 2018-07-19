@@ -6,23 +6,14 @@ import { Consumer } from '../index';
 import { sanitize_html } from '../../../lib/helpers';
 
 export class EditorForm extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
-            post_title: '',
-            post_content: '',
-            postPicUrl: ''
+            post_title: props.data ? props.data.post.title : '',
+            postPicUrl: '',
+            post_content: ''
         };
-    }
-
-    static getDerivedStateFromProps(props) {
-        if (props.data !== undefined) {
-            const { title } = props.data;
-            return {
-                post_title: title || ''
-            };
-        }
     }
 
     onInputChange = (e) => {
@@ -47,14 +38,14 @@ export class EditorForm extends React.Component {
         });
     };
 
-    sortOutNewData = (current_tags) => {
+    sortOutNewData = (tag) => {
         // sort out new data during post edit
         let post_data = {};
-        let new_tags = [];
 
-        if (this.props.data !== undefined) {
-            const { title, body, pic_url, tags, uuid } = this.props.data;
+        if (this.props.data) {
+            const { title, body, postPicUrl, uuid } = this.props.data.post;
 
+            // check for title change
             if (this.state.post_title !== title) {
                 post_data = {
                     ...post_data,
@@ -62,22 +53,26 @@ export class EditorForm extends React.Component {
                 };
             }
 
-            if (this.state.post_content !== body) {
+            // check for content change
+            if (sanitize_html(this.state.post_content) !== body) {
                 post_data = {
                     ...post_data,
                     body: sanitize_html(this.state.post_content)
                 };
             }
 
-            if (this.state.postPicUrl !== pic_url) {
+            if ((this.state.postPicUrl !== postPicUrl) && (this.state.postPicUrl !== '')) {
                 post_data = {
                     ...post_data,
                     postPicUrl: this.state.postPicUrl
                 };
             }
 
-            if (current_tags.length > tags.length) {
-                new_tags = [...current_tags.slice(tags.length)];
+            if ((this.props.data.post.tag === null) || (tag !== this.props.data.post.tag.name)) {
+                post_data = {
+                    ...post_data,
+                    tag
+                };
             }
 
             post_data = {
@@ -86,14 +81,10 @@ export class EditorForm extends React.Component {
             };
         }
 
-        return {
-            new_tags,
-            post_data
-        };
+        return post_data;
     };
 
     onPublishClick = (topic) => {
-
         // get post data from state
         const { post_title, post_content, postPicUrl } = this.state;
 
@@ -105,9 +96,9 @@ export class EditorForm extends React.Component {
         // check if its edit post page
         if (this.props.data.title !== '') {
             // then sort out the new data
-            const { post_data, new_tags } = this.sortOutNewData(topic);
+            const post_data = this.sortOutNewData(topic);
 
-            this.props.publishPost(post_data, new_tags, true);
+            this.props.publishPost(post_data, true);
         } else {
             // it's new post page
             const postData = {
@@ -116,17 +107,19 @@ export class EditorForm extends React.Component {
                 postPicUrl,
                 topic
             };
-            this.props.publishPost(postData);
+            this.props.publishPost(postData, false);
         }
     };
+
     render() {
         let init_body = null;
-        let init_tags = [];
+        let init_tag = null;
 
-        if (this.props.data !== undefined) {
-            const { body, tags } = this.props.data;
+        if (this.props.data && this.props.data.post) {
+            const { body, tag } = this.props.data.post;
             init_body = body;
-            init_tags = tags;
+
+            if (tag) init_tag = tag.name;
         }
 
         return (
@@ -148,7 +141,7 @@ export class EditorForm extends React.Component {
                         <PublishModal
                             afterUpload={this.afterUpload}
                             onPublish={this.onPublishClick}
-                            init_tags={init_tags}
+                            init_tag={init_tag}
                         />
                     </div>
                 </div>

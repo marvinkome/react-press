@@ -7,7 +7,7 @@ export default class PublishModal extends React.Component {
         super(props);
 
         this.state = {
-            selectedTopic: ''
+            selectedTopic: props.init_tag || ''
         };
 
         this.modal = React.createRef();
@@ -122,5 +122,5 @@ export default class PublishModal extends React.Component {
 PublishModal.propTypes = {
     afterUpload: types.func.isRequired,
     onPublish: types.func.isRequired,
-    init_tags: types.array
+    init_tag: types.string
 };

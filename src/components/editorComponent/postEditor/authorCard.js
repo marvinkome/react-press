@@ -1,9 +1,10 @@
 import React from 'react';
 import types from 'prop-types';
 
-const AuthorInfo = ({ data }) => {
-    const user_img = data.profilePicture || '/static/default-pic.png';
-    const img_class = data.description === null ? ' no-desc' : '';
+const AuthorInfo = ({ data: { user } }) => {
+    const user_img = user.gravatarUrl || '/static/default-pic.png';
+    const img_class = user.description === null ? ' no-desc' : '';
+
     return (
         <div className="author-box">
             <div className="author-info">
@@ -11,8 +12,8 @@ const AuthorInfo = ({ data }) => {
                     <img src={user_img} className="responsive-img circle" />
                 </div>
                 <div className="author-details col s9">
-                    <p className="author-name">{data.fullName}</p>
-                    <p className="author-desc">{data.description}</p>
+                    <p className="author-name">{user.fullName}</p>
+                    <p className="author-desc">{user.description}</p>
                     <p className="post-meta"> *markdown is supported </p>
                 </div>
             </div>

@@ -12,13 +12,13 @@ const BLOCK_TYPES = [
     },
     {
         label: 'sub-header',
-        style: 'header-three',
+        style: 'header-four',
         element: <MdTextFields />,
         extraStyle: 'md'
     },
     {
         label: 'header',
-        style: 'header-two',
+        style: 'header-three',
         element: <FaHeader />,
         extraStyle: ''
     }

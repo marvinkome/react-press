@@ -89,16 +89,14 @@ const PageView = ({ client }) => {
 
     const deleteError = () => createToast('Error deleting post');
 
-    let edges = [];
-
     return (
-        <Query query={query} variables={{ first: 2 }}>
+        <Query query={query} variables={{ first: 5 }}>
             {({ data, error, fetchMore }) => {
                 if (error) return <Error render={<p>There was an error fetching post</p>} />;
 
-                edges = data.user.posts.edges;
-                const hasMore = data.user.posts.pageInfo.hasNextPage;
-                const endCursor = data.user.posts.pageInfo.endCursor;
+                const edges = data.user ? data.user.posts.edges : [];
+                const hasMore = data.user ? data.user.posts.pageInfo.hasNextPage : false;
+                const endCursor = data.user ? data.user.posts.pageInfo.endCursor : '';
 
                 return (
                     <Mutation mutation={deleteMutation} onError={deleteError} 

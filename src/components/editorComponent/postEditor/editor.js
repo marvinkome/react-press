@@ -15,62 +15,72 @@ export default class ContentEditor extends Component {
     constructor(props) {
         super(props);
 
+        // set supported styles for markdown
         const supported_styles = {
             block: ['CODE', 'blockquote', 'header-two', 'header-three', 'unordered-list-item']
         };
 
         this.state = {
-            editor: false,
+            editor: false, // intialize editor only on client side
+
+            // initialy create empty editor fill with content if any
             editorState: EditorState.createEmpty(),
+
             plugins: [createMarkdownPlugin({ features: supported_styles })]
         };
+
         this.editor = React.createRef();
-
-        const updated_editor = this.updateEditorState(props);
-
-        this.state = {
-            ...this.state,
-            editorState: updated_editor.editorState
-        };
     }
+
     componentDidMount() {
+        // update editor with new props if any
+        if (this.props.init_body) {
+            const updated_editor = this.updateEditorState(this.props);
+            this.setState({
+                editorState: updated_editor.editorState
+            });
+        }
+        
         this.setState({
-            editor: true
+            editor: true // init editor
         });
     }
+
     updateEditorState = (props) => {
         let contentState;
         let editorState;
 
-        if (props.init_body !== null) {
-            if (validate_html(props.init_body)) {
-                const blockFromHtml = convertFromHTML(props.init_body);
+        if (validate_html(props.init_body)) {
+            // it has html
+            const blockFromHtml = convertFromHTML(props.init_body);
 
-                if (blockFromHtml !== null) {
-                    contentState = ContentState.createFromBlockArray(
-                        blockFromHtml.contentBlocks,
-                        blockFromHtml.entityMap
-                    );
-                }
-            } else {
-                contentState = ContentState.createFromText(props.init_body);
+            if (blockFromHtml !== null) {
+                contentState = ContentState.createFromBlockArray(
+                    blockFromHtml.contentBlocks,
+                    blockFromHtml.entityMap
+                );
             }
-
-            editorState = EditorState.push(this.state.editorState, contentState);
-            editorState = EditorState.moveFocusToEnd(editorState);
-
-            return {
-                editorState
-            };
+        } else {
+            // it doesn't have html so create from text
+            contentState = ContentState.createFromText(props.init_body);
         }
+
+        editorState = EditorState.push(this.state.editorState, contentState);
+        editorState = EditorState.moveFocusToEnd(editorState);
+
+        return {
+            editorState
+        };
     };
+
     componentDidUpdate(old_props) {
-        if (old_props.init_body !== this.props.init_body) {
+        if (old_props.init_body !== this.props.init_body && this.props.init_body !== null) {
             this.setState({
                 editorState: this.updateEditorState(this.props).editorState
             });
         }
     }
+
     onChange = (editorState) => {
         const rawContentState = convertToRaw(editorState.getCurrentContent());
         const html = draftToHtml(rawContentState);
@@ -81,6 +91,7 @@ export default class ContentEditor extends Component {
 
         this.props.onChange(html);
     };
+
     handleKeyCommand = (command, editorState) => {
         const newState = RichUtils.handleKeyCommand(editorState, command);
         if (newState) {
@@ -89,6 +100,7 @@ export default class ContentEditor extends Component {
         }
         return false;
     };
+
     toggleCommand = (command, type) => {
         if (type == 'block') {
             this.onChange(RichUtils.toggleBlockType(this.state.editorState, command));
@@ -96,6 +108,7 @@ export default class ContentEditor extends Component {
             this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, command));
         }
     };
+
     render() {
         return (
             <div className="editor-input" onClick={this.editorFocus}>

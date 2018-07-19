@@ -1,44 +1,49 @@
 import React from 'react';
 import types from 'prop-types';
-import Router from 'next/router';
-import { MainPage } from '../../../components/app';
+import { Query } from 'react-apollo';
+
+import MainPage from '../../../components/app';
+import Error from '../../../components/error';
 import PageView from '../../../components/editorComponent';
-import { isLoggedIn } from '../../../lib/helpers';
 
-export default class AdminEditPost extends React.Component {
-    static async getInitialProps({ query, isServer, res, req }) {
-        if (isServer) {
-            if (isLoggedIn(req) === false) {
-                const backURL = '/login';
-                res.writeHead(302, {
-                    Location: backURL
-                });
-                res.end();
-                res.finished = true;
-            }
-        } else {
-            if (isLoggedIn() === false) {
-                Router.push('/');
-            }
-        }
+import redirect from '../../../lib/redirect';
+import { checkLoggedIn } from '../../../lib/helpers';
 
-        const post_id = query.id.split('-').pop();
-        return {
-            post_id
-        };
-    }
-    render() {
-        return (
-            <MainPage
-                loggedIn={this.props.loggedIn}
-                pageTitle="Edit Post"
-                render={() => <PageView post_id={this.props.post_id} />}
-            />
-        );
-    }
-}
+import query from './query';
 
-AdminEditPost.propTypes = {
-    loggedIn: types.bool.isRequired,
-    post_id: types.string.isRequired
+export const EditPost = ({ loggedIn, post_name }) => {
+    return (
+        <MainPage
+            loggedIn={loggedIn}
+            pageTitle="Edit Post"
+            render={() => (
+                <Query query={query} variables={{ post_name }}>
+                    {({ data, error }) => {
+                        if (error) return <Error render={<p>Error fetching post data</p>} />;
+
+                        return <PageView post={data} />;
+                    }}
+                </Query>
+            )}
+        />
+    );
 };
+
+EditPost.getInitialProps = async (ctx) => {
+    const { loggedInUser } = await checkLoggedIn(ctx.apolloClient);
+
+    if (!loggedInUser.user) {
+        redirect(ctx, '/');
+        return {};
+    }
+
+    const post_name = decodeURIComponent(ctx.query.id);
+    return { post_name };
+};
+
+EditPost.propTypes = {
+    loggedIn: types.bool.isRequired,
+    post_name: types.string.isRequired
+};
+
+export default EditPost;
