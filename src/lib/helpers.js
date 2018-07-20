@@ -14,10 +14,16 @@ import { isSameISOYear } from 'date-fns';
 export const truncate = (word, length) => {
     const new_word =
         word
+            .replace(/\r?\n|\r/gm, ' ')
             .split(' ')
             .splice(0, length)
             .join(' ') + ' ...';
     return word.split(' ').length < length ? word : new_word;
+};
+
+export const strip_html = (word) => {
+    const new_word = word.replace(/<[^>]*>?/g, '');
+    return new_word;
 };
 
 export const format_date = (server_date) => {
@@ -155,6 +161,12 @@ export const get_page_link = (title) => {
 export const isNotUndefined = (value) => {
     if (value !== null && value !== undefined) return true;
     return false;
+};
+
+export const createMarkup = (value) => {
+    return {
+        __html: value
+    };
 };
 
 export const all_tags = ['tech', 'science', 'culture', 'art', 'media'];

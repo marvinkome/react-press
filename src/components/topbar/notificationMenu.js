@@ -55,7 +55,7 @@ export default class NotificationMenu extends React.Component {
                         ref={this.notificationDropdownTrigger}
                         data-target="notifications-menu"
                     >
-                        {this.props.notifications_data.unread_count > 0 ? (
+                        {this.props.notifications_data.unread_count ? (
                             <MdNotificationsActive />
                         ) : (
                             <MdNotificationsNone />

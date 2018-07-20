@@ -85,9 +85,13 @@
                 font-size: 25px;
                 margin-bottom: 19px;
             }
-            .card-content p {
+            .card-content div {
                 font-size: 17px;
                 color: @black-scheme-3;
+                display: -webkit-box;
+                -webkit-line-clamp: 4;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
             }
             .card-action {
                 border-top: none;

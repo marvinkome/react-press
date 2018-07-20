@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import types from 'prop-types';
 import Link from 'next/link';
 import Error from '../../../components/error';
-import { truncate, format_date, sort_posts, get_page_link } from '../../../lib/helpers';
+import { truncate, strip_html, format_date, sort_posts, get_page_link } from '../../../lib/helpers';
 
 class UserPosts extends Component {
     renderPosts = (obj) => {
@@ -24,9 +24,9 @@ class UserPosts extends Component {
                             <span className="card-title">{obj.node.title}</span>
                         </a>
                     </Link>
-                    <p
+                    <div
                         dangerouslySetInnerHTML={{
-                            __html: truncate(obj.node.body, 40)
+                            __html: truncate(strip_html(obj.node.body), 40)
                         }}
                     />
                 </div>

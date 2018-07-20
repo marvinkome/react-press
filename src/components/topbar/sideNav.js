@@ -71,13 +71,13 @@ export class SideNav extends React.Component {
                 ) : (
                     <React.Fragment>
                         <li>
-                            <Link href="/auth/login">
+                            <Link href="/login">
                                 <a className="hide-on-med-and-up">Sign In</a>
                             </Link>
                         </li>
                         <div className="divider" />
                         <li>
-                            <Link href="/auth/signup">
+                            <Link href="/signup">
                                 <a className="hide-on-med-and-up">Get Started</a>
                             </Link>
                         </li>

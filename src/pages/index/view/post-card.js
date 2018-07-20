@@ -1,7 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
-import { format_date, get_profile_link, get_page_link } from '../../../lib/helpers';
+import {
+    format_date,
+    get_profile_link,
+    get_page_link,
+    strip_html,
+    createMarkup
+} from '../../../lib/helpers';
 
 export const PostCard = ({ post }) => {
     const imgStyle =
@@ -20,6 +26,7 @@ export const PostCard = ({ post }) => {
         backgroundImage: 'url(\'' + post.postPicUrl + '\')',
         backgroundColor: '#454545'
     };
+
     const page_link = get_page_link(post.title);
     const profile_link = get_profile_link(post.author.fullName, post.author.id);
 
@@ -30,6 +37,7 @@ export const PostCard = ({ post }) => {
                     post.postPicUrl != '' && (
                     <div className="post-card__image card-image" style={cardImgStyle} />
                 )}
+
                 <div className="card-stacked">
                     <div className="card-content">
                         <h1 className="post-card__title">
@@ -37,13 +45,13 @@ export const PostCard = ({ post }) => {
                                 <a className="post-card__title--link">{post.title}</a>
                             </Link>
                         </h1>
-                        <p
+
+                        <div
                             className="post-card__text"
-                            dangerouslySetInnerHTML={{
-                                __html: post.body
-                            }}
+                            dangerouslySetInnerHTML={createMarkup(strip_html(post.body))}
                         />
                     </div>
+
                     <div className="post-card__meta card-action">
                         <div className="post-card__meta__author">
                             <div className="post-card__meta__author-image">

@@ -4,7 +4,7 @@ import { withApollo } from 'react-apollo';
 
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
-import query from './userQuery';
+import query, { notificationQuery } from './userQuery';
 import './topbar.less';
 
 export class TopBar extends React.Component {
@@ -14,12 +14,14 @@ export class TopBar extends React.Component {
         this.state = {
             imageClass: 'defImg',
             image: '/static/default-pic.png',
-            username: 'Guest'
+            username: 'Guest',
+            notifications_data: []
         };
     }
     async componentDidMount() {
         if (this.props.isLoggedIn) {
             const { user } = await this.fetch_user_data();
+            await this.fetch_notifications();
 
             if (user.fullName) {
                 this.setState({
@@ -35,12 +37,34 @@ export class TopBar extends React.Component {
             }
         }
     }
+
     fetch_user_data = async () => {
         const { data } = await this.props.client.query({
             query
         });
 
         return data;
+    };
+
+    fetch_notifications = async () => {
+        const query = await this.props.client.watchQuery({
+            query: notificationQuery,
+            pollInterval: 10000
+        });
+
+        query.subscribe({
+            next: ({data}) => {
+                const { user: { notifications: { edges } } } = data;
+
+                if (edges.length) {
+                    this.setState({
+                        notifications_data: edges
+                    });
+                }
+            }
+        });
+
+        return query;
     };
 
     handleLogout = async () => {};
@@ -54,7 +78,7 @@ export class TopBar extends React.Component {
         let username = this.state.username;
 
         const notifications_data = {
-            notifications: []
+            notifications: this.state.notifications_data
         };
 
         const navbarProps = {
