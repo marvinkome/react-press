@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { url } from '../keys';
+import { logout } from './helpers';
 
 export const customFetch = (uri, options) => {
     const { getToken } = options;
@@ -7,7 +8,7 @@ export const customFetch = (uri, options) => {
 
     delete options.getToken;
 
-    // check if there's a token i.e user is loggedIn
+    // check if there's a token and it's not empty i.e user is loggedIn
     if (token) {
         // refresh and get an access token
         const address = url + '/refresh';
@@ -23,6 +24,7 @@ export const customFetch = (uri, options) => {
             } else {
                 // something went wrong, logout the user
                 // i.e delete the cookie
+                logout();
             }
         });
 

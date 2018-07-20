@@ -10,6 +10,7 @@ export const notificationQuery = gql`
                         id
                         type
                         timestamp
+                        read
                         post {
                             id
                             title

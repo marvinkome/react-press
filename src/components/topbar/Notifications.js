@@ -12,7 +12,7 @@ const Notifications = ({ notifications }) => {
         const page_link = get_page_link(post.title, post.id);
 
         return (
-            <li className={'notification ' + (read == false ? 'unread' : '')} key={id}>
+            <li className={'notification ' + (read === false ? 'unread' : '')} key={id}>
                 <div className="row">
                     <div className="col s3">
                         <div className="author-image">

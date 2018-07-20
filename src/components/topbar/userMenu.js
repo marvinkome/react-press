@@ -51,7 +51,7 @@ export default class UserMenu extends React.Component {
                         >
                             <img
                                 className={
-                                    'user-image responsive-img circle' +
+                                    'user-image responsive-img circle ' +
                                     this.props.imageData.imageClass
                                 }
                                 src={this.props.imageData.image}

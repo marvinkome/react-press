@@ -2,6 +2,7 @@ import React from 'react';
 import types from 'prop-types';
 import { withApollo } from 'react-apollo';
 
+import { logout } from '../../lib/helpers';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
 import query, { notificationQuery } from './userQuery';
@@ -21,7 +22,7 @@ export class TopBar extends React.Component {
     async componentDidMount() {
         if (this.props.isLoggedIn) {
             const { user } = await this.fetch_user_data();
-            await this.fetch_notifications();
+            this.notifcationPoll = await this.fetch_notifications();
 
             if (user.fullName) {
                 this.setState({
@@ -47,14 +48,18 @@ export class TopBar extends React.Component {
     };
 
     fetch_notifications = async () => {
-        const query = await this.props.client.watchQuery({
+        const query = this.props.client.watchQuery({
             query: notificationQuery,
             pollInterval: 10000
         });
 
         query.subscribe({
-            next: ({data}) => {
-                const { user: { notifications: { edges } } } = data;
+            next: ({ data }) => {
+                const {
+                    user: {
+                        notifications: { edges }
+                    }
+                } = data;
 
                 if (edges.length) {
                     this.setState({
@@ -67,7 +72,27 @@ export class TopBar extends React.Component {
         return query;
     };
 
-    handleLogout = async () => {};
+    handleLogout = () => {
+        // stop polling
+        if (this.notifcationPoll) this.notifcationPoll.stopPolling();
+
+        // check if it's admin
+        const index = window.location.href.indexOf('/me/');
+        if (index === -1) {
+            // is not admin
+            window.location.href = window.location.href;
+        } else {
+            // is admin
+            // first move to a safe area
+            // then reload to send new props to the page
+            window.location.href = '/';
+        }
+
+        // log out
+        logout();
+        this.props.client.resetStore();
+    };
+
     readNotifications = () => {};
 
     render() {
