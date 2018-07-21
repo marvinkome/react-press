@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Query, Mutation, withApollo } from 'react-apollo';
 
 import Error from '../../../../components/error';
-import { sort_posts, createToast } from '../../../../lib/helpers';
+import { createToast } from '../../../../lib/helpers';
 
 import query, { deleteMutation } from './query';
 import { Post } from './post';
@@ -30,7 +30,6 @@ const PageView = ({ client }) => {
     };
 
     const render_posts = (posts, delete_post) => {
-        posts = sort_posts(posts);
         return posts.map((post) => (
             <Post
                 key={post.node.id}

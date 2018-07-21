@@ -49,22 +49,38 @@
             overflow: hidden;
 
             .post-card__title--link {
-                color: @black-scheme-2;
+                color: @black-scheme-1;
 
                 &:hover {
-                    color: @black-scheme-2;
+                    color: @black-scheme-1;
                 }
             }
         }
         .post-card__text {
-            color: @black-scheme-3;
+            color: @black-scheme-2;
             font-size: 16px;
-            font-weight: 500;
-            letter-spacing: -0.5px;
+            font-weight: normal;
             display: -webkit-box;
             -webkit-line-clamp: 5;
             -webkit-box-orient: vertical;
             overflow: hidden;
+            line-height: 1.5em;
+            height: 6em;
+
+            &:after {
+                content: '';
+                text-align: right;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                width: 70%;
+                height: 1.7em;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0),
+                    rgba(255, 255, 255, 1) 50%
+                );
+            }
         }
 
         /* Post action */

@@ -61,14 +61,14 @@ export class EditorForm extends React.Component {
                 };
             }
 
-            if ((this.state.postPicUrl !== postPicUrl) && (this.state.postPicUrl !== '')) {
+            if (this.state.postPicUrl !== postPicUrl && this.state.postPicUrl !== '') {
                 post_data = {
                     ...post_data,
                     postPicUrl: this.state.postPicUrl
                 };
             }
 
-            if ((this.props.data.post.tag === null) || (tag !== this.props.data.post.tag.name)) {
+            if (this.props.data.post.tag === null || tag !== this.props.data.post.tag.name) {
                 post_data = {
                     ...post_data,
                     tag
@@ -94,7 +94,7 @@ export class EditorForm extends React.Component {
         }
 
         // check if its edit post page
-        if (this.props.data.title !== '') {
+        if (this.props.data && this.props.data.title !== '') {
             // then sort out the new data
             const post_data = this.sortOutNewData(topic);
 

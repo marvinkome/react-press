@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import types from 'prop-types';
 import Link from 'next/link';
 import Error from '../../../components/error';
-import { truncate, strip_html, format_date, sort_posts, get_page_link } from '../../../lib/helpers';
+import { truncate, strip_html, format_date, get_page_link } from '../../../lib/helpers';
 
 class UserPosts extends Component {
     renderPosts = (obj) => {
@@ -45,7 +45,7 @@ class UserPosts extends Component {
         );
     };
     render() {
-        const posts = sort_posts(this.props.data.posts.edges);
+        const posts = this.props.data.posts.edges;
         return (
             <div className="section user-posts">
                 <div className="row">

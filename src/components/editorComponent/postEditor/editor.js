@@ -5,9 +5,10 @@
 import React, { Component } from 'react';
 import types from 'prop-types';
 import Editor from 'draft-js-plugins-editor';
-import { EditorState, RichUtils, convertToRaw, convertFromHTML, ContentState } from 'draft-js';
 import createMarkdownPlugin from 'draft-js-markdown-plugin';
-import draftToHtml from 'draftjs-to-html';
+import { stateToHTML } from 'draft-js-export-html';
+import { EditorState, RichUtils, convertFromHTML, ContentState } from 'draft-js';
+
 import { Controls } from './controls';
 import { validate_html } from '../../../lib/helpers';
 
@@ -20,13 +21,17 @@ export default class ContentEditor extends Component {
             block: ['CODE', 'blockquote', 'header-two', 'header-three', 'unordered-list-item']
         };
 
+        const markdownPlugin = createMarkdownPlugin({
+            features: supported_styles
+        });
+
         this.state = {
             editor: false, // intialize editor only on client side
 
             // initialy create empty editor fill with content if any
             editorState: EditorState.createEmpty(),
 
-            plugins: [createMarkdownPlugin({ features: supported_styles })]
+            plugins: [markdownPlugin]
         };
 
         this.editor = React.createRef();
@@ -40,7 +45,7 @@ export default class ContentEditor extends Component {
                 editorState: updated_editor.editorState
             });
         }
-        
+
         this.setState({
             editor: true // init editor
         });
@@ -82,8 +87,8 @@ export default class ContentEditor extends Component {
     }
 
     onChange = (editorState) => {
-        const rawContentState = convertToRaw(editorState.getCurrentContent());
-        const html = draftToHtml(rawContentState);
+        const html = stateToHTML(editorState.getCurrentContent());
+
 
         this.setState({
             editorState
