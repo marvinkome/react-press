@@ -1,7 +1,13 @@
 import React from 'react';
 import types from 'prop-types';
 import Link from 'next/link';
-import { format_date, truncate, get_page_link } from '../../../../lib/helpers';
+import {
+    format_date,
+    truncate,
+    get_page_link,
+    createMarkup,
+    strip_html
+} from '../../../../lib/helpers';
 
 export const Post = ({ post, handleDelete }) => {
     const pageLink = get_page_link(post.node.title, post.node.id);
@@ -19,9 +25,7 @@ export const Post = ({ post, handleDelete }) => {
             <div className="body">
                 <div
                     className="body"
-                    dangerouslySetInnerHTML={{
-                        __html: truncate(post.node.body, 30)
-                    }}
+                    dangerouslySetInnerHTML={createMarkup(strip_html(truncate(post.node.body, 40)))}
                 />
             </div>
 
