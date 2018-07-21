@@ -26,6 +26,23 @@ export const notificationQuery = gql`
     }
 `;
 
+export const readNotificationMutation = gql`
+    mutation readNotifications {
+        readNotifications {
+            user {
+                id
+                notifications {
+                    edges {
+                        node {
+                            id
+                        }
+                    }
+                }
+            }
+        }
+    }
+`;
+
 export default gql`
     query User {
         user {

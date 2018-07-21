@@ -1,11 +1,11 @@
 import React from 'react';
 import types from 'prop-types';
-import { withApollo } from 'react-apollo';
+import { withApollo, Mutation } from 'react-apollo';
 
 import { logout } from '../../lib/helpers';
 import { NavBar } from './navBar';
 import { SideNav } from './sideNav';
-import query, { notificationQuery } from './userQuery';
+import query, { notificationQuery, readNotificationMutation } from './userQuery';
 import './topbar.less';
 
 export class TopBar extends React.Component {
@@ -96,7 +96,7 @@ export class TopBar extends React.Component {
     readNotifications = () => {};
 
     render() {
-        const loggedIn = this.props.isLoggedIn;
+        const { isLoggedIn: loggedIn, client } = this.props;
 
         let imageClass = this.state.imageClass;
         let image = this.state.image;
@@ -110,7 +110,6 @@ export class TopBar extends React.Component {
             isLoggedIn: loggedIn,
             notifications_data,
             logout: this.handleLogout,
-            readNotifications: this.readNotifications,
             imageData: {
                 imageClass,
                 image
@@ -128,10 +127,16 @@ export class TopBar extends React.Component {
         };
 
         return (
-            <div className="navbar-wrapper">
-                <NavBar {...navbarProps} />
-                <SideNav {...sidenavProps} />
-            </div>
+            <Mutation mutation={readNotificationMutation} onCompleted={() => client.resetStore()}>
+                {(readNotifications) => {
+                    return (
+                        <div className="navbar-wrapper">
+                            <NavBar {...navbarProps} readNotifications={readNotifications} />
+                            <SideNav {...sidenavProps} />
+                        </div>
+                    );
+                }}
+            </Mutation>
         );
     }
 }
