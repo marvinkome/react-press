@@ -79,21 +79,21 @@ export const get_profile_link = (fullName) => {
     return '/profile/' + encodeURIComponent(fullName.toLowerCase());
 };
 
-export const sort_posts = (posts) => {
-    if (posts !== undefined) {
-        // posts.sort((a, b) => {
-        //     if (a.timestamp > b.timestamp) {
-        //         return -1;
-        //     }
-        //     if (a.timestamp < b.timestamp) {
-        //         return 1;
-        //     }
-        //     return 0;
-        // });
-    }
+// export const sort_posts = (posts) => {
+//     if (posts !== undefined) {
+//         // posts.sort((a, b) => {
+//         //     if (a.timestamp > b.timestamp) {
+//         //         return -1;
+//         //     }
+//         //     if (a.timestamp < b.timestamp) {
+//         //         return 1;
+//         //     }
+//         //     return 0;
+//         // });
+//     }
 
-    return posts;
-};
+//     return posts;
+// };
 
 export const checkLoggedIn = async (client) => {
     try {
