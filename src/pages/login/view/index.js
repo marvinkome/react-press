@@ -13,7 +13,7 @@ export const PageView = ({ client }) => {
         document.cookie = cookie.serialize(tokenKey, data.loginUser.token, {
             maxAge: 30 * 24 * 60 * 60 // 30 days
         });
-        
+
         client.resetStore().then(() => redirect({}, '/'));
     };
 

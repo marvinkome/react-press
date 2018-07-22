@@ -524,17 +524,7 @@ exports[`Homepage integration tests render all titles 1`] = `
     </div>
     <div
       class="row pagination"
-    >
-      <div
-        class="col s4 next z-depth-1"
-      >
-        <p>
-          <a>
-            Next Page
-          </a>
-        </p>
-      </div>
-    </div>
+    />
   </div>
 </div>
 `;
