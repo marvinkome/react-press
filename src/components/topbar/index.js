@@ -93,8 +93,6 @@ export class TopBar extends React.Component {
         this.props.client.resetStore();
     };
 
-    readNotifications = () => {};
-
     render() {
         const { isLoggedIn: loggedIn, client } = this.props;
 

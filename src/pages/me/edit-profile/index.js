@@ -1,6 +1,6 @@
 import React from 'react';
 import types from 'prop-types';
-import { Query, Mutation } from 'react-apollo';
+import { Query, Mutation, withApollo } from 'react-apollo';
 
 import MainPage from '../../../components/app';
 
@@ -62,9 +62,7 @@ EditProfile.getInitialProps = async (ctx) => {
         redirect(ctx, '/');
     }
 
-    return {
-        client: ctx.apolloClient
-    };
+    return {};
 };
 
 EditProfile.propTypes = {
@@ -72,4 +70,4 @@ EditProfile.propTypes = {
     client: types.object.isRequired
 };
 
-export default EditProfile;
+export default withApollo(EditProfile);
