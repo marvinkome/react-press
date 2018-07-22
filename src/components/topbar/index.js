@@ -72,24 +72,24 @@ export class TopBar extends React.Component {
         return query;
     };
 
-    handleLogout = () => {
+    handleLogout = async () => {
         // stop polling
         if (this.notifcationPoll) this.notifcationPoll.stopPolling();
 
         // check if it's admin
         const index = window.location.href.indexOf('/me/');
+
         if (index === -1) {
             // is not admin
+            logout();
             window.location.href = window.location.href;
         } else {
             // is admin
             // first move to a safe area
             // then reload to send new props to the page
             window.location.href = '/';
+            logout();
         }
-
-        // log out
-        logout();
         this.props.client.resetStore();
     };
 
@@ -147,7 +147,7 @@ TopBar.propTypes = {
     notifications: types.object,
     logout: types.func,
     readNotifications: types.func,
-    client: types.object.isRequired
+    client: types.object
 };
 
 export default withApollo(TopBar);
