@@ -1,0 +1,2002 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`index page unit tests renders 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Index
+    loggedIn={false}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "loggedIn": false,
+      "pageTitle": "Homepage",
+      "render": [Function],
+    },
+    "ref": null,
+    "rendered": null,
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "loggedIn": false,
+        "pageTitle": "Homepage",
+        "render": [Function],
+      },
+      "ref": null,
+      "rendered": null,
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`index page unit tests renders post card 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <PostCard
+    post={
+      Object {
+        "author": Object {
+          "fullName": "Marvin Kome",
+          "gravatarUrl": null,
+          "id": "VXNlcjox",
+        },
+        "body": "Test response",
+        "id": "UG9zdDo2",
+        "postPicUrl": null,
+        "timestamp": "2018-07-21T21:44:06.097506",
+        "title": "Bio: Andy Bernard",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "children": <div
+        className="post-card card horizontal"
+      >
+        <div
+          className="card-stacked"
+        >
+          <div
+            className="card-content"
+          >
+            <h1
+              className="post-card__title"
+            >
+              <Link
+                href="/p/bio%3A%20andy%20bernard"
+              >
+                <a
+                  className="post-card__title--link"
+                >
+                  Bio: Andy Bernard
+                </a>
+              </Link>
+            </h1>
+            <div
+              className="post-card__text"
+              dangerouslySetInnerHTML={
+                Object {
+                  "__html": "Test response",
+                }
+              }
+            />
+          </div>
+          <div
+            className="post-card__meta card-action"
+          >
+            <div
+              className="post-card__meta__author"
+            >
+              <div
+                className="post-card__meta__author-image"
+              >
+                <img
+                  className="circle"
+                  src="/static/default-pic.png"
+                  style={Object {}}
+                />
+              </div>
+              <div
+                className="post-card__meta__info"
+              >
+                <Link
+                  href="/profile/marvin%20kome"
+                >
+                  <a
+                    title="Marvin Kome"
+                  >
+                    <span
+                      className="post-card__meta__name"
+                    >
+                      Marvin Kome
+                    </span>
+                  </a>
+                </Link>
+                <span
+                  className="post-card__meta__date"
+                >
+                  Jul 21
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": Array [
+          false,
+          <div
+            className="card-stacked"
+          >
+            <div
+              className="card-content"
+            >
+              <h1
+                className="post-card__title"
+              >
+                <Link
+                  href="/p/bio%3A%20andy%20bernard"
+                >
+                  <a
+                    className="post-card__title--link"
+                  >
+                    Bio: Andy Bernard
+                  </a>
+                </Link>
+              </h1>
+              <div
+                className="post-card__text"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "Test response",
+                  }
+                }
+              />
+            </div>
+            <div
+              className="post-card__meta card-action"
+            >
+              <div
+                className="post-card__meta__author"
+              >
+                <div
+                  className="post-card__meta__author-image"
+                >
+                  <img
+                    className="circle"
+                    src="/static/default-pic.png"
+                    style={Object {}}
+                  />
+                </div>
+                <div
+                  className="post-card__meta__info"
+                >
+                  <Link
+                    href="/profile/marvin%20kome"
+                  >
+                    <a
+                      title="Marvin Kome"
+                    >
+                      <span
+                        className="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                  </Link>
+                  <span
+                    className="post-card__meta__date"
+                  >
+                    Jul 21
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>,
+        ],
+        "className": "post-card card horizontal",
+      },
+      "ref": null,
+      "rendered": Array [
+        false,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "host",
+          "props": Object {
+            "children": Array [
+              <div
+                className="card-content"
+              >
+                <h1
+                  className="post-card__title"
+                >
+                  <Link
+                    href="/p/bio%3A%20andy%20bernard"
+                  >
+                    <a
+                      className="post-card__title--link"
+                    >
+                      Bio: Andy Bernard
+                    </a>
+                  </Link>
+                </h1>
+                <div
+                  className="post-card__text"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Test response",
+                    }
+                  }
+                />
+              </div>,
+              <div
+                className="post-card__meta card-action"
+              >
+                <div
+                  className="post-card__meta__author"
+                >
+                  <div
+                    className="post-card__meta__author-image"
+                  >
+                    <img
+                      className="circle"
+                      src="/static/default-pic.png"
+                      style={Object {}}
+                    />
+                  </div>
+                  <div
+                    className="post-card__meta__info"
+                  >
+                    <Link
+                      href="/profile/marvin%20kome"
+                    >
+                      <a
+                        title="Marvin Kome"
+                      >
+                        <span
+                          className="post-card__meta__name"
+                        >
+                          Marvin Kome
+                        </span>
+                      </a>
+                    </Link>
+                    <span
+                      className="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>
+              </div>,
+            ],
+            "className": "card-stacked",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": Array [
+                  <h1
+                    className="post-card__title"
+                  >
+                    <Link
+                      href="/p/bio%3A%20andy%20bernard"
+                    >
+                      <a
+                        className="post-card__title--link"
+                      >
+                        Bio: Andy Bernard
+                      </a>
+                    </Link>
+                  </h1>,
+                  <div
+                    className="post-card__text"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "Test response",
+                      }
+                    }
+                  />,
+                ],
+                "className": "card-content",
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": <Link
+                      href="/p/bio%3A%20andy%20bernard"
+                    >
+                      <a
+                        className="post-card__title--link"
+                      >
+                        Bio: Andy Bernard
+                      </a>
+                    </Link>,
+                    "className": "post-card__title",
+                  },
+                  "ref": null,
+                  "rendered": Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "class",
+                    "props": Object {
+                      "children": <a
+                        className="post-card__title--link"
+                      >
+                        Bio: Andy Bernard
+                      </a>,
+                      "href": "/p/bio%3A%20andy%20bernard",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": "Bio: Andy Bernard",
+                        "className": "post-card__title--link",
+                      },
+                      "ref": null,
+                      "rendered": "Bio: Andy Bernard",
+                      "type": "a",
+                    },
+                    "type": [Function],
+                  },
+                  "type": "h1",
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "className": "post-card__text",
+                    "dangerouslySetInnerHTML": Object {
+                      "__html": "Test response",
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": "div",
+                },
+              ],
+              "type": "div",
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "host",
+              "props": Object {
+                "children": <div
+                  className="post-card__meta__author"
+                >
+                  <div
+                    className="post-card__meta__author-image"
+                  >
+                    <img
+                      className="circle"
+                      src="/static/default-pic.png"
+                      style={Object {}}
+                    />
+                  </div>
+                  <div
+                    className="post-card__meta__info"
+                  >
+                    <Link
+                      href="/profile/marvin%20kome"
+                    >
+                      <a
+                        title="Marvin Kome"
+                      >
+                        <span
+                          className="post-card__meta__name"
+                        >
+                          Marvin Kome
+                        </span>
+                      </a>
+                    </Link>
+                    <span
+                      className="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>,
+                "className": "post-card__meta card-action",
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <div
+                      className="post-card__meta__author-image"
+                    >
+                      <img
+                        className="circle"
+                        src="/static/default-pic.png"
+                        style={Object {}}
+                      />
+                    </div>,
+                    <div
+                      className="post-card__meta__info"
+                    >
+                      <Link
+                        href="/profile/marvin%20kome"
+                      >
+                        <a
+                          title="Marvin Kome"
+                        >
+                          <span
+                            className="post-card__meta__name"
+                          >
+                            Marvin Kome
+                          </span>
+                        </a>
+                      </Link>
+                      <span
+                        className="post-card__meta__date"
+                      >
+                        Jul 21
+                      </span>
+                    </div>,
+                  ],
+                  "className": "post-card__meta__author",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <img
+                        className="circle"
+                        src="/static/default-pic.png"
+                        style={Object {}}
+                      />,
+                      "className": "post-card__meta__author-image",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "className": "circle",
+                        "src": "/static/default-pic.png",
+                        "style": Object {},
+                      },
+                      "ref": null,
+                      "rendered": null,
+                      "type": "img",
+                    },
+                    "type": "div",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": Array [
+                        <Link
+                          href="/profile/marvin%20kome"
+                        >
+                          <a
+                            title="Marvin Kome"
+                          >
+                            <span
+                              className="post-card__meta__name"
+                            >
+                              Marvin Kome
+                            </span>
+                          </a>
+                        </Link>,
+                        <span
+                          className="post-card__meta__date"
+                        >
+                          Jul 21
+                        </span>,
+                      ],
+                      "className": "post-card__meta__info",
+                    },
+                    "ref": null,
+                    "rendered": Array [
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "class",
+                        "props": Object {
+                          "children": <a
+                            title="Marvin Kome"
+                          >
+                            <span
+                              className="post-card__meta__name"
+                            >
+                              Marvin Kome
+                            </span>
+                          </a>,
+                          "href": "/profile/marvin%20kome",
+                        },
+                        "ref": null,
+                        "rendered": Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": <span
+                              className="post-card__meta__name"
+                            >
+                              Marvin Kome
+                            </span>,
+                            "title": "Marvin Kome",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": "Marvin Kome",
+                              "className": "post-card__meta__name",
+                            },
+                            "ref": null,
+                            "rendered": "Marvin Kome",
+                            "type": "span",
+                          },
+                          "type": "a",
+                        },
+                        "type": [Function],
+                      },
+                      Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Jul 21",
+                          "className": "post-card__meta__date",
+                        },
+                        "ref": null,
+                        "rendered": "Jul 21",
+                        "type": "span",
+                      },
+                    ],
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              "type": "div",
+            },
+          ],
+          "type": "div",
+        },
+      ],
+      "type": "div",
+    },
+    "type": "div",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "children": <div
+          className="post-card card horizontal"
+        >
+          <div
+            className="card-stacked"
+          >
+            <div
+              className="card-content"
+            >
+              <h1
+                className="post-card__title"
+              >
+                <Link
+                  href="/p/bio%3A%20andy%20bernard"
+                >
+                  <a
+                    className="post-card__title--link"
+                  >
+                    Bio: Andy Bernard
+                  </a>
+                </Link>
+              </h1>
+              <div
+                className="post-card__text"
+                dangerouslySetInnerHTML={
+                  Object {
+                    "__html": "Test response",
+                  }
+                }
+              />
+            </div>
+            <div
+              className="post-card__meta card-action"
+            >
+              <div
+                className="post-card__meta__author"
+              >
+                <div
+                  className="post-card__meta__author-image"
+                >
+                  <img
+                    className="circle"
+                    src="/static/default-pic.png"
+                    style={Object {}}
+                  />
+                </div>
+                <div
+                  className="post-card__meta__info"
+                >
+                  <Link
+                    href="/profile/marvin%20kome"
+                  >
+                    <a
+                      title="Marvin Kome"
+                    >
+                      <span
+                        className="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                  </Link>
+                  <span
+                    className="post-card__meta__date"
+                  >
+                    Jul 21
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "host",
+        "props": Object {
+          "children": Array [
+            false,
+            <div
+              className="card-stacked"
+            >
+              <div
+                className="card-content"
+              >
+                <h1
+                  className="post-card__title"
+                >
+                  <Link
+                    href="/p/bio%3A%20andy%20bernard"
+                  >
+                    <a
+                      className="post-card__title--link"
+                    >
+                      Bio: Andy Bernard
+                    </a>
+                  </Link>
+                </h1>
+                <div
+                  className="post-card__text"
+                  dangerouslySetInnerHTML={
+                    Object {
+                      "__html": "Test response",
+                    }
+                  }
+                />
+              </div>
+              <div
+                className="post-card__meta card-action"
+              >
+                <div
+                  className="post-card__meta__author"
+                >
+                  <div
+                    className="post-card__meta__author-image"
+                  >
+                    <img
+                      className="circle"
+                      src="/static/default-pic.png"
+                      style={Object {}}
+                    />
+                  </div>
+                  <div
+                    className="post-card__meta__info"
+                  >
+                    <Link
+                      href="/profile/marvin%20kome"
+                    >
+                      <a
+                        title="Marvin Kome"
+                      >
+                        <span
+                          className="post-card__meta__name"
+                        >
+                          Marvin Kome
+                        </span>
+                      </a>
+                    </Link>
+                    <span
+                      className="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>,
+          ],
+          "className": "post-card card horizontal",
+        },
+        "ref": null,
+        "rendered": Array [
+          false,
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "host",
+            "props": Object {
+              "children": Array [
+                <div
+                  className="card-content"
+                >
+                  <h1
+                    className="post-card__title"
+                  >
+                    <Link
+                      href="/p/bio%3A%20andy%20bernard"
+                    >
+                      <a
+                        className="post-card__title--link"
+                      >
+                        Bio: Andy Bernard
+                      </a>
+                    </Link>
+                  </h1>
+                  <div
+                    className="post-card__text"
+                    dangerouslySetInnerHTML={
+                      Object {
+                        "__html": "Test response",
+                      }
+                    }
+                  />
+                </div>,
+                <div
+                  className="post-card__meta card-action"
+                >
+                  <div
+                    className="post-card__meta__author"
+                  >
+                    <div
+                      className="post-card__meta__author-image"
+                    >
+                      <img
+                        className="circle"
+                        src="/static/default-pic.png"
+                        style={Object {}}
+                      />
+                    </div>
+                    <div
+                      className="post-card__meta__info"
+                    >
+                      <Link
+                        href="/profile/marvin%20kome"
+                      >
+                        <a
+                          title="Marvin Kome"
+                        >
+                          <span
+                            className="post-card__meta__name"
+                          >
+                            Marvin Kome
+                          </span>
+                        </a>
+                      </Link>
+                      <span
+                        className="post-card__meta__date"
+                      >
+                        Jul 21
+                      </span>
+                    </div>
+                  </div>
+                </div>,
+              ],
+              "className": "card-stacked",
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": Array [
+                    <h1
+                      className="post-card__title"
+                    >
+                      <Link
+                        href="/p/bio%3A%20andy%20bernard"
+                      >
+                        <a
+                          className="post-card__title--link"
+                        >
+                          Bio: Andy Bernard
+                        </a>
+                      </Link>
+                    </h1>,
+                    <div
+                      className="post-card__text"
+                      dangerouslySetInnerHTML={
+                        Object {
+                          "__html": "Test response",
+                        }
+                      }
+                    />,
+                  ],
+                  "className": "card-content",
+                },
+                "ref": null,
+                "rendered": Array [
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "children": <Link
+                        href="/p/bio%3A%20andy%20bernard"
+                      >
+                        <a
+                          className="post-card__title--link"
+                        >
+                          Bio: Andy Bernard
+                        </a>
+                      </Link>,
+                      "className": "post-card__title",
+                    },
+                    "ref": null,
+                    "rendered": Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "class",
+                      "props": Object {
+                        "children": <a
+                          className="post-card__title--link"
+                        >
+                          Bio: Andy Bernard
+                        </a>,
+                        "href": "/p/bio%3A%20andy%20bernard",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "children": "Bio: Andy Bernard",
+                          "className": "post-card__title--link",
+                        },
+                        "ref": null,
+                        "rendered": "Bio: Andy Bernard",
+                        "type": "a",
+                      },
+                      "type": [Function],
+                    },
+                    "type": "h1",
+                  },
+                  Object {
+                    "instance": null,
+                    "key": undefined,
+                    "nodeType": "host",
+                    "props": Object {
+                      "className": "post-card__text",
+                      "dangerouslySetInnerHTML": Object {
+                        "__html": "Test response",
+                      },
+                    },
+                    "ref": null,
+                    "rendered": null,
+                    "type": "div",
+                  },
+                ],
+                "type": "div",
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "host",
+                "props": Object {
+                  "children": <div
+                    className="post-card__meta__author"
+                  >
+                    <div
+                      className="post-card__meta__author-image"
+                    >
+                      <img
+                        className="circle"
+                        src="/static/default-pic.png"
+                        style={Object {}}
+                      />
+                    </div>
+                    <div
+                      className="post-card__meta__info"
+                    >
+                      <Link
+                        href="/profile/marvin%20kome"
+                      >
+                        <a
+                          title="Marvin Kome"
+                        >
+                          <span
+                            className="post-card__meta__name"
+                          >
+                            Marvin Kome
+                          </span>
+                        </a>
+                      </Link>
+                      <span
+                        className="post-card__meta__date"
+                      >
+                        Jul 21
+                      </span>
+                    </div>
+                  </div>,
+                  "className": "post-card__meta card-action",
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "host",
+                  "props": Object {
+                    "children": Array [
+                      <div
+                        className="post-card__meta__author-image"
+                      >
+                        <img
+                          className="circle"
+                          src="/static/default-pic.png"
+                          style={Object {}}
+                        />
+                      </div>,
+                      <div
+                        className="post-card__meta__info"
+                      >
+                        <Link
+                          href="/profile/marvin%20kome"
+                        >
+                          <a
+                            title="Marvin Kome"
+                          >
+                            <span
+                              className="post-card__meta__name"
+                            >
+                              Marvin Kome
+                            </span>
+                          </a>
+                        </Link>
+                        <span
+                          className="post-card__meta__date"
+                        >
+                          Jul 21
+                        </span>
+                      </div>,
+                    ],
+                    "className": "post-card__meta__author",
+                  },
+                  "ref": null,
+                  "rendered": Array [
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": <img
+                          className="circle"
+                          src="/static/default-pic.png"
+                          style={Object {}}
+                        />,
+                        "className": "post-card__meta__author-image",
+                      },
+                      "ref": null,
+                      "rendered": Object {
+                        "instance": null,
+                        "key": undefined,
+                        "nodeType": "host",
+                        "props": Object {
+                          "className": "circle",
+                          "src": "/static/default-pic.png",
+                          "style": Object {},
+                        },
+                        "ref": null,
+                        "rendered": null,
+                        "type": "img",
+                      },
+                      "type": "div",
+                    },
+                    Object {
+                      "instance": null,
+                      "key": undefined,
+                      "nodeType": "host",
+                      "props": Object {
+                        "children": Array [
+                          <Link
+                            href="/profile/marvin%20kome"
+                          >
+                            <a
+                              title="Marvin Kome"
+                            >
+                              <span
+                                className="post-card__meta__name"
+                              >
+                                Marvin Kome
+                              </span>
+                            </a>
+                          </Link>,
+                          <span
+                            className="post-card__meta__date"
+                          >
+                            Jul 21
+                          </span>,
+                        ],
+                        "className": "post-card__meta__info",
+                      },
+                      "ref": null,
+                      "rendered": Array [
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "class",
+                          "props": Object {
+                            "children": <a
+                              title="Marvin Kome"
+                            >
+                              <span
+                                className="post-card__meta__name"
+                              >
+                                Marvin Kome
+                              </span>
+                            </a>,
+                            "href": "/profile/marvin%20kome",
+                          },
+                          "ref": null,
+                          "rendered": Object {
+                            "instance": null,
+                            "key": undefined,
+                            "nodeType": "host",
+                            "props": Object {
+                              "children": <span
+                                className="post-card__meta__name"
+                              >
+                                Marvin Kome
+                              </span>,
+                              "title": "Marvin Kome",
+                            },
+                            "ref": null,
+                            "rendered": Object {
+                              "instance": null,
+                              "key": undefined,
+                              "nodeType": "host",
+                              "props": Object {
+                                "children": "Marvin Kome",
+                                "className": "post-card__meta__name",
+                              },
+                              "ref": null,
+                              "rendered": "Marvin Kome",
+                              "type": "span",
+                            },
+                            "type": "a",
+                          },
+                          "type": [Function],
+                        },
+                        Object {
+                          "instance": null,
+                          "key": undefined,
+                          "nodeType": "host",
+                          "props": Object {
+                            "children": "Jul 21",
+                            "className": "post-card__meta__date",
+                          },
+                          "ref": null,
+                          "rendered": "Jul 21",
+                          "type": "span",
+                        },
+                      ],
+                      "type": "div",
+                    },
+                  ],
+                  "type": "div",
+                },
+                "type": "div",
+              },
+            ],
+            "type": "div",
+          },
+        ],
+        "type": "div",
+      },
+      "type": "div",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
+
+exports[`index page unit tests renders view 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <Body />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": [Function],
+      "query": Object {
+        "definitions": Array [
+          Object {
+            "directives": Array [],
+            "kind": "OperationDefinition",
+            "name": Object {
+              "kind": "Name",
+              "value": "AllPosts",
+            },
+            "operation": "query",
+            "selectionSet": Object {
+              "kind": "SelectionSet",
+              "selections": Array [
+                Object {
+                  "alias": undefined,
+                  "arguments": Array [
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "first",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "first",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "last",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "last",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "before",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "before",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "after",
+                      },
+                      "value": Object {
+                        "kind": "Variable",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "after",
+                        },
+                      },
+                    },
+                    Object {
+                      "kind": "Argument",
+                      "name": Object {
+                        "kind": "Name",
+                        "value": "sort",
+                      },
+                      "value": Object {
+                        "kind": "EnumValue",
+                        "value": "timestamp_desc",
+                      },
+                    },
+                  ],
+                  "directives": Array [],
+                  "kind": "Field",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "allPost",
+                  },
+                  "selectionSet": Object {
+                    "kind": "SelectionSet",
+                    "selections": Array [
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "edges",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "node",
+                              },
+                              "selectionSet": Object {
+                                "kind": "SelectionSet",
+                                "selections": Array [
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "id",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "title",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "timestamp",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "postPicUrl",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "body",
+                                    },
+                                    "selectionSet": undefined,
+                                  },
+                                  Object {
+                                    "alias": undefined,
+                                    "arguments": Array [],
+                                    "directives": Array [],
+                                    "kind": "Field",
+                                    "name": Object {
+                                      "kind": "Name",
+                                      "value": "author",
+                                    },
+                                    "selectionSet": Object {
+                                      "kind": "SelectionSet",
+                                      "selections": Array [
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "gravatarUrl",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "fullName",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                        Object {
+                                          "alias": undefined,
+                                          "arguments": Array [],
+                                          "directives": Array [],
+                                          "kind": "Field",
+                                          "name": Object {
+                                            "kind": "Name",
+                                            "value": "id",
+                                          },
+                                          "selectionSet": undefined,
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "pageInfo",
+                        },
+                        "selectionSet": Object {
+                          "kind": "SelectionSet",
+                          "selections": Array [
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "startCursor",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "endCursor",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "hasNextPage",
+                              },
+                              "selectionSet": undefined,
+                            },
+                            Object {
+                              "alias": undefined,
+                              "arguments": Array [],
+                              "directives": Array [],
+                              "kind": "Field",
+                              "name": Object {
+                                "kind": "Name",
+                                "value": "hasPreviousPage",
+                              },
+                              "selectionSet": undefined,
+                            },
+                          ],
+                        },
+                      },
+                      Object {
+                        "alias": undefined,
+                        "arguments": Array [],
+                        "directives": Array [],
+                        "kind": "Field",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "totalCount",
+                        },
+                        "selectionSet": undefined,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+            "variableDefinitions": Array [
+              Object {
+                "defaultValue": undefined,
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "String",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "after",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "Int",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "first",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "Int",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "last",
+                  },
+                },
+              },
+              Object {
+                "defaultValue": undefined,
+                "kind": "VariableDefinition",
+                "type": Object {
+                  "kind": "NamedType",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "String",
+                  },
+                },
+                "variable": Object {
+                  "kind": "Variable",
+                  "name": Object {
+                    "kind": "Name",
+                    "value": "before",
+                  },
+                },
+              },
+            ],
+          },
+        ],
+        "kind": "Document",
+        "loc": Object {
+          "end": 727,
+          "start": 0,
+        },
+      },
+      "variables": Object {
+        "first": 6,
+      },
+    },
+    "ref": null,
+    "rendered": [Function],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": [Function],
+        "query": Object {
+          "definitions": Array [
+            Object {
+              "directives": Array [],
+              "kind": "OperationDefinition",
+              "name": Object {
+                "kind": "Name",
+                "value": "AllPosts",
+              },
+              "operation": "query",
+              "selectionSet": Object {
+                "kind": "SelectionSet",
+                "selections": Array [
+                  Object {
+                    "alias": undefined,
+                    "arguments": Array [
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "first",
+                        },
+                        "value": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "first",
+                          },
+                        },
+                      },
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "last",
+                        },
+                        "value": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "last",
+                          },
+                        },
+                      },
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "before",
+                        },
+                        "value": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "before",
+                          },
+                        },
+                      },
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "after",
+                        },
+                        "value": Object {
+                          "kind": "Variable",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "after",
+                          },
+                        },
+                      },
+                      Object {
+                        "kind": "Argument",
+                        "name": Object {
+                          "kind": "Name",
+                          "value": "sort",
+                        },
+                        "value": Object {
+                          "kind": "EnumValue",
+                          "value": "timestamp_desc",
+                        },
+                      },
+                    ],
+                    "directives": Array [],
+                    "kind": "Field",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "allPost",
+                    },
+                    "selectionSet": Object {
+                      "kind": "SelectionSet",
+                      "selections": Array [
+                        Object {
+                          "alias": undefined,
+                          "arguments": Array [],
+                          "directives": Array [],
+                          "kind": "Field",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "edges",
+                          },
+                          "selectionSet": Object {
+                            "kind": "SelectionSet",
+                            "selections": Array [
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "node",
+                                },
+                                "selectionSet": Object {
+                                  "kind": "SelectionSet",
+                                  "selections": Array [
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "id",
+                                      },
+                                      "selectionSet": undefined,
+                                    },
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "title",
+                                      },
+                                      "selectionSet": undefined,
+                                    },
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "timestamp",
+                                      },
+                                      "selectionSet": undefined,
+                                    },
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "postPicUrl",
+                                      },
+                                      "selectionSet": undefined,
+                                    },
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "body",
+                                      },
+                                      "selectionSet": undefined,
+                                    },
+                                    Object {
+                                      "alias": undefined,
+                                      "arguments": Array [],
+                                      "directives": Array [],
+                                      "kind": "Field",
+                                      "name": Object {
+                                        "kind": "Name",
+                                        "value": "author",
+                                      },
+                                      "selectionSet": Object {
+                                        "kind": "SelectionSet",
+                                        "selections": Array [
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "gravatarUrl",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "fullName",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                          Object {
+                                            "alias": undefined,
+                                            "arguments": Array [],
+                                            "directives": Array [],
+                                            "kind": "Field",
+                                            "name": Object {
+                                              "kind": "Name",
+                                              "value": "id",
+                                            },
+                                            "selectionSet": undefined,
+                                          },
+                                        ],
+                                      },
+                                    },
+                                  ],
+                                },
+                              },
+                            ],
+                          },
+                        },
+                        Object {
+                          "alias": undefined,
+                          "arguments": Array [],
+                          "directives": Array [],
+                          "kind": "Field",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "pageInfo",
+                          },
+                          "selectionSet": Object {
+                            "kind": "SelectionSet",
+                            "selections": Array [
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "startCursor",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "endCursor",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "hasNextPage",
+                                },
+                                "selectionSet": undefined,
+                              },
+                              Object {
+                                "alias": undefined,
+                                "arguments": Array [],
+                                "directives": Array [],
+                                "kind": "Field",
+                                "name": Object {
+                                  "kind": "Name",
+                                  "value": "hasPreviousPage",
+                                },
+                                "selectionSet": undefined,
+                              },
+                            ],
+                          },
+                        },
+                        Object {
+                          "alias": undefined,
+                          "arguments": Array [],
+                          "directives": Array [],
+                          "kind": "Field",
+                          "name": Object {
+                            "kind": "Name",
+                            "value": "totalCount",
+                          },
+                          "selectionSet": undefined,
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+              "variableDefinitions": Array [
+                Object {
+                  "defaultValue": undefined,
+                  "kind": "VariableDefinition",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "String",
+                    },
+                  },
+                  "variable": Object {
+                    "kind": "Variable",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "after",
+                    },
+                  },
+                },
+                Object {
+                  "defaultValue": undefined,
+                  "kind": "VariableDefinition",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "Int",
+                    },
+                  },
+                  "variable": Object {
+                    "kind": "Variable",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "first",
+                    },
+                  },
+                },
+                Object {
+                  "defaultValue": undefined,
+                  "kind": "VariableDefinition",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "Int",
+                    },
+                  },
+                  "variable": Object {
+                    "kind": "Variable",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "last",
+                    },
+                  },
+                },
+                Object {
+                  "defaultValue": undefined,
+                  "kind": "VariableDefinition",
+                  "type": Object {
+                    "kind": "NamedType",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "String",
+                    },
+                  },
+                  "variable": Object {
+                    "kind": "Variable",
+                    "name": Object {
+                      "kind": "Name",
+                      "value": "before",
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+          "kind": "Document",
+          "loc": Object {
+            "end": 727,
+            "start": 0,
+          },
+        },
+        "variables": Object {
+          "first": 6,
+        },
+      },
+      "ref": null,
+      "rendered": [Function],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

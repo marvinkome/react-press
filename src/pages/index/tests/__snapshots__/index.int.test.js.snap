@@ -1,0 +1,540 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Homepage integration tests render all titles 1`] = `
+<div>
+  <div
+    class="navbar-wrapper"
+  >
+    <nav
+      class="topbar nav-extended"
+    >
+      <div
+        class="nav-wrapper"
+      >
+        <a
+          class="sidenav-trigger hide-on-med-and-up"
+          data-target="mobile-topbar"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            preserveAspectRatio="xMidYMid meet"
+            style="vertical-align: middle;"
+            viewBox="0 0 40 40"
+            width="1em"
+          >
+            <g>
+              <path
+                d="m5 10h30v3.4h-30v-3.4z m0 11.6v-3.2h30v3.2h-30z m0 8.4v-3.4h30v3.4h-30z"
+              />
+            </g>
+          </svg>
+        </a>
+        <a
+          class="brand-logo center"
+          href="/"
+        >
+          <span
+            class="blog-title"
+          >
+            ReactPress
+          </span>
+        </a>
+        <ul
+          class="right hide-on-small-only"
+        >
+          <li>
+            <a
+              class="sign-in"
+              href="/login"
+            >
+              Sign in
+            </a>
+          </li>
+          <li>
+            <a
+              class="sign-up btn"
+              href="/signup"
+            >
+              Get started
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <ul
+      class="sidenav hide-on-med-and-up"
+      id="mobile-topbar"
+    >
+      <li>
+        <div
+          class="user-view"
+        >
+          <a>
+            <img
+              class="circle defImg"
+              src="/static/default-pic.png"
+            />
+          </a>
+          <span
+            class="email"
+          >
+            Hello, 
+            Guest
+          </span>
+        </div>
+      </li>
+      <li>
+        <a
+          class="hide-on-med-and-up"
+          href="/login"
+        >
+          Sign In
+        </a>
+      </li>
+      <div
+        class="divider"
+      />
+      <li>
+        <a
+          class="hide-on-med-and-up"
+          href="/signup"
+        >
+          Get Started
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="home-body section container"
+  >
+    <div
+      class="row"
+    >
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/bio%3A%20andy%20bernard"
+                  >
+                    Bio: Andy Bernard
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Test response
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/marvin%20kome"
+                      title="Marvin Kome"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/test%20markdown%20styles"
+                  >
+                    Test Markdown styles
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Test response
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/marvin%20kome"
+                      title="Marvin Kome"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/refactor%20bug"
+                  >
+                    Refactor bug
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Trying to refactor a bug
+
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/marvin%20kome"
+                      title="Marvin Kome"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 21
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/hello%20new%20world"
+                  >
+                    Hello New World
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Test response
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/marvin%20kome"
+                      title="Marvin Kome"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 19
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/hello%20world"
+                  >
+                    Hello World
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Hey
+
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/marvin%20kome"
+                      title="Marvin Kome"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Marvin Kome
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 19
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="col l6 s12"
+      >
+        <div>
+          <div
+            class="post-card card horizontal"
+          >
+            <div
+              class="card-stacked"
+            >
+              <div
+                class="card-content"
+              >
+                <h1
+                  class="post-card__title"
+                >
+                  <a
+                    class="post-card__title--link"
+                    href="/p/quam%20non%20nam%3F"
+                  >
+                    Quam non nam?
+                  </a>
+                </h1>
+                <div
+                  class="post-card__text"
+                >
+                  Integer ac neque. Nunc nisl.
+                </div>
+              </div>
+              <div
+                class="post-card__meta card-action"
+              >
+                <div
+                  class="post-card__meta__author"
+                >
+                  <div
+                    class="post-card__meta__author-image"
+                  >
+                    <img
+                      class="circle"
+                      src="/static/default-pic.png"
+                    />
+                  </div>
+                  <div
+                    class="post-card__meta__info"
+                  >
+                    <a
+                      href="/profile/janet%20cole"
+                      title="Janet Cole"
+                    >
+                      <span
+                        class="post-card__meta__name"
+                      >
+                        Janet Cole
+                      </span>
+                    </a>
+                    <span
+                      class="post-card__meta__date"
+                    >
+                      Jul 08
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="row pagination"
+    >
+      <div
+        class="col s4 next z-depth-1"
+      >
+        <p>
+          <a>
+            Next Page
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
