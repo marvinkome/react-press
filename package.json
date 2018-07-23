@@ -4,7 +4,10 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "start": "node src/server.js --require dotenv/config",
+        "build": "next build",
+        "start": "NODE_ENV=production node src/server.js --require dotenv/config",
+        "export": "npm run build && next export",
+        "dev": "node src/server.js --require dotenv/config",
         "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
         "format": "yarn pretty && yarn lint",

@@ -22,9 +22,9 @@ or
 npm install
 
 # Now you can start the app server
-yarn start
+yarn dev
 or
-npm start
+npm dev
 
 # Then visit
 localhost:3000
