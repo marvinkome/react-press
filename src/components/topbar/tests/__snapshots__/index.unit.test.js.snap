@@ -342,7 +342,7 @@ ShallowWrapper {
             <span
               className="blog-title"
             >
-              ReactPress
+              Blogly
             </span>
           </a>
         </Link>
@@ -381,7 +381,7 @@ ShallowWrapper {
               <span
                 className="blog-title"
               >
-                ReactPress
+                Blogly
               </span>
             </a>
           </Link>,
@@ -432,7 +432,7 @@ ShallowWrapper {
               <span
                 className="blog-title"
               >
-                ReactPress
+                Blogly
               </span>
             </a>,
             "href": "/",
@@ -446,7 +446,7 @@ ShallowWrapper {
               "children": <span
                 className="blog-title"
               >
-                ReactPress
+                Blogly
               </span>,
               "className": "brand-logo center",
             },
@@ -456,11 +456,11 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "host",
               "props": Object {
-                "children": "ReactPress",
+                "children": "Blogly",
                 "className": "blog-title",
               },
               "ref": null,
-              "rendered": "ReactPress",
+              "rendered": "Blogly",
               "type": "span",
             },
             "type": "a",
@@ -522,7 +522,7 @@ ShallowWrapper {
               <span
                 className="blog-title"
               >
-                ReactPress
+                Blogly
               </span>
             </a>
           </Link>
@@ -561,7 +561,7 @@ ShallowWrapper {
                 <span
                   className="blog-title"
                 >
-                  ReactPress
+                  Blogly
                 </span>
               </a>
             </Link>,
@@ -612,7 +612,7 @@ ShallowWrapper {
                 <span
                   className="blog-title"
                 >
-                  ReactPress
+                  Blogly
                 </span>
               </a>,
               "href": "/",
@@ -626,7 +626,7 @@ ShallowWrapper {
                 "children": <span
                   className="blog-title"
                 >
-                  ReactPress
+                  Blogly
                 </span>,
                 "className": "brand-logo center",
               },
@@ -636,11 +636,11 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "host",
                 "props": Object {
-                  "children": "ReactPress",
+                  "children": "Blogly",
                   "className": "blog-title",
                 },
                 "ref": null,
-                "rendered": "ReactPress",
+                "rendered": "Blogly",
                 "type": "span",
               },
               "type": "a",

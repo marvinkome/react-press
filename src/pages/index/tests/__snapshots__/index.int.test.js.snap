@@ -37,7 +37,7 @@ exports[`Homepage integration tests render all titles 1`] = `
           <span
             class="blog-title"
           >
-            ReactPress
+            Blogly
           </span>
         </a>
         <ul

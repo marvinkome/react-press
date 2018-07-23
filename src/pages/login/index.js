@@ -19,7 +19,7 @@ export class Login extends React.Component {
         return (
             <React.Fragment>
                 <Head>
-                    <title>Login - Reactpress</title>
+                    <title>Login - Blogly</title>
                 </Head>
                 <View />
             </React.Fragment>

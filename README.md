@@ -22,12 +22,12 @@ or
 npm install
 
 # Now you can start the app server
-yarn start-server # or `start` for development env
+yarn start
 or
-npm start-server # or `start` for development env
+npm start
 
 # Then visit
-localhost:3000 # or localhost:8080 for development env
+localhost:3000
 ```
 
 ### Accompanied Project

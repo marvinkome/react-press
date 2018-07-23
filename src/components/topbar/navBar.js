@@ -25,7 +25,7 @@ export const NavBar = ({
         return (
             <Link href="/">
                 <a className="brand-logo center">
-                    <span className="blog-title">ReactPress</span>
+                    <span className="blog-title">Blogly</span>
                 </a>
             </Link>
         );

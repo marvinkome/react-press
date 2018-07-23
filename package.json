@@ -15,18 +15,10 @@
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)$": "<rootDir>/mocks/fileMock.js",
             "\\.(css|less)$": "<rootDir>/mocks/styleMock.js"
         },
-        "setupFiles": [
-            "<rootDir>/config/test-shim.js",
-            "<rootDir>/config/test-setup.js"
-        ],
+        "setupFiles": ["<rootDir>/config/test-shim.js", "<rootDir>/config/test-setup.js"],
         "setupTestFrameworkScriptFile": "<rootDir>/mocks/moduleMock.js",
-        "moduleFileExtensions": [
-            "jsx",
-            "js"
-        ],
-        "testMatch": [
-            "**/tests/*.test.(jsx|js)"
-        ]
+        "moduleFileExtensions": ["jsx", "js"],
+        "testMatch": ["**/tests/*.test.(jsx|js)"]
     },
     "dependencies": {
         "@zeit/next-css": "^0.2.0",
@@ -59,8 +51,7 @@
         "react-dom": "^16.3.0",
         "react-icons": "^2.2.7",
         "react-router-dom": "^4.2.2",
-        "sanitize-html": "^1.18.2",
-        "waait": "^1.0.2"
+        "sanitize-html": "^1.18.2"
     },
     "devDependencies": {
         "babel-core": "^7.0.0-bridge.0",
@@ -83,6 +74,7 @@
         "prettier-eslint": "^8.8.1",
         "prettier-eslint-cli": "^4.7.1",
         "react-test-renderer": "^16.4.0",
-        "react-testing-library": "^3.1.4"
+        "react-testing-library": "^3.1.4",
+        "waait": "^1.0.2"
     }
 }

@@ -52,7 +52,7 @@ export const PageView = ({ client }) => {
                         <div className="container">
                             <div className="signup-section section center z-depth-1">
                                 <div className="heading">
-                                    <h5>Join ReactPress</h5>
+                                    <h5>Join Blogly</h5>
                                     <p>
                                         Sign up to share your story with the world, appreciate
                                         stories you love, and more.

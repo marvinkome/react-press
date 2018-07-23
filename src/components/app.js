@@ -6,14 +6,14 @@ import Topbar from './topbar';
 export default class MainPage extends React.Component {
     render() {
         const defaultDescription = `
-            React press is a basic blogging platform for readers and publishers. 
+            Blogly is a basic blogging platform for readers and publishers. 
             Read, Create posts, comment and like your favourite posts.
         `;
 
         return (
             <React.Fragment>
                 <Head>
-                    <title>{this.props.pageTitle} - React Press</title>
+                    <title>{this.props.pageTitle} - Blogly</title>
                     <meta
                         name="viewport"
                         content="width=device-width, initial-scale=1, viewport-fit=cover"

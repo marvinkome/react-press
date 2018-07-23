@@ -20,7 +20,7 @@ ShallowWrapper {
       "children": Array [
         <SideEffect(Head)>
           <title>
-            Login - Reactpress
+            Login - Blogly
           </title>
         </SideEffect(Head)>,
         <withApollo(PageView) />,
@@ -34,7 +34,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <title>
-            Login - Reactpress
+            Login - Blogly
           </title>,
         },
         "ref": null,
@@ -43,10 +43,10 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "host",
           "props": Object {
-            "children": "Login - Reactpress",
+            "children": "Login - Blogly",
           },
           "ref": null,
-          "rendered": "Login - Reactpress",
+          "rendered": "Login - Blogly",
           "type": "title",
         },
         "type": [Function],
@@ -72,7 +72,7 @@ ShallowWrapper {
         "children": Array [
           <SideEffect(Head)>
             <title>
-              Login - Reactpress
+              Login - Blogly
             </title>
           </SideEffect(Head)>,
           <withApollo(PageView) />,
@@ -86,7 +86,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <title>
-              Login - Reactpress
+              Login - Blogly
             </title>,
           },
           "ref": null,
@@ -95,10 +95,10 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "host",
             "props": Object {
-              "children": "Login - Reactpress",
+              "children": "Login - Blogly",
             },
             "ref": null,
-            "rendered": "Login - Reactpress",
+            "rendered": "Login - Blogly",
             "type": "title",
           },
           "type": [Function],

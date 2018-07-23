@@ -19,7 +19,7 @@ export class Signup extends React.Component {
         return (
             <React.Fragment>
                 <Head>
-                    <title>Sign Up - Reactpress</title>
+                    <title>Sign Up - Blogly</title>
                 </Head>
                 <View />
             </React.Fragment>
