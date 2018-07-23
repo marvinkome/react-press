@@ -39,9 +39,14 @@ export class Body extends Component {
         });
     };
     afterUpload = (pic_url) => {
-        this.setState({
-            pic_url
-        });
+        this.setState(
+            {
+                pic_url
+            },
+            () => {
+                this.props.handleNewProfilePic({ newPic: pic_url });
+            }
+        );
     };
 
     sortNewData = (data) => {
@@ -105,7 +110,8 @@ export class Body extends Component {
 
 Body.propTypes = {
     data: types.object.isRequired,
-    handleNewProfile: types.func.isRequired
+    handleNewProfile: types.func.isRequired,
+    handleNewProfilePic: types.func.isRequired
 };
 
 export default Body;

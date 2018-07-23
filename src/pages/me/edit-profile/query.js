@@ -12,6 +12,16 @@ export const updateProfile = gql`
     }
 `;
 
+export const updateProfilePic = gql`
+    mutation updateProfile($newPic: String!) {
+        updateUserProfilePic(newPic: $newPic) {
+            user {
+                id
+            }
+        }
+    }
+`;
+
 export default gql`
     query profileUpdateData {
         user {

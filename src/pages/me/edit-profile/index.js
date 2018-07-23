@@ -8,17 +8,33 @@ import redirect from '../../../lib/redirect';
 import { checkLoggedIn, createToast } from '../../../lib/helpers';
 
 import PageBody from './view';
-import query, { updateProfile } from './query';
+import query, { updateProfile, updateProfilePic } from './query';
 import './style.less';
 
 const EditProfile = ({ loggedIn, client }) => {
     const handleNewProfile = (user_data, updateFunc) => {
         updateFunc({ variables: user_data });
     };
-    const onError = () => createToast('Error updating your profile');
-    const onCompleted = async () => {
+
+    const handleNewProfilePic = (data, updateFunc) => {
+        updateFunc({ variables: data });
+    };
+
+    const onError = (pic) => createToast(`Error updating your profile ${pic ? 'picture' : ''}`);
+
+    const onCompleted = async (pic) => {
         await client.resetStore();
-        await createToast('Your profile has been updated');
+        await createToast(`Your profile ${pic ? 'picture' : ''} has been updated`);
+    };
+
+    const pageBody = (user_data, update_data, update_pic) => {
+        return (
+            <PageBody
+                data={user_data}
+                handleNewProfile={(user_data) => handleNewProfile(user_data, update_data)}
+                handleNewProfilePic={(pic_data) => handleNewProfilePic(pic_data, update_pic)}
+            />
+        );
     };
 
     return (
@@ -27,7 +43,8 @@ const EditProfile = ({ loggedIn, client }) => {
             pageTitle="Edit Profile"
             render={() => (
                 <Query query={query}>
-                    {({ data }) => {
+                    {(renderProp) => {
+                        const { data } = renderProp;
                         const user_data = data.user;
 
                         return (
@@ -38,12 +55,15 @@ const EditProfile = ({ loggedIn, client }) => {
                             >
                                 {(update_profile) => {
                                     return (
-                                        <PageBody
-                                            data={user_data}
-                                            handleNewProfile={(user_data) =>
-                                                handleNewProfile(user_data, update_profile)
+                                        <Mutation
+                                            mutation={updateProfilePic}
+                                            onCompleted={() => onCompleted(true)}
+                                            onError={() => onError(true)}
+                                        >
+                                            {(update_pic) =>
+                                                pageBody(user_data, update_profile, update_pic)
                                             }
-                                        />
+                                        </Mutation>
                                     );
                                 }}
                             </Mutation>

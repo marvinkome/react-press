@@ -55,15 +55,14 @@ export const validate_html = (html) => {
 
 export const upload_file = async (file, onUpload, onFail, onSuccess) => {
     try {
-        const ref = firebase
-            .storage()
-            .ref()
-            .child('images/' + file.name);
+        const store = firebase.storage();
+        const ref = store.ref().child('images/' + file.name);
         const task = ref.put(file);
+
         task.on(firebase.storage.TaskEvent.STATE_CHANGED, onUpload, onFail, onSuccess);
         return task;
     } catch (e) {
-        return 'firebase is not defined', null;
+        return null;
     }
 };
 
