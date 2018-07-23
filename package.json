@@ -4,9 +4,9 @@
     "main": "index.js",
     "license": "MIT",
     "scripts": {
-        "build": "next build",
+        "build": "next build src",
         "start": "NODE_ENV=production node src/server.js --require dotenv/config",
-        "export": "npm run build && next export",
+        "export": "npm run build && next export src",
         "dev": "node src/server.js --require dotenv/config",
         "pretty": "prettier-eslint --write 'src/**/*.+(css|less|js|md)'",
         "lint": "eslint --fix 'src/**/*.+(js)'",
