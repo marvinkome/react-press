@@ -14,7 +14,7 @@ const Pagination = ({ nextTitle, prevTitle }) => {
                     <div>previous post</div>
                     <h5>
                         <Link href={`/p/${prevLink}`}>
-                            <a>{prevTitle}</a>
+                            <a rel="prev">{prevTitle}</a>
                         </Link>
                     </h5>
                 </div>
@@ -24,7 +24,7 @@ const Pagination = ({ nextTitle, prevTitle }) => {
                     <div>next post</div>
                     <h5>
                         <Link href={`/p/${nextLink}`}>
-                            <a>{nextTitle}</a>
+                            <a rel="next">{nextTitle}</a>
                         </Link>
                     </h5>
                 </div>
